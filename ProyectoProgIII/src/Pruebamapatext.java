@@ -22,7 +22,7 @@ protected static Map gen0Al () {
 				lel[i][j].setType(0);
 				}else {
 					
-					lel[i][j].setType((int)(Math.random()*2+1));
+					lel[i][j].setType(1);
 					
 				}
 			}
@@ -55,17 +55,21 @@ protected static void imprimeMap(Map a) {
 protected static int setIni(Map a) {
 	
 	
+	int r = 22;
 	
-	
-	for (int i = 0; i < a.getC().length; i++) { //imprime en pantalla el tablero
+	 for (int i = 0; i< a.getC().length; i++) {
 		for (int j = 0; j < a.getC()[i].length; j++) {
+			System.out.println(a.getC()[i][j].getType());
 			
-			if(a.getC()[i][j].getType()==1);
-			return j;
+			if(a.getC()[i][j].getType()==0){
+			r = i;  //i son las filas y j las columnas?¿
+			break;
+			}
 		}
 		
-	}
-	return 0;
+	 }
+	System.out.println(r);
+	return r;
 	
 	
 	
@@ -93,25 +97,32 @@ protected static int setIni(Map a) {
 			public void run() {
 				
 				Ene e = new Ene(0,setIni(a));
-				System.out.println(e.getPosX()+" "+e.getPosY());
+				System.out.println(e.getPosY()+" "+e.getPosX());
 				while(true) {
 					
 					
 							
-							int federico = e.getPosX(); //x
-							int garcia = e.getPosY()-1;	//y
-					
+							int federico = e.getPosY(); //y
+							int garcia = e.getPosX()-1;	//x
+							int comp1= federico;;
+							int comp2= garcia;
 							for (int i1 = 0; i1 < 2; i1++) {
+								if (garcia!=-1) {
+									comp1 = a.getC()[federico][garcia].getX();	
+									comp2 = a.getC()[federico][garcia].getY();
+								}/*else {comp1 = a.getC()[federico][garcia+1].getX();
+									   comp2 = a.getC()[federico][garcia+1].getY();
+								};*/
 								
-								int comp1 = a.getC()[federico][garcia].getX();
-								int comp2 = a.getC()[federico][garcia].getX();
+								
 								int comp = comp1+comp2;
+								
 								for (int j1 = 0; j1 < 3; j1++) {
-										
+									if (!(federico<0||garcia<0||federico>a.getC().length-1||garcia>a.getC()[i1].length-1)) {
 										if (a.getC()[federico][garcia].getType()==1) {
-											e.setPosX(federico);
 											e.setPosY(garcia);
-											System.out.println(e.getPosX()+" "+e.getPosY());
+											e.setPosX(federico);
+											System.out.println(e.getPosY()+" "+e.getPosX());
 											try {
 												Thread.sleep(2000);
 											} catch (InterruptedException e1) {
@@ -126,12 +137,14 @@ protected static int setIni(Map a) {
 									
 									garcia++;
 									}
+									}
 								}
-								if(comp== e.getPosX()+e.getPosY()) {
-								federico ++;
-								garcia=e.getPosY()-1;
 								
-								}else {break;}
+									
+								federico ++;
+								garcia=e.getPosX()-1;
+								
+								
 								
 							}
 							
