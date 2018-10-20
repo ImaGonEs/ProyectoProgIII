@@ -50,9 +50,8 @@ public class Creador {
 		glVertex2i(w,h);
 		glTexCoord2f(0,1);
 		glVertex2i(0,h);
-		glLoadIdentity();
 		glEnd();
-		
+		glLoadIdentity();
 		
 	}
 	public static Texture LoadT(String path, String fileType) {
@@ -76,6 +75,16 @@ public class Creador {
 		
 	}
 	
+	public static Texture QuickCast(String name) {
+		
+		Texture tex = null;
+		
+		tex = LoadT("res\\"+name+".png","PNG");
+		
+		
+		return tex;
+		
+	}
 	
 	public static void TraceOn() {
 		

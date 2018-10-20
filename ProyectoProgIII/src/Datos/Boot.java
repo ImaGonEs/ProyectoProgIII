@@ -18,11 +18,13 @@ public class Boot {
 		
 		TraceOn();
 		
-		Texture t = LoadT("res\\g1.png", "PNG");
+		Map map = new Map();
+		
+		
 		
 		while (!Display.isCloseRequested()) {
 			
-			ProjectTQuad(t,0,0,64,64);
+		map.Project();
 			
 			Display.update();
 			Display.sync(120);
