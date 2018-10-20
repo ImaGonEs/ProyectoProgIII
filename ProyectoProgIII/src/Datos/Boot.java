@@ -2,6 +2,8 @@ package Datos;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
+import org.newdawn.slick.opengl.Texture;
+
 import static org.lwjgl.opengl.GL11.*;
 import static weareSupports.Creador.*;
 public class Boot {
@@ -10,19 +12,17 @@ public class Boot {
 	
 	
 	
-	int x =100;
-	int y = 100;
+
 	
 	public Boot() {
 		
 		TraceOn();
 		
-		int w = 50;
-		int h = 50;
+		Texture t = LoadT("res\\g1.png", "PNG");
 		
 		while (!Display.isCloseRequested()) {
 			
-			ProjectQuad(100,100,50,50);
+			ProjectTQuad(t,0,0,64,64);
 			
 			Display.update();
 			Display.sync(120);

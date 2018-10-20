@@ -9,10 +9,17 @@ import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glOrtho;
 import static org.lwjgl.opengl.GL11.glVertex2i;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.annotation.Resource;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
 public class Creador {
 	
@@ -34,18 +41,47 @@ public class Creador {
 		
 		tex.bind();
 		glTranslatef(x,y,0);
+		glBegin(GL_QUADS);
+		glTexCoord2f(0,0);
+		glVertex2i(0,0);
+		glTexCoord2f(1,0);
+		glVertex2i(w,0);
+		glTexCoord2f(1,1);
+		glVertex2i(w,h);
+		glTexCoord2f(0,1);
+		glVertex2i(0,h);
+		glLoadIdentity();
+		glEnd();
+		
+		
+	}
+	public static Texture LoadT(String path, String fileType) {
+		
+		Texture tex = null;
+		
+		InputStream in = ResourceLoader.getResourceAsStream(path);
+		try {
+			tex = TextureLoader.getTexture(fileType, in);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Tile no encontrada");
+		}
+		
+		return tex;
+		
+		
+		
 		
 		
 		
 	}
 	
 	
-	
 	public static void TraceOn() {
 		
 		Display.setTitle("Pruebita");
 		try {
-			Display.setDisplayMode(new DisplayMode(1280, 720));
+			Display.setDisplayMode(new DisplayMode(1280, 960));
 			Display.create();
 		} catch (LWJGLException e) {
 			// TODO Auto-generated catch block
