@@ -10,6 +10,9 @@ public class Enemy {
 	private MapCell start;
 	
 	
+	
+	
+	
 	public Enemy(Texture tex, MapCell start, int w, int h, int vel, int lp ) {
 		super();
 		this.x = start.getX();
