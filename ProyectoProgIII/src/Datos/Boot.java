@@ -8,7 +8,7 @@ import weareSupports.Clock;
 
 import static org.lwjgl.opengl.GL11.*;
 import static weareSupports.Creador.*;
-public class Boot {
+public class Boot {  //aaaa
 
 
 	
@@ -59,11 +59,9 @@ public class Boot {
 		};
 		Map map = new Map(imap);	
 				
-<<<<<<< HEAD
-		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 13),32,32,20,50);
-=======
+
 		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 13),32,32,5,50);
->>>>>>> branch 'master' of https://github.com/ImaGonEs/ProyectoProgIII
+
 		
 		while (!Display.isCloseRequested()) {
 		
