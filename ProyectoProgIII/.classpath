@@ -6,6 +6,7 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="ProyectoProgIII/lib/natives"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="Test"/>
 	<classpathentry kind="lib" path="lib/jars/lwjgl_util.jar"/>
 	<classpathentry kind="lib" path="lib/jars/lwjgl.jar">
 		<attributes>
