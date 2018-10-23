@@ -13,7 +13,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jars/slick-util.jar"/>
-	<classpathentry kind="lib" path="lib/jars/lwjgl-glfw.jar"/>
-	<classpathentry kind="lib" path="lib/jars/lwjgl-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

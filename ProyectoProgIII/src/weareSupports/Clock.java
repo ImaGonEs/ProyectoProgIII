@@ -49,9 +49,9 @@ public class Clock {
 		}
 	}
 	
-	public Update() {
-		x += 
-	}
-	public static Draw
-	
+//	public Update() {
+//		x += 
+//	}
+//	public static Draw
+//	
 }
