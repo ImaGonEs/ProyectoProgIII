@@ -79,7 +79,7 @@ public class Creador {
 		
 		Texture tex = null;
 		
-		tex = LoadT("res\\"+name+".png","PNG");
+		tex = LoadT("src\\res\\"+name+".png","PNG");
 		
 		
 		return tex;
