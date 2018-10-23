@@ -2,12 +2,15 @@ package Datos;
 
 import org.newdawn.slick.opengl.Texture;
 import static weareSupports.Creador.*;
+import static weareSupports.Clock.*;
 public class Enemy {
 
 	
 	private int x,y,w,h,vel,lp;
 	private Texture tex;
 	private MapCell start;
+	
+	private boolean first = true;
 	
 	
 	
@@ -22,6 +25,13 @@ public class Enemy {
 		this.vel = vel;
 		this.lp = lp;
 		this.tex = tex;
+	}
+	
+	public void Update() {
+		if (first) 
+			first = false;
+		else
+			x += Delta() * vel;
 	}
 	
 	public void Project() {
