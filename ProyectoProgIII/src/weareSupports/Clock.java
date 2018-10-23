@@ -54,6 +54,7 @@ public class Clock {
 		}
 	}
 	
+
 	
 	public static void Pause() {
 		if (paused)
@@ -65,5 +66,5 @@ public class Clock {
 //	public static Draw() {
 //		
 //	}
-	
+
 }

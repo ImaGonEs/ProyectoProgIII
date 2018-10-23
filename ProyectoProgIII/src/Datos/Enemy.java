@@ -14,6 +14,9 @@ public class Enemy {
 	private boolean first = true;
 	
 	
+	
+	
+	
 	public Enemy(Texture tex, MapCell start, int w, int h, int vel, int lp ) {
 		super();
 		this.x = start.getX();
