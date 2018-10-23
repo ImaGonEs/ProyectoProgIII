@@ -6,13 +6,14 @@ public class Clock {
 
 	private static boolean paused = false;
 	public static long lastFrame, totalTime;
-	public static float d = 0, multiplier = 1;
+	public static float d = 0, multiplier = 1; 
 	
 	public static long getTime() {
 		return Sys.getTime() * 1000 / Sys.getTimerResolution();
 	}
 	
 	public static float  getDelta() {
+		
 		long currentTime = getTime();
 		int delta = (int) (currentTime -lastFrame);
 		lastFrame = getTime();
@@ -20,11 +21,15 @@ public class Clock {
 	}
 	
 	public static float Delta() {
-		if (paused)
-			return 0;
-		else
-			return d *multiplier;
+		if (paused) {
+			
 		
+			return 0;
+		}else {
+			
+		
+			return d *multiplier;
+		}
 	}
 	
 	public static float TotalTime() {
@@ -42,16 +47,24 @@ public class Clock {
 	}
 	
 	public static void ChangeMultiplier(int change) {
-		if (multiplier + change < -1 && multiplier + change > 7) {
+		if (multiplier + change < -1 && multiplier + change > 15) {
 			
 		}else {
 			multiplier += change;
 		}
 	}
 	
-//	public Update() {
-//		x += 
-//	}
-//	public static Draw
+
+	
+	public static void Pause() {
+		if (paused)
+			paused = false;
+		else 
+			paused = true;
+	}
 //	
+//	public static Draw() {
+//		
+//	}
+
 }

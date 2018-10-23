@@ -59,20 +59,20 @@ public class Boot {
 		};
 		Map map = new Map(imap);	
 				
-		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 13),32,32,2,50);
+		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 13),32,32,20,50);
 		
 		while (!Display.isCloseRequested()) {
 		
 			
 			Clock.update();
 			e.Update();
-			map.Project();
+			// map.Project();
 			
-			//map.Project();
+			map.Project();
 			e.Project();
 			
 			Display.update();
-			Display.sync(120);
+			Display.sync(30);
 		}
 		Display.destroy();
 	}

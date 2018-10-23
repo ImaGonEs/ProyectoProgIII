@@ -10,6 +10,7 @@ public class Enemy {
 	private Texture tex;
 	private MapCell start;
 	
+	
 	private boolean first = true;
 	
 	
@@ -28,10 +29,16 @@ public class Enemy {
 	}
 	
 	public void Update() {
-		if (first) 
+		if (first) {
 			first = false;
-		else
+		}else {
 			x += Delta() * vel;
+		}
+		}
+	
+	public void Draw() {
+		
+		ProjectTQuad(tex, x, y, w, h);	
 	}
 	
 	public void Project() {
