@@ -4,6 +4,8 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.Texture;
 
+import weareSupports.Clock;
+
 import static org.lwjgl.opengl.GL11.*;
 import static weareSupports.Creador.*;
 public class Boot {
@@ -60,9 +62,14 @@ public class Boot {
 		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 13),32,32,2,50);
 		
 		while (!Display.isCloseRequested()) {
+		
 			
-		map.Project();
-		e.Project();
+			Clock.update();
+			e.Update();
+			map.Project();
+			
+			//map.Project();
+			e.Project();
 			
 			Display.update();
 			Display.sync(120);
