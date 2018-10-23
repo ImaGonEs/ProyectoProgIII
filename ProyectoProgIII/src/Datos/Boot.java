@@ -16,7 +16,7 @@ public class Boot {
 	
 
 	
-	public Boot() {
+	public Boot() { //prueba
 		
 		TraceOn();
 		
@@ -59,7 +59,11 @@ public class Boot {
 		};
 		Map map = new Map(imap);	
 				
+<<<<<<< HEAD
 		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 13),32,32,20,50);
+=======
+		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 13),32,32,5,50);
+>>>>>>> branch 'master' of https://github.com/ImaGonEs/ProyectoProgIII
 		
 		while (!Display.isCloseRequested()) {
 		
