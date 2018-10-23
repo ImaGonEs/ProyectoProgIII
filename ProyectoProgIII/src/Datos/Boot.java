@@ -62,7 +62,7 @@ public class Boot {  //aaaa
 
 		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 13),32,32,5,50);
 
-		
+		//aasa
 		while (!Display.isCloseRequested()) {
 		
 			
