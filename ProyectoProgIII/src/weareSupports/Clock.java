@@ -27,7 +27,7 @@ public class Clock {
 			return 0;
 		}else {
 			
-		
+			
 			return d *multiplier;
 		}
 	}
@@ -47,7 +47,7 @@ public class Clock {
 	}
 	
 	public static void ChangeMultiplier(int change) {
-		if (multiplier + change < -1 && multiplier + change > 15) {
+		if (multiplier + change < -1 && multiplier + change > 7) {
 			
 		}else {
 			multiplier += change;

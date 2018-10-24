@@ -60,26 +60,31 @@ public class Boot {  //aaaa
 		Map map = new Map(imap);	
 				
 
-		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 13),32,32,5,50);
-
+		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 13),32,32,2,70);
+		Wave wave = new Wave (15,e);
+		Player pl = new Player(map);
 		//aasa
 		while (!Display.isCloseRequested()) {
 		
 			
 			Clock.update();
-			e.Update();
+			
+			
 			// map.Project();
 			
 			map.Project();
-			e.Project();
+			wave.Update();
+			pl.Update();
+			
+			
 			
 			Display.update();
-			Display.sync(30);
+			Display.sync(120);
 		}
 		Display.destroy();
 	}
 	
-	
+				
 	
 	
 	
