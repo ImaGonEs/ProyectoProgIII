@@ -6,7 +6,7 @@ import org.lwjgl.Sys;
 public class Clock { //sddfs
 
 
-
+//tu reputisima madre compadre
 
 //me cago en dios
 	
