@@ -8,7 +8,7 @@ import weareSupports.Clock;
 
 import static org.lwjgl.opengl.GL11.*;
 import static weareSupports.Creador.*;
-public class Boot {  //aaaa
+public class Boot {  //aaaaaaa
 
 
 	

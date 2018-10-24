@@ -3,7 +3,7 @@ package weareSupports;
 import org.lwjgl.Sys;
 
 public class Clock {
-//sdasdsad
+//sdasdsady
 	private static boolean paused = false;
 	public static long lastFrame, totalTime;
 	public static float d = 0, multiplier = 1; 
