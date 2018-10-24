@@ -9,6 +9,8 @@ public class Clock { //sddfs
 
 
 //me cago en dios
+	
+//me cago en la puta
 
 
 	private static boolean paused = false;
