@@ -2,7 +2,10 @@ package weareSupports;
 
 import org.lwjgl.Sys;
 
+
 public class Clock {
+
+
 
 	private static boolean paused = false;
 	public static long lastFrame, totalTime;
