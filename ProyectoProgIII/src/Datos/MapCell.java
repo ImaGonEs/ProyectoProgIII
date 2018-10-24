@@ -30,7 +30,14 @@ public class MapCell {
 	public int getX() {
 		return x;
 	}
+	
+	public int getXPlace() {
+		return (int) x / 32;
+	}
 
+	public int getYPlace() {
+		return (int) y / 32;
+	}
 
 	public void setX(int x) {
 		this.x = x;

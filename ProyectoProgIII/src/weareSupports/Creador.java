@@ -37,7 +37,7 @@ public class Creador {
 		
 	}
 	
-	public static void  ProjectTQuad(Texture tex,float x, int y, int w, int h) {
+	public static void  ProjectTQuad(Texture tex,float x, float y, int w, int h) {
 		
 		tex.bind();
 		glTranslatef(x,y,0);

@@ -1,9 +1,12 @@
 package Datos;
 
+import com.sun.javafx.scene.control.skin.TitledPaneSkin;
+
 public class Map {
 
 	
 	public MapCell[][] map;
+	private int cellsWide, cellsHigh;
 	
 	public Map() {
 		
@@ -22,6 +25,9 @@ public class Map {
 	}
 	
 	public Map(int [][] a) {
+	
+		this.cellsWide = a[0].length;
+		this.cellsHigh = a.length;
 		
 		map = new MapCell[40][30];
 		
@@ -94,11 +100,30 @@ public class Map {
 	public MapCell getCell(int x, int y) {
 		
 		
-		
+		if (x < cellsWide && y < cellsHigh && x > -1 && y > -1)
+			
 		return map[x][y];
 		
+		else
+			return new MapCell(0,0,0,0, TileType.Dirt2);
 		
 		
+	}
+
+	public int getCellsWide() {
+		return cellsWide;
+	}
+
+	public void setCellsWide(int cellsWide) {
+		this.cellsWide = cellsWide;
+	}
+
+	public int getCellsHigh() {
+		return cellsHigh;
+	}
+
+	public void setCellsHigh(int cellsHigh) {
+		this.cellsHigh = cellsHigh;
 	}
 	
 	

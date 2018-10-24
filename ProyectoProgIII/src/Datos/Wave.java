@@ -42,7 +42,7 @@ public class Wave {
 	
 	private void ProjectW() {
 		
-		wave.add(new Enemy(enemyType.getTex(),enemyType.getStart(),32,32,enemyType.getVel(),enemyType.getLp()));
+		wave.add(new Enemy(enemyType.getTex(),enemyType.getStart(),enemyType.getMap(),32,32,enemyType.getVel(),enemyType.getLp()));
 		
 		
 		

@@ -9,7 +9,7 @@ public class Clock { //sddfs
 //tu reputisima madre compadre
 
 //me cago en dios
-	
+
 //me cago en la puta
 
 
@@ -37,7 +37,7 @@ public class Clock { //sddfs
 		}else {
 			
 			
-			return d *multiplier;
+			return  d *multiplier;
 		}
 	}
 	
