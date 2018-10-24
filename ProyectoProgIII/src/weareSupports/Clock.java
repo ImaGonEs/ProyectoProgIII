@@ -6,7 +6,7 @@ import org.lwjgl.Sys;
 
 public class Clock {
 
-
+//me cago en dios
 
 
 	private static boolean paused = false;
