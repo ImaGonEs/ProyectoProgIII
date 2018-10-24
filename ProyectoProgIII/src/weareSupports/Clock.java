@@ -2,7 +2,14 @@ package weareSupports;
 
 import org.lwjgl.Sys;
 
+
 public class Clock { //sddfs
+
+
+
+
+//me cago en dios
+
 
 	private static boolean paused = false;
 	public static long lastFrame, totalTime;
