@@ -32,30 +32,36 @@ public class Player {
 		
 	}
 	
-public void setTower () { //para poner la torre con el click
+	public void setTower () { //para poner la torre con el click, no se mantiene
 		
 		
 		TowerCannon a = new TowerCannon();
 		
 		map.setTower((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
 	
-		
+	
 		
 		
 	}
 	
 	
+	private boolean mouseButton1 = false;
 	
 	public void Update() {
 		
-		if(Mouse.isButtonDown(0)) {
-			
-			
-			setTower();
-			
-			
-			
+		while (Mouse.next()){
+		    if (Mouse.getEventButtonState()) {
+		        if (Mouse.getEventButton() == 0) {
+		            //System.out.println("Left button pressed");
+		        }
+		    }else {
+		        if (Mouse.getEventButton() == 0) {
+		            //System.out.println("Left button released");
+		            setTower();
+		        }
+		    }
 		}
+		
 		
 		while (Keyboard.next()) {
 			

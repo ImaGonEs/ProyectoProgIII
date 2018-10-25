@@ -99,7 +99,7 @@ public class Map {
 		
 	}
 	
-public void setTower (int x, int y, TowerCannon a) {
+	public void setTower (int x, int y, TowerCannon a) {
 		
 		
 		a = new TowerCannon(QuickCast("torre"),map[x][y],3);
@@ -112,7 +112,7 @@ public void setTower (int x, int y, TowerCannon a) {
 		
 		for (TowerCannon t : towers) {
 			t.update();
-			t.project();
+			//t.project();
 			
 		}
 		

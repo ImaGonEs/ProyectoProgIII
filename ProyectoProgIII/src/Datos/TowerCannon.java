@@ -40,9 +40,6 @@ public class TowerCannon {
 	}
 
 	
-	
-	
-	
 	public TowerCannon() {
 		super();
 		this.x = 0;
@@ -53,9 +50,6 @@ public class TowerCannon {
 		this.tex = null;
 		this.startTile = null;
 	}
-
-
-
 
 
 	public void update() {

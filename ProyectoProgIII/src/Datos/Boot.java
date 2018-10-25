@@ -54,11 +54,11 @@ public class Boot {  //aaaaaaa
 				
 				
 		};
-		Map map = new Map(imap);	
-				
-
-		
-		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 14),map, 32,32,20,70);
+//		Map map = new Map(imap);	
+//				
+//
+//		
+//		Enemy e = new Enemy(QuickCast("mob0"),map.getCell(0, 14),map, 32,32,20,70);
 		
 //		Enemy ejempT = new Enemy(QuickCast("mob0"),map.getCell(37, 1),map, 32,32,1,70);
 //		
@@ -66,29 +66,31 @@ public class Boot {  //aaaaaaa
 //		
 //		Enemy ejempT2 = new Enemy(QuickCast("mob0"),map.getCell(39, 1),map, 32,32,1,70);
 		
-		Wave wave = new Wave (15,e); //  aqui deberia entrar un int marcando cuantos enemigos se spawnean en una oleada
-		Player pl = new Player(map);
-		
-		TowerCannon tower = new TowerCannon(QuickCast("torre"), map.getCell(15, 15), 10);
+//		Wave wave = new Wave (15,e); //  aqui deberia entrar un int marcando cuantos enemigos se spawnean en una oleada
+//		Player pl = new Player(map);
+//		
+//		TowerCannon tower = new TowerCannon(QuickCast("torre"), map.getCell(15, 15), 10);
 		//aasa
+		
+		Game game = new Game(imap);
 		while (!Display.isCloseRequested()) {
 		
 			
 			Clock.update();
 			
-			
+			game.update();
 			// map.Project();
 			
-			map.Project();
-			map.UpdateT();
-			wave.Update();
-			
-			pl.Update();
+//			map.Project();
+//			map.UpdateT();
+//			wave.Update();
+//			
+//			pl.Update();
 
-			tower.update();
+			//tower.update();
 			
 
-			tower.project();
+			//tower.project();
 //			ejempT.Project();
 //			ejempT1.Project();
 //			ejempT2.Project();
