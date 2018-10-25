@@ -66,6 +66,8 @@ public class Boot {  //aaaaaaa
 		
 		Wave wave = new Wave (15,e); //  aqui deberia entrar un int marcando cuantos enemigos se spawnean en una oleada
 		Player pl = new Player(map);
+		
+		TowerCannon tower = new TowerCannon(QuickCast("torre"), map.getCell(15, 15), 10);
 		//aasa
 		while (!Display.isCloseRequested()) {
 		
@@ -79,6 +81,7 @@ public class Boot {  //aaaaaaa
 			wave.Update();
 			
 			pl.Update();
+			tower.project();
 			ejempT.Project();
 			ejempT1.Project();
 			ejempT2.Project();
