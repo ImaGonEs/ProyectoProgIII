@@ -1,5 +1,6 @@
 package Datos;
 
+import static weareSupports.Creador.*;
 
 public class Map {
 
@@ -95,6 +96,19 @@ public class Map {
 		
 		
 	}
+	
+public void setTower (int x, int y, TowerCannon a) {
+		
+		
+		a = new TowerCannon(QuickCast("torre"),map[x][y],3);
+	
+		a.project();
+		
+	}
+	
+	
+	
+	
 	
 	public MapCell getCell(int x, int y) {
 		

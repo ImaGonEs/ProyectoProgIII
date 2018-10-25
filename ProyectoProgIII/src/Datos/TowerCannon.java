@@ -30,6 +30,7 @@ public class TowerCannon {
 		this.projectiles = new ArrayList<Projectile>();
 	}
 
+
 	private void shoot() {
 		timeSinceLastShot = 0;
 		projectiles.add(new Projectile(QuickCast("circle"), x , y , 20, 10));
@@ -37,6 +38,26 @@ public class TowerCannon {
 		
 		
 	}
+
+	
+	
+	
+	
+	public TowerCannon() {
+		super();
+		this.x = 0;
+		this.y = 0;
+		this.width = 0;
+		this.height = 0;
+		this.damage = 0;
+		this.tex = null;
+		this.startTile = null;
+	}
+
+
+
+
+
 	public void update() {
 		
 		timeSinceLastShot += Delta();
@@ -54,5 +75,15 @@ public class TowerCannon {
 		ProjectTQuad(tex,x,y,width,height);
 		
 	}
+
+	public Texture getTex() {
+		return tex;
+	}
+
+	public void setTex(Texture tex) {
+		this.tex = tex;
+	}
+	
+	
 	
 }
