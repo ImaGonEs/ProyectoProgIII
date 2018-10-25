@@ -37,7 +37,7 @@ public class Wave {
 		for (Enemy e : wave) {
 			
 			
-			if (e.getEnd()==false) {
+			if (e.isAlive()) {
 				e.Update();
 				e.Project();
 			}

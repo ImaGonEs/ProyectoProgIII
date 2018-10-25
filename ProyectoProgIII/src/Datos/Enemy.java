@@ -14,7 +14,7 @@ public class Enemy {
 	private Texture tex;
 	private MapCell start;
 	private Map map;
-	private boolean end = false;
+	private boolean alive = true;
 	private ArrayList<CheckPoint> checkpoints;
 	private int[] directions;
 	
@@ -57,14 +57,13 @@ public class Enemy {
 			if (CheckPointReached()) {
 				if (currentCheckPoint + 1 == checkpoints.size()) {
 					System.out.println("enemmy reached end of maze");
-					end = true;
+					Die();
 					
 				}
 				else {
 				currentCheckPoint++;
 				}
 			}else {
-				
 				
 				x += Delta() * checkpoints.get(currentCheckPoint).getxDirection() * vel;
 				y += Delta() * checkpoints.get(currentCheckPoint).getyDirection() * vel;
@@ -149,7 +148,7 @@ public class Enemy {
 	
 	}
 	
-	private int[] FindNextD(MapCell s) {
+	public int[] FindNextD(MapCell s) {
 		int[] dir = new int[2];
 		MapCell u = map.getCell(s.getXPlace(),s.getYPlace()-1);
 		MapCell r = map.getCell(s.getXPlace() + 1,s.getYPlace());
@@ -282,14 +281,26 @@ public class Enemy {
 		return map;
 	}
 
-	public boolean getEnd() {
-		return end;
+	public boolean isAlive() {
+		return alive;
 	}
 
-	public void setEnd(boolean end) {
-		this.end = end;
+	public void setAlive(boolean end) {
+		this.alive = end;
 	}
 	
+	private void Die() {
+		alive = false;
+	}
+
+	public int[] getDirections() {
+		return directions;
+	}
+
+	public void setDirections(int[] directions) {
+		this.directions[0] = directions[0];
+		this.directions[1]= directions[1];
+	}
 	
 	
 }
