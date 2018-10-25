@@ -2,12 +2,14 @@ package Datos;
 
 import static weareSupports.Creador.*;
 
+import java.util.ArrayList;
+
 public class Map {
 
 	
 	public MapCell[][] map;
 	private int cellsWide, cellsHigh;
-	
+	private ArrayList<TowerCannon> towers;
 	public Map() {
 		
 		map = new MapCell[20][15];
@@ -66,7 +68,7 @@ public class Map {
 			}
 		}
 		
-		
+		towers = new ArrayList<TowerCannon>();
 		
 		
 	}
@@ -101,12 +103,23 @@ public void setTower (int x, int y, TowerCannon a) {
 		
 		
 		a = new TowerCannon(QuickCast("torre"),map[x][y],3);
-	
-		a.project();
+		towers.add(a);
+		
 		
 	}
 	
-	
+	public void UpdateT() {
+		
+		for (TowerCannon t : towers) {
+			t.update();
+			t.project();
+			
+		}
+		
+		
+		
+		
+	}
 	
 	
 	

@@ -80,6 +80,7 @@ public class Boot {  //aaaaaaa
 			// map.Project();
 			
 			map.Project();
+			map.UpdateT();
 			wave.Update();
 			
 			pl.Update();

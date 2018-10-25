@@ -32,14 +32,14 @@ public class Player {
 		
 	}
 	
-public void setTower () { //para poner la torre con el click, no se mantiene
+public void setTower () { //para poner la torre con el click
 		
 		
 		TowerCannon a = new TowerCannon();
 		
 		map.setTower((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
 	
-	
+		
 		
 		
 	}
