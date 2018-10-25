@@ -1,6 +1,5 @@
 package Datos;
 
-import com.sun.javafx.scene.control.skin.TitledPaneSkin;
 
 public class Map {
 

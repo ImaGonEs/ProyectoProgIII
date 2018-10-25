@@ -14,7 +14,7 @@ public class Enemy {
 	private Texture tex;
 	private MapCell start;
 	private Map map;
-	
+	private boolean end = false;
 	private ArrayList<CheckPoint> checkpoints;
 	private int[] directions;
 	
@@ -55,11 +55,14 @@ public class Enemy {
 		}else {
 			
 			if (CheckPointReached()) {
-				if (currentCheckPoint + 1 == checkpoints.size())
+				if (currentCheckPoint + 1 == checkpoints.size()) {
 					System.out.println("enemmy reached end of maze");
-				else
+					end = true;
+					
+				}
+				else {
 				currentCheckPoint++;
-				
+				}
 			}else {
 				
 				
@@ -277,6 +280,14 @@ public class Enemy {
 	public Map getMap() {
 		
 		return map;
+	}
+
+	public boolean getEnd() {
+		return end;
+	}
+
+	public void setEnd(boolean end) {
+		this.end = end;
 	}
 	
 	

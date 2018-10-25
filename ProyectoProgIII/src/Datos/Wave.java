@@ -35,8 +35,12 @@ public class Wave {
 		}
 		
 		for (Enemy e : wave) {
-			e.Update();
-			e.Project();
+			
+			
+			if (e.getEnd()==false) {
+				e.Update();
+				e.Project();
+			}
 		}
 	}
 	

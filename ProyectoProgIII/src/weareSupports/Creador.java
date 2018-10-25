@@ -91,6 +91,7 @@ public class Creador {
 		Display.setTitle("Pruebita");
 		try {
 			Display.setDisplayMode(new DisplayMode(1280, 960));
+			//Display.setFullscreen(true);
 			Display.create();
 		} catch (LWJGLException e) {
 			// TODO Auto-generated catch block
