@@ -2,14 +2,20 @@ package Datos;
 
 import static weareSupports.Creador.ProjectTQuad;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.opengl.Texture;
+import static weareSupports.Creador.*;
+import static weareSupports.Clock.*;
 
 public class TowerCannon {
 	
-	private float x, y;
+	private float x, y, timeSinceLastShot, attackSpeed;
 	private int width, height, damage;
 	private Texture tex;
 	private MapCell startTile;
+	private ArrayList<Projectile> projectiles;
+	
 	public TowerCannon(Texture tex, MapCell startTile, int damage) {
 		
 		this.tex = tex;
@@ -19,9 +25,28 @@ public class TowerCannon {
 		this.damage = damage;
 		this.width = (int) startTile.getW();
 		this.height = (int) startTile.getH();
+		this.attackSpeed = 30;
+		this.timeSinceLastShot = 0;
+		this.projectiles = new ArrayList<Projectile>();
 	}
 
+	private void shoot() {
+		timeSinceLastShot = 0;
+		projectiles.add(new Projectile(QuickCast("circle"), x , y , 20, 10));
+		
+		
+		
+	}
 	public void update() {
+		
+		timeSinceLastShot += Delta();
+		if (timeSinceLastShot > attackSpeed)
+			shoot();
+		
+		for (Projectile p : projectiles)
+			p.update();
+		
+		project();
 		
 	}
 	public void project() {

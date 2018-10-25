@@ -81,7 +81,7 @@ public class Boot {  //aaaaaaa
 			wave.Update();
 			
 			pl.Update();
-			tower.project();
+			tower.update();
 			ejempT.Project();
 			ejempT1.Project();
 			ejempT2.Project();
