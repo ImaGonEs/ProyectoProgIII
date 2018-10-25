@@ -21,6 +21,25 @@ public class TowerCannon {
 		this.height = (int) startTile.getH();
 	}
 
+	
+	
+	
+	
+	public TowerCannon() {
+		super();
+		this.x = 0;
+		this.y = 0;
+		this.width = 0;
+		this.height = 0;
+		this.damage = 0;
+		this.tex = null;
+		this.startTile = null;
+	}
+
+
+
+
+
 	public void update() {
 		
 	}
@@ -29,5 +48,15 @@ public class TowerCannon {
 		ProjectTQuad(tex,x,y,width,height);
 		
 	}
+
+	public Texture getTex() {
+		return tex;
+	}
+
+	public void setTex(Texture tex) {
+		this.tex = tex;
+	}
+	
+	
 	
 }
