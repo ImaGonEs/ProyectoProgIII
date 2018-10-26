@@ -26,7 +26,7 @@ public class Player {
 	
 	public void SetTile() {
 		
-		map.setCell((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), types[i] );
+		map.setCell((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), types[i],false );
 		
 		
 		
@@ -40,17 +40,34 @@ public class Player {
 		
 		
 		if (i==0) {
-		TowerCannon a = new TowerCannon();
+			
+			if(map.getCell(Mouse.getX(), Mouse.getY()).getR()==false) {
+				
+				
+				TowerCannon a = new TowerCannon();
+				
+				map.setTowerC((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
+				
+			
+				
+				
+			}
+			
+			
 		
-		map.setTowerC((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
+		
+		
 		
 		}else if (i==1) {
 			
+			
+			if(map.getCell(Mouse.getX(), Mouse.getY()).getR()==false) {
 			TowerMelee a = new TowerMelee();
 			
 			map.setTowerM((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
+			map.getCell(Mouse.getX(), Mouse.getY()).setR(true);
 			
-			
+			}
 		}
 		
 		
@@ -84,12 +101,12 @@ public class Player {
 			if ( Keyboard.getEventKey()== Keyboard.KEY_Q && Keyboard.getEventKeyState()){	
 				i = 0;
 				setTower();
-				System.out.println(i);
+				
 			}
 			if ( Keyboard.getEventKey()== Keyboard.KEY_W && Keyboard.getEventKeyState()){	
 				i = 1;
 				setTower();
-				System.out.println(i);
+				
 			}
 
 

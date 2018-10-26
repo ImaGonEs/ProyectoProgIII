@@ -18,7 +18,7 @@ public class Map {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
 				
-				map[i][j] = new MapCell(i*64,j*64,64,64,TileType.Dirt0);
+				map[i][j] = new MapCell(i*64,j*64,64,64,TileType.Dirt0,  TileType.Dirt0.cc);
 				
 				
 			}
@@ -40,27 +40,27 @@ public class Map {
 				
 				if (a[j][i]==0) {
 					
-					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Grass0);
+					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Grass0,TileType.Grass0.cc);
 
 				}else if (a[j][i]==1) {
 					
-					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Dirt0);
+					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Dirt0, TileType.Dirt0.cc);
 					
 					
 				}else if (a[j][i]==11) {
 					
-					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Dirt1);
+					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Dirt1, TileType.Dirt0.cc);
 					
 					
 				}else if (a[j][i]==12) {
 					
-					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Dirt2);
+					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Dirt2, TileType.Dirt0.cc);
 					
 					
 					
 				}else {
 					
-					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Dirt0);
+					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Dirt0, TileType.Dirt0.cc);
 					
 				}
 				
@@ -92,10 +92,10 @@ public class Map {
 
 	}
 	
-	public void setCell (int x, int y, TileType type) {
+	public void setCell (int x, int y, TileType type, boolean r) {
 		
 		
-		map[x][y] = new MapCell(x*32,y*32,32,32,type);
+		map[x][y] = new MapCell(x*32,y*32,32,32,type,r);
 		
 		
 	}
@@ -112,7 +112,7 @@ public class Map {
 	public void setTowerM (int x, int y, TowerMelee a) {
 		
 		
-		a = new TowerMelee(QuickCast("Mob0"),map[x][y],3);
+		a = new TowerMelee(QuickCast("S97"),map[x][y],3);
 		towerM.add(a);
 		
 		
@@ -149,7 +149,7 @@ public class Map {
 		return map[x][y];
 		
 		else
-			return new MapCell(0,0,0,0, TileType.Dirt2);
+			return new MapCell(0,0,0,0, TileType.Dirt2, TileType.Dirt0.cc);
 		
 		
 	}

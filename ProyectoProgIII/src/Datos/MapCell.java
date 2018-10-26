@@ -9,9 +9,9 @@ public class MapCell {
 	private int x,y,w,h;
 	private Texture tex;
 	private TileType type;
+	boolean r;
 	
-	
-	public MapCell(int x, int y, int w, int h, TileType type) {
+	public MapCell(int x, int y, int w, int h, TileType type,boolean r) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -19,8 +19,11 @@ public class MapCell {
 		this.h = h;
 		this.type = type;
 		this.tex = QuickCast(type.name);
+		this.r = r;
 	}
 
+	
+	
 	public void Project() {
 		
 		ProjectTQuad(tex, x, y, w,h);
@@ -91,6 +94,14 @@ public class MapCell {
 
 	public void setType(TileType type) {
 		this.type = type;
+	}
+
+	public boolean getR() {
+		return r;
+	}
+
+	public void setR(boolean r) {
+		this.r = r;
 	}
 	
 	
