@@ -119,7 +119,7 @@ public class LeMenu extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				bT1.setImagen("src/res/eam2.png");
+				bT1.setImagen("src/res/team2.png");
 			}
 			
 			@Override
@@ -153,7 +153,7 @@ public class LeMenu extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				bSe1.setImagen("src/ressettings2.png");
+				bSe1.setImagen("src/res/settings2.png");
 			}
 			
 			@Override
