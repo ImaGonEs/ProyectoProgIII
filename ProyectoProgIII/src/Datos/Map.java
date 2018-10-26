@@ -9,7 +9,8 @@ public class Map {
 	
 	public MapCell[][] map;
 	private int cellsWide, cellsHigh;
-	private ArrayList<TowerCannon> towers;
+	private ArrayList<TowerCannon> towerC;
+	private ArrayList<TowerMelee> towerM;
 	public Map() {
 		
 		map = new MapCell[20][15];
@@ -68,8 +69,8 @@ public class Map {
 			}
 		}
 		
-		towers = new ArrayList<TowerCannon>();
-		
+		towerC = new ArrayList<TowerCannon>();
+		towerM = new ArrayList<TowerMelee>();
 		
 	}
 	
@@ -99,23 +100,40 @@ public class Map {
 		
 	}
 	
-	public void setTower (int x, int y, TowerCannon a) {
+	public void setTowerC (int x, int y, TowerCannon a) {
 		
 		
 		a = new TowerCannon(QuickCast("torre"),map[x][y],3);
-		towers.add(a);
+		towerC.add(a);
 		
 		
 	}
 	
+	public void setTowerM (int x, int y, TowerMelee a) {
+		
+		
+		a = new TowerMelee(QuickCast("Mob0"),map[x][y],3);
+		towerM.add(a);
+		
+		
+	}
+	
+	
 	public void UpdateT() {
 		
-		for (TowerCannon t : towers) {
+		for (TowerCannon t : towerC) {
 			t.update();
 			//t.project();
 			
 		}
 		
+		for (TowerMelee m : towerM) {
+			
+			m.update();
+			
+			
+			
+		}
 		
 		
 		

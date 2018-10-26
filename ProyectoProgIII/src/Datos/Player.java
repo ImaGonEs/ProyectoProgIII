@@ -35,9 +35,25 @@ public class Player {
 	public void setTower () { //para poner la torre con el click, no se mantiene
 		
 		
+		
+		
+		
+		
+		if (i==0) {
 		TowerCannon a = new TowerCannon();
 		
-		map.setTower((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
+		map.setTowerC((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
+		
+		}else if (i==1) {
+			
+			TowerMelee a = new TowerMelee();
+			
+			map.setTowerM((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
+			
+			
+		}
+		
+		
 	
 	
 		
@@ -57,7 +73,7 @@ public class Player {
 		    }else {
 		        if (Mouse.getEventButton() == 0) {
 		            //System.out.println("Left button released");
-		            setTower();
+		            
 		        }
 		    }
 		}
@@ -65,10 +81,17 @@ public class Player {
 		
 		while (Keyboard.next()) {
 			
-			if ( Keyboard.getEventKey()== Keyboard.KEY_D && Keyboard.getEventKeyState()){	
-				Mindex();
+			if ( Keyboard.getEventKey()== Keyboard.KEY_Q && Keyboard.getEventKeyState()){	
+				i = 0;
+				setTower();
 				System.out.println(i);
 			}
+			if ( Keyboard.getEventKey()== Keyboard.KEY_W && Keyboard.getEventKeyState()){	
+				i = 1;
+				setTower();
+				System.out.println(i);
+			}
+
 
 		}
 
