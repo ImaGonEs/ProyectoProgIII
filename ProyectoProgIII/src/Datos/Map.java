@@ -112,7 +112,7 @@ public class Map {
 	public void setTowerM (int x, int y, TowerMelee a) {
 		
 		
-		a = new TowerMelee(QuickCast("S97"),map[x][y],3);
+		a = new TowerMelee(QuickCast("Mob0"),map[x][y],3);
 		towerM.add(a);
 		
 		

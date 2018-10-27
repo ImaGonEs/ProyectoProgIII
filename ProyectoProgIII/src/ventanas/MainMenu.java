@@ -25,7 +25,7 @@ public class MainMenu extends JFrame{
 		
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
+		setResizable(false);
 		
 		Container cp = this.getContentPane();
 		
@@ -37,20 +37,20 @@ public class MainMenu extends JFrame{
 		
 		JLabel title = new JLabel("OOOOO");
 		
-		Font fontTitulo = new Font("Synchro LET", Font.BOLD, 40);
-		try {
-		    //create the font to use. Specify the size!
-		    fontTitulo = Font.createFont(Font.TRUETYPE_FONT, new File("DepredationPixie.ttf")).deriveFont(48f);
-		    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		    //register the font
-		    ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("DepredationPixie.ttf")));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		} catch(FontFormatException e) {
-		    e.printStackTrace();
-		}
-	
-		title.setFont(fontTitulo);
+//		Font fontTitulo = new Font("Synchro LET", Font.BOLD, 40);
+//		try {
+//		    //create the font to use. Specify the size!
+//		    //fontTitulo = Font.createFont(Font.TRUETYPE_FONT, new File("DepredationPixie.ttf")).deriveFont(48f);
+//		    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//		    //register the font
+//		    ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("DepredationPixie.ttf")));
+//		} catch (IOException e) {
+//		    e.printStackTrace();
+//		} catch(FontFormatException e) {
+//		    e.printStackTrace();
+//		}
+//	
+//		title.setFont(fontTitulo);
 		
 		title.setForeground(Color.pink
 				);

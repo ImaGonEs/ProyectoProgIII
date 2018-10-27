@@ -1,6 +1,8 @@
 package ventanas;
 
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -19,10 +21,38 @@ public class LeMenu extends JFrame{
 	JPanel panel;
 	JLabelGraficoAjustado title;
 	StandardAudio clip;
-	public LeMenu() {
+	private int w = 1000,h=600;
+	
+	
+	
+	
+	
+	
+	
+	public LeMenu(boolean f) {
 		
-		setSize(1000,600);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		JFrame frame = this;
+		
+//		int w = (int) screenSize.getWidth();
+//		int h = (int) screenSize.getHeight();
+//		
+		
+		if (f ==false) {
+		w = 1000;
+		h = 600;
+		}else {
+			
+			w = (int) screenSize.getWidth();
+			h = (int) screenSize.getHeight();
+			
+		}
+		
+		setUndecorated(f);
+		setSize(w,h);
 		setVisible(true);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
@@ -32,34 +62,34 @@ public class LeMenu extends JFrame{
 		
 		clip = new StandardAudio("src/res/Evil Mortys Theme.wav",true);
 		
-		background = new JLabelGraficoAjustado("src/res/forest.png", 1000, 900);
+		background = new JLabelGraficoAjustado("src/res/forest.png", w, (int) ((int) h*1.5)); //1000,900
 		
-		title = new JLabelGraficoAjustado("src/res/title.png", 800, 100);
+		title = new JLabelGraficoAjustado("src/res/title.png", (int) (w*0.8), h/6); //800,100
 		
 		
 		
-		bP1 = new JLabelGraficoAjustado("src/res/play1.png",200,100); 
+		bP1 = new JLabelGraficoAjustado("src/res/play1.png",(int) (w*0.2),h/6);  //200,100   (int) (w*0.2),h/6
 		//bP2 = new JLabelGraficoAjustado("play2.png",100,100); 
-		bT1 = new JLabelGraficoAjustado("src/res/team1.png",200,100); 
+		bT1 = new JLabelGraficoAjustado("src/res/team1.png",(int) (w*0.2),h/6); 
 		//bT2 = new JLabelGraficoAjustado("team2O",100,100); 
-		bSu1 = new JLabelGraficoAjustado("src/res/summon1.png",200,100); 
+		bSu1 = new JLabelGraficoAjustado("src/res/summon1.png",(int) (w*0.2),h/6); 
 		//bSu2 = new JLabelGraficoAjustado("summon2",100,100); 
-		bSe1 = new JLabelGraficoAjustado("src/res/settings1.png",200,100); 
+		bSe1 = new JLabelGraficoAjustado("src/res/settings1.png",(int) (w*0.2),h/6); 
 		//bSe2 = new JLabelGraficoAjustado("settings2",100,100);
 		
 		cp.add(background);
 
 	
 		
-		bP1.setLocation(200,200 );
+		bP1.setLocation(w/5,h/3 );  //200,200      w/5,h/3 
 		
-		bSe1.setLocation(200,400 );
+		bSe1.setLocation(w/5,2*(h/3) ); //200,400    w/5,2*(h/3) 
 		
-		bT1.setLocation(500,200 );
+		bT1.setLocation(w/2,h/3 ); //500,200       w/2,w/3 
 		
-		bSu1.setLocation(500,400 );
+		bSu1.setLocation(w/2,2*(h/3) ); //500,400     w/2,2*(w/3) 
 		
-		title.setLocation(100, 50);
+		title.setLocation(w/10, (h/6)/2); //100,50   w/10, (w/6)/2
 		
 		background.add(bP1);
 		background.add(bT1);
@@ -70,6 +100,8 @@ public class LeMenu extends JFrame{
 		
 		cp.validate();
 		cp.repaint();
+		
+		
 		
 		
 		
@@ -148,6 +180,19 @@ public class LeMenu extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				bSe1.setImagen("src/res/settings1.png");
+				
+				
+				if ( f == false) {
+				new LeMenu(true);
+				}else {
+					
+					new LeMenu(false);
+					
+				}
+				frame.dispose();
+				
+				
+				
 			}
 			
 			@Override
@@ -213,7 +258,7 @@ public class LeMenu extends JFrame{
 	
 	
 	public static void main(String[] args) {
-		new LeMenu();
+		new LeMenu(false);
 	}
 	
 
