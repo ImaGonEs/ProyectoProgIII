@@ -9,29 +9,40 @@ public class Wave {
 	private Enemy enemyType;
 	private ArrayList<Enemy> wave;
 	private int enemiesN;
+	private boolean waveCompleted;
 	
 	public Wave( Enemy enemyType, int cooldown, int enemiesN) {
 		super();
 		this.cooldown = cooldown;
 		this.enemyType = enemyType;
 		this.enemiesN = enemiesN;
-		timeL =0;
-		wave = new ArrayList<Enemy>();
+		this.timeL =0;
+		this.wave = new ArrayList<Enemy>();
+		this.waveCompleted = false;
+		
+		ProjectW();
 	}
 	
 	public void Update() {
+		 
+		boolean allEnemiesDead = true;
+		
+		if (wave.size() < enemiesN) {	
 		timeL += Delta();
-		if(timeL>cooldown) {
+			if(timeL>cooldown) {
 			ProjectW();
 			timeL=0;
+			}
 		}
-		
 		for (Enemy e : wave) {
 			if (e.isAlive()) {
+				allEnemiesDead = false;
 				e.Update();
 				e.Project();
 			}
 		}
+		if (allEnemiesDead)
+			waveCompleted = true;
 	}
 	
 	private void ProjectW() {
@@ -41,5 +52,7 @@ public class Wave {
 		
 		
 	}
-	
+	public boolean isCompleted() {
+		return waveCompleted;
+	}
 }

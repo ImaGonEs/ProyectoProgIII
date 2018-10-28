@@ -14,8 +14,8 @@ public class Game {
 		
 		grid = new Map(map);
 		player = new Player(grid);
-		wave = new WManager(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,40,70),
-				4,5); 
+		wave = new WManager(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,80,70),
+				2,2); 
 		
 		tower = new TowerCannon(QuickCast("torre"), grid.getCell(15, 15), 10);
 	}

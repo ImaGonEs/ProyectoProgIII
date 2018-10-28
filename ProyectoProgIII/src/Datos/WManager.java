@@ -1,4 +1,6 @@
-package Datos;
+ package Datos;
+
+import static weareSupports.Creador.QuickCast;
 
 public class WManager {
 
@@ -29,18 +31,20 @@ public class WManager {
 	
 	public void update() {
 		
-		if ( cWave !=null) {
-			
+		if (!cWave.isCompleted())
 			cWave.Update();
-			
-			
+		else {
+			//System.out.println("wave is over");
+			this.enemyType.setTex(QuickCast("st"));
+			ProjectW();
 		}
-		
 	}
 	
 	public void ProjectW() {
 		
 		cWave = new Wave (enemyType,enemiesCD,enemiesN);
+		waveNumber++;
+		System.out.println("Beggining wave " + waveNumber);
 		
 	}
 	
