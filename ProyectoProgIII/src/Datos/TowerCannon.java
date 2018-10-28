@@ -33,7 +33,7 @@ public class TowerCannon {
 
 	private void shoot() {
 		timeSinceLastShot = 0;
-		projectiles.add(new Projectile(QuickCast("circle"), x , y , 20, 10));
+		projectiles.add(new Projectile(QuickCast("circle"), x , y , 40, 10));
 		
 		
 		

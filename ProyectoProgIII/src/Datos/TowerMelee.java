@@ -26,7 +26,7 @@ public class TowerMelee {
 		this.width = (int) startTile.getW();
 		this.height = (int) startTile.getH();
 		this.attackSpeed = 30;
-		p = new ProjectileMelee(QuickCast("circle"), x , y-40, 50, 10);
+		p = new ProjectileMelee(QuickCast("circle"), x , y-40, 500, 10);
 		
 	}
 

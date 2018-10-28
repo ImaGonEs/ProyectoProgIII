@@ -5,7 +5,7 @@ public class Game {
 		
 	private Map grid;
 	private Player player;
-	private Wave wave;
+	private WManager wave;
 		
 	//temp variables	
 	TowerCannon tower;
@@ -14,7 +14,8 @@ public class Game {
 		
 		grid = new Map(map);
 		player = new Player(grid);
-		wave = new Wave(20, new Enemy(QuickCast("mob0"),grid.getCell(0,14),grid, 32,32,20,70)); 
+		wave = new WManager(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,40,70),
+				4,5); 
 		
 		tower = new TowerCannon(QuickCast("torre"), grid.getCell(15, 15), 10);
 	}
@@ -22,7 +23,7 @@ public class Game {
 	public void update() {
 		
 		grid.Project();
-		wave.Update();
+		wave.update();
 		player.Update();
 		
 		grid.UpdateT();

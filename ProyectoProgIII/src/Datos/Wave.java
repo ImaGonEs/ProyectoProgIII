@@ -8,11 +8,13 @@ public class Wave {
 	private float timeL;
 	private Enemy enemyType;
 	private ArrayList<Enemy> wave;
+	private int enemiesN;
 	
-	public Wave( int cooldown, Enemy enemyType) {
+	public Wave( Enemy enemyType, int cooldown, int enemiesN) {
 		super();
 		this.cooldown = cooldown;
 		this.enemyType = enemyType;
+		this.enemiesN = enemiesN;
 		timeL =0;
 		wave = new ArrayList<Enemy>();
 	}
