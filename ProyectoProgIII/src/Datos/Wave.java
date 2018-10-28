@@ -9,11 +9,8 @@ public class Wave {
 	private Enemy enemyType;
 	private ArrayList<Enemy> wave;
 	
-	
-	
 	public Wave( int cooldown, Enemy enemyType) {
 		super();
-		
 		this.cooldown = cooldown;
 		this.enemyType = enemyType;
 		timeL =0;
@@ -21,22 +18,13 @@ public class Wave {
 	}
 	
 	public void Update() {
-		
 		timeL += Delta();
-		
-		
 		if(timeL>cooldown) {
-			
-			
 			ProjectW();
 			timeL=0;
-			
-			
 		}
 		
 		for (Enemy e : wave) {
-			
-			
 			if (e.isAlive()) {
 				e.Update();
 				e.Project();

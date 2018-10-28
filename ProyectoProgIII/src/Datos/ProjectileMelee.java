@@ -25,9 +25,6 @@ public class ProjectileMelee {
 	public void update() {
 		
 		this.setDir(this.getDir()+10);
-		
-		
-		
 		x += Delta() * speed*Math.cos(this.getDir()*(Math.PI/180));
 		y += Delta() * speed*Math.sin(this.getDir()*(Math.PI/180));
 		project();
