@@ -2,6 +2,8 @@
 
 import static weareSupports.Creador.QuickCast;
 
+import java.util.ArrayList;
+
 public class WManager {
 
 	
@@ -11,10 +13,12 @@ public class WManager {
 	private Wave cWave;
 	
 	
-	public WManager(Enemy enemyType,int enemiesCD, int enemiesN) {
+	private Enemy[] enemyTypes; //----------------
+	
+	public WManager(Enemy[] enemyTypes,int enemiesCD, int enemiesN) {
 		
 		
-		this.enemyType = enemyType;
+		//this.enemyType = enemyType;
 		this.enemiesCD = enemiesCD;
 		this.enemiesN = enemiesN;
 		
@@ -22,6 +26,8 @@ public class WManager {
 		this.waveNumber = 0;
 		
 		this.cWave = null;
+		
+		this.enemyTypes = enemyTypes;
 		
 		ProjectW();
 		
@@ -35,18 +41,27 @@ public class WManager {
 			cWave.Update();
 		else {
 			//System.out.println("wave is over");
-			this.enemyType.setTex(QuickCast("st"));
+			//this.enemyType.setTex(QuickCast("sans"));
 			ProjectW();
 		}
 	}
 	
 	public void ProjectW() {
 		
+		if (waveNumber<enemyTypes.length) {
+		enemyType = enemyTypes[waveNumber
+		                       ];
 		cWave = new Wave (enemyType,enemiesCD,enemiesN);
 		waveNumber++;
-		System.out.println("Beggining wave " + waveNumber);
 		
+		this.enemiesN++;
+		
+		System.out.println("Beggining wave " + waveNumber);
+		}else {
+			System.out.println("END OF LEVEL");
+		}
 	}
+	
 	
 	
 	
