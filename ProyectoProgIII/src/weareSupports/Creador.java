@@ -53,6 +53,7 @@ public class Creador {
 		glEnd();
 		glLoadIdentity();
 		
+		
 	}
 	public static Texture LoadT(String path, String fileType) {
 		
