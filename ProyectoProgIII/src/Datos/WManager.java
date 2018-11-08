@@ -13,9 +13,9 @@ public class WManager {
 	private Wave cWave;
 	
 	
-	private Enemy[] enemyTypes; //----------------
+	private ArrayList<Enemy> enemyTypes; //----------------
 	
-	public WManager(Enemy[] enemyTypes,int enemiesCD, int enemiesN) {
+	public WManager(ArrayList<Enemy> enemyTypes,int enemiesCD, int enemiesN) {
 		
 		
 		//this.enemyType = enemyType;
@@ -48,9 +48,9 @@ public class WManager {
 	
 	public void ProjectW() {
 		
-		if (waveNumber<enemyTypes.length) {
-		enemyType = enemyTypes[waveNumber
-		                       ];
+		if (waveNumber<enemyTypes.size()) {
+		
+			enemyType = enemyTypes.get(waveNumber);
 		cWave = new Wave (enemyType,enemiesCD,enemiesN);
 		waveNumber++;
 		
@@ -60,6 +60,14 @@ public class WManager {
 		}else {
 			System.out.println("END OF LEVEL");
 		}
+	}
+	
+	public ArrayList<Enemy> getEnemies() {
+		return this.enemyTypes;
+		
+	}
+	public Wave getWave() {
+		return this.cWave;
 	}
 	
 	

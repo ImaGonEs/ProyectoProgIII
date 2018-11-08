@@ -103,8 +103,8 @@ public class Map {
 	public void setTowerC (int x, int y, TowerCannon a) {
 		
 		
-		a = new TowerCannon(QuickCast("torre"),map[x][y],3);
-		towerC.add(a);
+		//a = new TowerCannon(QuickCast("torre"),map[x][y],3);
+		//towerC.add(a);
 		
 		
 	}

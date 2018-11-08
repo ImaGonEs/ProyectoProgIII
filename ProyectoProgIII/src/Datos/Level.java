@@ -2,10 +2,13 @@ package Datos;
 
 import static weareSupports.Creador.QuickCast;
 
+import java.util.ArrayList;
+
 public class Level {
 	
 	private Map grid;
 	private WManager wave;
+	ArrayList<Enemy> enemies;
 	
 	int[][] imap = {
 			
@@ -22,7 +25,7 @@ public class Level {
 			{0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
 			{0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
 			{0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
-			{0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, },
+			{0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, },
 			{1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
 			{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
 			{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
@@ -46,21 +49,23 @@ public class Level {
 		
 		grid = new Map(imap);
 		
-		Enemy[] enemies = {(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,80,70)),
-				(new Enemy(QuickCast("sans"),grid.getCell(0,14),grid, 32,32,80,70)),
-				(new Enemy(QuickCast("st"),grid.getCell(0,14),grid, 32,32,80,70))};
-	
-	
+		enemies= new ArrayList<Enemy>();
+		
+				enemies.add(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,80,20));
+				enemies.add(new Enemy(QuickCast("sans"),grid.getCell(0,14),grid, 32,32,80,20));
+				
+				//(new Enemy(QuickCast("st"),grid.getCell(0,14),grid, 32,32,80,70))};
 
 
-
-
-wave = new WManager(enemies,2,2); 
+				wave = new WManager(enemies,2,5); 
 	}
 	public Map getMap() {
 		return this.grid;
 	}
 	public WManager getWave() {
 		return this.wave;
+	}
+	public ArrayList<Enemy> getEnemies() {
+		return this.enemies;
 	}
 }

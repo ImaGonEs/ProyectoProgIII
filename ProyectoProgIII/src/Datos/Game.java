@@ -17,7 +17,7 @@ public class Game {
 		//grid = new Map(map);
 		l = new Level();
 		
-		player = new Player(l.getMap());
+		player = new Player(l.getMap(), l.getWave());
 		
 //		Enemy[] enemies = {(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,80,70)),
 //							(new Enemy(QuickCast("sans"),grid.getCell(0,14),grid, 32,32,80,70)),
@@ -32,14 +32,17 @@ public class Game {
 //		
 		
 		
-		tower = new TowerCannon(QuickCast("torre"),l.getMap().getCell(15, 15), 10);
+		//tower = new TowerCannon(QuickCast("torre"),l.getMap().getCell(15, 15), 10, l.getWave().getEnemies());
 	}
 	
 	public void update() {
 		
 		l.getMap().Project();
 		l.getWave().update();
+		//tower.update();
+
 		player.Update();
+		
 		
 		l.getMap().UpdateT();
 	}
