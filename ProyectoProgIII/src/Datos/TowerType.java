@@ -13,6 +13,7 @@ public enum TowerType {
 	TowerType(Texture tex, int damage) {
 		this.tex = tex;
 		this.damage = damage;
+		//e
 	}
 
 }
