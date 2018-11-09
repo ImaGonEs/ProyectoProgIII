@@ -12,7 +12,7 @@ public class Player {
 	private int i;
 	private WManager wManager;
 	private ArrayList<TowerCannon> towerList;
-	
+	private ArrayList<TowerMelee> towerList2;
 	
 	
 	public Player (Map map, WManager wManager) {
@@ -25,6 +25,7 @@ public class Player {
 		this.i = 0;
 		this.wManager = wManager;
 		this.towerList = new ArrayList<TowerCannon>();
+		this.towerList2 = new ArrayList<TowerMelee>();
 		
 	}
 	
@@ -80,7 +81,11 @@ public class Player {
 	
 	public void Update() {
 		
-		for (TowerCannon t : towerList) {
+	for (TowerCannon t : towerList) {
+		t.update();
+	t.updateEenemyList(wManager.getWave().getEnemies());
+	}	
+		for (TowerMelee t : towerList2) {
 			t.update();
 		t.updateEenemyList(wManager.getWave().getEnemies());
 		}
@@ -110,7 +115,7 @@ public class Player {
 			}
 			if ( Keyboard.getEventKey()== Keyboard.KEY_W && Keyboard.getEventKeyState()){	
 				i = 1;
-				setTower();
+				towerList2.add(new TowerMelee(QuickCast("Mob0"), map.getCell((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)), 3, wManager.getWave().getEnemies()));
 				
 			}
 
