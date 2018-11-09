@@ -11,12 +11,14 @@ public abstract class Tower implements Entity{
 	private Texture tex;
 	
 
-	public Tower (Texture tex, float x, float y, int w, int h) {
-		this.tex = tex;
-		this.x = x;
-		this.y = y;
-		this.w = w;
-		this.h= h;
+	public Tower (TowerType type, MapCell startTile) {
+		
+		this.tex = type.tex;
+		this.damage = type.damage;
+		this.x = startTile.getX();
+		this.y = startTile.getY();
+		this.w = startTile.getW();
+		this.h= startTile.getH();
 		
 	}
 	public float getX() {
