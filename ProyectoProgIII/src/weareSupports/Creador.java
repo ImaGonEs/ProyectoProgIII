@@ -96,6 +96,18 @@ public class Creador {
 		
 	}
 	
+	
+	public static String QuickCastIcon(String name) {
+		
+		String icon = null;
+		
+		icon = "src\\res\\"+name+".png";
+		
+		
+		return icon;
+		
+	}
+	
 	public static void TraceOn() {
 		
 		Display.setTitle("Pruebita");

@@ -19,7 +19,7 @@ public class TowerCannon {
 	private Enemy target;
 	private ArrayList<Enemy> enemies;
 	private boolean targeted;
-	
+	private String icon;
 	public TowerCannon(Texture tex, MapCell startTile, int damage, int range, ArrayList<Enemy> enemies) {
 		
 		this.tex = tex;
@@ -35,7 +35,33 @@ public class TowerCannon {
 		this.projectiles = new ArrayList<Projectile>();
 		this.enemies = enemies;
 		this.targeted = false; 
+		
 		//this.target = acquireTarget();
+	}
+	
+public TowerCannon( int damage, float attackSpeed, int range, String icon) {
+		
+		
+		this.damage = damage;
+		this.range = range;
+		
+		this.attackSpeed = 2;
+		this.icon = icon;
+		
+		
+		
+		
+	}
+	
+	
+	
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	private Enemy acquireTarget() { //targetea el mas cercano
@@ -121,6 +147,110 @@ public class TowerCannon {
 
 	public void setTex(Texture tex) {
 		this.tex = tex;
+	}
+
+	public float getX() {
+		return x;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+
+	public float getTimeSinceLastShot() {
+		return timeSinceLastShot;
+	}
+
+	public void setTimeSinceLastShot(float timeSinceLastShot) {
+		this.timeSinceLastShot = timeSinceLastShot;
+	}
+
+	public float getAttackSpeed() {
+		return attackSpeed;
+	}
+
+	public void setAttackSpeed(float attackSpeed) {
+		this.attackSpeed = attackSpeed;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
+	}
+
+	public MapCell getStartTile() {
+		return startTile;
+	}
+
+	public void setStartTile(MapCell startTile) {
+		this.startTile = startTile;
+	}
+
+	public ArrayList<Projectile> getProjectiles() {
+		return projectiles;
+	}
+
+	public void setProjectiles(ArrayList<Projectile> projectiles) {
+		this.projectiles = projectiles;
+	}
+
+	public Enemy getTarget() {
+		return target;
+	}
+
+	public void setTarget(Enemy target) {
+		this.target = target;
+	}
+
+	public ArrayList<Enemy> getEnemies() {
+		return enemies;
+	}
+
+	public void setEnemies(ArrayList<Enemy> enemies) {
+		this.enemies = enemies;
+	}
+
+	public boolean isTargeted() {
+		return targeted;
+	}
+
+	public void setTargeted(boolean targeted) {
+		this.targeted = targeted;
 	}
 	
 	

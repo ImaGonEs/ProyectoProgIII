@@ -1,10 +1,17 @@
 package ventanas;
 
+import static weareSupports.Creador.HEIGHT;
+import static weareSupports.Creador.QuickCast;
+import static weareSupports.Creador.QuickCastIcon;
+
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -18,10 +25,28 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import org.lwjgl.input.Mouse;
+import org.newdawn.slick.opengl.Texture;
+
+import Datos.TowerCannon;
+import Datos.TowerMelee;
 import weareSupports.JLabelGraficoAjustado;
 
 class Gui extends JFrame {
 	
+	
+	private boolean jtcont  = true;;
+	 private String stats1[][]={	{"Damage",""},    
+			{"Attack speed",""},    
+			{"Radius",""}}; 
+	
+	private String stats2[][]={	{"Damage",""},    
+			{"Attack speed",""},    
+			{"Radius",""}}; 
+	
+	private String column[]={"stats",""};         
+	private JTable jt=new JTable(stats1,column); 
+	private JTable jt2 = new JTable(stats2,column);   
 	GridBagLayout gbl = new GridBagLayout();
 
 	Gui() {
@@ -33,48 +58,49 @@ class Gui extends JFrame {
 		
 		//ey
 		
-		JLabelGraficoAjustado lc1 = new JLabelGraficoAjustado("src/res/torre.png",40,40);
-		JLabelGraficoAjustado lc2 = new JLabelGraficoAjustado("src/res/Mob0.png", 40, 40);
-		JLabelGraficoAjustado lc3 = new JLabelGraficoAjustado("src/res/circle.png", 40, 40);
-		JLabelGraficoAjustado lc4 = new JLabelGraficoAjustado("src/res/d0.png" ,40, 40);
 		
-		JLabelGraficoAjustado lt1 = new JLabelGraficoAjustado("src/res/torre.png",40,40);
-		JLabelGraficoAjustado lt2 = new JLabelGraficoAjustado("src/res/Mob0.png", 40, 40);
-		JLabelGraficoAjustado lt3 = new JLabelGraficoAjustado("src/res/circle.png", 40, 40);
-		JLabelGraficoAjustado lt4 = new JLabelGraficoAjustado("src/res/d0.png" ,40, 40);
+         
 		
+		ArrayList<TowerCannon> tcd = new ArrayList<TowerCannon>();
+		ArrayList<TowerMelee> tmd = new ArrayList<TowerMelee>();
+		
+		
+		
+		
+		
+		
+		tcd.add( new TowerCannon(15,2,20,QuickCastIcon("torre")));
+		tcd.add(new TowerCannon(18,2,25,QuickCastIcon("Mob0")));
+		
+		
+//		JLabelGraficoAjustado lc1 = new JLabelGraficoAjustado("src/res/torre.png",40,40);
+//		JLabelGraficoAjustado lc2 = new JLabelGraficoAjustado("src/res/Mob0.png", 40, 40);
+//		JLabelGraficoAjustado lc3 = new JLabelGraficoAjustado("src/res/circle.png", 40, 40);
+//		JLabelGraficoAjustado lc4 = new JLabelGraficoAjustado("src/res/d0.png" ,40, 40);
+//		
+//		JLabelGraficoAjustado lt1 = new JLabelGraficoAjustado("src/res/torre.png",40,40);
+//		JLabelGraficoAjustado lt2 = new JLabelGraficoAjustado("src/res/Mob0.png", 40, 40);
+//		JLabelGraficoAjustado lt3 = new JLabelGraficoAjustado("src/res/circle.png", 40, 40);
+//		JLabelGraficoAjustado lt4 = new JLabelGraficoAjustado("src/res/d0.png" ,40, 40);
+	
 		
 		
 		ArrayList <JLabelGraficoAjustado> collection = new ArrayList<JLabelGraficoAjustado>();
 		
-		collection.add(lc1);
-		collection.add(lc2);
-		collection.add(lc3);
-		collection.add(lc4);
+	
+		HashSet <JLabelGraficoAjustado> teami = new HashSet<JLabelGraficoAjustado>(); //los iconos solo
 		
-		ArrayList <JLabelGraficoAjustado> team = new ArrayList<JLabelGraficoAjustado>();
-		
-		team.add(lt1);
-		team.add(lt2);
-		team.add(lt3);
-		team.add(lt4);
+		HashSet <TowerCannon> teamT = new HashSet<TowerCannon>(); //el objeto en si, esto lo usaremos para guardarlo en un txt que leera el mapa
 		
 		
-		String stats1[][]={	{"Damage","999"},    
-							{"Attack speed","2.5"},    
-							{"Radius","30"}}; 
 		
-		String column[]={"stats",""};         
-		JTable jt=new JTable(stats1,column);    
+		   
 		jt.setBounds(30,40,200,600);   
 		
 		
 		
-		String stats2[][]={	{"Damage","1234"},    
-				{"Attack speed","5.5"},    
-				{"Radius","20"}}; 
-         
-		JTable jt2 = new JTable(stats2,column);   
+		
+		
 		jt.setBounds(30,40,200,600);   
 		
 		
@@ -103,12 +129,7 @@ class Gui extends JFrame {
 		makeConstraints(gbl, pnlE, 1, 1, 2, 1, 1.0, 1.0);
 		makeConstraints(gbl, pnlF, 1, 1, 2, 2, 1.0, 1.0);
 		
-		for( JLabelGraficoAjustado la : collection) {
-			pnlA.add(la);
-		}
-		for (JLabelGraficoAjustado la : team) {
-			pnlB.add(la);
-		}
+		
 		
 		//stats
 		
@@ -134,13 +155,112 @@ class Gui extends JFrame {
 		pnlE.add(pD);
 		
 		
+		for (TowerCannon i : tcd) {
+			JLabelGraficoAjustado z = new JLabelGraficoAjustado(i.getIcon(),40,40);
+			collection.add(z);
+			collection.get(collection.indexOf(z)).addMouseListener(new MouseListener() {
+				
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+					
+					
+				}
+				
+				
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+					
+					boolean c = e.isMetaDown();
+					if(c==false) {
+					if (jtcont == true) {
+					
+					
+					jt.setValueAt(Integer.toString(i.getDamage()), 0, 1);
+					jt.setValueAt(Integer.toString((int) i.getAttackSpeed()), 1, 1);
+					jt.setValueAt(Integer.toString(i.getRange()), 2, 1);
+					jtcont = false;
+					
+					} else {
+						
+						jt2.setValueAt(Integer.toString(i.getDamage()), 0, 1);
+						jt2.setValueAt(Integer.toString((int) i.getAttackSpeed()), 1, 1);
+						jt2.setValueAt(Integer.toString(i.getRange()), 2, 1);
+						jtcont = true;
+						
+					}
+					}
+					
+					if (e.isMetaDown()) {
+						
+						
+						
+						teami.add(z);
+						teamT.add(i);
+						for (JLabelGraficoAjustado la : teami) {
+							pnlB.add(la);
+						}
+						pnlB.repaint();
+						c = false;
+						
+					}
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+		}
+		
+		for( JLabelGraficoAjustado la : collection) {
+			pnlA.add(la);
+		}
+		for (JLabelGraficoAjustado la : teami) {
+			pnlB.add(la);
+		}
+		
+		
+		
+		
+		
+		
+		
 		//más
 		
 		JButton bS = new JButton("SAVE");
 		JButton bE = new JButton("EXIT");
-		
+		JButton bA = new JButton("ADD");
 		pnlF.add(bS);
 		pnlF.add(bE);
+		pnlF.add(bA);
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	/**
