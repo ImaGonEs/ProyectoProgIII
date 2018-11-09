@@ -48,14 +48,14 @@ public class Game {
 	
 	public void update() {
 		
-		l.getMap().Project();
+		l.getMap().project();
 		l.getWave().update();
 		//tower.update();
 
 		player.Update();
 		
 		
-		l.getMap().UpdateT();
+		l.getMap().updateT();
 	}
 	
 	

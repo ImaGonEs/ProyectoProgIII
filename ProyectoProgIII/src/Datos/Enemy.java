@@ -5,7 +5,8 @@ import static weareSupports.Creador.ProjectTQuad;
 import java.util.ArrayList;
 import static weareSupports.Clock.Delta;
 import org.newdawn.slick.opengl.Texture;
-public class Enemy {
+
+public class Enemy implements Entity{
 
 	
 	private int w,h,vel,lp, currentCheckPoint;
@@ -21,10 +22,7 @@ public class Enemy {
 	
 	private boolean first = true;
 	
-	
-	
-	
-	
+
 	public Enemy(Texture tex, MapCell start, Map map, int w, int h, int vel, int lp ) {
 		super();
 		this.start = start;
@@ -44,20 +42,20 @@ public class Enemy {
 		this.directions[0] = 0;
 		//y direction
 		this.directions[1] = 0;
-		directions = FindNextD(start);
+		directions = findNextD(start);
 		this.currentCheckPoint = 0;
-		PopulateCheckPointList();
+		populateCheckPointList();
 	}
 	
-	public void Update() {
+	public void update() {
 		if (first) {
 			first = false;
 		}else {
 			
-			if (CheckPointReached()) {
+			if (checkPointReached()) {
 				if (currentCheckPoint + 1 == checkpoints.size()) {
 					System.out.println("enemmy reached end of maze");
-					Die();
+					die();
 					
 				}
 				else {
@@ -74,7 +72,7 @@ public class Enemy {
 		}
 	}
 	
-	private boolean CheckPointReached() {
+	private boolean checkPointReached() {
 		boolean reached = false;
 		
 		MapCell t = checkpoints.get(currentCheckPoint).getMapCell();
@@ -95,27 +93,27 @@ public class Enemy {
 		 return reached;
 	}
 	
-	private void PopulateCheckPointList() {
+	private void populateCheckPointList() {
 		
-		checkpoints.add(FindNextC(start, directions = FindNextD(start)));
+		checkpoints.add(findNextC(start, directions = findNextD(start)));
 		
 		
 		int counter = 0;
 		boolean cont = true;
 		while (cont) {
-			int[] currentD = FindNextD(checkpoints.get(counter).getMapCell());
+			int[] currentD = findNextD(checkpoints.get(counter).getMapCell());
 			//check if a next direciton/checkpoint exists, end after 20 checkpoints ARBITRARY
 			if (currentD[0] == 2  || counter == 20) {
 				
 				cont = false;
 			}else {
-				checkpoints.add(FindNextC(checkpoints.get(counter).getMapCell(),
-						directions = FindNextD(checkpoints.get(counter).getMapCell())));
+				checkpoints.add(findNextC(checkpoints.get(counter).getMapCell(),
+						directions = findNextD(checkpoints.get(counter).getMapCell())));
 			}
 			counter++;
 		}
 	}
-	private CheckPoint FindNextC (MapCell s, int[] dir) {
+	private CheckPoint findNextC (MapCell s, int[] dir) {
 		MapCell next = null;
 		CheckPoint c= null;
 		
@@ -148,7 +146,7 @@ public class Enemy {
 	
 	}
 	
-	public int[] FindNextD(MapCell s) {
+	public int[] findNextD(MapCell s) {
 		int[] dir = new int[2];
 		MapCell u = map.getCell(s.getXPlace(),s.getYPlace()-1);
 		MapCell r = map.getCell(s.getXPlace() + 1,s.getYPlace());
@@ -195,7 +193,7 @@ public class Enemy {
 //	}
 	
 	
-	public void Project() {
+	public void project() {
 		
 		ProjectTQuad(tex,x,y,w,h);
 		
@@ -216,7 +214,7 @@ public class Enemy {
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 
@@ -292,10 +290,10 @@ public class Enemy {
 	public void damage(int amount) {
 		lp -= amount;
 		if (lp <= 0)
-			Die();
+			die();
 	}
 	
-	private void Die() {
+	private void die() {
 		alive = false;
 	}
 
@@ -307,6 +305,9 @@ public class Enemy {
 		this.directions[0] = directions[0];
 		this.directions[1]= directions[1];
 	}
+
+	
+	
 	
 	
 }

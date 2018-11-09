@@ -75,7 +75,7 @@ public class Map {
 	}
 	
 	
-	public void Project() {
+	public void project() {
 		
 		
 		for (int i = 0; i < map.length; i++) {
@@ -83,7 +83,7 @@ public class Map {
 				
 				MapCell c = map[i][j];
 				
-				c.Project();
+				c.project();
 				
 				
 				
@@ -119,7 +119,7 @@ public class Map {
 	}
 	
 	
-	public void UpdateT() {
+	public void updateT() {
 		
 		for (TowerCannon t : towerC) {
 			t.update();

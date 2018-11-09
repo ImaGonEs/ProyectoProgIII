@@ -20,32 +20,32 @@ public class Wave {
 		this.wave = new ArrayList<Enemy>();
 		this.waveCompleted = false;
 		
-		ProjectW();
+		projectW();
 	}
 	
-	public void Update() {
+	public void update() {
 		 
 		boolean allEnemiesDead = true;
 		
 		if (wave.size() < enemiesN) {	
 		timeL += Delta();
 			if(timeL>cooldown) {
-			ProjectW();
+			projectW();
 			timeL=0;
 			}
 		}
 		for (Enemy e : wave) {
 			if (e.isAlive()) {
 				allEnemiesDead = false;
-				e.Update();
-				e.Project();
+				e.update();
+				e.project();
 			}
 		}
 		if (allEnemiesDead)
 			waveCompleted = true;
 	}
 	
-	private void ProjectW() {
+	private void projectW() {
 		
 		wave.add(new Enemy(enemyType.getTex(),enemyType.getStart(),enemyType.getMap(),32,32,enemyType.getVel(),enemyType.getLp()));
 		

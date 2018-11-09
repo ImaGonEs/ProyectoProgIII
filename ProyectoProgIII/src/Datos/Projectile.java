@@ -3,15 +3,15 @@ package Datos;
 import org.newdawn.slick.opengl.Texture;
 import static weareSupports.Clock.*;
 import static weareSupports.Creador.*; 
-public class Projectile {
+public class Projectile implements Entity{
 	
 	private Texture tex;
-	private float x, y, w, h, speed, xVel, yVel;
-	private int damage;
+	private float x, y, speed, xVel, yVel;
+	private int damage, w, h;
 	private Enemy target;
 	private boolean alive;
 
-	public Projectile (Texture tex, Enemy target, float x, float y, float w, float h, float speed, int damage) {
+	public Projectile (Texture tex, Enemy target, float x, float y, int w, int h, float speed, int damage) {
 		this.tex = tex;
 		this.x = x;
 		this.y = y;
@@ -57,5 +57,38 @@ public class Projectile {
 	public void project() {
 		ProjectTQuad(tex, x, y, 32, 32);
 		
+	}
+
+	public float getX() {
+		// TODO Auto-generated method stub
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public int getW() {
+		return w;
+	}
+
+	public int getH() {
+		return h;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+
+	public void setW(int w) {
+		this.w = w;
+	}
+
+	public void setH(int h) {
+		this.h = h;
 	}
 }

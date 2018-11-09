@@ -9,7 +9,7 @@ public class Player {
 
 	private Map map;
 	private TileType[] types;
-	private int i;
+	private int i; //hacer otra clase para el editor
 	private WManager wManager;
 	private ArrayList<TowerCannon> towerList;
 	

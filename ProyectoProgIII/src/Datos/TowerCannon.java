@@ -123,7 +123,7 @@ public TowerCannon( int damage, float attackSpeed, int range, String icon) {
 			targeted = false;
 		
 		timeSinceLastShot += Delta();
-		if (timeSinceLastShot > attackSpeed)
+		if (timeSinceLastShot > attackSpeed && targeted)
 			shoot();
 		
 		for (Projectile p : projectiles)

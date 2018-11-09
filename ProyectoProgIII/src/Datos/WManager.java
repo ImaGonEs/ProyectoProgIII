@@ -29,7 +29,7 @@ public class WManager {
 		
 		this.enemyTypes = enemyTypes;
 		
-		ProjectW();
+		projectW();
 		
 		
 	}
@@ -38,15 +38,15 @@ public class WManager {
 	public void update() {
 		
 		if (!cWave.isCompleted())
-			cWave.Update();
+			cWave.update();
 		else {
 			//System.out.println("wave is over");
 			//this.enemyType.setTex(QuickCast("sans"));
-			ProjectW();
+			projectW();
 		}
 	}
 	
-	public void ProjectW() {
+	public void projectW() {
 		
 		if (waveNumber<enemyTypes.size()) {
 		

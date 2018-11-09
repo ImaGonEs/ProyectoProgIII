@@ -24,6 +24,7 @@ import org.newdawn.slick.util.ResourceLoader;
 public class Creador {
 	
 	public static final int WIDTH = 1280, HEIGHT = 960;
+	public static final int TILE_SIZE = 32;
 	
 	public static void ProjectQuad(int x, int y, int w, int h) {
 		

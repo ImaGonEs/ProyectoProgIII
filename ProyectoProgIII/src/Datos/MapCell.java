@@ -24,7 +24,7 @@ public class MapCell {
 
 	
 	
-	public void Project() {
+	public void project() {
 		
 		ProjectTQuad(tex, x, y, w,h);
 		
