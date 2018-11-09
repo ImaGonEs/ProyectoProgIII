@@ -35,9 +35,11 @@ public class LeMenu extends JFrame{
 		
 		JFrame frame = this;
 		
+		
 //		int w = (int) screenSize.getWidth();
 //		int h = (int) screenSize.getHeight();
-//		
+		
+		
 		
 		if (f ==false) {
 		w = 1000;
@@ -146,6 +148,16 @@ public class LeMenu extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				bT1.setImagen("src/res/team1.png");
+				Thread gui = new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						new Gui();
+					}
+				});
+				gui.start();
+				
 			}
 			
 			@Override

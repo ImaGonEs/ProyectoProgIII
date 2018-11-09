@@ -52,7 +52,7 @@ class Gui extends JFrame {
 	Gui() {
 		
 		setLayout(gbl);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(1300,750);
 		setLocationRelativeTo(null);
 		
@@ -82,7 +82,7 @@ class Gui extends JFrame {
 //		JLabelGraficoAjustado lt2 = new JLabelGraficoAjustado("src/res/Mob0.png", 40, 40);
 //		JLabelGraficoAjustado lt3 = new JLabelGraficoAjustado("src/res/circle.png", 40, 40);
 //		JLabelGraficoAjustado lt4 = new JLabelGraficoAjustado("src/res/d0.png" ,40, 40);
-	
+
 		
 		
 		ArrayList <JLabelGraficoAjustado> collection = new ArrayList<JLabelGraficoAjustado>();
@@ -140,7 +140,6 @@ class Gui extends JFrame {
 		gl.setVgap(1);
 		
 		pnlE.setLayout(gl);
-		
 		
 		pI.add(jt);
 		pD.add(jt2);
@@ -200,7 +199,7 @@ class Gui extends JFrame {
 					}
 					}
 					
-					if (e.isMetaDown()) {
+					if (c== true) {
 						
 						
 						
@@ -254,7 +253,7 @@ class Gui extends JFrame {
 		
 		
 	
-		
+		this.setVisible(true);
 		
 		
 		
@@ -291,10 +290,13 @@ class Gui extends JFrame {
 	public static void main (String [] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				new Gui().setVisible(true);
+				new Gui();
 			}
 		});
 	}
+	
+	
+	
 }
 
 class BorderPanel extends JPanel {

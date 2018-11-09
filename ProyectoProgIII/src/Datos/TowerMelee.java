@@ -11,12 +11,14 @@ import org.newdawn.slick.opengl.Texture;
 public class TowerMelee {
 
 	private float x, y, attackSpeed;
-	private int width, height, damage;
+	private int width, height, damage, range;
 	private Texture tex;
 	private MapCell startTile;
 	private ProjectileMelee p;
+	private ArrayList<Enemy> enemies;
+	private boolean first = true;
 	
-	public TowerMelee(Texture tex, MapCell startTile, int damage) {
+	public TowerMelee(Texture tex, MapCell startTile, int damage, ArrayList<Enemy> enemies) {
 		
 		this.tex = tex;
 		this.startTile = startTile;
@@ -26,7 +28,9 @@ public class TowerMelee {
 		this.width = (int) startTile.getW();
 		this.height = (int) startTile.getH();
 		this.attackSpeed = 30;
-		p = new ProjectileMelee(QuickCast("circle"), x , y-40, 500, 10);
+		this.range = 10000;
+		this.enemies = enemies;
+		
 		
 	}
 
@@ -48,10 +52,31 @@ public class TowerMelee {
 	public void update() {
 		
 		
+			
+			
+			if (first == true) {
+			p = new ProjectileMelee(QuickCast("circle"), x , y-40,32,32, 500, 3, enemies);
+			first = false;
+			}
+			
+			p.setTargets(enemies);
+		
+		
+		
 		project();
 		p.update();
 		
 	}
+	
+	
+
+	
+	
+	public void updateEenemyList (ArrayList<Enemy> newList) {
+		enemies= newList;
+	}
+	
+
 	public void project() {
 		
 		ProjectTQuad(tex,x,y,width,height);
