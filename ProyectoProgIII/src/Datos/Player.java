@@ -3,15 +3,19 @@ package Datos;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import static weareSupports.Creador.*;
+
+import java.util.ArrayList;
 public class Player {
 
 	private Map map;
 	private TileType[] types;
 	private int i;
+	private WManager wManager;
+	private ArrayList<TowerCannon> towerList;
 	
 	
 	
-	public Player (Map map) {
+	public Player (Map map, WManager wManager) {
 		
 		this.map = map;
 		
@@ -19,24 +23,24 @@ public class Player {
 		this.types[0] = TileType.Dirt0;
 		this.types[1] = TileType.Grass0;
 		this.i = 0;
-		
-		
+		this.wManager = wManager;
+		this.towerList = new ArrayList<TowerCannon>();
 		
 	}
+	
+//	public void updateEnemyList (ArrayList<Enemy> newList) { 
+//		for (TowerCannon t :towerList)
+//			t.updateEenemyList(wManager.getWave().getEnemies());
+//			
+//	}
 	
 	public void SetTile() {
 		
 		map.setCell((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), types[i],false );
-		
-		
-		
+			
 	}
 	
 	public void setTower () { //para poner la torre con el click, no se mantiene
-		
-		
-		
-		
 		
 		
 		if (i==0) {
@@ -49,15 +53,9 @@ public class Player {
 				map.setTowerC((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
 				
 			
-				
-				
 			}
 			
-			
-		
-		
-		
-		
+	
 		}else if (i==1) {
 			
 			
@@ -82,6 +80,11 @@ public class Player {
 	
 	public void Update() {
 		
+		for (TowerCannon t : towerList) {
+			t.update();
+		t.updateEenemyList(wManager.getWave().getEnemies());
+		}
+		
 		while (Mouse.next()){
 		    if (Mouse.getEventButtonState()) {
 		        if (Mouse.getEventButton() == 0) {
@@ -100,7 +103,9 @@ public class Player {
 			
 			if ( Keyboard.getEventKey()== Keyboard.KEY_Q && Keyboard.getEventKeyState()){	
 				i = 0;
-				setTower();
+				//setTower();
+				towerList.add(new TowerCannon(QuickCast("torre"),map.getCell((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)),3,1000, wManager.getWave().getEnemies()));
+				
 				
 			}
 			if ( Keyboard.getEventKey()== Keyboard.KEY_W && Keyboard.getEventKeyState()){	

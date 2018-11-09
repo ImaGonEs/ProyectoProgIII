@@ -289,6 +289,12 @@ public class Enemy {
 		this.alive = end;
 	}
 	
+	public void damage(int amount) {
+		lp -= amount;
+		if (lp <= 0)
+			Die();
+	}
+	
 	private void Die() {
 		alive = false;
 	}
