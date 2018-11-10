@@ -20,6 +20,7 @@ public class TowerCannon {
 	private ArrayList<Enemy> enemies;
 	private boolean targeted;
 	private String icon;
+	
 	public TowerCannon(Texture tex, MapCell startTile, int damage, int range, ArrayList<Enemy> enemies) {
 		
 		this.tex = tex;

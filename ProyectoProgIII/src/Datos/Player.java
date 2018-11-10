@@ -84,7 +84,7 @@ public class Player {
 	for (Tower t : towerList) {
 		t.update();
 		t.project();
-	//t.updateEenemyList(wManager.getWave().getEnemies());
+		t.updateEnemyList(wManager.getWave().getEnemies());
 	}	
 		for (TowerMelee t : towerList2) {
 			t.update();
@@ -111,15 +111,17 @@ public class Player {
 				i = 0;
 				//setTower();
 				//towerList.add(new TowerCannon(QuickCast("torre"),map.getCell((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)),3,1000, wManager.getWave().getEnemies()));
-				
+				towerList.add(new TowerCannonR(TowerType.CannonR, map.getCell(Mouse.getX()/32, 
+						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
 				
 			}
 			if ( Keyboard.getEventKey()== Keyboard.KEY_W && Keyboard.getEventKeyState()){	
 				i = 1;
 				//towerList2.add(new TowerMelee(QuickCast("Mob0"), map.getCell((int)(Math.floor(Mouse.getX()) / 32),
 						//(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)), 3, wManager.getWave().getEnemies()));
-				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(Mouse.getX()/32, (HEIGHT - Mouse.getY() - 1 /32))));
-				towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(10, 10)));
+				towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(Mouse.getX()/32, 
+						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(10, 10)));
 				
 				
 			}

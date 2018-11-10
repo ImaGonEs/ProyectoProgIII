@@ -5,15 +5,20 @@ import static weareSupports.Creador.*;
 public enum TowerType {
 	
 	
-	CannonS(QuickCast("torre"), 10);
+	CannonS(QuickCast("IT"), 10, 1000, 3),
+	CannonR(QuickCast("TR"), 10, 1000, 3),
+	CannonE(QuickCast("TC"), 10, 1000, 3);
 	
 	Texture tex;
-	int damage;
+	int damage, range;
+	float attackSpeed;
 	
-	TowerType(Texture tex, int damage) {
+	TowerType(Texture tex, int damage, int range, float attackSpeed) {
 		this.tex = tex;
 		this.damage = damage;
-		//e
+		this.range = range;
+		this.attackSpeed = attackSpeed;
+		
 	}
 
 }
