@@ -47,7 +47,7 @@ public class Creador {
 		
 	}
 	
-	public static void  ProjectTQuad(Texture tex,float x, float y, int w, int h) {
+	public static void  ProjectTQuad(Texture tex,float x, float y, float w, float h) {
 		
 		tex.bind();
 		glTranslatef(x,y,0);
@@ -55,11 +55,11 @@ public class Creador {
 		glTexCoord2f(0,0);
 		glVertex2i(0,0);
 		glTexCoord2f(1,0);
-		glVertex2i(w,0);
+		glVertex2f(w,0);
 		glTexCoord2f(1,1);
-		glVertex2i(w,h);
+		glVertex2f(w,h);
 		glTexCoord2f(0,1);
-		glVertex2i(0,h);
+		glVertex2f(0,h);
 		glEnd();
 		glLoadIdentity();
 		

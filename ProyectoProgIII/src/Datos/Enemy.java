@@ -1,6 +1,6 @@
 package Datos;
 
-import static weareSupports.Creador.ProjectTQuad;
+import static weareSupports.Creador.*;
 
 import java.util.ArrayList;
 import static weareSupports.Clock.Delta;
@@ -9,10 +9,10 @@ import org.newdawn.slick.opengl.Texture;
 public class Enemy implements Entity{
 
 	
-	private int w,h,vel,lp, currentCheckPoint;
+	private int w,h,vel, currentCheckPoint;
 	
-	private float x,y;
-	private Texture tex;
+	private float x,y, lp, startLp;
+	private Texture tex, healthBackground, healthForeground, healthBorder;
 	private MapCell start;
 	private Map map;
 	private boolean alive = true;
@@ -23,8 +23,8 @@ public class Enemy implements Entity{
 	private boolean first = true;
 	
 
-	public Enemy(Texture tex, MapCell start, Map map, int w, int h, int vel, int lp ) {
-		super();
+	public Enemy(Texture tex, MapCell start, Map map, int w, int h, int vel, float lp ) {
+		
 		this.start = start;
 		this.x = start.getX();
 		this.y = start.getY();
@@ -32,7 +32,11 @@ public class Enemy implements Entity{
 		this.h = h;
 		this.vel = vel;
 		this.lp = lp;
+		this.startLp = lp;
 		this.tex = tex;
+		this.healthBackground = QuickCast("healthBackground");
+		this.healthBorder = QuickCast("healthBorder");
+		this.healthForeground = QuickCast("healthForeground");
 		this.map = map;
 		
 		this.checkpoints = new ArrayList<CheckPoint>();
@@ -195,7 +199,11 @@ public class Enemy implements Entity{
 	
 	public void project() {
 		
+		float lpPerc = lp /startLp;
 		ProjectTQuad(tex,x,y,w,h);
+		ProjectTQuad (healthBackground,x,y - 8,w,4);
+		ProjectTQuad(healthForeground,x,y - 8 ,32 * lpPerc,8);
+		ProjectTQuad(healthBorder,x,y - 8,w,8);
 		
 		
 		
@@ -242,7 +250,7 @@ public class Enemy implements Entity{
 		this.vel = vel;
 	}
 
-	public int getLp() {
+	public float getLp() {
 		return lp;
 	}
 

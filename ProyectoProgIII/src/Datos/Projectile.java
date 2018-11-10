@@ -3,7 +3,9 @@ package Datos;
 import org.newdawn.slick.opengl.Texture;
 import static weareSupports.Clock.*;
 import static weareSupports.Creador.*; 
-public class Projectile implements Entity{
+
+
+public abstract class Projectile implements Entity{
 	
 	private Texture tex;
 	private float x, y, speed, xVel, yVel;
@@ -26,6 +28,10 @@ public class Projectile implements Entity{
 		calculateDirection();
 	}
 	
+	public void damage() {
+		target.damage(damage);
+		alive = false;
+	}
 	private void calculateDirection() {
 		
 		float totalAllowedMovement = 1.0f;  //suma de las dos distancias si esta a 45 grados 0.5 + 0.5
@@ -47,8 +53,7 @@ public class Projectile implements Entity{
 		x += xVel * speed * Delta();
 		y += yVel * speed * Delta();
 		if (checkCollision(x, y, w, h, target.getX(), target.getY(), target.getW(), target.getH())) {
-			target.damage(damage);
-			alive = false;
+			damage();
 		}
 		project();
 		}
@@ -60,7 +65,6 @@ public class Projectile implements Entity{
 	}
 
 	public float getX() {
-		// TODO Auto-generated method stub
 		return x;
 	}
 
@@ -90,5 +94,13 @@ public class Projectile implements Entity{
 
 	public void setH(int h) {
 		this.h = h;
+	}
+	
+	public Enemy getTarget() {
+		return target;
+	}
+	public void setAlive(boolean status) {
+		alive = status;
+		
 	}
 }

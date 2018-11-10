@@ -70,10 +70,10 @@ public abstract class Tower implements Entity{
 		return xDist + yDist;
 	}
 	
-	private void shoot() {
+	protected void shoot() {
 		
 		timeSinceLastShot = 0;   
-		projectiles.add(new Projectile(QuickCast("circle"), target, x, y, 32, 32,600 , 10));
+		projectiles.add(new ProjectileIceBall(QuickCast("circle"), target, x, y, 32, 32,600 , 10));
 		
 	}
 	
@@ -137,7 +137,9 @@ public abstract class Tower implements Entity{
 		this.h = h;
 	}
 
-
+	public Enemy getTarget() {
+		return target;
+	}
 	
 	
 
