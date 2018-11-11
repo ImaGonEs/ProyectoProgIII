@@ -100,7 +100,7 @@ public TowerCannon( int damage, float attackSpeed, int range, String icon) {
 	private void shoot() {
 		
 		timeSinceLastShot = 0;   
-		projectiles.add(new Projectile(QuickCast("circle"), target, x, y, 32, 32,600 , 10));
+		//projectiles.add(new Projectile(QuickCast("circle"), target, x, y, 32, 32,600 , 10));
 		
 	}
 
