@@ -4,6 +4,8 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import static weareSupports.Creador.*;
 
+import java.sql.Connection;
+import java.sql.*;
 import java.util.ArrayList;
 public class Player {
 
@@ -105,13 +107,16 @@ public class Player {
 		}
 		
 		
+		
+		
+		
 		while (Keyboard.next()) {
 			
 			if ( Keyboard.getEventKey()== Keyboard.KEY_Q && Keyboard.getEventKeyState()){	
 				i = 0;
 				//setTower();
 				//towerList.add(new TowerCannon(QuickCast("torre"),map.getCell((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)),3,1000, wManager.getWave().getEnemies()));
-				towerList.add(new TowerCannonR(TowerType.CannonR, map.getCell(Mouse.getX()/32, 
+				towerList.add(new TowerCannonR(TowerType.valueOf(id().get(0)), map.getCell(Mouse.getX()/32, 
 						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
 				
 			}
@@ -119,7 +124,7 @@ public class Player {
 				i = 1;
 				//towerList2.add(new TowerMelee(QuickCast("Mob0"), map.getCell((int)(Math.floor(Mouse.getX()) / 32),
 						//(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)), 3, wManager.getWave().getEnemies()));
-				towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(Mouse.getX()/32, 
+				towerList.add(new TowerCannonS(TowerType.valueOf(id().get(1)), map.getCell(Mouse.getX()/32, 
 						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
 				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(10, 10)));
 				
@@ -138,6 +143,51 @@ public class Player {
 		}
 
 	}
+
+	
+	
+	public static ArrayList<String> id() {
+		
+		
+		Connection c = null;
+		Statement stmt = null;
+		   ArrayList<String> ids = new ArrayList<>();
+		   try {
+			      Class.forName("org.sqlite.JDBC");
+			      c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+			      c.setAutoCommit(false);
+			      System.out.println("Opened database successfully");
+
+			      stmt = c.createStatement();
+			      ResultSet rs = stmt.executeQuery( "SELECT ID FROM TOWERS;" );
+			      
+			      while ( rs.next() ) {
+			         
+			         String  id = rs.getString("id");
+			         
+			        ids.add(id);
+			         
+			      }
+			      rs.close();
+			      stmt.close();
+			      c.close();
+			   } catch ( Exception e ) {
+			      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			      System.exit(0);
+			   }
+			   System.out.println("Operation done successfully");
+		
+		
+		
+		
+		
+		
+		return ids;
+		
+		
+	};
+	
+	
 	
 	private void Mindex () {
 		
