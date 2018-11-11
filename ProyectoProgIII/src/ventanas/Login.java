@@ -1,12 +1,19 @@
 package ventanas;
 
 import java.awt.Container;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.*;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -95,8 +102,151 @@ public class Login extends JFrame{
 		cp.validate();
 		cp.repaint();
 		
+		Map<String, String> mapa = new HashMap<String, String>();
 		
+		ArrayList<String> s = new ArrayList<String>();
 		
+		Connection c = null;
+	    Statement stmt = null;
+	    
+	 
+	    try {//-------------------PRINT PLAYERS---------------------
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
+
+	          stmt = c.createStatement();
+	          ResultSet rs = stmt.executeQuery( "SELECT NAME_P,PASSWORD FROM PLAYERS;" );
+	          
+	          while ( rs.next() ) {
+	        	  
+	            
+	             String name = rs.getString("NAME_P");
+	             String pass = rs.getString("PASSWORD");
+	             
+	             mapa.put(name, pass);
+	             
+	             s.add(name);
+	             
+	            
+	            // System.out.println(pass);
+	            // System.out.println(name);
+	           
+	            
+//	            if (name.equals(user) && pass.equals(passw)) {
+//	            	
+//	            	JOptionPane.showMessageDialog(null, "LOGIN");
+//	            	break;
+//	            }else {
+//	            	JOptionPane.showMessageDialog(null, "wrong password");
+//	            	break;
+//	            }
+//	            
+	            
+	           
+	          }
+	          rs.close();
+	          stmt.close();
+	          c.close();
+	       } catch ( Exception exc ) {
+	          System.err.println( exc.getClass().getName() + ": " + exc.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Operation done successfully");
+	       
+	       System.out.println(mapa);
+		
+		btn.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				btn.setImagen("src/res/play2.png");
+				
+				String user = us.getText();
+				
+				String passw = pa.getText();
+				
+				if (user.length()<3||passw.length()<3) {
+					
+					JOptionPane.showMessageDialog(null, "TRY AGAIN XD");
+					
+				}else if (!s.contains(user)) {
+					
+					
+					JOptionPane.showMessageDialog(null, "CUENTA CREADA");
+					
+				}else if (passw.equals(mapa.get(user))) {
+					
+					JOptionPane.showMessageDialog(null, "login con user: " +user+" pass: "+ passw);
+					
+//				    try { //-----------------INSERT PLAYER-----------------------------
+//			          Class.forName("org.sqlite.JDBC");
+//			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//			          c.setAutoCommit(false);
+//			          System.out.println("Opened database successfully");
+		//	
+//			          stmt = c.createStatement();
+//			          String sql = "INSERT INTO PLAYERS (ID_P,NAME_P,PASSWORD,GEMS,POS) " +
+//			                         "VALUES ('P03', name, pass, 0, 1 );"; 
+//			          stmt.executeUpdate(sql);
+		//	
+//			        
+//			          stmt.close();
+//			          c.commit();
+//			          c.close();
+//			       } catch ( Exception ex ) {
+//			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+//			          System.exit(0);
+//			       }
+//			       System.out.println("Records created successfully");
+//						
+//						
+//						
+//				
+					
+				}else {
+					
+					JOptionPane.showMessageDialog(null, "Wrong password");
+				}
+			   
+			       
+			       
+			       
+			       
+			       
+			       
+		
+				
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("rel");
+				btn.setImagen("src/res/play1.png");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		
 	
