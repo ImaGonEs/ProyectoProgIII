@@ -11,13 +11,12 @@ import java.sql.Statement;
 public enum TowerType {
 	
 	
+
 	
 	
-	
-	
-	T01(QuickCast("IT"), 10, 1000, 3), 
-	T02(QuickCast("TR"), 10, 1000, 3),
-	CannonE(QuickCast("TC"), 10, 1000, 3);
+	T01("IT"), //QuickCast("IT"), 10, 1000, 3
+	T02("TR"); //QuickCast("TR"), 10, 1000, 3
+	// CannonE(QuickCast("TC"), 10, 1000, 3); QuickCast("IT"), 10, 1000, 3
 	
 	
 	Texture tex;
@@ -27,11 +26,11 @@ public enum TowerType {
 	
 	
 	
-	TowerType(Texture tex, int damage, int range, float attackSpeed) {
-		this.tex = tex;
-		this.damage = damage;
-		this.range = range;
-		this.attackSpeed = attackSpeed;
+	TowerType(String name) {
+		this.tex = QuickCast(hola(name).getTex());
+		this.damage = hola(name).getDamage();
+		this.range = hola(name).getRange();
+		this.attackSpeed = hola(name).getAttackSpeed();;
 		
 		
 	}
@@ -48,7 +47,7 @@ public enum TowerType {
 		      System.out.println("Opened database successfully");
 
 		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS WHERE ID = "+a+";" );
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS WHERE NAME = '"+a+"' ;" );
 		      
 		      while ( rs.next() ) {
 		         
@@ -59,7 +58,7 @@ public enum TowerType {
 		         int dmg = rs.getInt("damage");
 		         int range = rs.getInt("range");
 		         float atkspd = rs.getFloat("atkspeed");
-		        az = new Sust(QuickCast(name),dmg,range,atkspd);
+		        az = new Sust(name,dmg,range,atkspd);
 		         
 		      }
 		      rs.close();

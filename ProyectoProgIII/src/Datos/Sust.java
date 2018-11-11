@@ -5,14 +5,14 @@ import org.newdawn.slick.opengl.Texture;
 public class Sust {
 
 
-	Texture tex;
+	String tex;
 	int damage, range;
 	float attackSpeed;
 	
 	
 	
 	
-	Sust(Texture tex, int damage, int range, float attackSpeed) {
+	Sust(String tex, int damage, int range, float attackSpeed) {
 		this.tex = tex;
 		this.damage = damage;
 		this.range = range;
@@ -23,14 +23,14 @@ public class Sust {
 
 
 
-	public Texture getTex() {
+	public String getTex() {
 		return tex;
 	}
 
 
 
 
-	public void setTex(Texture tex) {
+	public void setTex(String tex) {
 		this.tex = tex;
 	}
 
