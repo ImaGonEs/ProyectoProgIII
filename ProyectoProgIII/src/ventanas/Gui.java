@@ -10,6 +10,10 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -28,7 +32,11 @@ import javax.swing.SwingUtilities;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.opengl.Texture;
 
+import Datos.Sust;
+import Datos.Tower;
 import Datos.TowerCannon;
+import Datos.TowerCannonR;
+import Datos.TowerCannonS;
 import Datos.TowerMelee;
 import weareSupports.JLabelGraficoAjustado;
 
@@ -49,6 +57,54 @@ class Gui extends JFrame {
 	private JTable jt2 = new JTable(stats2,column);   
 	GridBagLayout gbl = new GridBagLayout();
 
+	
+	public static ArrayList<Sust> collect(){
+		
+		Connection c = null;
+		Statement stmt = null;
+		Sust az = null;
+		ArrayList<Sust> collect = new ArrayList<Sust>();
+		 try {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+		      c.setAutoCommit(false);
+		      System.out.println("Opened database successfully");
+
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
+		      
+		      while ( rs.next() ) {
+		         
+		         String  id = rs.getString("id"); 
+		         
+		         String name = rs.getString("name");
+		         
+		         int dmg = rs.getInt("damage");
+		         int range = rs.getInt("range");
+		         float atkspd = rs.getFloat("atkspeed");
+		        az = new Sust(id,name,dmg,range,atkspd);
+		         collect.add(az);
+		      }
+		      rs.close();
+		      stmt.close();
+		      c.close();
+		   } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		      System.exit(0);
+		   }
+		   System.out.println("Operation done successfully");
+		
+		
+		
+		
+		
+		return collect;
+	}
+	
+	
+	
+	
+	
 	Gui() {
 		
 		setLayout(gbl);
@@ -61,7 +117,7 @@ class Gui extends JFrame {
 		
          
 		
-		ArrayList<TowerCannon> tcd = new ArrayList<TowerCannon>();
+		ArrayList<Sust> tcd = collect();
 		ArrayList<TowerMelee> tmd = new ArrayList<TowerMelee>();
 		
 		
@@ -69,8 +125,8 @@ class Gui extends JFrame {
 		
 		
 		
-		tcd.add( new TowerCannon(15,2,20,QuickCastIcon("torre")));
-		tcd.add(new TowerCannon(18,2,25,QuickCastIcon("Mob0")));
+//		tcd.add( new TowerCannon(15,2,20,QuickCastIcon("torre")));
+//		tcd.add(new TowerCannon(18,2,25,QuickCastIcon("Mob0")));
 		
 		
 //		JLabelGraficoAjustado lc1 = new JLabelGraficoAjustado("src/res/torre.png",40,40);
@@ -90,7 +146,8 @@ class Gui extends JFrame {
 	
 		HashSet <JLabelGraficoAjustado> teami = new HashSet<JLabelGraficoAjustado>(); //los iconos solo
 		
-		HashSet <TowerCannon> teamT = new HashSet<TowerCannon>(); //el objeto en si, esto lo usaremos para guardarlo en un txt que leera el mapa
+		HashSet <Tower> teamT = new HashSet<Tower>(); //el objeto en si, esto lo usaremos para guardarlo en un txt que leera el mapa
+		
 		
 		
 		
@@ -154,8 +211,38 @@ class Gui extends JFrame {
 		pnlE.add(pD);
 		
 		
-		for (TowerCannon i : tcd) {
-			JLabelGraficoAjustado z = new JLabelGraficoAjustado(i.getIcon(),40,40);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		for (Sust i : tcd) {
+			JLabelGraficoAjustado z = new JLabelGraficoAjustado(i.getTex(),40,40);
+			System.out.println(i.getTex());
 			collection.add(z);
 			collection.get(collection.indexOf(z)).addMouseListener(new MouseListener() {
 				
@@ -204,9 +291,24 @@ class Gui extends JFrame {
 						
 						
 						teami.add(z);
-						teamT.add(i);
-						for (JLabelGraficoAjustado la : teami) {
-							pnlB.add(la);
+						if (i.getId().equals("T01")) {
+						teamT.add(new TowerCannonR(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
+						
+						
+						
+						}else if (i.getId().equals("T02")) {
+							
+							
+							
+							teamT.add(new TowerCannonS(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
+							
+							
+							
+						}
+						
+						pnlB.removeAll();
+						for (JLabelGraficoAjustado icono : teami) {
+							pnlB.add(icono);
 						}
 						pnlB.repaint();
 						c = false;

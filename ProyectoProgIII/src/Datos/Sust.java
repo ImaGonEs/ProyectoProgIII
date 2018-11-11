@@ -8,16 +8,31 @@ public class Sust {
 	String tex;
 	int damage, range;
 	float attackSpeed;
+	String id;
 	
 	
 	
-	
-	Sust(String tex, int damage, int range, float attackSpeed) {
+	public Sust(String id,String tex, int damage, int range, float attackSpeed) {
+		this.id = id;
 		this.tex = tex;
 		this.damage = damage;
 		this.range = range;
 		this.attackSpeed = attackSpeed;
 		
+	}
+
+
+
+
+	public String getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 

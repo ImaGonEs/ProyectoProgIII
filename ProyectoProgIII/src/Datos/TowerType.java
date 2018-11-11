@@ -51,14 +51,14 @@ public enum TowerType {
 		      
 		      while ( rs.next() ) {
 		         
-		         String  id = rs.getString("id");
+		         String  id = rs.getString("id"); 
 		         
 		         String name = rs.getString("name");
 		         
 		         int dmg = rs.getInt("damage");
 		         int range = rs.getInt("range");
 		         float atkspd = rs.getFloat("atkspeed");
-		        az = new Sust(name,dmg,range,atkspd);
+		        az = new Sust(id,name,dmg,range,atkspd);
 		         
 		      }
 		      rs.close();

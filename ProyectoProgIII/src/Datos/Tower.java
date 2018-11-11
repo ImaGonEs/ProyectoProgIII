@@ -11,13 +11,13 @@ import org.newdawn.slick.opengl.Texture;
 public abstract class Tower implements Entity{
 	
 	protected float x, y, timeSinceLastShot, attackSpeed;
-	private int w,h, damage, range;
+	protected int w,h, damage, range;
 	protected Enemy target; // si es aoe se puede pasar null;
 	private Texture tex;
 	private ArrayList<Enemy> enemies;
 	protected boolean targeted;
 	protected ArrayList<Projectile> projectiles;
-	
+	protected String icon;
 
 	public Tower (TowerType type, MapCell startTile, ArrayList<Enemy> enemies) {
 		
@@ -35,7 +35,29 @@ public abstract class Tower implements Entity{
 		this.attackSpeed = type.attackSpeed;
 	}
 	
-
+	public Tower( int damage, float attackSpeed, int range, String icon) {
+		
+		
+		this.damage = damage;
+		this.range = range;
+		
+		this.attackSpeed = 2;
+		this.icon = icon;
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	protected Enemy acquireTarget() { //targetea el mas cercano
 		

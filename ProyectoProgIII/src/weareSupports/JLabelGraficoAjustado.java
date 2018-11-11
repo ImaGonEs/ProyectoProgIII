@@ -24,9 +24,9 @@ public class JLabelGraficoAjustado extends JLabel {
 	 * @param altura	Altura del gráfico en píxels (si es <= 0 ocupa todo el alto)
 	 */
 	public JLabelGraficoAjustado( String nombreImagenObjeto, int anchura, int altura ) {
-		setName( nombreImagenObjeto );
+		setName( "src/res/"+nombreImagenObjeto+".png" );
 		opacidad = 1.0f;
-		setImagen( nombreImagenObjeto ); // Cargamos el icono
+		setImagen( "src/res/"+nombreImagenObjeto+".png"); // Cargamos el icono
 		setSize( anchura, altura );
 	}
 	
