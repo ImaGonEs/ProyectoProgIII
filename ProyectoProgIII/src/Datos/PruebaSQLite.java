@@ -31,7 +31,7 @@ public class PruebaSQLite {
 	      Statement stmt = null;
 	      
 	      
-	      
+//	      
 //	      try { //--------TABLA TOWER--------------
 //	          Class.forName("org.sqlite.JDBC");
 //	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -54,7 +54,7 @@ public class PruebaSQLite {
 //	       System.out.println("Table created successfully");
 //	      
 //	      
-	      
+//	      
 //	      try { //------------TABLA PLAYERS-------------------
 //          Class.forName("org.sqlite.JDBC");
 //          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -77,10 +77,10 @@ public class PruebaSQLite {
 //       System.out.println("Table created successfully");
 //      
 //     
-	      
-	      
-	      
-	      
+//	      
+//	      
+//	      
+//	      
 //	      try {//------------------INSERT TOWERS-----------------
 //	          Class.forName("org.sqlite.JDBC");
 //	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -106,7 +106,7 @@ public class PruebaSQLite {
 //	       }
 //	       System.out.println("Records created successfully");
 //	     
-	      
+//	      
 //	      try { //-----------------INSERT PLAYERS-----------------------------
 //          Class.forName("org.sqlite.JDBC");
 //          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -117,7 +117,6 @@ public class PruebaSQLite {
 //          String sql = "INSERT INTO PLAYERS (ID_P,NAME_P,PASSWORD,GEMS,POS) " +
 //                         "VALUES ('P03', 'KIKEXD', 'EY123', 999, 1 );"; 
 //          stmt.executeUpdate(sql);
-//
 //          sql = "INSERT INTO PLAYERS (ID_P,NAME_P,PASSWORD,GEMS,POS) " +
 //        		  "VALUES ('P04', 'OTROXD', 'LAPASS', 1, 2 );"; 
 //          stmt.executeUpdate(sql);
@@ -131,7 +130,7 @@ public class PruebaSQLite {
 //          System.exit(0);
 //       }
 //       System.out.println("Records created successfully");
-      
+//      
 	      
 	      
 	      try { //-------------PRINT TOWERS---------------------
