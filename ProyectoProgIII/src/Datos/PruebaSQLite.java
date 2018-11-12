@@ -56,6 +56,39 @@ public class PruebaSQLite {
 //	      
 //	      
 //	      
+	      
+//	       try { //-----------DROP TAABLE---------------
+//	      Class.forName("org.sqlite.JDBC");
+//	      c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//	      c.setAutoCommit(false);
+//	      System.out.println("Opened database successfully");
+//
+//	      stmt = c.createStatement();
+//	      String sqlCommand = "DROP TABLE 'PLAYERS' ";
+//
+//	      System.out.println("output : " + stmt.executeUpdate(sqlCommand));
+//
+//	      stmt.close();
+//	      c.commit();     // commit after execute sql command
+//	                      //COMMIT TRANSACTION makes all data modifications performed since 
+//	                      //the start of the transaction a permanent part of the database, 
+//	      c.close();
+//  } catch ( Exception e ) {
+//	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//	      System.exit(0);
+//	   }
+//
+//	     
+//	    System.out.println("Operation done successfully");
+//	      
+//	 
+//	      
+	      
+	      
+	      
+	      
+	      
+	      
 //	      try { //------------TABLA PLAYERS-------------------
 //          Class.forName("org.sqlite.JDBC");
 //          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -63,8 +96,7 @@ public class PruebaSQLite {
 //
 //          stmt = c.createStatement();
 //          String sql = "CREATE TABLE PLAYERS " +
-//                         "(ID_P VARCHAR(3) PRIMARY KEY NOT NULL," +
-//                         " NAME_P    CHAR(10)  NOT NULL, " + 
+//                         " (NAME_P    CHAR(10) PRIMARY KEY  NOT NULL, " + 
 //                         " PASSWORD    CHAR(20)     NOT NULL, " + 
 //                         " GEMS NUMBER(10000) DEFAULT 0, " + 
 //                         " POS NUMBER(100))"; 
@@ -115,11 +147,11 @@ public class PruebaSQLite {
 //          System.out.println("Opened database successfully");
 //
 //          stmt = c.createStatement();
-//          String sql = "INSERT INTO PLAYERS (ID_P,NAME_P,PASSWORD,GEMS,POS) " +
-//                         "VALUES ('P03', 'KIKEXD', 'EY123', 999, 1 );"; 
+//          String sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
+//                         "VALUES ('KIKEXD', 'EY123', 999, 1 );"; 
 //          stmt.executeUpdate(sql);
-//          sql = "INSERT INTO PLAYERS (ID_P,NAME_P,PASSWORD,GEMS,POS) " +
-//        		  "VALUES ('P04', 'OTROXD', 'LAPASS', 1, 2 );"; 
+//          sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
+//        		  "VALUES ('OTROXD', 'LAPASS', 1, 2 );"; 
 //          stmt.executeUpdate(sql);
 //
 //
@@ -132,40 +164,44 @@ public class PruebaSQLite {
 //       }
 //       System.out.println("Records created successfully");
 //      
+//	      
+//	      
+//     
 	      
 	      
-	      try { //-------------PRINT TOWERS---------------------
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	          System.out.println("Opened database successfully");
-
-	          stmt = c.createStatement();
-	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
-	          
-	          while ( rs.next() ) {
-	             String id = rs.getString("ID");
-	             String  name = rs.getString("NAME");
-	             int damage  = rs.getInt("DAMAGE");
-	             int  range = rs.getInt("RANGE");
-	             float atkspeed = rs.getFloat("ATKSPEED");
-	             
-	             System.out.println( "ID = " + id );
-	             System.out.println( "NAME = " + name );
-	             System.out.println( "DAMAGE = " + damage );
-	             System.out.println( "RANGE = " + range );
-	             System.out.println( "AS = " + atkspeed );
-	             System.out.println();
-	          }
-	          rs.close();
-	          stmt.close();
-	          c.close();
-	       } catch ( Exception e ) {
-	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	          System.exit(0);
-	       }
-	       System.out.println("Operation done successfully");
-	       
+	      
+//	      try { //-------------PRINT TOWERS---------------------
+//	          Class.forName("org.sqlite.JDBC");
+//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//	          c.setAutoCommit(false);
+//	          System.out.println("Opened database successfully");
+//
+//	          stmt = c.createStatement();
+//	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
+//	          
+//	          while ( rs.next() ) {
+//	             String id = rs.getString("ID");
+//	             String  name = rs.getString("NAME");
+//	             int damage  = rs.getInt("DAMAGE");
+//	             int  range = rs.getInt("RANGE");
+//	             float atkspeed = rs.getFloat("ATKSPEED");
+//	             
+//	             System.out.println( "ID = " + id );
+//	             System.out.println( "NAME = " + name );
+//	             System.out.println( "DAMAGE = " + damage );
+//	             System.out.println( "RANGE = " + range );
+//	             System.out.println( "AS = " + atkspeed );
+//	             System.out.println();
+//	          }
+//	          rs.close();
+//	          stmt.close();
+//	          c.close();
+//	       } catch ( Exception e ) {
+//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//	          System.exit(0);
+//	       }
+//	       System.out.println("Operation done successfully");
+//	       
 //	       try { //-----------UPDATE PLAYER---------------
 //	    	      Class.forName("org.sqlite.JDBC");
 //	    	      c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -195,13 +231,13 @@ public class PruebaSQLite {
 		          ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYERS;" );
 		          
 		          while ( rs.next() ) {
-		             String id = rs.getString("ID_P");
+		             
 		             String  name = rs.getString("NAME_P");
 		             String pass  = rs.getString("PASSWORD");
 		             int  gems = rs.getInt("GEMS");
 		             int pos = rs.getInt("POS");
 		             
-		             System.out.println( "ID_P = " + id );
+		       
 		             System.out.println( "NAME_P = " + name );
 		             System.out.println( "PASSWORD = " + pass );
 		             System.out.println( "GEMS = " + gems );
@@ -216,7 +252,7 @@ public class PruebaSQLite {
 		          System.exit(0);
 		       }
 		       System.out.println("Operation done successfully");
-		      
+//		      
 	
 	     
 	

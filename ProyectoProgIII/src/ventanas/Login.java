@@ -44,7 +44,7 @@ public class Login extends JFrame{
 //		int h = (int) screenSize.getHeight();
 		
 		
-		
+		JFrame frame = this;
 		
 		w = 1000;
 		h = 600;
@@ -162,7 +162,7 @@ public class Login extends JFrame{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				btn.setImagen("src/res/play2.png");
+				btn.setImagen("src/res/play1.png");
 				
 				String user = us.getText();
 				
@@ -175,41 +175,41 @@ public class Login extends JFrame{
 				}else if (!s.contains(user)) {
 					
 					
-					//ESTO TE CREARIA LA CUENTA PERO ME DA PEREZA HACER UN METODO PARA QUE EL ID SE VAYA INCREMENTANDO SEGUN VAYA HABIENDO MAS CUENTAS
 					
-//					Connection c = null;
-//					
-//					Statement stmt = null;
-//					
-//				    try { //-----------------INSERT PLAYER-----------------------------
-//			          Class.forName("org.sqlite.JDBC");
-//			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//			          c.setAutoCommit(false);
-//			          System.out.println("Opened database successfully");
-//			
-//			          stmt = c.createStatement();
-//			          String sql = "INSERT INTO PLAYERS (ID_P,NAME_P,PASSWORD,GEMS,POS) " +
-//			                         "VALUES ('P03', name, pass, 0, 1 );"; 
-//			          stmt.executeUpdate(sql);
-//			
-//			        
-//			          stmt.close();
-//			          c.commit();
-//			          c.close();
-//			       } catch ( Exception ex ) {
-//			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
-//			          System.exit(0);
-//			       }
-//			       System.out.println("Records created successfully");
-//						
-//						
+					
+					Connection c = null;
+					
+					Statement stmt = null;
+					
+				    try { //-----------------INSERT PLAYER-----------------------------
+			          Class.forName("org.sqlite.JDBC");
+			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+			          c.setAutoCommit(false);
+			          System.out.println("Opened database successfully");
+			
+			          stmt = c.createStatement();
+			          String sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
+			                         "VALUES ('"+user+"', '"+passw+"', 0, 1 );"; 
+			          stmt.executeUpdate(sql);
+			
+			        
+			          stmt.close();
+			          c.commit();
+			          c.close();
+			       } catch ( Exception ex ) {
+			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+			          System.exit(0);
+			       }
+			       System.out.println("Records created successfully");
+						
+						
 						
 			
 					
 					JOptionPane.showMessageDialog(null, "CUENTA CREADA");
 					new LeMenu(false);
 					
-					
+					frame.dispose();
 					
 					
 				}else if (passw.equals(mapa.get(user))) {
@@ -217,7 +217,7 @@ public class Login extends JFrame{
 					JOptionPane.showMessageDialog(null, "login con user: " +user+" pass: "+ passw);
 					
 					new LeMenu(false);
-					
+					frame.dispose();
 	
 					
 				}else {
@@ -240,7 +240,7 @@ public class Login extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
 				System.out.println("rel");
-				btn.setImagen("src/res/play1.png");
+				btn.setImagen("src/res/play2.png");
 			}
 			
 			@Override
