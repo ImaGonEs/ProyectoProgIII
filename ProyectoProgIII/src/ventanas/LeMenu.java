@@ -64,19 +64,19 @@ public class LeMenu extends JFrame{
 		
 		clip = new StandardAudio("src/res/Evil Mortys Theme.wav",true);
 		
-		background = new JLabelGraficoAjustado("src/res/forest.png", w, (int) ((int) h*1.5)); //1000,900
+		background = new JLabelGraficoAjustado("forest", w, (int) ((int) h*1.5)); //1000,900
 		
-		title = new JLabelGraficoAjustado("src/res/title.png", (int) (w*0.8), h/6); //800,100
+		title = new JLabelGraficoAjustado("title", (int) (w*0.8), h/6); //800,100
 		
 		
 		
-		bP1 = new JLabelGraficoAjustado("src/res/play1.png",(int) (w*0.2),h/6);  //200,100   (int) (w*0.2),h/6
+		bP1 = new JLabelGraficoAjustado("play1",(int) (w*0.2),h/6);  //200,100   (int) (w*0.2),h/6
 		//bP2 = new JLabelGraficoAjustado("play2.png",100,100); 
-		bT1 = new JLabelGraficoAjustado("src/res/team1.png",(int) (w*0.2),h/6); 
+		bT1 = new JLabelGraficoAjustado("team1",(int) (w*0.2),h/6); 
 		//bT2 = new JLabelGraficoAjustado("team2O",100,100); 
-		bSu1 = new JLabelGraficoAjustado("src/res/summon1.png",(int) (w*0.2),h/6); 
+		bSu1 = new JLabelGraficoAjustado("summon1",(int) (w*0.2),h/6); 
 		//bSu2 = new JLabelGraficoAjustado("summon2",100,100); 
-		bSe1 = new JLabelGraficoAjustado("src/res/settings1.png",(int) (w*0.2),h/6); 
+		bSe1 = new JLabelGraficoAjustado("settings1",(int) (w*0.2),h/6); 
 		//bSe2 = new JLabelGraficoAjustado("settings2",100,100);
 		
 		cp.add(background);
