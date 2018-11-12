@@ -63,15 +63,15 @@ public class Login extends JFrame{
 		
 		clip = new StandardAudio("src/res/Evil Mortys Theme.wav",true);
 		
-		background = new JLabelGraficoAjustado("src/res/forest.png", w, (int) ((int) h*1.5)); //1000,900
+		background = new JLabelGraficoAjustado("forest", w, (int) ((int) h*1.5)); //1000,900
 		
-		title = new JLabelGraficoAjustado("src/res/Login.png", (int) 302, 146); 
+		title = new JLabelGraficoAjustado("Login", (int) 302, 146); 
 		
-		usuario = new JLabelGraficoAjustado("src/res/Usuario.png", (int) 100, 60); 
+		usuario = new JLabelGraficoAjustado("Usuario", (int) 100, 60); 
 		 
-		pass = new JLabelGraficoAjustado("src/res/Pass.png", (int) 100, 60); 
+		pass = new JLabelGraficoAjustado("Pass", (int) 100, 60); 
 		
-		btn = new JLabelGraficoAjustado("src/res/play1.png",(int) (w*0.2),h/6);
+		btn = new JLabelGraficoAjustado("play1",(int) (w*0.2),h/6);
 		
 		
 		
@@ -175,23 +175,23 @@ public class Login extends JFrame{
 				}else if (!s.contains(user)) {
 					
 					
-					JOptionPane.showMessageDialog(null, "CUENTA CREADA");
+					//ESTO TE CREARIA LA CUENTA PERO ME DA PEREZA HACER UN METODO PARA QUE EL ID SE VAYA INCREMENTANDO SEGUN VAYA HABIENDO MAS CUENTAS
 					
-				}else if (passw.equals(mapa.get(user))) {
-					
-					JOptionPane.showMessageDialog(null, "login con user: " +user+" pass: "+ passw);
-					
+//					Connection c = null;
+//					
+//					Statement stmt = null;
+//					
 //				    try { //-----------------INSERT PLAYER-----------------------------
 //			          Class.forName("org.sqlite.JDBC");
 //			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
 //			          c.setAutoCommit(false);
 //			          System.out.println("Opened database successfully");
-		//	
+//			
 //			          stmt = c.createStatement();
 //			          String sql = "INSERT INTO PLAYERS (ID_P,NAME_P,PASSWORD,GEMS,POS) " +
 //			                         "VALUES ('P03', name, pass, 0, 1 );"; 
 //			          stmt.executeUpdate(sql);
-		//	
+//			
 //			        
 //			          stmt.close();
 //			          c.commit();
@@ -203,8 +203,22 @@ public class Login extends JFrame{
 //			       System.out.println("Records created successfully");
 //						
 //						
-//						
-//				
+						
+			
+					
+					JOptionPane.showMessageDialog(null, "CUENTA CREADA");
+					new LeMenu(false);
+					
+					
+					
+					
+				}else if (passw.equals(mapa.get(user))) {
+					
+					JOptionPane.showMessageDialog(null, "login con user: " +user+" pass: "+ passw);
+					
+					new LeMenu(false);
+					
+	
 					
 				}else {
 					

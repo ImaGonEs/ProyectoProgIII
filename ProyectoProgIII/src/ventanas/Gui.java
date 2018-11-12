@@ -8,6 +8,8 @@ import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
@@ -16,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.TreeSet;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -144,7 +147,7 @@ class Gui extends JFrame {
 		ArrayList <JLabelGraficoAjustado> collection = new ArrayList<JLabelGraficoAjustado>();
 		
 	
-		HashSet <JLabelGraficoAjustado> teami = new HashSet<JLabelGraficoAjustado>(); //los iconos solo
+		ArrayList <JLabelGraficoAjustado> teami = new ArrayList<JLabelGraficoAjustado>(); //los iconos solo
 		
 		HashSet <Tower> teamT = new HashSet<Tower>(); //el objeto en si, esto lo usaremos para guardarlo en un txt que leera el mapa
 		
@@ -306,11 +309,37 @@ class Gui extends JFrame {
 							
 						}
 						
-						pnlB.removeAll();
+						
+						
+						if (!teami.contains(z)){
+							System.out.println("adre");
+						teami.add(z);
+						collection.remove(z);
+						
 						for (JLabelGraficoAjustado icono : teami) {
 							pnlB.add(icono);
+							
 						}
+						
+						} else {
+							
+							teami.remove(z);
+							collection.add(z);
+							
+							for (JLabelGraficoAjustado icono : collection) {
+								pnlA.add(icono);
+								
+							}
+							
+							
+						}
+						
+						
+						
+						
 						pnlB.repaint();
+						pnlA.repaint();
+						
 						c = false;
 						
 					}
@@ -330,6 +359,9 @@ class Gui extends JFrame {
 			});
 		}
 		
+		
+		
+		
 		for( JLabelGraficoAjustado la : collection) {
 			pnlA.add(la);
 		}
@@ -347,7 +379,137 @@ class Gui extends JFrame {
 		
 		JButton bS = new JButton("SAVE");
 		JButton bE = new JButton("EXIT");
-		JButton bA = new JButton("ADD");
+		JButton bA = new JButton("REMOVE TEAM");
+		
+		
+		bA.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+//				pnlB.removeAll();
+//				pnlB.repaint();
+				
+				
+				for (Sust i : tcd) {
+					JLabelGraficoAjustado z = new JLabelGraficoAjustado(i.getTex(),40,40);
+					System.out.println(i.getTex());
+					collection.clear();
+					collection.add(z);
+					
+					
+					
+					collection.get(collection.indexOf(z)).addMouseListener(new MouseListener() {
+						
+						@Override
+						public void mouseReleased(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+						
+						@Override
+						public void mousePressed(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
+							
+							
+						}
+						
+						
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
+							
+							boolean c = e.isMetaDown();
+							if(c==false) {
+							if (jtcont == true) {
+							
+							
+							jt.setValueAt(Integer.toString(i.getDamage()), 0, 1);
+							jt.setValueAt(Integer.toString((int) i.getAttackSpeed()), 1, 1);
+							jt.setValueAt(Integer.toString(i.getRange()), 2, 1);
+							jtcont = false;
+							
+							} else {
+								
+								jt2.setValueAt(Integer.toString(i.getDamage()), 0, 1);
+								jt2.setValueAt(Integer.toString((int) i.getAttackSpeed()), 1, 1);
+								jt2.setValueAt(Integer.toString(i.getRange()), 2, 1);
+								jtcont = true;
+								
+							}
+							}
+							
+							if (c== true) {
+								
+								
+								
+								
+//								if (i.getId().equals("T01")) {
+//								teamT.add(new TowerCannonR(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
+//								
+//								
+//								
+//								}else if (i.getId().equals("T02")) {
+//									
+//									
+//									
+//									teamT.add(new TowerCannonS(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
+//									
+//									
+//									
+//								}
+								if (!teami.contains(z)){
+									System.out.println("adre");
+								teami.add(z);
+								collection.remove(z);
+								
+								for (JLabelGraficoAjustado icono : teami) {
+									pnlB.add(icono);
+									
+								}
+								
+								} else {
+									
+									teami.remove(z);
+									collection.add(z);
+									
+									for (JLabelGraficoAjustado icono : collection) {
+										pnlA.add(icono);
+										
+									}
+									
+									
+								}
+								pnlB.repaint();
+								pnlA.repaint();
+								c = false;
+								
+							}
+						}
+
+						@Override
+						public void mouseEntered(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void mouseExited(MouseEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+					});
+					
+					
+					//pnlA.repaint();
+				}
+				
+			}
+		});
+		
+		
 		pnlF.add(bS);
 		pnlF.add(bE);
 		pnlF.add(bA);

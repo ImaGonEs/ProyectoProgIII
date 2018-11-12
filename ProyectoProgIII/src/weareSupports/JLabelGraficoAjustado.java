@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
  /** Clase mejorada de JLabel para gestionar imágenes ajustadas al JLabel
  */
-public class JLabelGraficoAjustado extends JLabel {
+public class JLabelGraficoAjustado extends JLabel implements Comparable{
 	// la posición X,Y se hereda de JLabel
 	protected int anchuraObjeto;   // Anchura definida del objeto en pixels
 	protected int alturaObjeto;    // Altura definida del objeto en pixels
@@ -168,6 +168,12 @@ public class JLabelGraficoAjustado extends JLabel {
 			label.setOpacidad( Math.abs(op*0.01f) );
 			try { Thread.sleep( 20 ); } catch (Exception e) {}  // Espera dos décimas entre rotación y rotación
 		}
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
