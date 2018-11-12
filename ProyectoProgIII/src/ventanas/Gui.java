@@ -293,7 +293,7 @@ class Gui extends JFrame {
 						
 						
 						
-						teami.add(z);
+						//teami.add(z);
 						if (i.getId().equals("T01")) {
 						teamT.add(new TowerCannonR(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
 						
