@@ -19,7 +19,7 @@ public enum TowerType {
 	// CannonE(QuickCast("TC"), 10, 1000, 3); QuickCast("IT"), 10, 1000, 3
 	
 	
-	Texture tex;
+	final String tex;
 	int damage, range;
 	float attackSpeed;
 	
@@ -27,7 +27,10 @@ public enum TowerType {
 	
 	
 	TowerType(String name) {
-		this.tex = QuickCast(hola(name).getTex());
+		
+		this.tex = hola(name).getTex();
+		//System.out.println(hola(name).getTex());
+		
 		this.damage = hola(name).getDamage();
 		this.range = hola(name).getRange();
 		this.attackSpeed = hola(name).getAttackSpeed();;
@@ -54,7 +57,7 @@ public enum TowerType {
 		         String  id = rs.getString("id"); 
 		         
 		         String name = rs.getString("name");
-		         
+		         System.out.println(name);
 		         int dmg = rs.getInt("damage");
 		         int range = rs.getInt("range");
 		         float atkspd = rs.getFloat("atkspeed");

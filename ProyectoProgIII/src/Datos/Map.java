@@ -119,25 +119,25 @@ public class Map {
 	}
 	
 	
-	public void updateT() {
-		
-		for (TowerCannon t : towerC) {
-			t.update();
-			//t.project();
-			
-		}
-		
-		for (TowerMelee m : towerM) {
-			
-			m.update();
-			
-			
-			
-		}
-		
-		
-		
-	}
+//	public void updateT() {
+//		
+//		for (TowerCannon t : towerC) {
+//			t.update();
+//			//t.project();
+//			
+//		}
+//		
+//		for (TowerMelee m : towerM) {
+//			
+//			m.update();
+//			
+//			
+//			
+//		}
+//		
+//		
+//		
+//	}
 	
 	
 	

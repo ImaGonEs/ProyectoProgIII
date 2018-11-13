@@ -55,7 +55,7 @@ public class Game {
 		player.Update();
 		
 		
-		l.getMap().updateT();
+		//l.getMap().updateT();
 	}
 	
 	

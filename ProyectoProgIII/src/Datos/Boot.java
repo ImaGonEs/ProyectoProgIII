@@ -98,6 +98,7 @@ public class Boot {  //aaaaaaa
 			Display.update();
 			Display.sync(60);
 		}
+		
 		Display.destroy();
 	}
 	

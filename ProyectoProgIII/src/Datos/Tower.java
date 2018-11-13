@@ -21,7 +21,8 @@ public abstract class Tower implements Entity{
 
 	public Tower (TowerType type, MapCell startTile, ArrayList<Enemy> enemies) {
 		
-		this.tex = type.tex;
+		this.tex = QuickCast(type.tex); 
+		this.icon = type.name();
 		this.damage = type.damage;
 		this.range = type.range;
 		this.x = startTile.getX();

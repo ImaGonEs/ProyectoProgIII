@@ -113,7 +113,15 @@ public class LeMenu extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				bP1.setImagen("src/res/play1.png");
-				new Boot();
+				Thread boot = new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						new Boot();
+					}
+				});
+				boot.start();
 			}
 			
 			@Override
