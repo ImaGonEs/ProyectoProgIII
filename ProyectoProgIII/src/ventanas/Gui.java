@@ -61,6 +61,7 @@ class Gui extends JFrame {
 	GridBagLayout gbl = new GridBagLayout();
 
 	
+	
 	public static ArrayList<Sust> collect(){
 		
 		Connection c = null;
@@ -88,6 +89,7 @@ class Gui extends JFrame {
 		        az = new Sust(id,name,dmg,range,atkspd);
 		         collect.add(az);
 		      }
+		      
 		      rs.close();
 		      stmt.close();
 		      c.close();
