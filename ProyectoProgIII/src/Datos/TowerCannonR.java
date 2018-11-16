@@ -17,6 +17,7 @@ public class TowerCannonR extends Tower{
 		timeSinceLastShot = 0;   
 		projectiles.add(new ProjectileFire(QuickCast("fireBall"), target, x, y, 32, 32,400 , 10));
 		}
+	//a
 	
 public TowerCannonR( int damage, float attackSpeed, int range, String icon) {
 		
