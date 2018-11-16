@@ -2,7 +2,7 @@ package Datos;
 
 import org.newdawn.slick.opengl.Texture;
 
-public class Sust {
+public class Sust { //gitxd
 
 
 	String tex;
