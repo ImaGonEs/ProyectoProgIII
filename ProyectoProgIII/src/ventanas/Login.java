@@ -174,7 +174,7 @@ public class Login extends JFrame{
 					
 				}else if (!s.contains(user)) {
 					
-					
+					//aa
 					
 					
 					Connection c = null;
