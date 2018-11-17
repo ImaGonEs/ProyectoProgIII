@@ -6,9 +6,15 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.Savepoint;
 import java.sql.Statement;
 import java.util.*;
 
@@ -28,9 +34,10 @@ public class Login extends JFrame{
 	JLabelGraficoAjustado title;
 	StandardAudio clip;
 	private int w = 1000,h=600;
-	JTextField us;
-	JTextField pa;
+	static JTextField us = new JTextField();
+	static JTextField pa = new JTextField();
 	
+	static Properties prop = new Properties();
 	
 	
 	
@@ -75,10 +82,10 @@ public class Login extends JFrame{
 		
 		
 		
-		us = new JTextField();
+		
 		us.setBounds(405, ((h/6)/2)+210, 150, 30);
 		
-		pa = new JTextField();
+		
 		pa.setBounds(405, ((h/6)/2)+300, 150, 30);
 		
 		cp.add(background);
@@ -196,6 +203,8 @@ public class Login extends JFrame{
 			          stmt.close();
 			          c.commit();
 			          c.close();
+			          
+			          saveProps(user, passw);
 			       } catch ( Exception ex ) {
 			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
 			          System.exit(0);
@@ -215,7 +224,7 @@ public class Login extends JFrame{
 				}else if (passw.equals(mapa.get(user))) {
 					
 					JOptionPane.showMessageDialog(null, "login con user: " +user+" pass: "+ passw);
-					
+					saveProps(user, passw);
 					new LeMenu(false);
 					frame.dispose();
 	
@@ -262,14 +271,85 @@ public class Login extends JFrame{
 			}
 		});
 		
-		
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream("config.properties");
+
+			// load a properties file
+			prop.load(input);
+
+			// get the property value and print it out
+			
+			String lastUs = prop.getProperty("username");
+			String lastPass = prop.getProperty("password");
+			us.setText(lastUs);
+			pa.setText(lastPass);
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	
 	
 	}
-	
+	public void saveProps(String u,String p) {
+		
+		OutputStream output = null;
+
+		
+		try {
+
+			output = new FileOutputStream("config.properties");
+
+			// set the properties value
+			prop.setProperty("username", u);
+			prop.setProperty("password", p);
+			
+			
+
+			// save properties to project root folder
+			prop.store(output, null);
+
+		} catch (IOException io) {
+			io.printStackTrace();
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
 	
 	
 	public static void main(String[] args) {
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		new Login();
+		
+		
 	}
 }

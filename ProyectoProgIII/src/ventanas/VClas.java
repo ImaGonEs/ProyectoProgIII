@@ -19,9 +19,13 @@ import java.util.Arrays;
 import java.util.TreeSet;
 
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
 
 
 
@@ -37,7 +41,9 @@ public class VClas extends JFrame {
 	     
 	     ArrayList<String> names = new ArrayList<String>();
 	     ArrayList<Integer> scores = new ArrayList<Integer>();
+	     
 	     int iee = 0;
+	     
     	  try {//-------------------PRINT PLAYERS---------------------
 	          Class.forName("org.sqlite.JDBC");
 	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -116,7 +122,109 @@ public class VClas extends JFrame {
 	         
 	    DefaultTableModel model = new DefaultTableModel (column,0);
 	    
-	  
+	    
+	    
+	    
+	    
+	    
+	    
+	    TableModel dataModel = new AbstractTableModel() {
+
+
+	    	   // private final List<Employee> employeeList;
+	    	     
+	    	    private final String[] columnNames = new String[] {
+	    	            "PLAYER","SCORE"
+	    	    };
+	    	    private final Class[] columnClass = new Class[] {
+	    	        String.class, Integer.class
+	    	    };
+	    	 
+	    	    public boolean isCellEditable(int rowIndex, int columnIndex)
+	    	    {
+	    	    	if (columnIndex == 1)
+	    	        return true;
+	    	    	else
+	    	    		return false;
+	    	    }
+	    	     
+	    	    @Override
+	    	    public String getColumnName(int column)
+	    	    {
+	    	        return columnNames[column];
+	    	    }
+	    	 
+	    	    @Override
+	    	    public Class<?> getColumnClass(int columnIndex)
+	    	    {
+	    	        return columnClass[columnIndex];
+	    	    }
+	    	 
+	    	    @Override
+	    	    public int getColumnCount()
+	    	    {
+	    	        return columnNames.length;
+	    	    }
+	    	 
+	    	    @Override
+	    	    public int getRowCount()
+	    	    {
+	    	        return names.size();
+	    	    }
+	    	 
+	    	    @Override
+	    	    public Object getValueAt(int rowIndex, int columnIndex)
+	    	    {
+	    	    	if(columnIndex==0) {
+	    	    		return names.get(rowIndex);
+	    	    	}else {
+	    	    		return scores.get(rowIndex);
+	    	    	}
+	    	    };
+	    	    
+	    	    
+	    	    	
+	    	    	
+//	    	    	
+//	    	    	Employee row = employeeList.get(rowIndex);
+//	    	        if(0 == columnIndex) {
+//	    	            return row.getId();
+//	    	        }
+//	    	        else if(1 == columnIndex) {
+//	    	            return row.getName();
+//	    	        }
+//	    	        else if(2 == columnIndex) {
+//	    	            return row.getHourlyRate();
+//	    	        }
+//	    	        else if(3 == columnIndex) {
+//	    	            return row.isPartTime();
+//	    	        }
+//	    	        return null;
+//	    	    }
+	   
+	    };
+	    	
+	    tabla =new JTable(dataModel); 	
+	    	
+	    tabla.getModel().addTableModelListener(new TableModelListener() {
+	    	   
+
+			@Override
+			public void tableChanged(TableModelEvent e) {
+				
+				int row = e.getFirstRow();
+				int column = e.getColumn();
+				
+				String cellValue = String.valueOf( tabla.getValueAt(row, column) );
+				
+				
+			}
+	    	});	
+	    	
+	    	
+	    	
+	   	
+	    	
 	         
 		for (int j = 0; j < names.size(); j++) {
 			xd[0]=names.get(j);
@@ -124,7 +232,7 @@ public class VClas extends JFrame {
 			
 			model.addRow(xd);
 		}
-         tabla =new JTable(model);
+         
          Container cp= this.getContentPane();
          
          
