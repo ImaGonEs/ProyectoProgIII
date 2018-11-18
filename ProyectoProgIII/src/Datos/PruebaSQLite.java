@@ -53,9 +53,28 @@ public class PruebaSQLite {
 //	          System.exit(0);
 //	       }
 //	       System.out.println("Table created successfully");
+
+	      
+	      
 //	      
-//	      
-//	      
+//	      try { //--------TABLA tiene--------------
+//	          Class.forName("org.sqlite.JDBC");
+//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//	          System.out.println("Opened database successfully");
+//
+//	          stmt = c.createStatement();
+//	          String sql = "CREATE TABLE TIENE " +
+//	                         "(ID_T VARCHAR(3)     NOT NULL REFERENCES TOWER(ID)," +
+//	                         " NAME_P CHAR(10)   NOT NULL REFERENCES PLAYER(NAME_P), " +
+//	                         "PRIMARY KEY(ID_T,NAME_P));"; 
+//	          stmt.executeUpdate(sql);
+//	          stmt.close();
+//	          c.close();
+//	       } catch ( Exception e ) {
+//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//	          System.exit(0);
+//	       }
+//	       System.out.println("Table created successfully");
 	      
 //	       try { //-----------DROP TAABLE---------------
 //	      Class.forName("org.sqlite.JDBC");
@@ -64,7 +83,7 @@ public class PruebaSQLite {
 //	      System.out.println("Opened database successfully");
 //
 //	      stmt = c.createStatement();
-//	      String sqlCommand = "DROP TABLE 'PLAYERS' ";
+//	      String sqlCommand = "DROP TABLE 'TIENE' ";
 //
 //	      System.out.println("output : " + stmt.executeUpdate(sqlCommand));
 //
@@ -81,8 +100,8 @@ public class PruebaSQLite {
 //	     
 //	    System.out.println("Operation done successfully");
 //	      
-//	 
-//	      
+	 
+	      
 	      
 	      
 	      
@@ -139,6 +158,64 @@ public class PruebaSQLite {
 //	       }
 //	       System.out.println("Records created successfully");
 //	     
+	      
+//	      
+//	      try {//------------------INSERT TOWERS-----------------
+//	          Class.forName("org.sqlite.JDBC");
+//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//	          c.setAutoCommit(false);
+//	          System.out.println("Opened database successfully");
+//
+//	          stmt = c.createStatement();
+//	          String sql = "INSERT INTO TIENE " +
+//	                         "VALUES ('T01', 'OTROXD' );"; 
+//	          stmt.executeUpdate(sql);
+//	          stmt = c.createStatement();
+//	           sql = "INSERT INTO TIENE " +
+//	                         "VALUES ('T01', 'KIKEXD' );"; 
+//	          stmt.executeUpdate(sql);
+//	          stmt = c.createStatement();
+//	           sql = "INSERT INTO TIENE " +
+//	                         "VALUES ('T02', 'KIKEXD' );"; 
+//	          stmt.executeUpdate(sql);
+//
+//	         
+//
+//
+//	          stmt.close();
+//	          c.commit();
+//	          c.close();
+//	       } catch ( Exception e ) {
+//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//	          System.exit(0);
+//	       }
+//	       System.out.println("Records created successfully");
+	     
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
+	      
 //	      
 //	      try { //-----------------INSERT PLAYERS-----------------------------
 //          Class.forName("org.sqlite.JDBC");
