@@ -11,6 +11,7 @@ public class Map {
 	private int cellsWide, cellsHigh;
 	private ArrayList<TowerCannon> towerC;
 	private ArrayList<TowerMelee> towerM;
+	int [][] abc;
 	public Map() {
 		
 		map = new MapCell[20][15];
@@ -32,6 +33,7 @@ public class Map {
 		this.cellsWide = a[0].length;
 		this.cellsHigh = a.length;
 		
+		abc = a;
 		map = new MapCell[40][30];
 		
 		
@@ -75,6 +77,14 @@ public class Map {
 	}
 	
 	
+	public int[][] getAbc() {
+		return abc;
+	}
+
+	public void setAbc(int[][] abc) {
+		this.abc = abc;
+	}
+
 	public void project() {
 		
 		

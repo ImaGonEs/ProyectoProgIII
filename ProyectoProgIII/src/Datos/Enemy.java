@@ -17,20 +17,20 @@ public class Enemy implements Entity{
 	private float x,y, lp, startLp;
 	private Texture tex, healthBackground, healthForeground, healthBorder;
 	private MapCell start;
-	private Map map;
-	private Map mapc;
+	private static Map map;
+	private static Map mapc;
 	private boolean alive = true;
 	private ArrayList<CheckPoint> checkpoints;
 	private int[] directions;
-	
-	
+	private ArrayList<MapCell> celdasV;
+	private int dir1L,dir2L;
 	private boolean first = true;
 	
 
 	public Enemy(Texture tex, MapCell start, Map map, int w, int h, int vel, float lp ) {
 		
 		this.start = start;
-		this.x = start.getX();
+		this.x = start.getX()+16;
 		this.y = start.getY();
 		this.w = w;
 		this.h = h;
@@ -42,10 +42,12 @@ public class Enemy implements Entity{
 		this.healthBorder = QuickCast("healthBorder");
 		this.healthForeground = QuickCast("healthForeground");
 		this.map = map;
-		
+		this.celdasV = new ArrayList<MapCell>();
+		//this.mapc =new Map(map.getAbc());
 		this.checkpoints = new ArrayList<CheckPoint>();
 		this.directions = new int[2];
-		
+		this.dir1L = 1;
+		this.dir1L = 0;
 		//x direction
 		this.directions[0] = 0;
 		//y direction
@@ -60,28 +62,34 @@ public class Enemy implements Entity{
 			first = false;
 		}else {
 			
-//			if (checkPointReached()) {
-//				if (currentCheckPoint + 1 == checkpoints.size()) {
-//					System.out.println("enemmy reached end of maze");
-//					die();
-//					
-//				}
-//				else {
-//				currentCheckPoint++;
-//				}
-//			}else {
+			if (checkPointReached()) {
+				if (currentCheckPoint + 1 == checkpoints.size()) {
+					System.out.println("enemmy reached end of maze");
+					die();
+					
+				}
+				else {
+				currentCheckPoint++;
+				}
+			}else {
 //				
+				
+				
+				
 				int dir1 = setDir(map,map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)),0)[0];
 				int dir2 = setDir(map,map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)),0)[1];
-				System.out.println("dir1 "+dir1+" dir2 "+dir2);
-				x += Delta() * dir1 * vel;  // checkpoints.get(currentCheckPoint).getxDirection() 
+				
+				
+					
+				x += Delta() * dir1  * vel;  // checkpoints.get(currentCheckPoint).getxDirection() 
 				   //
-				y += Delta() * dir2* vel;   // checkpoints.get(currentCheckPoint).getyDirection() 
+				y += Delta() * dir2 * vel;   // checkpoints.get(currentCheckPoint).getyDirection() 
 				   //
 				
 			//}
 //			x += (float) Delta() * directions[0];
 //			y += (float) Delta() * directions[1];
+		}
 		}
 	}
 	
@@ -94,30 +102,39 @@ public class Enemy implements Entity{
 		System.out.println(s.getYPlace());
 		System.out.println(map.getMap()[s.getXPlace()+1][s.getYPlace()].getR());
 		
+		
+		
 		if(c ==0) {
 			
 			
 			
 			
 			
-			if (map.getMap()[s.getXPlace()+1][s.getYPlace()].getType().equals(TileType.Dirt0)&&map.getMap()[s.getXPlace()+1][s.getYPlace()].getR()==true) {
-
+			if (map.getMap()[s.getXPlace()+1][s.getYPlace()].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()+1][s.getYPlace()])) {
+				
+				System.out.println(s.getY());
+				System.out.println(s.getYPlace()*32+16);
+				
+				//if(s.getX()==(s.getXPlace()*32)+16&&s.getY()==(s.getYPlace()*32)) {
 				dir[0]=1;
 				dir[1]=0;
-				map.getMap()[s.getXPlace()][s.getYPlace()].setR(false);
+				celdasV.add(map.getMap()[s.getXPlace()][s.getYPlace()]);
+			//	}
 			}else {
 				System.out.println("no hay derecha");
 				return setDir(map,s,c+1);
 			}
 			
 		}else if(c==1) {
-
-			if (map.getMap()[s.getXPlace()][s.getYPlace()-1].getType().equals(TileType.Dirt0)&&map.getMap()[s.getXPlace()][s.getYPlace()-1].getR()==true) {
+			
+			if (map.getMap()[s.getXPlace()][s.getYPlace()-1].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()][s.getYPlace()-1])) {
 				System.out.println("hola");
+				//if(s.getX()==(s.getXPlace()*32)+16&&s.getY()==(s.getYPlace()*32)+16) {
 				dir[0]=0;
 				dir[1]=-1;
 				System.out.println(dir[0]+" "+dir[1]);
-				map.getMap()[s.getXPlace()][s.getYPlace()].setR(false);
+				celdasV.add(map.getMap()[s.getXPlace()][s.getYPlace()]);
+				//}
 			}else {
 				System.out.println("no hay arriba");
 				return setDir(map,s,c+1);
@@ -125,12 +142,13 @@ public class Enemy implements Entity{
 
 
 		}else if(c==2) {
-
-			if (map.getMap()[s.getXPlace()][s.getYPlace()+1].getType().equals(TileType.Dirt0)&&map.getMap()[s.getXPlace()][s.getYPlace()+1].getR()==true) {
-
+			
+			if (map.getMap()[s.getXPlace()][s.getYPlace()+1].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()][s.getYPlace()+1])) {
+				//if(s.getX()==(s.getXPlace()*32)+16&&s.getY()==(s.getYPlace()*32)+16) {
 				dir[0]=0;
 				dir[1]=1;
-				map.getMap()[s.getXPlace()][s.getYPlace()].setR(false);
+				celdasV.add(map.getMap()[s.getXPlace()][s.getYPlace()]);
+				//}
 				
 			}else {
 
@@ -140,12 +158,14 @@ public class Enemy implements Entity{
 
 
 		}else if (c==3){
+			
 			if(s.getXPlace()-1>=0) {
-			if (map.getMap()[s.getXPlace()-1][s.getYPlace()].getType().equals(TileType.Dirt0)&&map.getMap()[s.getXPlace()-1][s.getYPlace()].getR()==true) {
-
+			if (map.getMap()[s.getXPlace()-1][s.getYPlace()].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()-1][s.getYPlace()])) {
+			//	if(s.getX()==(s.getXPlace()*32)+16&&s.getY()==(s.getYPlace()*32)+16) {
 				dir[0]=-1;
 				dir[1]=0;
-				map.getMap()[s.getXPlace()][s.getYPlace()].setR(false);
+				celdasV.add(map.getMap()[s.getXPlace()][s.getYPlace()]);
+				//}
 				
 			}else {
 
@@ -155,6 +175,7 @@ public class Enemy implements Entity{
 		}else {
 			
 			System.out.println("dirty error");
+			
 		}
 		
 		
@@ -163,7 +184,7 @@ public class Enemy implements Entity{
 		
 		
 		
-	}
+}
 	
 	private boolean checkPointReached() {
 		boolean reached = false;

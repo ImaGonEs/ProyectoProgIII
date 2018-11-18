@@ -50,6 +50,7 @@ public class VentanaPractica extends JFrame{
 	public VentanaPractica() {
 		
 		
+		
 		t1 = new JRadioButton("T01");
 		t2 = new JRadioButton("T02");
 		

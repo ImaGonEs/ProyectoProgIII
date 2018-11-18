@@ -57,6 +57,14 @@ public class Game {
 		
 		//l.getMap().updateT();
 	}
+
+	public Level getL() {
+		return l;
+	}
+
+	public void setL(Level l) {
+		this.l = l;
+	}
 	
 	
 }

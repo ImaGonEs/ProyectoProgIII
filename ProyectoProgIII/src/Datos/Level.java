@@ -67,8 +67,14 @@ public class Level {
 				//(new Enemy(QuickCast("st"),grid.getCell(0,14),grid, 32,32,80,70))};
 
 
-				wave = new WManager(enemies,2,1); 
+				wave = new WManager(enemies,2,5); 
 
+	}
+	public int[][] getImap() {
+		return imap;
+	}
+	public void setImap(int[][] imap) {
+		this.imap = imap;
 	}
 	public Map getMap() {
 		return this.grid;
@@ -79,4 +85,6 @@ public class Level {
 	public ArrayList<Enemy> getEnemies() {
 		return this.enemies;
 	}
+	
+	
 }
