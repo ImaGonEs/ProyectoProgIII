@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.*;
@@ -25,7 +26,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 import Datos.Tower;
-
+import javafx.scene.layout.Border;
 import weareSupports.JLabelGraficoAjustado;
 
 
@@ -40,7 +41,7 @@ public class VentanaPractica extends JFrame{
 	
 	JButton b1, b2;
 	JPanel p1, p2;
-	static JList<String> lista;
+	static JList<String> lista, listaT;
 	static  JLabel l;
 	JTextArea ta;
 	static Map<String, ArrayList<String>> mapa ;
@@ -101,13 +102,15 @@ public class VentanaPractica extends JFrame{
 	       System.out.println("Operation done successfully");
 		
 		
+		listaT = new JList<String>();
+		
+		String[] aa = {"Adasd","sadadasd"};
+		listaT = new JList<String>(aa);
 		
 		
 		
 		
-		
-		
-		String[] s = new String[names.size()];
+		String[] s = new String[names.size()];  //MEJOR CON TOARRAY
 		for (int i = 0; i < s.length; i++) {
 			s[i] = names.get(i);
 		}
@@ -115,48 +118,48 @@ public class VentanaPractica extends JFrame{
 		
 		Container cp = this.getContentPane();
 		//cp.setLayout(new GridLayout(1, 2));
-		p1 = new JPanel();
-		p2 = new JPanel();
-		p2.setLayout(new GridLayout());
+		
 		
 		b1 = new JButton("SAVE");
 		b2 = new JButton("DELETE");
 		
-		String[] data = {"one", "two", "three", "four"};
+		
 		lista = new JList<String>(s);
 		JScrollPane  bar= new JScrollPane(lista);
 		
-		p1.add(bar);
-		l = new JLabel("asdad");
 		
 	
+		p1 = new JPanel();
+		p1.setLayout(new GridLayout());
+		p2 = new JPanel();
+		p2.setLayout(new GridLayout());
+		
+		p1.add(bar);
+		
+		l = new JLabel("");
+		p1.add(l);
+		
 		p2.add(b1);
 		p2.add(b2);
 		p2.add(t1);
 		p2.add(t2);
 		
-		
-		cp.add(lista,BorderLayout.WEST);
-		cp.add(l, BorderLayout.EAST);
+		cp.add(p1, BorderLayout.CENTER);
+//		cp.add(lista,BorderLayout.WEST);
+//		cp.add(l, BorderLayout.EAST);
 		cp.add(p2, BorderLayout.SOUTH);
 		
 
-		
-
-		 
-		 
-		
-		
+	
 
 		this.setSize(700, 450);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		
 		
-		
-		
-		 try {
+		 try {//METER LAS TORRES AL MAPA
 	          Class.forName("org.sqlite.JDBC");
 	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
 	          c.setAutoCommit(false);
@@ -185,26 +188,67 @@ public class VentanaPractica extends JFrame{
 		
 		System.out.println(mapa);
 		
+		
+
+		
 		Thread t  = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
+				
+				ArrayList<String> as = new ArrayList<String>();
+				
 				while(true) {
-				try {
+				
+					
+					
+					try {
 						
-					if (lista.getSelectedValue().equals("KIKEXD")) {
-						ArrayList<String> as = new ArrayList<String>();
-						for (int i = 0; i < mapa.get("KIKEXD").size(); i++) {
-							as.add((mapa.get("KIKEXD").get(i)));
-						}
-	            		l.setText(as.toString());
-	            	}else if (lista.getSelectedValue().equals("OTROXD")) {
-						ArrayList<String> as = new ArrayList<String>();
-						for (int i = 0; i < mapa.get("OTROXD").size(); i++) {
-							as.add((mapa.get("OTROXD").get(i)));
-						}
-	            		l.setText(as.toString());
+//					if (lista.getSelectedValue().equals(n)) {
+//						
+//						as = new ArrayList<String>();
+//						
+//						for (int i = 0; i < mapa.get(n).size(); i++) {
+//							
+//							as.add((mapa.get(n).get(i)));
+//							
+//						}
+//	            		l.setText(as.toString());
+//	            		
+						
+						
+						if (names.contains(lista.getSelectedValue())) {
+							for (String n : names) {
+									if (lista.getSelectedValue().equals(n)) {
+										as = new ArrayList<String>();
+										
+										for (int i = 0; i < mapa.get(n).size(); i++) {
+											
+											as.add((mapa.get(n).get(i)));
+									}
+							}
+						
+						
+							
+							
+							}
+		            		l.setText(as.toString());
+		            		
+	            		
+	            		
+//	            	}else if (lista.getSelectedValue().equals("OTROXD")) {
+//	            		
+//						as = new ArrayList<String>();
+//						
+//						for (int i = 0; i < mapa.get("OTROXD").size(); i++) {
+//							
+//							
+//							as.add((mapa.get("OTROXD").get(i)));
+//						}
+//						
+//	            		l.setText(as.toString());
+	            		
 	            	}else {
 	            		l.setText("VACIO");
 	            	}
@@ -213,9 +257,9 @@ public class VentanaPractica extends JFrame{
 					// TODO: handle exception
 				}
 				
+			
 			}
 			}
-		
 		});
 		
 		t.start();
@@ -265,80 +309,182 @@ public class VentanaPractica extends JFrame{
 //		}
 		
 		
+//		b3.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				if (t2.isSelected()&&lista.getSelectedValue().equals("OTROXD")) {
+//					System.out.println("añadiendo t2 al jugador OTROXD");
+//					mapa.get("OTROXD").add("T02");
+//					 try {
+//						 Connection c = null;
+//					     Statement stmt = null;
+//					     
+//				          Class.forName("org.sqlite.JDBC");
+//				          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//				          c.setAutoCommit(false);
+//				          System.out.println("Opened database successfully");
+//			
+//				          stmt = c.createStatement();
+//				          String sql = "INSERT INTO TIENE  " +
+//				                         "VALUES ('T02', 'OTROXD' );"; 
+//				          stmt.executeUpdate(sql);
+//			
+//				  
+//				          stmt.close();
+//				          c.commit();
+//				          c.close();
+//				       } catch ( Exception ex ) {
+//				          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+//				          System.exit(0);
+//				       }
+//				       System.out.println("Records created successfully");
+//				     
+//				}
+//			}
+//		});
+		
+		
+		
+		JButton b3 = new JButton("ad");
 		b1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if (t2.isSelected()&&lista.getSelectedValue().equals("OTROXD")) {
-					System.out.println("añadiendo t2 al jugador OTROXD");
-					mapa.get("OTROXD").add("T02");
-					 try {
-						 Connection c = null;
-					     Statement stmt = null;
-					     
-				          Class.forName("org.sqlite.JDBC");
-				          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-				          c.setAutoCommit(false);
-				          System.out.println("Opened database successfully");
+				
+				ArrayList<String> ns = new ArrayList<String>();
+				
+				ns = mapa.get(lista.getSelectedValue());
+				
+				
+				if (t1.isSelected()&&!ns.contains(t1.getText())){
 			
-				          stmt = c.createStatement();
-				          String sql = "INSERT INTO TIENE  " +
-				                         "VALUES ('T02', 'OTROXD' );"; 
-				          stmt.executeUpdate(sql);
+					addTower(t1.getText(), lista.getSelectedValue());
+					
+					mapa.get(lista.getSelectedValue()).add(t1.getText());
+					try {
+						Thread.sleep(60);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if (t2.isSelected()&&!ns.contains(t2.getText())){
 			
-				  
-				          stmt.close();
-				          c.commit();
-				          c.close();
-				       } catch ( Exception ex ) {
-				          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
-				          System.exit(0);
-				       }
-				       System.out.println("Records created successfully");
-				     
+					addTower(t2.getText(), lista.getSelectedValue());
+					mapa.get(lista.getSelectedValue()).add(t2.getText());
+					try {
+						Thread.sleep(60);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
+				
 				}
 			}
 		});
+		
+		
+		
 		
 		
 		
 		b2.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				try {
-					mapa.get("OTROXD").remove(1);
-				} catch (Exception e2) {
-					// TODO: handle exception
-				}
 				
-				try {
-					Connection c = null;
-				     Statement stmt = null;
-				     
-			          Class.forName("org.sqlite.JDBC");
-			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-			          c.setAutoCommit(false);
-			          System.out.println("Opened database successfully");
-		
-			          stmt = c.createStatement();
-			          String sql = "DELETE FROM TIENE  " +
-			                         "WHERE ID_T = 'T02' AND NAME_P='OTROXD'"; 
-			          stmt.executeUpdate(sql);
-		
-			  
-			          stmt.close();
-			          c.commit();
-			          c.close();
-			       } catch ( Exception ex ) {
-			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
-			          System.exit(0);
-			       }
-			       System.out.println("Records created successfully");
+				ArrayList<String> ns = new ArrayList<String>();
+				
+				ns = mapa.get(lista.getSelectedValue());
+				
+				
+				if (t1.isSelected()&&ns.contains(t1.getText())){
+			
+					deleteTower(t1.getText(), lista.getSelectedValue());
+					
+					mapa.get(lista.getSelectedValue()).remove(t1.getText());
+					try {
+						Thread.sleep(60);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				if (t2.isSelected()&&ns.contains(t2.getText())){
+			
+					deleteTower(t2.getText(), lista.getSelectedValue());
+					mapa.get(lista.getSelectedValue()).remove(t2.getText());
+					try {
+						Thread.sleep(60);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
+				
+				}
 			}
 		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		
+//		b3.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				try {
+//					mapa.get("OTROXD").remove(1);
+//				} catch (Exception e2) {
+//					// TODO: handle exception
+//				}
+//				
+//				try {
+//					Connection c = null;
+//				     Statement stmt = null;
+//				     
+//			          Class.forName("org.sqlite.JDBC");
+//			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//			          c.setAutoCommit(false);
+//			          System.out.println("Opened database successfully");
+//		
+//			          stmt = c.createStatement();
+//			          String sql = "DELETE FROM TIENE  " +
+//			                         "WHERE ID_T = 'T02' AND NAME_P='OTROXD'"; 
+//			          stmt.executeUpdate(sql);
+//		
+//			  
+//			          stmt.close();
+//			          c.commit();
+//			          c.close();
+//			       } catch ( Exception ex ) {
+//			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+//			          System.exit(0);
+//			       }
+//			       System.out.println("Records created successfully");
+//			}
+//		});
 		
 		
 		
@@ -351,7 +497,59 @@ public class VentanaPractica extends JFrame{
 		
 		
 
+	public void addTower(String t, String p) {
 		
+		try {
+			Connection c = null;
+		     Statement stmt = null;
+		     
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
+
+	          stmt = c.createStatement();
+	          String sql = "INSERT INTO TIENE  " +
+                      "VALUES ('"+t+"', '"+p+"' );"; 
+	          stmt.executeUpdate(sql);
+
+	  
+	          stmt.close();
+	          c.commit();
+	          c.close();
+	       } catch ( Exception ex ) {
+	          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Records created successfully");
+	}
+	
+	public void deleteTower(String t, String p) {
+		
+		try {
+			Connection c = null;
+		     Statement stmt = null;
+		     
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
+
+	          stmt = c.createStatement();
+	          String sql = "DELETE FROM TIENE  " +
+	        		  "WHERE ID_T = '"+t+"' AND NAME_P='"+p+"'";  
+	          stmt.executeUpdate(sql);
+
+	  
+	          stmt.close();
+	          c.commit();
+	          c.close();
+	       } catch ( Exception ex ) {
+	          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Records created successfully");
+	}
 		
 		
 	

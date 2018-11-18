@@ -126,8 +126,10 @@ public class Enemy implements Entity{
 			}
 			
 		}else if(c==1) {
+
 			
 			if (map.getMap()[s.getXPlace()][s.getYPlace()-1].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()][s.getYPlace()-1])) {
+
 				System.out.println("hola");
 				//if(s.getX()==(s.getXPlace()*32)+16&&s.getY()==(s.getYPlace()*32)+16) {
 				dir[0]=0;
