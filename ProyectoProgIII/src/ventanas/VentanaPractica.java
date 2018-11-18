@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import javax.swing.*;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,6 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 import Datos.Tower;
+
 import weareSupports.JLabelGraficoAjustado;
 
 public class VentanaPractica extends JFrame{
@@ -36,8 +37,18 @@ public class VentanaPractica extends JFrame{
 	JTextArea ta;
 	static Map<String, ArrayList<String>> mapa ;
 	
+	JRadioButton t1, t2;
+	
 	public VentanaPractica() {
 		
+		
+		t1 = new JRadioButton("T01");
+		t2 = new JRadioButton("T02");
+		
+		ButtonGroup gr = new ButtonGroup();
+		
+		gr.add(t1);
+		gr.add(t2);
 		
 		ta = new JTextArea();
 		
@@ -97,7 +108,7 @@ public class VentanaPractica extends JFrame{
 		//cp.setLayout(new GridLayout(1, 2));
 		p1 = new JPanel();
 		p2 = new JPanel();
-		p2.setLayout(new BorderLayout());
+		p2.setLayout(new GridLayout());
 		
 		b1 = new JButton("SAVE");
 		b2 = new JButton("DELETE");
@@ -109,14 +120,17 @@ public class VentanaPractica extends JFrame{
 		p1.add(bar);
 		l = new JLabel("asdad");
 		
-		p2.add(l, BorderLayout.CENTER);
-		p2.add(b1, BorderLayout.SOUTH);
-		p2.add(b2, BorderLayout.SOUTH);
+	
+		p2.add(b1);
+		p2.add(b2);
+		p2.add(t1);
+		p2.add(t2);
 		
 		
 		cp.add(lista,BorderLayout.WEST);
 		cp.add(l, BorderLayout.EAST);
-		cp.add(b1, BorderLayout.SOUTH);
+		cp.add(p2, BorderLayout.SOUTH);
+		
 
 		
 
@@ -162,73 +176,161 @@ public class VentanaPractica extends JFrame{
 		
 		System.out.println(mapa);
 		
-//		Thread t  = new Thread(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				// TODO Auto-generated method stub
-//				while(true) {
-//				
-//					if (lista.getSelectedValue()=="KIKEXD") {
-//						ta.append(mapa.get("KIKEXD").get(0));
-//					
-//				}
-//					try {
-//						Thread.sleep(300);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//			}
-//			}
-//		
-//		});
-//		ta.append("asdasdsad");
-//		t.start();
+		Thread t  = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				while(true) {
+				try {
+						
+					if (lista.getSelectedValue().equals("KIKEXD")) {
+						ArrayList<String> as = new ArrayList<String>();
+						for (int i = 0; i < mapa.get("KIKEXD").size(); i++) {
+							as.add((mapa.get("KIKEXD").get(i)));
+						}
+	            		l.setText(as.toString());
+	            	}else if (lista.getSelectedValue().equals("OTROXD")) {
+						ArrayList<String> as = new ArrayList<String>();
+						for (int i = 0; i < mapa.get("OTROXD").size(); i++) {
+							as.add((mapa.get("OTROXD").get(i)));
+						}
+	            		l.setText(as.toString());
+	            	}else {
+	            		l.setText("VACIO");
+	            	}
+					Thread.sleep(30);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
+			}
+			}
+		
+		});
+		
+		t.start();
 		
 		
 		// Runs outside of the Swing UI thread
+		
+//		b1.addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// TODO Auto-generated method stub
+//				System.out.println(lista.getSelectedValue());
+//				if (lista.getSelectedValue().equals("KIKEXD")) {
+//            		l.setText((mapa.get("KIKEXD").get(0)));
+//            	}else if (lista.getSelectedValue().equals("OTROXD")) {
+//            		l.setText("vacio");
+//            	}else {
+//            		l.setText("eeeeeeeeeeeeeeeeeee");
+//            	}
+//				    
+//			}
+//		});
+	    
+//		Runnable update = new Runnable() {
+//		    @Override
+//		    public void run() {
+//		    	if (lista.getSelectedValue().equals("KIKEXD")) {
+//            		l.setText((mapa.get("KIKEXD").get(0)));
+//            	}else if (lista.getSelectedValue().equals("OTROXD")) {
+//            		l.setText("vacio");
+//            	}else {
+//            		l.setText("eeeeeeeeeeeeeeeeeee");
+//            	}
+//		    	try {
+//					Thread.sleep(300);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//		    }
+//		};
+//		if (SwingUtilities.isEventDispatchThread()) {
+//		    update.run();
+//		} else {
+//		    SwingUtilities.invokeLater(update);
+//		}
+		
 		
 		b1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println(lista.getSelectedValue());
-				if (lista.getSelectedValue()=="KIKEXD") {
-            		l.setText((mapa.get("KIKEXD").get(0)));
-            	}else if (lista.getSelectedValue()=="OTROXD") {
-            		l.setText("vacio");
-            	}else {
-            		l.setText("eeeeeeeeeeeeeeeeeee");
-            	}
-				    
+				if (t2.isSelected()&&lista.getSelectedValue().equals("OTROXD")) {
+					System.out.println("añadiendo t2 al jugador OTROXD");
+					mapa.get("OTROXD").add("T02");
+					 try {
+						 Connection c = null;
+					     Statement stmt = null;
+					     
+				          Class.forName("org.sqlite.JDBC");
+				          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+				          c.setAutoCommit(false);
+				          System.out.println("Opened database successfully");
+			
+				          stmt = c.createStatement();
+				          String sql = "INSERT INTO TIENE  " +
+				                         "VALUES ('T02', 'OTROXD' );"; 
+				          stmt.executeUpdate(sql);
+			
+				  
+				          stmt.close();
+				          c.commit();
+				          c.close();
+				       } catch ( Exception ex ) {
+				          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+				          System.exit(0);
+				       }
+				       System.out.println("Records created successfully");
+				     
+				}
 			}
 		});
-	    
-		Runnable update = new Runnable() {
-		    @Override
-		    public void run() {
-		    	if (lista.getSelectedValue()=="KIKEXD") {
-            		l.setText((mapa.get("KIKEXD").get(0)));
-            	}else if (lista.getSelectedValue()=="OTROXD") {
-            		l.setText("vacio");
-            	}else {
-            		l.setText("eeeeeeeeeeeeeeeeeee");
-            	}
-		    	try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		    }
-		};
-		if (SwingUtilities.isEventDispatchThread()) {
-		    update.run();
-		} else {
-		    SwingUtilities.invokeLater(update);
-		}
+		
+		
+		
+		b2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				mapa.get("OTROXD").remove(1);
+				try {
+					Connection c = null;
+				     Statement stmt = null;
+				     
+			          Class.forName("org.sqlite.JDBC");
+			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+			          c.setAutoCommit(false);
+			          System.out.println("Opened database successfully");
+		
+			          stmt = c.createStatement();
+			          String sql = "DELETE FROM TIENE  " +
+			                         "WHERE ID_T = 'T02' AND NAME_P='OTROXD'"; 
+			          stmt.executeUpdate(sql);
+		
+			  
+			          stmt.close();
+			          c.commit();
+			          c.close();
+			       } catch ( Exception ex ) {
+			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+			          System.exit(0);
+			       }
+			       System.out.println("Records created successfully");
+			}
+		});
+		
+		
+		
+		
+		
+		
 	
 	}
 		
