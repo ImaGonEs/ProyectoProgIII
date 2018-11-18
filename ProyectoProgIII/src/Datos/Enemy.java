@@ -94,6 +94,8 @@ public class Enemy implements Entity{
 		System.out.println(s.getYPlace());
 		System.out.println(map.getMap()[s.getXPlace()+1][s.getYPlace()].getR());
 		
+		
+		
 		if(c ==0) {
 			
 			
@@ -113,6 +115,7 @@ public class Enemy implements Entity{
 		}else if(c==1) {
 
 			if (map.getMap()[s.getXPlace()][s.getYPlace()-1].getType().equals(TileType.Dirt0)&&map.getMap()[s.getXPlace()][s.getYPlace()-1].getR()==true) {
+				
 				System.out.println("hola");
 				dir[0]=0;
 				dir[1]=-1;
