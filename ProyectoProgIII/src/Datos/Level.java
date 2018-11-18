@@ -57,7 +57,8 @@ public class Level {
 //	
 //
 //wave = new WManager(enemies,2,2); 
-
+// a
+		
 		enemies= new ArrayList<Enemy>();
 		
 				enemies.add(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,80,20));
