@@ -75,7 +75,7 @@ public class PruebaSQLite {
 //	          System.exit(0);
 //	       }
 //	       System.out.println("Table created successfully");
-//	      
+////	      
 //	       try { //-----------DROP TAABLE---------------
 //	      Class.forName("org.sqlite.JDBC");
 //	      c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -107,7 +107,7 @@ public class PruebaSQLite {
 	      
 	      
 	      
-	      
+//	      
 //	      try { //------------TABLA PLAYERS-------------------
 //          Class.forName("org.sqlite.JDBC");
 //          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -127,36 +127,36 @@ public class PruebaSQLite {
 //          System.exit(0);
 //       }
 //       System.out.println("Table created successfully");
-//      
+      
 //     
 //	      
 //	      
 //	      
-//	      
-//	      try {//------------------INSERT TOWERS-----------------
-//	          Class.forName("org.sqlite.JDBC");
-//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//	          c.setAutoCommit(false);
-//	          System.out.println("Opened database successfully");
-//
-//	          stmt = c.createStatement();
-//	          String sql = "INSERT INTO TOWERS (ID,NAME,DAMAGE,RANGE,ATKSPEED) " +
-//	                         "VALUES ('T01', 'IT', 10, 1000, 3 );"; 
-//	          stmt.executeUpdate(sql);
-//
-//	          sql = "INSERT INTO TOWERS (ID,NAME,DAMAGE,RANGE,ATKSPEED) " +
-//	                   "VALUES ('T02', 'TR', 10, 1000, 3 );"; 
-//	          stmt.executeUpdate(sql);
-//
-//
-//	          stmt.close();
-//	          c.commit();
-//	          c.close();
-//	       } catch ( Exception e ) {
-//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//	          System.exit(0);
-//	       }
-//	       System.out.println("Records created successfully");
+	      
+	      try {//------------------INSERT TOWERS-----------------
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
+
+	          stmt = c.createStatement();
+	          String sql = "INSERT INTO TOWERS (ID,NAME,DAMAGE,RANGE,ATKSPEED) " +
+	                         "VALUES ('T01', 'IT', 10, 1000, 3 );"; 
+	          stmt.executeUpdate(sql);
+
+	          sql = "INSERT INTO TOWERS (ID,NAME,DAMAGE,RANGE,ATKSPEED) " +
+	                   "VALUES ('T02', 'TR', 10, 1000, 3 );"; 
+	          stmt.executeUpdate(sql);
+
+
+	          stmt.close();
+	          c.commit();
+	          c.close();
+	       } catch ( Exception e ) {
+	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Records created successfully");
 //	     
 	      
 //	      
@@ -217,36 +217,36 @@ public class PruebaSQLite {
 	      
 	      
 //	      
-//	      try { //-----------------INSERT PLAYERS-----------------------------
-//          Class.forName("org.sqlite.JDBC");
-//          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//          c.setAutoCommit(false);
-//          System.out.println("Opened database successfully");
-//
-//          stmt = c.createStatement();
-//          String sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
-//                         "VALUES ('KIKEXD', 'EY123', 999, 1 );"; 
-//          stmt.executeUpdate(sql);
-//          sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
-//        		  "VALUES ('OTROXD', 'LAPASS', 1, 2 );"; 
-//          stmt.executeUpdate(sql);
-//
-//
-//          stmt.close();
-//          c.commit();
-//          c.close();
-//       } catch ( Exception e ) {
-//          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//          System.exit(0);
-//       }
-//       System.out.println("Records created successfully");
+	      try { //-----------------INSERT PLAYERS-----------------------------
+          Class.forName("org.sqlite.JDBC");
+          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+          c.setAutoCommit(false);
+          System.out.println("Opened database successfully");
+
+          stmt = c.createStatement();
+          String sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
+                         "VALUES ('KIKEXD', 'EY123', 999, 1 );"; 
+          stmt.executeUpdate(sql);
+          sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
+        		  "VALUES ('OTROXD', 'LAPASS', 1, 2 );"; 
+          stmt.executeUpdate(sql);
+
+
+          stmt.close();
+          c.commit();
+          c.close();
+       } catch ( Exception e ) {
+          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+          System.exit(0);
+       }
+       System.out.println("Records created successfully");
 //      
 //	      
 //	      
 //     
 	      
 	      
-	      
+//	      
 //	      try { //-------------PRINT TOWERS---------------------
 //	          Class.forName("org.sqlite.JDBC");
 //	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -312,7 +312,7 @@ public class PruebaSQLite {
 //		       }
 //		       System.out.println("Operation done successfully");
 //		      
-
+//
 //	 	       try {//-------------------PRINT TIENE---------------------
 //	 		          Class.forName("org.sqlite.JDBC");
 //	 		          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -342,7 +342,7 @@ public class PruebaSQLite {
 //	 		          System.exit(0);
 //	 		       }
 //	 		       System.out.println("Operation done successfully");
-//	     
+	     
 //	 		      try { //-----------------INSERT PLAYERS-----------------------------
 //	 		          Class.forName("org.sqlite.JDBC");
 //	 		          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
