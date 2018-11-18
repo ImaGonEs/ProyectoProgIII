@@ -28,6 +28,14 @@ import Datos.Tower;
 
 import weareSupports.JLabelGraficoAjustado;
 
+
+
+
+//Como esta parte no es muy útil para el proyecto, he metido algunos datos a mano
+
+//La parte derecha muestra las torres disponibles de cada jugador, y es posible elegir que torre añadir con los radiobutotn
+//caso del jugador OTROXD: solo tiene la torre T01. Al presionar save con T02 elegido se añade a la base de datos
+//el boton delete elimina esa misma torre de la base de datos (para probar)
 public class VentanaPractica extends JFrame{
 	
 	JButton b1, b2;
@@ -299,7 +307,12 @@ public class VentanaPractica extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				mapa.get("OTROXD").remove(1);
+				try {
+					mapa.get("OTROXD").remove(1);
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+				
 				try {
 					Connection c = null;
 				     Statement stmt = null;
