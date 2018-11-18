@@ -62,16 +62,16 @@ public class Enemy implements Entity{
 			first = false;
 		}else {
 			
-			if (checkPointReached()) {
-				if (currentCheckPoint + 1 == checkpoints.size()) {
-					System.out.println("enemmy reached end of maze");
-					die();
-					
-				}
-				else {
-				currentCheckPoint++;
-				}
-			}else {
+//			if (checkPointReached()) {
+//				if (currentCheckPoint + 1 == checkpoints.size()) {
+//					System.out.println("enemmy reached end of maze");
+//					die();
+//					
+//				}
+//				else {
+//				currentCheckPoint++;
+//				}
+//			}else {
 //				
 				
 				
@@ -89,7 +89,7 @@ public class Enemy implements Entity{
 			//}
 //			x += (float) Delta() * directions[0];
 //			y += (float) Delta() * directions[1];
-		}
+//		}
 		}
 	}
 	
@@ -176,7 +176,7 @@ public class Enemy implements Entity{
 			}
 		}else {
 			
-			System.out.println("dirty error");
+			die();
 			
 		}
 		
