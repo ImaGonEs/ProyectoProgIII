@@ -154,6 +154,30 @@ public class Map {
 		
 	}
 
+public MapCell getCellB(int x, int y) {
+		
+		
+		if (x < cellsWide && y < cellsHigh && x > -1 && y > -1)
+			
+		return map[x/32][y/32];
+		
+		else
+			return new MapCell(0,0,0,0, TileType.Dirt2, TileType.Dirt0.cc);
+		
+		
+	}
+	
+	
+	
+	
+	public MapCell[][] getMap() {
+	return map;
+}
+
+public void setMap(MapCell[][] map) {
+	this.map = map;
+}
+
 	public int getCellsWide() {
 		return cellsWide;
 	}

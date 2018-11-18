@@ -3,6 +3,9 @@ package Datos;
 import static weareSupports.Creador.*;
 
 import java.util.ArrayList;
+
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 import static weareSupports.Clock.Delta;
 import org.newdawn.slick.opengl.Texture;
 
@@ -15,6 +18,7 @@ public class Enemy implements Entity{
 	private Texture tex, healthBackground, healthForeground, healthBorder;
 	private MapCell start;
 	private Map map;
+	private Map mapc;
 	private boolean alive = true;
 	private ArrayList<CheckPoint> checkpoints;
 	private int[] directions;
@@ -56,24 +60,109 @@ public class Enemy implements Entity{
 			first = false;
 		}else {
 			
-			if (checkPointReached()) {
-				if (currentCheckPoint + 1 == checkpoints.size()) {
-					System.out.println("enemmy reached end of maze");
-					die();
-					
-				}
-				else {
-				currentCheckPoint++;
-				}
-			}else {
+//			if (checkPointReached()) {
+//				if (currentCheckPoint + 1 == checkpoints.size()) {
+//					System.out.println("enemmy reached end of maze");
+//					die();
+//					
+//				}
+//				else {
+//				currentCheckPoint++;
+//				}
+//			}else {
+//				
+				int dir1 = setDir(map,map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)),0)[0];
+				int dir2 = setDir(map,map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)),0)[1];
+				System.out.println("dir1 "+dir1+" dir2 "+dir2);
+				x += Delta() * dir1 * vel;  // checkpoints.get(currentCheckPoint).getxDirection() 
+				   //
+				y += Delta() * dir2* vel;   // checkpoints.get(currentCheckPoint).getyDirection() 
+				   //
 				
-				x += Delta() * checkpoints.get(currentCheckPoint).getxDirection() * vel;
-				y += Delta() * checkpoints.get(currentCheckPoint).getyDirection() * vel;
-				
-			}
+			//}
 //			x += (float) Delta() * directions[0];
 //			y += (float) Delta() * directions[1];
 		}
+	}
+	
+	
+	private int[] setDir( Map map, MapCell s, int c) {
+	
+		int[] dir = new int[2];
+		
+		System.out.println(s.getXPlace());
+		System.out.println(s.getYPlace());
+		System.out.println(map.getMap()[s.getXPlace()+1][s.getYPlace()].getR());
+		
+		if(c ==0) {
+			
+			
+			
+			
+			
+			if (map.getMap()[s.getXPlace()+1][s.getYPlace()].getType().equals(TileType.Dirt0)&&map.getMap()[s.getXPlace()+1][s.getYPlace()].getR()==true) {
+
+				dir[0]=1;
+				dir[1]=0;
+				map.getMap()[s.getXPlace()][s.getYPlace()].setR(false);
+			}else {
+				System.out.println("no hay derecha");
+				return setDir(map,s,c+1);
+			}
+			
+		}else if(c==1) {
+
+			if (map.getMap()[s.getXPlace()][s.getYPlace()-1].getType().equals(TileType.Dirt0)&&map.getMap()[s.getXPlace()][s.getYPlace()-1].getR()==true) {
+				System.out.println("hola");
+				dir[0]=0;
+				dir[1]=-1;
+				System.out.println(dir[0]+" "+dir[1]);
+				map.getMap()[s.getXPlace()][s.getYPlace()].setR(false);
+			}else {
+				System.out.println("no hay arriba");
+				return setDir(map,s,c+1);
+			}
+
+
+		}else if(c==2) {
+
+			if (map.getMap()[s.getXPlace()][s.getYPlace()+1].getType().equals(TileType.Dirt0)&&map.getMap()[s.getXPlace()][s.getYPlace()+1].getR()==true) {
+
+				dir[0]=0;
+				dir[1]=1;
+				map.getMap()[s.getXPlace()][s.getYPlace()].setR(false);
+				
+			}else {
+
+				return setDir(map,s,c+1);
+			}
+
+
+
+		}else if (c==3){
+			if(s.getXPlace()-1>=0) {
+			if (map.getMap()[s.getXPlace()-1][s.getYPlace()].getType().equals(TileType.Dirt0)&&map.getMap()[s.getXPlace()-1][s.getYPlace()].getR()==true) {
+
+				dir[0]=-1;
+				dir[1]=0;
+				map.getMap()[s.getXPlace()][s.getYPlace()].setR(false);
+				
+			}else {
+
+				return setDir(map,s,c+1);
+			}
+			}
+		}else {
+			
+			System.out.println("dirty error");
+		}
+		
+		
+		return dir;
+		
+		
+		
+		
 	}
 	
 	private boolean checkPointReached() {

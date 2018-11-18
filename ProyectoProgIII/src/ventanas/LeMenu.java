@@ -128,7 +128,7 @@ public class LeMenu extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
 				bP1.setImagen("src/res/play2.png");
-				clip.FXPlay();
+				//clip.FXPlay();
 			}
 			
 			@Override
