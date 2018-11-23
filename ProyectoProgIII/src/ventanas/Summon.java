@@ -144,15 +144,18 @@ public class Summon extends JFrame{
 					@Override
 					public void run() {
 						
-						for (int i = 0; i < 21; i++) {
-							if (i==12) primerPlano.setVisible(true);
-							icon = new ImageIcon("src/anim/tile"+i+".png");
+						for (int i = 0; i < 31; i++) {
+							if (i==19) primerPlano.setVisible(true);
+							icon = new ImageIcon("src/anim2/tile"+i+".png");
+							
 							
 							label.setIcon(icon);
+							
+							
 							label.repaint();
 							
 							try {
-								Thread.sleep(100);
+								Thread.sleep(80);
 							} catch (Exception e) {
 							}
 						}

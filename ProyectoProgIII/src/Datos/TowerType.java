@@ -15,7 +15,9 @@ public enum TowerType {
 	
 	
 	T01("IT"), //QuickCast("IT"), 10, 1000, 3
-	T02("TR"); //QuickCast("TR"), 10, 1000, 3
+	T02("TR"),//QuickCast("TR"), 10, 1000, 3
+	T03("TorreN1"),
+	T04("TorreN2");
 	// CannonE(QuickCast("TC"), 10, 1000, 3); QuickCast("IT"), 10, 1000, 3
 	
 	
@@ -24,7 +26,7 @@ public enum TowerType {
 	float attackSpeed;
 	
 	
-	
+
 	
 	TowerType(String name) {
 		
@@ -37,7 +39,7 @@ public enum TowerType {
 		
 		
 	}
-
+	
 	public static Sust hola(String a) {
 		
 		Connection c = null;
