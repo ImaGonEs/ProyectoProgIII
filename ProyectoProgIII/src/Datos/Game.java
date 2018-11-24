@@ -12,10 +12,10 @@ public class Game {
 	//temp variables	
 	TowerCannon tower;
 	
-	public Game(int[][] map) {
+	public Game(int[][] map,int a) {
 		
 		//grid = new Map(map);
-		l = new Level();
+		l = new Level(a);
 		
 
 	

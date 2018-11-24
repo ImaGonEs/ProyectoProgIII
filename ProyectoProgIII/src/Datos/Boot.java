@@ -11,7 +11,7 @@ import static weareSupports.Creador.*;
 public class Boot {  //aaaaaaa
 
 
-	public Boot() { //prueba
+	public Boot(int a) { //prueba
 		
 		
 		
@@ -72,7 +72,7 @@ public class Boot {  //aaaaaaa
 //		TowerCannon tower = new TowerCannon(QuickCast("torre"), map.getCell(15, 15), 10);
 		//aasa
 		
-		Game game = new Game(imap);
+		Game game = new Game(imap,a);
 		while (!Display.isCloseRequested()) {
 		
 			
@@ -108,7 +108,7 @@ public class Boot {  //aaaaaaa
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Boot();
+		//new Boot();
 	}
 
 }

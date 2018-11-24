@@ -113,7 +113,7 @@ public abstract class Tower implements Entity{
 			targeted = false;
 		
 		timeSinceLastShot += Delta();
-		if (timeSinceLastShot > attackSpeed && targeted)
+		if (timeSinceLastShot > 1/attackSpeed && targeted)
 			shoot();
 		
 		for (Projectile p : projectiles)

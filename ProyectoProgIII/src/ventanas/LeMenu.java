@@ -118,7 +118,7 @@ public class LeMenu extends JFrame{
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						new Boot();
+						new SlidderDif();
 					}
 				});
 				boot.start();
