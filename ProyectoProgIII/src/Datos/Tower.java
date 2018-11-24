@@ -95,8 +95,7 @@ public abstract class Tower implements Entity{
 	
 	protected void shoot() {
 		
-		timeSinceLastShot = 0;   
-		projectiles.add(new ProjectileIceBall(QuickCast("circle"), target, x, y, 32, 32,600 , 10));
+		
 		
 	}
 	

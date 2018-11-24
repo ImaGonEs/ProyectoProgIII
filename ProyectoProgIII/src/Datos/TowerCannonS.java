@@ -12,7 +12,7 @@ public class TowerCannonS extends Tower{
 		
 	}
 
-public TowerCannonS( int damage, float attackSpeed, int range, String icon) {
+	public TowerCannonS( int damage, float attackSpeed, int range, String icon) {
 		
 		super(damage,attackSpeed,range,icon);
 	
@@ -26,6 +26,12 @@ public TowerCannonS( int damage, float attackSpeed, int range, String icon) {
 		
 		
 	}
+	public void shoot() {
+		
+		timeSinceLastShot = 0;   
+		projectiles.add(new ProjectileIceBall(QuickCast("circle"), target, x, y, 32, 32,600 , 10));
+	}
+
 	
 	
 }

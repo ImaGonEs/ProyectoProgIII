@@ -148,6 +148,24 @@ public class Player {
 				
 				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(Mouse.getX()/32, (HEIGHT - Mouse.getY() - 1 /32))));
 			
+				towerList.add(new TowerN2(TowerType.valueOf(id().get(2)), map.getCell(Mouse.getX()/32, 
+						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+				for (Tower tower : towerList) {
+					System.out.println(tower.icon);
+				}
+			}
+			if ( Keyboard.getEventKey()== Keyboard.KEY_R && Keyboard.getEventKeyState()){	
+				
+				//towerList2.add(new TowerCannonS(TowerType.CannonS, map.getCell((int)(Math.floor(Mouse.getX()) / 32),
+					//	(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)), 3, wManager.getWave().getEnemies()));
+				
+				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(Mouse.getX()/32, (HEIGHT - Mouse.getY() - 1 /32))));
+			
+				towerList.add(new TowerN1(TowerType.valueOf(id().get(3)), map.getCell(Mouse.getX()/32, 
+						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+				for (Tower tower : towerList) {
+					System.out.println(tower.icon);
+				}
 			}
 
 

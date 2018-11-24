@@ -62,7 +62,7 @@ public class Level {
 		enemies= new ArrayList<Enemy>();
 		
 				enemies.add(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,80,20));
-				enemies.add(new Enemy(QuickCast("sans"),grid.getCell(0,14),grid, 32,32,80,20));
+				enemies.add(new Enemy(QuickCast("sans"),grid.getCell(0,14),grid, 32,32,80,00));
 				
 				//(new Enemy(QuickCast("st"),grid.getCell(0,14),grid, 32,32,80,70))};
 
