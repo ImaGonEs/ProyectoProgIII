@@ -23,23 +23,14 @@ public class LeMenu extends JFrame{
 	StandardAudio clip;
 	private int w = 1000,h=600;
 	
-	
-	
-	
-	
-	
-	
 	public LeMenu(boolean f) {
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		JFrame frame = this;
 		
-		
 //		int w = (int) screenSize.getWidth();
 //		int h = (int) screenSize.getHeight();
-		
-		
 		
 		if (f ==false) {
 		w = 1000;
@@ -67,9 +58,7 @@ public class LeMenu extends JFrame{
 		background = new JLabelGraficoAjustado("forest", w, (int) ((int) h*1.5)); //1000,900
 		
 		title = new JLabelGraficoAjustado("title", (int) (w*0.8), h/6); //800,100
-		
-		
-		
+				
 		bP1 = new JLabelGraficoAjustado("play1",(int) (w*0.2),h/6);  //200,100   (int) (w*0.2),h/6
 		//bP2 = new JLabelGraficoAjustado("play2.png",100,100); 
 		bT1 = new JLabelGraficoAjustado("team1",(int) (w*0.2),h/6); 
@@ -80,8 +69,6 @@ public class LeMenu extends JFrame{
 		//bSe2 = new JLabelGraficoAjustado("settings2",100,100);
 		
 		cp.add(background);
-
-	
 		
 		bP1.setLocation(w/5,h/3 );  //200,200      w/5,h/3 
 		
@@ -98,15 +85,10 @@ public class LeMenu extends JFrame{
 		background.add(bSe1);
 		background.add(bSu1);
 		background.add(title);
-		
-		
+				
 		cp.validate();
 		cp.repaint();
-		
-		
-		
-		
-		
+						
 		bP1.addMouseListener(new MouseListener() {
 			
 			@Override

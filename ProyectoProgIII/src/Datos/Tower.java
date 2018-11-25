@@ -38,28 +38,14 @@ public abstract class Tower implements Entity{
 	
 	public Tower( int damage, float attackSpeed, int range, String icon) {
 		
-		
 		this.damage = damage;
 		this.range = range;
 		
 		this.attackSpeed = 2;
 		this.icon = icon;
-		
-		
-		
-		
+	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	protected Enemy acquireTarget() { //targetea el mas cercano
 		
 		Enemy closest = null;

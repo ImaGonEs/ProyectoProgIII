@@ -33,8 +33,6 @@ public class ProjectileEy extends Projectile{
 						ProjectileEy.super.damage();
 						Thread.sleep(1000);
 						
-						
-						
 					} catch (Exception e) {
 						// TODO: handle exception
 					}

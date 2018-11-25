@@ -45,22 +45,17 @@ public class Player {
 	
 	public void setTower () { //para poner la torre con el click, no se mantiene
 		
-		
 		if (i==0) {
 			
 			if(map.getCell(Mouse.getX(), Mouse.getY()).getR()==false) {
-				
 				
 				TowerCannon a = new TowerCannon();
 				
 				map.setTowerC((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
 				
-			
 			}
 			
-	
 		}else if (i==1) {
-			
 			
 			if(map.getCell(Mouse.getX(), Mouse.getY()).getR()==false) {
 			TowerMelee a = new TowerMelee();
@@ -70,27 +65,20 @@ public class Player {
 			
 			}
 		}
-		
-		
-	
-	
-		
-		
 	}
-	
 	
 	private boolean mouseButton1 = false;
 	
 	public void Update() {
 		
-	for (Tower t : towerList) {
-		t.update();
-		t.project();
-		t.updateEnemyList(wManager.getWave().getEnemies());
-	}	
+		for (Tower t : towerList) {
+			t.update();
+			t.project();
+			t.updateEnemyList(wManager.getWave().getEnemies());
+		}	
 		for (TowerMelee t : towerList2) {
 			t.update();
-		t.updateEenemyList(wManager.getWave().getEnemies());
+			t.updateEenemyList(wManager.getWave().getEnemies());
 		}
 		
 		while (Mouse.next()){
@@ -106,10 +94,6 @@ public class Player {
 		    }
 		}
 		
-		
-		
-		
-		
 		while (Keyboard.next()) {
 			
 			if ( Keyboard.getEventKey()== Keyboard.KEY_Q && Keyboard.getEventKeyState()){	
@@ -123,7 +107,6 @@ public class Player {
 				for (Tower tower : towerList) {
 					System.out.println(tower.icon);
 				}
-				
 			}
 			
 			if ( Keyboard.getEventKey()== Keyboard.KEY_W && Keyboard.getEventKeyState()){	
@@ -136,18 +119,13 @@ public class Player {
 				for (Tower tower : towerList) {
 					System.out.println(tower.icon);
 				}
-				
-				
-				
 			}
 			
 			if ( Keyboard.getEventKey()== Keyboard.KEY_E && Keyboard.getEventKeyState()){	
 			
 				//towerList2.add(new TowerCannonS(TowerType.CannonS, map.getCell((int)(Math.floor(Mouse.getX()) / 32),
 					//	(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)), 3, wManager.getWave().getEnemies()));
-				
 				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(Mouse.getX()/32, (HEIGHT - Mouse.getY() - 1 /32))));
-			
 				towerList.add(new TowerN2(TowerType.valueOf(id().get(2)), map.getCell(Mouse.getX()/32, 
 						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
 				for (Tower tower : towerList) {
@@ -167,13 +145,8 @@ public class Player {
 					System.out.println(tower.icon);
 				}
 			}
-
-
 		}
-
 	}
-
-	
 	
 	public static ArrayList<String> id() {
 		
@@ -206,14 +179,8 @@ public class Player {
 			   }
 			   System.out.println("Operation done successfully");
 		
-		
-		
-		
-		
-		
 		return ids;
-		
-		
+				
 	};
 	
 	

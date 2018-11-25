@@ -33,35 +33,21 @@ public class SlidderDif extends JFrame{
 	
 	private JSlider dif = new JSlider(JSlider.HORIZONTAL,nor,mododiablo,3);
 	
-	
-	
-	
-	
-	
-	
 	@SuppressWarnings("unchecked")
 	public SlidderDif() {
 		
-		
-		
 //		int w = (int) screenSize.getWidth();
 //		int h = (int) screenSize.getHeight();
-		
-		
+				
 		JFrame frame = this;
 		
 		w = 600;
 		h = 150;
-		
-		
-		
-		
+				
 		Container cp = this.getContentPane();
 		panel = new JPanel(new GridLayout(3, 1));
 		//panel.setLayout(null);
-		
-		
-//		
+			
 		background = new JLabelGraficoAjustado("forest", w, (int) ((int) h*1.5)); //1000,900
 //		
 //		title = new JLabelGraficoAjustado("Login", (int) 302, 146); 
@@ -72,7 +58,6 @@ public class SlidderDif extends JFrame{
 //		
 //		btn = new JLabelGraficoAjustado("play1",(int) (w*0.2),h/6);
 //		
-		
 		
 		@SuppressWarnings("rawtypes")
 		Hashtable labelTable = new Hashtable();
@@ -99,9 +84,6 @@ public class SlidderDif extends JFrame{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
-			
 			
 			new Boot(dif.getValue());
 			
@@ -110,43 +92,17 @@ public class SlidderDif extends JFrame{
 		}
 	});
 		
-	
-		
-
-		
-	
-
 		setSize(w,h);
 		setVisible(true);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 	
-	
-	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		
 		new SlidderDif();
-		
-		
-		
-		
 		
 	}
 
