@@ -143,7 +143,7 @@ public class PruebaSQLite {
 //	     
 	      
 //	      
-//	      try {//------------------INSERT TOWERS-----------------
+//	      try {//------------------INSERT TIENE-----------------
 //	          Class.forName("org.sqlite.JDBC");
 //	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
 //	          c.setAutoCommit(false);
@@ -174,29 +174,6 @@ public class PruebaSQLite {
 //	       }
 //	       System.out.println("Records created successfully");
 //	     
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
 	      
 	      
 //	      
