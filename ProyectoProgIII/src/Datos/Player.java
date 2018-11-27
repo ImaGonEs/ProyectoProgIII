@@ -203,9 +203,6 @@ public class Player {
 				oro.cambioTexto(oroint);
 				}
 			}
-
-
-
 			}
 			}
 			
