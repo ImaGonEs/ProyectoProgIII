@@ -4,11 +4,17 @@ import static weareSupports.Creador.QuickCast;
 
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+
+
+
 public class Level {
 	
 	private Map grid;
 	private WManager wave;
 	ArrayList<Enemy> enemies;
+	
+	
 	
 	int[][] imap = {
 			
@@ -45,10 +51,17 @@ public class Level {
 			
 			};
 
+	
+	
+	
+	
+	
+	
 	public Level(int a) {
 		
 		
 		grid = new Map(imap);
+		
 		
 
 //		Enemy[] enemies = {(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,80,70)),

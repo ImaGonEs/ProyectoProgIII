@@ -17,9 +17,11 @@ import javax.annotation.Resource;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
+
 
 public class Creador {
 	
@@ -65,6 +67,19 @@ public class Creador {
 		
 		
 	}
+	
+//	public static void ProjectText (String texto, TrueTypeFont font, int x, int y) {
+//		
+//		
+//		font.drawString(x, y, texto);
+//		
+//		
+//		
+//		
+//	}
+	
+	
+	
 	public static Texture LoadT(String path, String fileType) {
 		
 		Texture tex = null;
