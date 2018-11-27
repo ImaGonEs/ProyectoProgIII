@@ -62,22 +62,17 @@ public class Player {
 	
 	public void setTower () { //para poner la torre con el click, no se mantiene
 		
-		
 		if (i==0) {
 			
 			if(map.getCell(Mouse.getX(), Mouse.getY()).getR()==false) {
-				
 				
 				TowerCannon a = new TowerCannon();
 				
 				map.setTowerC((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), a);
 				
-			
 			}
 			
-	
 		}else if (i==1) {
-			
 			
 			if(map.getCell(Mouse.getX(), Mouse.getY()).getR()==false) {
 			TowerMelee a = new TowerMelee();
@@ -87,28 +82,23 @@ public class Player {
 			
 			}
 		}
-		
-		
-	
-	
-		
-		
 	}
-	
 	
 	private boolean mouseButton1 = false;
 	
 	public void Update() {
 		
+
 	oro.project();
 	for (Tower t : towerList) {
 		t.update();
 		t.project();
 		t.updateEnemyList(wManager.getWave().getEnemies());
 	}	
+
 		for (TowerMelee t : towerList2) {
 			t.update();
-		t.updateEenemyList(wManager.getWave().getEnemies());
+			t.updateEenemyList(wManager.getWave().getEnemies());
 		}
 		
 		while (Mouse.next()){
@@ -126,8 +116,6 @@ public class Player {
 		
 		
 		
-		
-		
 		while (Keyboard.next()) {
 			
 			
@@ -140,13 +128,16 @@ public class Player {
 				//setTower();
 				//towerList.add(new TowerCannon(QuickCast("torre"),map.getCell((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)),3,1000, wManager.getWave().getEnemies()));
 				
+				if (getMouseCell().getR()) {
 				
-				towerList.add(new TowerCannonR(TowerType.valueOf(id().get(0)), map.getCell(Mouse.getX()/32, 
-						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+
+					putTower("T01");
+//				towerList.add(new TowerFire(TowerType.valueOf(id().get(0)), getMouseCell(),wManager.getWave().getEnemies()));
+				getMouseCell().setR(false);
+
+				
 				oroint = oroint-500;
 				oro.cambioTexto(oroint);
-				for (Tower tower : towerList) {
-					System.out.println(tower.icon);
 				}
 				
 			}
@@ -155,16 +146,21 @@ public class Player {
 				i = 1;
 				//towerList2.add(new TowerMelee(QuickCast("Mob0"), map.getCell((int)(Math.floor(Mouse.getX()) / 32),
 						//(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)), 3, wManager.getWave().getEnemies()));
-				towerList.add(new TowerCannonS(TowerType.valueOf(id().get(1)), map.getCell(Mouse.getX()/32, 
-						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+
+				if (getMouseCell().getR()) {
+					
+					putTower("T02");
+//				towerList.add(new TowerIce(TowerType.valueOf(id().get(1)), map.getCell(Mouse.getX()/32, 
+//						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+						getMouseCell().setR(false);
+
+				
 				oroint = oroint-500;
 				oro.cambioTexto(oroint);
-				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(10, 10)));
-				for (Tower tower : towerList) {
-					System.out.println(tower.icon);
 				}
+				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(10, 10)));
 				
-				
+				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(10, 10)));
 				
 			}
 			
@@ -172,16 +168,20 @@ public class Player {
 			
 				//towerList2.add(new TowerCannonS(TowerType.CannonS, map.getCell((int)(Math.floor(Mouse.getX()) / 32),
 					//	(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)), 3, wManager.getWave().getEnemies()));
-				
-				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(Mouse.getX()/32, (HEIGHT - Mouse.getY() - 1 /32))));
+
+				if (getMouseCell().getR()) {
+					
+					putTower("T03");
+//				towerList.add(new TowerPoison(TowerType.valueOf(id().get(2)), map.getCell(Mouse.getX()/32, 
+//						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+					getMouseCell().setR(false);
+
 			
-				towerList.add(new TowerN2(TowerType.valueOf(id().get(2)), map.getCell(Mouse.getX()/32, 
-						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+				
 				oroint = oroint-500;
 				oro.cambioTexto(oroint);
-				for (Tower tower : towerList) {
-					System.out.println(tower.icon);
 				}
+				
 			}
 			if ( Keyboard.getEventKey()== Keyboard.KEY_R && Keyboard.getEventKeyState()){	
 				
@@ -189,22 +189,64 @@ public class Player {
 					//	(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)), 3, wManager.getWave().getEnemies()));
 				
 				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(Mouse.getX()/32, (HEIGHT - Mouse.getY() - 1 /32))));
+
+				if (getMouseCell().getR()) {
+					putTower("T04");
+//				towerList.add(new TowerThunder(TowerType.valueOf(id().get(3)), map.getCell(Mouse.getX()/32, 
+//						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+				getMouseCell().setR(false);
+				
+
 			
-				towerList.add(new TowerN1(TowerType.valueOf(id().get(3)), map.getCell(Mouse.getX()/32, 
-						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+				
 				oroint = oroint-500;
 				oro.cambioTexto(oroint);
-				for (Tower tower : towerList) {
-					System.out.println(tower.icon);
 				}
 			}
-
 			}
-		}
+			}
+			
+			
+			
+			
+		
 
+			
+			
 	}
-
 	
+	
+	
+	public void putTower(String t) {
+		
+		
+       if (t.equals("T01"))
+    	   towerList.add(new TowerThunder(TowerType.valueOf(t), getMouseCell(),wManager.getWave().getEnemies()));
+		
+       else if (t.equals("T02")) 
+    	   towerList.add(new TowerFire(TowerType.valueOf(t), getMouseCell(),wManager.getWave().getEnemies()));
+       
+       else if (t.equals("T03")) 
+    	   towerList.add(new TowerIce(TowerType.valueOf(t), getMouseCell(),wManager.getWave().getEnemies()));
+       
+       else if (t.equals("T04")) 
+    	   towerList.add(new TowerPoison(TowerType.valueOf(t), getMouseCell(),wManager.getWave().getEnemies()));
+       
+       
+       
+		
+		
+	}
+	
+	
+	
+	public MapCell getMouseCell() {
+
+
+		return map.getCell(Mouse.getX()/32, (HEIGHT - Mouse.getY() - 1 )/32);
+		
+		
+	}
 	
 	public static ArrayList<String> id() {
 		
@@ -237,14 +279,8 @@ public class Player {
 			   }
 			   System.out.println("Operation done successfully");
 		
-		
-		
-		
-		
-		
 		return ids;
-		
-		
+				
 	};
 	
 	

@@ -1,17 +1,18 @@
 package Datos;
 
+import static weareSupports.Clock.Delta;
 import static weareSupports.Creador.QuickCast;
 
 import java.util.ArrayList;
 
-public class TowerN2  extends Tower{
-
-	public TowerN2 (TowerType type, MapCell startTile, ArrayList<Enemy> enemies) {
+public class TowerIce extends Tower{
+	
+	public TowerIce (TowerType type, MapCell startTile, ArrayList<Enemy> enemies) {
 		super(type, startTile, enemies);
 		
 	}
-	
-	public TowerN2( int damage, float attackSpeed, int range, String icon) {
+
+	public TowerIce( int damage, float attackSpeed, int range, String icon) {
 		
 		super(damage,attackSpeed,range,icon);
 	
@@ -25,11 +26,12 @@ public class TowerN2  extends Tower{
 		
 		
 	}
-	
-	
 	public void shoot() {
 		
 		timeSinceLastShot = 0;   
-		projectiles.add(new ProjectileEy(QuickCast("Pr_e"), target, x, y, 32, 32,600 , 5));
+		projectiles.add(new ProjectileIceBall(QuickCast("circle"), target, x, y, 32, 32,600 , 10));
 	}
+
+	
+	
 }

@@ -98,10 +98,10 @@ public class Enemy implements Entity{
 	
 		int[] dir = new int[2];
 		
-		System.out.println(s.getXPlace());
-		System.out.println(s.getYPlace());
-		System.out.println(map.getMap()[s.getXPlace()+1][s.getYPlace()].getR());
-		
+//		System.out.println(s.getXPlace());
+//		System.out.println(s.getYPlace());
+//		System.out.println(map.getMap()[s.getXPlace()+1][s.getYPlace()].getR());
+//		
 		
 		
 		if(c ==0) {
@@ -112,8 +112,8 @@ public class Enemy implements Entity{
 			
 			if (map.getMap()[s.getXPlace()+1][s.getYPlace()].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()+1][s.getYPlace()])) {
 				
-				System.out.println(s.getY());
-				System.out.println(s.getYPlace()*32+16);
+//				System.out.println(s.getY());
+//				System.out.println(s.getYPlace()*32+16);
 				
 				//if(s.getX()==(s.getXPlace()*32)+16&&s.getY()==(s.getYPlace()*32)) {
 				dir[0]=1;
@@ -121,7 +121,7 @@ public class Enemy implements Entity{
 				celdasV.add(map.getMap()[s.getXPlace()][s.getYPlace()]);
 			//	}
 			}else {
-				System.out.println("no hay derecha");
+//				System.out.println("no hay derecha");
 				return setDir(map,s,c+1);
 			}
 			
@@ -130,15 +130,20 @@ public class Enemy implements Entity{
 			
 			if (map.getMap()[s.getXPlace()][s.getYPlace()-1].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()][s.getYPlace()-1])) {
 
-				System.out.println("hola");
+
+				
+
+
+//				System.out.println("hola");
+
 				//if(s.getX()==(s.getXPlace()*32)+16&&s.getY()==(s.getYPlace()*32)+16) {
 				dir[0]=0;
 				dir[1]=-1;
-				System.out.println(dir[0]+" "+dir[1]);
+//				System.out.println(dir[0]+" "+dir[1]);
 				celdasV.add(map.getMap()[s.getXPlace()][s.getYPlace()]);
 				//}
 			}else {
-				System.out.println("no hay arriba");
+//				System.out.println("no hay arriba");
 				return setDir(map,s,c+1);
 			}
 

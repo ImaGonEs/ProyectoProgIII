@@ -10,27 +10,10 @@ import java.sql.*;
 
 public class PruebaSQLite {
 
-	
-		
-		
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		 Connection c = null;
 	      Statement stmt = null;
-	      
 	      
 //	      
 //	      try { //--------TABLA TOWER--------------
@@ -160,7 +143,7 @@ public class PruebaSQLite {
 //	     
 	      
 //	      
-//	      try {//------------------INSERT TOWERS-----------------
+//	      try {//------------------INSERT TIENE-----------------
 //	          Class.forName("org.sqlite.JDBC");
 //	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
 //	          c.setAutoCommit(false);
@@ -191,29 +174,6 @@ public class PruebaSQLite {
 //	       }
 //	       System.out.println("Records created successfully");
 //	     
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
 	      
 	      
 //	      

@@ -10,12 +10,18 @@ public enum TileType {
 	public boolean cc;
 	
 	TileType(String name, boolean cc){
+		
+		
 		this.name = name;
 		
 		this.cc = cc;
 		
 		
 	};
+	
+	public String getName() {
+		return this.name();
+	}
 	
 	
 }
