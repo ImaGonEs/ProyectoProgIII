@@ -38,8 +38,8 @@ import org.newdawn.slick.opengl.Texture;
 import Datos.Sust;
 import Datos.Tower;
 import Datos.TowerCannon;
-import Datos.TowerCannonR;
-import Datos.TowerCannonS;
+import Datos.TowerFire;
+import Datos.TowerIce;
 import Datos.TowerMelee;
 import weareSupports.JLabelGraficoAjustado;
 
@@ -297,7 +297,7 @@ class Gui extends JFrame {
 						
 						//teami.add(z);
 						if (i.getId().equals("T01")) {
-						teamT.add(new TowerCannonR(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
+						teamT.add(new TowerFire(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
 						
 						
 						
@@ -305,7 +305,7 @@ class Gui extends JFrame {
 							
 							
 							
-							teamT.add(new TowerCannonS(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
+							teamT.add(new TowerIce(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
 							
 							
 							

@@ -5,9 +5,9 @@ import static weareSupports.Creador.QuickCast;
 
 import java.util.ArrayList;
 
-public class TowerCannonR extends Tower{
+public class TowerFire extends Tower{
 	
-	public TowerCannonR (TowerType type, MapCell startTile, ArrayList<Enemy> enemies) {
+	public TowerFire (TowerType type, MapCell startTile, ArrayList<Enemy> enemies) {
 		super(type, startTile, enemies);
 		
 	}
@@ -19,7 +19,7 @@ public class TowerCannonR extends Tower{
 		}
 	//a
 	
-public TowerCannonR( int damage, float attackSpeed, int range, String icon) {
+public TowerFire( int damage, float attackSpeed, int range, String icon) {
 		
 		super(damage,attackSpeed,range,icon);
 	

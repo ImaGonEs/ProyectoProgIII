@@ -19,7 +19,7 @@ public class MapCell {
 		this.h = h;
 		this.type = type;
 		this.tex = QuickCast(type.name);
-		this.r = true;
+		this.r = r;
 	}
 
 	
