@@ -2,11 +2,16 @@ package Datos;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+
+
+
 import static weareSupports.Creador.*;
 
 import java.sql.Connection;
 import java.sql.*;
 import java.util.ArrayList;
+
+import javax.swing.JLabel;
 public class Player {
 
 	private Map map;
@@ -15,6 +20,10 @@ public class Player {
 	private WManager wManager;
 	private ArrayList<Tower> towerList;
 	private ArrayList<TowerMelee> towerList2;
+	private int oroint=15000;;
+	private Texto oro;
+	
+	
 	
 	
 	public Player (Map map, WManager wManager) {
@@ -28,6 +37,14 @@ public class Player {
 		this.wManager = wManager;
 		this.towerList = new ArrayList<Tower>();
 		this.towerList2 = new ArrayList<TowerMelee>();
+		
+		this.oro = new Texto(Integer.toString(oroint));
+		
+		
+		
+		
+		
+		
 		
 	}
 	
@@ -83,6 +100,7 @@ public class Player {
 	
 	public void Update() {
 		
+	oro.project();
 	for (Tower t : towerList) {
 		t.update();
 		t.project();
@@ -112,6 +130,11 @@ public class Player {
 		
 		while (Keyboard.next()) {
 			
+			
+			//HE PUESTO QUE TODAS VALGAN 500 PORQUE FALTA LA BD
+			
+			if(oroint >= 500) {
+			
 			if ( Keyboard.getEventKey()== Keyboard.KEY_Q && Keyboard.getEventKeyState()){	
 				i = 0;
 				//setTower();
@@ -120,6 +143,8 @@ public class Player {
 				
 				towerList.add(new TowerCannonR(TowerType.valueOf(id().get(0)), map.getCell(Mouse.getX()/32, 
 						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+				oroint = oroint-500;
+				oro.cambioTexto(oroint);
 				for (Tower tower : towerList) {
 					System.out.println(tower.icon);
 				}
@@ -132,6 +157,8 @@ public class Player {
 						//(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32)), 3, wManager.getWave().getEnemies()));
 				towerList.add(new TowerCannonS(TowerType.valueOf(id().get(1)), map.getCell(Mouse.getX()/32, 
 						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+				oroint = oroint-500;
+				oro.cambioTexto(oroint);
 				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(10, 10)));
 				for (Tower tower : towerList) {
 					System.out.println(tower.icon);
@@ -150,6 +177,8 @@ public class Player {
 			
 				towerList.add(new TowerN2(TowerType.valueOf(id().get(2)), map.getCell(Mouse.getX()/32, 
 						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+				oroint = oroint-500;
+				oro.cambioTexto(oroint);
 				for (Tower tower : towerList) {
 					System.out.println(tower.icon);
 				}
@@ -163,12 +192,14 @@ public class Player {
 			
 				towerList.add(new TowerN1(TowerType.valueOf(id().get(3)), map.getCell(Mouse.getX()/32, 
 						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
+				oroint = oroint-500;
+				oro.cambioTexto(oroint);
 				for (Tower tower : towerList) {
 					System.out.println(tower.icon);
 				}
 			}
 
-
+			}
 		}
 
 	}

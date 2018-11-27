@@ -102,8 +102,16 @@ public class SlidderDif extends JFrame{
 			// TODO Auto-generated method stub
 			
 			
+			Thread boot = new Thread (new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					new Boot(dif.getValue());
+				}
+			});
 			
-			new Boot(dif.getValue());
+			boot.start();
 			
 			frame.dispose();
 			

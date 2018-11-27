@@ -4,6 +4,10 @@ import static weareSupports.Creador.*;
 
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+
+
+
 public class Map {
 
 	
@@ -12,6 +16,7 @@ public class Map {
 	private ArrayList<TowerCannon> towerC;
 	private ArrayList<TowerMelee> towerM;
 	int [][] abc;
+	public int oro;
 	public Map() {
 		
 		map = new MapCell[20][15];
@@ -35,6 +40,7 @@ public class Map {
 		
 		abc = a;
 		map = new MapCell[40][30];
+		
 		
 		
 		for (int i = 0; i < map.length; i++) {
