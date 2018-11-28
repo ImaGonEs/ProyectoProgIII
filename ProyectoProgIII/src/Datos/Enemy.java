@@ -108,7 +108,7 @@ public class Enemy implements Entity{
 		if(c ==0&&s.getXPlace()<39) {
 			
 			
-			
+			//aa
 			
 			
 			if (map.getMap()[s.getXPlace()+1][s.getYPlace()].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()+1][s.getYPlace()])) {
