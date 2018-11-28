@@ -104,7 +104,8 @@ public class Enemy implements Entity{
 //		
 		
 		
-		if(c ==0) {
+		
+		if(c ==0&&s.getXPlace()<39) {
 			
 			
 			
@@ -125,7 +126,7 @@ public class Enemy implements Entity{
 				return setDir(map,s,c+1);
 			}
 			
-		}else if(c==1) {
+		}else if(c==1&&s.getXPlace()<39) {
 
 			
 			if (map.getMap()[s.getXPlace()][s.getYPlace()-1].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()][s.getYPlace()-1])) {
@@ -148,7 +149,7 @@ public class Enemy implements Entity{
 			}
 
 
-		}else if(c==2) {
+		}else if(c==2&&s.getXPlace()<39) {
 			
 			if (map.getMap()[s.getXPlace()][s.getYPlace()+1].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()][s.getYPlace()+1])) {
 				//if(s.getX()==(s.getXPlace()*32)+16&&s.getY()==(s.getYPlace()*32)+16) {
@@ -164,7 +165,7 @@ public class Enemy implements Entity{
 
 
 
-		}else if (c==3){
+		}else if (c==3&&s.getXPlace()<39){
 			
 			if(s.getXPlace()-1>=0) {
 			if (map.getMap()[s.getXPlace()-1][s.getYPlace()].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()-1][s.getYPlace()])) {
