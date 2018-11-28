@@ -20,11 +20,10 @@ public class Player {
 	private WManager wManager;
 	private ArrayList<Tower> towerList;
 	private ArrayList<TowerMelee> towerList2;
-	private int oroint=15000;;
+	private int oroint=15000;
 	private Texto oro;
 	
-	
-	
+	boolean b = true;
 	
 	public Player (Map map, WManager wManager) {
 		
@@ -42,10 +41,7 @@ public class Player {
 		
 		
 		
-		
-		
-		
-		
+			
 	}
 	
 //	public void updateEnemyList (ArrayList<Enemy> newList) { 
@@ -53,6 +49,8 @@ public class Player {
 //			t.updateEenemyList(wManager.getWave().getEnemies());
 //			
 //	}
+	
+	
 	
 	public void SetTile() {
 		
@@ -205,14 +203,29 @@ public class Player {
 			}
 			}
 			}
-			
-			
-			
-			
 		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		
+		
+		
+			if (wManager.getWave().isCompleted()&&b) {
 
-			
-			
+				System.out.println(wManager.getEnemiesN());
+				oroint += 100*wManager.getEnemiesN();
+				oro.cambioTexto(oroint);
+					b= false;
+					
+				
+			}
+
 	}
 	
 	

@@ -76,6 +76,7 @@ public class Level {
 		
 				enemies.add(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
 				enemies.add(new Enemy(QuickCast("sans"),grid.getCell(0,14),grid, 32,32,80,300*(a+1)));
+				enemies.add(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
 				
 				//(new Enemy(QuickCast("st"),grid.getCell(0,14),grid, 32,32,80,70))};
 
