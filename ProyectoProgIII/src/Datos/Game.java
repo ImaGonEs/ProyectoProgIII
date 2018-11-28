@@ -12,10 +12,10 @@ public class Game {
 	//temp variables	
 	TowerCannon tower;
 	
-	public Game(int[][] map,int a) {
+	public Game(int[][] map,int a,String mapa) {
 		
 		//grid = new Map(map);
-		l = new Level(a);
+		l = new Level(a,mapa);
 		
 		//tower = new TowerCannon(QuickCast("torre"), grid.getCell(15, 15), 10);
 

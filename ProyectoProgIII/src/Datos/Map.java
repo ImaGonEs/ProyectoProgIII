@@ -8,6 +8,16 @@ import javax.swing.JLabel;
 
 
 
+
+
+import static weareSupports.Creador.*;
+
+import java.util.ArrayList;
+
+import javax.swing.JLabel;
+
+
+
 public class Map {
 
 	

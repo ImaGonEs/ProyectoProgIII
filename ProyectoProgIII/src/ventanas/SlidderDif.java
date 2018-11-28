@@ -34,7 +34,7 @@ public class SlidderDif extends JFrame{
 	private JSlider dif = new JSlider(JSlider.HORIZONTAL,nor,mododiablo,3);
 	
 	@SuppressWarnings("unchecked")
-	public SlidderDif() {
+	public SlidderDif(String mapa) {
 		
 //		int w = (int) screenSize.getWidth();
 //		int h = (int) screenSize.getHeight();
@@ -94,7 +94,7 @@ public class SlidderDif extends JFrame{
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					new Boot(dif.getValue());
+					new Boot(dif.getValue(),mapa);
 				}
 			});
 
@@ -116,7 +116,7 @@ public class SlidderDif extends JFrame{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new SlidderDif();
+		//new SlidderDif();
 		
 	}
 
