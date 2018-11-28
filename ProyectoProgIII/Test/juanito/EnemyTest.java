@@ -59,13 +59,13 @@ public class EnemyTest {
 		TraceOn();
 		map = new Map(imap);
 		
-		e1 = new Enemy(QuickCast("mob0"),map.getCell(1, 14),map, 32,32,20,70);
+		e1 = new Enemy(QuickCast("mob0"),QuickCast("mob0"),map.getCell(1, 14),map, 32,32,20,70);
 		
-		e2 = new Enemy(QuickCast("mob0"),map.getCell(4, 14),map, 32,32,1,70);
+		e2 = new Enemy(QuickCast("mob0"),QuickCast("mob0"),map.getCell(4, 14),map, 32,32,1,70);
 		
-		e3 = new Enemy(QuickCast("mob0"),map.getCell(13, 14),map, 32,32,1,70);
+		e3 = new Enemy(QuickCast("mob0"),QuickCast("mob0"),map.getCell(13, 14),map, 32,32,1,70);
 	
-		e4  = new Enemy(QuickCast("mob0"),map.getCell(18, 14),map, 32,32,1,70);
+		e4  = new Enemy(QuickCast("mob0"),QuickCast("mob0"),map.getCell(18, 14),map, 32,32,1,70);
 		
 		
 	}

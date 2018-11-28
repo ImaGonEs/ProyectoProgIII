@@ -15,7 +15,8 @@ public class Enemy implements Entity{
 	private int w,h,vel, currentCheckPoint;
 	
 	private float x,y, lp, startLp;
-	private Texture tex, healthBackground, healthForeground, healthBorder;
+	private Texture healthBackground, healthForeground, healthBorder;
+	private Texture[] tex;
 	private MapCell start;
 	private static Map map;
 	private static Map mapc;
@@ -25,9 +26,9 @@ public class Enemy implements Entity{
 	private ArrayList<MapCell> celdasV;
 	private int dir1L,dir2L;
 	private boolean first = true;
-	
+	private boolean slowed = false;
 
-	public Enemy(Texture tex, MapCell start, Map map, int w, int h, int vel, float lp ) {
+	public Enemy(Texture tex, Texture tex2, MapCell start, Map map, int w, int h, int vel, float lp ) {
 		
 		this.start = start;
 		this.x = start.getX()+16;
@@ -37,7 +38,13 @@ public class Enemy implements Entity{
 		this.vel = vel;
 		this.lp = lp;
 		this.startLp = lp;
-		this.tex = tex;
+		
+		this.tex = new Texture[2];
+		this.tex[0]= tex;
+		this.tex[1]= tex2;
+		
+		
+		
 		this.healthBackground = QuickCast("healthBackground");
 		this.healthBorder = QuickCast("healthBorder");
 		this.healthForeground = QuickCast("healthForeground");
@@ -312,7 +319,7 @@ public class Enemy implements Entity{
 	public void project() {
 		
 		float lpPerc = lp /startLp;
-		ProjectTQuad(tex,x,y,w,h);
+		ProjectTQuad(tex[0],x,y,w,h);
 		ProjectTQuad (healthBackground,x,y - 8,w,4);
 		ProjectTQuad(healthForeground,x,y - 8 ,32 * lpPerc,8);
 		ProjectTQuad(healthBorder,x,y - 8,w,8);
@@ -370,12 +377,12 @@ public class Enemy implements Entity{
 		this.lp = lp;
 	}
 
-	public Texture getTex() {
-		return tex;
+	public Texture getTex(int x) {
+		return tex[x];
 	}
 
 	public void setTex(Texture tex) {
-		this.tex = tex;
+		this.tex[0] = tex;
 	}
 
 	public MapCell getStart() {
@@ -426,8 +433,21 @@ public class Enemy implements Entity{
 		this.directions[1]= directions[1];
 	}
 
+	public void changeTex() {
+		
+		Texture t3;
+		t3 = this.tex[0];
+		this.tex[0] = this.tex[1];
+		this.tex[1]=t3;
+		
+		
+	}
 	
-	
-	
+	public boolean isSlowed() {
+		return this.slowed;
+	}
+	public void setSlowed(boolean s) {
+		this.slowed = s;
+	}
 	
 }
