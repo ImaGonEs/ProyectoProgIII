@@ -69,6 +69,26 @@ public class WManager {
 	public Wave getWave() {
 		return this.cWave;
 	}
+
+
+	public int getWaveNumber() {
+		return waveNumber;
+	}
+
+
+	public void setWaveNumber(int waveNumber) {
+		this.waveNumber = waveNumber;
+	}
+
+
+	public int getEnemiesN() {
+		return enemiesN;
+	}
+
+
+	public void setEnemiesN(int enemiesN) {
+		this.enemiesN = enemiesN;
+	}
 	
 	
 	

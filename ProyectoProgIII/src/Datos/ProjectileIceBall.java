@@ -13,7 +13,11 @@ public class ProjectileIceBall extends Projectile{ //SLOW
 	public void damage() {
 		
 		super.getTarget().setVel(4);
-		super.getTarget().setTex(QuickCast("Mob0S"));
+		if (!super.getTarget().isSlowed()) {
+		super.getTarget().changeTex();
+		}
+		
+		super.getTarget().setSlowed(true);
 		super.setAlive(false); //si queremos que no haga daño se cambia esto
 		super.damage();
 	}
