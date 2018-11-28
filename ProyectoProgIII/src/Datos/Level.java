@@ -134,11 +134,11 @@ public class Level {
 	
 	
 	
-	public Level(int a) {
+	public Level(int a, String mapa) {
 		
 		
 		
-		grid = new Map(leeFichero("Mapa2"));
+		grid = new Map(leeFichero(mapa));
 		
 		
 
