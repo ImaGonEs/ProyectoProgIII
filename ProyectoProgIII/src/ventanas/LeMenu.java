@@ -229,6 +229,7 @@ public class LeMenu extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				bSu1.setImagen("src/res/summon1.png");
+				new Summon();
 			}
 			
 			@Override

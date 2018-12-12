@@ -29,8 +29,13 @@ public enum TowerType {
 	float attackSpeed;
 	
 	
-
 	
+	
+	
+	public String getTex() {
+		return tex;
+	}
+
 	TowerType(String name) {
 		
 		this.tex = hola(name).getTex();

@@ -6,6 +6,16 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Properties;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import Datos.TowerType;
 import weareSupports.JLabelGraficoAjustado;
 
 public class Summon extends JFrame{
@@ -27,7 +38,199 @@ public class Summon extends JFrame{
 	JLabelGraficoAjustado lChar2;
 	JLabelGraficoAjustado lGems;
 	JLabel nGems;
+	
+
+	Connection c = null;
+    Statement stmt = null;
+    String player = "";
+    
+    
+    
 	public Summon() {
+		
+		
+		
+		
+	     
+	    ArrayList<String> ownedTowers = new ArrayList<String>();
+	    ArrayList<String> ownedTNames = new ArrayList<String>();
+	    ArrayList<String> missingTowers = new ArrayList<String>();
+	    ArrayList<String> missingTNames = new ArrayList<String>();
+	  
+	    
+	   
+	    Properties prop = new Properties();
+
+		InputStream input = null;
+
+		try {
+
+			input = new FileInputStream("config.properties");
+
+			// load a properties file
+			prop.load(input);
+
+			// get the property value and print it out
+			
+			String lastUs = prop.getProperty("username");
+			player = lastUs;
+			
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+		try { 
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
+
+	          stmt = c.createStatement();
+	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
+	          
+	          while ( rs.next() ) {
+	             String id = rs.getString("ID");
+	             
+	             
+	             missingTowers.add(id);
+	          }
+	          rs.close();
+	          stmt.close();
+	          c.close();
+	       } catch ( Exception e ) {
+	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Operation done successfully");
+	       
+	
+	
+	     
+		try {
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
+
+	          stmt = c.createStatement();
+	          ResultSet rs = stmt.executeQuery( "SELECT ID_T FROM TIENE WHERE NAME_P="+"\""+player+"\""+";");
+	          
+	          while ( rs.next() ) {
+	             
+	             
+	          String torre = rs.getString("ID_T");
+	             
+	          ownedTowers.add(torre);
+	            
+	            
+	          }
+	          rs.close();
+	          stmt.close();
+	          c.close();
+	       } catch ( Exception e ) {
+	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Operation done successfully");
+			
+		
+		
+		
+		
+		
+		
+		for (String t: ownedTowers) {
+			if (missingTowers.contains(t))
+				missingTowers.remove(t);
+			
+		}
+		
+		for(String t: missingTowers) {
+		
+		try {
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          
+	          stmt = c.createStatement();
+	          ResultSet rs = stmt.executeQuery( "SELECT NAME FROM TOWERS WHERE ID ="+"\""+t+"\""+"; ");
+	          
+	          while ( rs.next() ) {
+	             
+	             
+	          String torre = rs.getString("NAME");
+	             
+	         missingTNames.add(torre);
+	            
+	            
+	          }
+	          rs.close();
+	          stmt.close();
+	          c.close();
+	       } catch ( Exception e ) {
+	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	      
+		}
+		
+		for(String t: ownedTowers) {
+			
+			try {
+		          Class.forName("org.sqlite.JDBC");
+		          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+		          c.setAutoCommit(false);
+		          
+		          stmt = c.createStatement();
+		          ResultSet rs = stmt.executeQuery( "SELECT NAME FROM TOWERS WHERE ID ="+"\""+t+"\""+"; ");
+		          
+		          while ( rs.next() ) {
+		             
+		             
+		          String torre = rs.getString("NAME");
+		             
+		         ownedTNames.add(torre);
+		            
+		            
+		          }
+		          rs.close();
+		          stmt.close();
+		          c.close();
+		       } catch ( Exception e ) {
+		          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		          System.exit(0);
+		       }
+		      
+			}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		panel = new JPanel();
 		panel.setSize(300, 300);
@@ -63,6 +266,11 @@ public class Summon extends JFrame{
 		lD.setForeground(Color.WHITE);
 		
 		pR.add(lD);
+		
+		for (String t : ownedTNames) {
+			pR.add(new JLabelGraficoAjustado(t, 100, 100));
+		}
+		
 //		lChar = new JLabelGraficoAjustado("S32", 100,100);
 //		
 //	
@@ -85,7 +293,8 @@ public class Summon extends JFrame{
 		fondo.setSize(imagen.getIconWidth(), imagen.getIconHeight());
 		fondo.setSize(1000, 600);
 		// La etiqueta que ira encima de la imagen.
-		JLabelGraficoAjustado primerPlano = new JLabelGraficoAjustado("S32",100,100);
+		
+		JLabelGraficoAjustado primerPlano = new JLabelGraficoAjustado("Empty",100,100);
 		primerPlano.setSize(100, 100);
 		primerPlano.setBounds(500, 300, 100,100);
 		
@@ -129,15 +338,84 @@ public class Summon extends JFrame{
 		setSize(1150,650);
 		setLocationRelativeTo(null);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		
+		 Random random = new Random();
 		 
 		b.addActionListener(new ActionListener() {
 	
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				b.setEnabled(false);
+				if(missingTNames.size()!=0) {
+				int g =	Integer.parseInt(nGems.getText())-100;
+				nGems.setText(Integer.toString(g));
+				
+				int r = random.nextInt(missingTNames.size());
+				
+				String tex = missingTNames.get(r);
+				System.out.println(tex);
+				primerPlano.setImagen( "src/res/"+tex+".png");
+				
+				missingTNames.remove(tex);
+				ownedTNames.add(tex);
+				pR.updateUI();
+				
+				String ide = "";
+				try { 
+			          Class.forName("org.sqlite.JDBC");
+			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+			          c.setAutoCommit(false);
+			          System.out.println("Opened database successfully");
+		
+			          stmt = c.createStatement();
+			          ResultSet rs = stmt.executeQuery( "SELECT ID FROM TOWERS WHERE NAME='"+tex+"';" );
+			          
+			          while ( rs.next() ) {
+			             String id = rs.getString("ID");
+			            ide = id;
+			             
+			           
+			          }
+			          rs.close();
+			          stmt.close();
+			          c.close();
+			       } catch ( Exception e ) {
+			          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			          System.exit(0);
+			       }
+			       System.out.println("Operation done successfully");
+				
+				try {//------------------INSERT TIENE-----------------
+			          Class.forName("org.sqlite.JDBC");
+			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+			          c.setAutoCommit(false);
+			          System.out.println("Opened database successfully");
+		
+			          stmt = c.createStatement();
+			          String sql = "INSERT INTO TIENE " +
+			                         "VALUES ('"+ide+"', '"+player+"' );"; 
+			          stmt.executeUpdate(sql);
+			         
+		
+			         
+		
+		
+			          stmt.close();
+			          c.commit();
+			          c.close();
+			       } catch ( Exception e ) {
+			          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			          System.exit(0);
+			       }
+			       System.out.println("Records created successfully");
+				
+				
+				
+				
+				
 				
 				t = new Thread(new Runnable() {
 					
@@ -154,17 +432,28 @@ public class Summon extends JFrame{
 							
 							label.repaint();
 							
+							
+							
+							
+							
+							
 							try {
 								Thread.sleep(60);
 							} catch (Exception e) {
 							}
 						}
-					}
+					try {
+						Thread.sleep(2000);
+						primerPlano.setVisible(false);
+						b.setEnabled(true);
+					} catch (Exception e) {
+						// TODO: handle exception
+					}}
 				});
 				t.start();
 			
 			}
-		});
+		}});
 	}
 	public Thread t;
 	
