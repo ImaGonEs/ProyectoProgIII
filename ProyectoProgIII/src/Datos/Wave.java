@@ -10,6 +10,7 @@ public class Wave {
 	private ArrayList<Enemy> wave;
 	private int enemiesN;
 	private boolean waveCompleted;
+	private int enemiesSpawned;
 	
 	public Wave( Enemy enemyType, int cooldown, int enemiesN) {
 		super();
@@ -19,6 +20,7 @@ public class Wave {
 		this.timeL =0;
 		this.wave = new ArrayList<Enemy>();
 		this.waveCompleted = false;
+		this.enemiesSpawned = 0;
 		
 		projectW();
 	}
@@ -49,6 +51,7 @@ public class Wave {
 		
 		wave.add(new Enemy(enemyType.getTex(0),enemyType.getTex(1),enemyType.getStart(),enemyType.getMap(),32,32,enemyType.getVel(),enemyType.getLp()));
 		
+		//enemiesSpawned++;
 		
 		
 	}

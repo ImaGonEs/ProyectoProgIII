@@ -148,6 +148,22 @@ public abstract class Tower implements Entity{
 	public Enemy getTarget() {
 		return target;
 	}
+
+	public float getAttackSpeed() {
+		return attackSpeed;
+	}
+
+	public void setAttackSpeed(float attackSpeed) {
+		this.attackSpeed = attackSpeed;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
 	
 	
 

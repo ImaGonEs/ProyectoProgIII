@@ -3,6 +3,7 @@
 import static weareSupports.Creador.QuickCast;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class WManager {
 
@@ -46,17 +47,30 @@ public class WManager {
 		}
 	}
 	
+	Random r = new Random();
 	public void projectW() {
 		
 		if (waveNumber<enemyTypes.size()) {
 		
-			enemyType = enemyTypes.get(waveNumber);
+		enemyType = enemyTypes.get(waveNumber);
 		cWave = new Wave (enemyType,enemiesCD,enemiesN);
 		waveNumber++;
 		
-		this.enemiesN++;
+		if (this.enemiesN>2 && this.enemiesN<10) {
+			
+			int rand = r.nextInt(2);
+			if (rand == 0)
+				this.enemiesN++;
+			else
+				this.enemiesN--;
+		}else if (this.enemiesN==2)
+			this.enemiesN++;
+		else if (this.enemiesN == 10)
+			this.enemiesN--;
+		//this.enemiesN++;
 		
 		System.out.println("Beggining wave " + waveNumber);
+		
 		}else {
 			System.out.println("END OF LEVEL");
 		}
@@ -86,9 +100,9 @@ public class WManager {
 	}
 
 
-	public void setEnemiesN(int enemiesN) {
-		this.enemiesN = enemiesN;
-	}
+//	public void setEnemiesN(int enemiesN) {
+//		this.enemiesN = enemiesN;
+//	}
 	
 	
 	

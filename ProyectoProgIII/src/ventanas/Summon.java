@@ -155,7 +155,7 @@ public class Summon extends JFrame{
 							label.repaint();
 							
 							try {
-								Thread.sleep(80);
+								Thread.sleep(60);
 							} catch (Exception e) {
 							}
 						}

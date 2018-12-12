@@ -17,7 +17,10 @@ public enum TowerType {
 	T01("IT"), //QuickCast("IT"), 10, 1000, 3
 	T02("TR"),//QuickCast("TR"), 10, 1000, 3
 	T03("TorreN1"),
-	T04("TorreN2");
+	T04("TorreN2"),
+	T05("TowerOtro"),
+	T06("TowerOtro2"),
+	T07("TowerOtro3");
 	// CannonE(QuickCast("TC"), 10, 1000, 3); QuickCast("IT"), 10, 1000, 3
 	
 	

@@ -22,6 +22,8 @@ public class Player {
 	private ArrayList<TowerMelee> towerList2;
 	private int oroint=15000;
 	private Texto oro;
+	private int nWave ;
+	private Texto tWave;
 	
 	boolean b = true;
 	
@@ -37,7 +39,11 @@ public class Player {
 		this.towerList = new ArrayList<Tower>();
 		this.towerList2 = new ArrayList<TowerMelee>();
 		
-		this.oro = new Texto(Integer.toString(oroint));
+		this.oro = new Texto(Integer.toString(oroint), 100, 100);
+		
+		this.tWave = new Texto(Integer.toString(nWave), 100, 200);
+		
+		
 		
 		
 		
@@ -88,6 +94,9 @@ public class Player {
 		
 		
 	oro.project();
+	tWave.project();
+	
+	
 	for (Tower t : towerList) {
 		t.update();
 		t.project();
@@ -129,7 +138,7 @@ public class Player {
 				if (getMouseCell().getR()) {
 				
 
-					putTower("T01");
+					putTower("T05");
 //				towerList.add(new TowerFire(TowerType.valueOf(id().get(0)), getMouseCell(),wManager.getWave().getEnemies()));
 				getMouseCell().setR(false);
 
@@ -147,7 +156,7 @@ public class Player {
 
 				if (getMouseCell().getR()) {
 					
-					putTower("T02");
+					putTower("T06");
 //				towerList.add(new TowerIce(TowerType.valueOf(id().get(1)), map.getCell(Mouse.getX()/32, 
 //						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
 						getMouseCell().setR(false);
@@ -169,7 +178,7 @@ public class Player {
 
 				if (getMouseCell().getR()) {
 					
-					putTower("T03");
+					putTower("T07");
 //				towerList.add(new TowerPoison(TowerType.valueOf(id().get(2)), map.getCell(Mouse.getX()/32, 
 //						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
 					getMouseCell().setR(false);
@@ -205,25 +214,24 @@ public class Player {
 			}
 		
 		
-		
+		nWave = wManager.getWaveNumber();
+		tWave.cambioTexto(nWave);
 		
 		
 		
 		
 		
 	
+		//System.out.println(wManager.getWave().isCompleted());
 		
 		
 		
-		
-			if (wManager.getWave().isCompleted()&&b) {
+			if (wManager.getWave().isCompleted()&&wManager.getWaveNumber()<6) {
 
 				System.out.println(wManager.getEnemiesN());
-				oroint += 100*wManager.getEnemiesN();
+				oroint += 100*(wManager.getEnemiesN()-1);
 				oro.cambioTexto(oroint);
-					b= false;
-					
-				
+		
 			}
 
 	}
@@ -245,6 +253,14 @@ public class Player {
        else if (t.equals("T04")) 
     	   towerList.add(new TowerPoison(TowerType.valueOf(t), getMouseCell(),wManager.getWave().getEnemies()));
        
+       else if (t.equals("T05")) 
+    	   towerList.add(new TowerPurpl(TowerType.valueOf(t), getMouseCell(),wManager.getWave().getEnemies()));
+       
+       else if (t.equals("T06")) 
+    	   towerList.add(new TowerRed(TowerType.valueOf(t), getMouseCell(),wManager.getWave().getEnemies()));
+       
+       else if (t.equals("T07")) 
+    	   towerList.add(new TowerGreen(TowerType.valueOf(t), getMouseCell(),wManager.getWave().getEnemies()));
        
        
 		
