@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,6 +28,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
@@ -60,7 +63,7 @@ class Gui extends JFrame {
 	private JTable jt2 = new JTable(stats2,column);   
 	GridBagLayout gbl = new GridBagLayout();
 
-	
+	private ArrayList <String> teamF = new ArrayList<String>(); //el objeto en si, esto lo usaremos para guardarlo en un txt que leera el mapa
 	
 	public static ArrayList<Sust> collect(){
 		
@@ -105,6 +108,34 @@ class Gui extends JFrame {
 		
 		return collect;
 	}
+	
+	protected static void guardaTeam(ArrayList<String> y){
+		
+		FileOutputStream fich = null;
+		ObjectOutputStream li = null;
+		
+		
+	
+		
+		try {
+			
+			fich = new FileOutputStream("src/res/Team.txt");
+			li = new ObjectOutputStream(fich);
+			li.writeObject(y);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+	           try {
+	               
+	               if (null != fich)
+	                  fich.close();
+	               } catch (Exception e2) {
+	                  e2.printStackTrace();
+	               }
+	            }
+	}
+	
 	
 	
 	
@@ -151,7 +182,7 @@ class Gui extends JFrame {
 	
 		ArrayList <JLabelGraficoAjustado> teami = new ArrayList<JLabelGraficoAjustado>(); //los iconos solo
 		
-		HashSet <Tower> teamT = new HashSet<Tower>(); //el objeto en si, esto lo usaremos para guardarlo en un txt que leera el mapa
+		
 		
 		
 		
@@ -215,33 +246,7 @@ class Gui extends JFrame {
 		//pnlE.add(new JSeparator(SwingConstants.VERTICAL));
 		pnlE.add(pD);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		
 		
@@ -293,41 +298,51 @@ class Gui extends JFrame {
 					
 					if (c== true) {
 						
-						
-						
-						//teami.add(z);
-						if (i.getId().equals("T01")) {
-						teamT.add(new TowerFire(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
-						
-						
-						
-						}else if (i.getId().equals("T02")) {
-							
-							
-							
-							teamT.add(new TowerIce(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
-							
-							
-							
-						}
-						
-						
-						
 						if (!teami.contains(z)){
+							if(teamF.size()<4) {
 							System.out.println("adre");
+							
+							switch(i.getId()) {
+							
+							case "T01":
+								teamF.add("T01");
+								break;
+							case "T02":
+								teamF.add("T02");
+								break;
+							case "T03":
+								teamF.add("T03");
+								break;
+							case "T04":
+								teamF.add("T04");
+								break;
+							case "T05":
+								teamF.add("T05");
+								break;
+							case "T06":
+								teamF.add("T06");
+								break;
+							case "T07":
+								teamF.add("T07");
+								break;
+							}
+							
 						teami.add(z);
 						collection.remove(z);
 						
+						for (String j : teamF) {
+							System.out.println(j);
+						}
 						for (JLabelGraficoAjustado icono : teami) {
 							pnlB.add(icono);
 							
 						}
-						
+							}
 						} else {
 							
 							teami.remove(z);
 							collection.add(z);
-							
+							teamF.remove(i.getId());
 							for (JLabelGraficoAjustado icono : collection) {
 								pnlA.add(icono);
 								
@@ -510,6 +525,24 @@ class Gui extends JFrame {
 				
 			}
 		});
+		
+		
+		bS.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(teamF.size()==4) {
+				guardaTeam(teamF);
+				}
+				else {
+					
+					JOptionPane.showMessageDialog(null, "¿Crees poder pasarte un nivel con menos de 4 torres? ¡Casi champion!");
+					
+				}
+			}
+		});
+		
 		
 		
 		pnlF.add(bS);

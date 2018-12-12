@@ -8,10 +8,17 @@ import org.lwjgl.input.Mouse;
 import static weareSupports.Creador.*;
 
 import java.sql.Connection;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 public class Player {
 
 	private Map map;
@@ -24,7 +31,7 @@ public class Player {
 	private Texto oro;
 	private int nWave ;
 	private Texto tWave;
-	
+	private ArrayList<String> team = new ArrayList<String>();
 	boolean b = true;
 	
 	public Player (Map map, WManager wManager) {
@@ -42,7 +49,7 @@ public class Player {
 		this.oro = new Texto(Integer.toString(oroint), 100, 100);
 		
 		this.tWave = new Texto(Integer.toString(nWave), 100, 200);
-		
+		this.team = leeTeam("Team");
 		
 		
 		
@@ -56,14 +63,59 @@ public class Player {
 //			
 //	}
 	
-	
-	
+@SuppressWarnings("unchecked")
+protected static ArrayList<String> leeTeam (String name) {
+		
+		
+		FileInputStream fich = null;
+		ObjectInputStream l = null;
+		ArrayList<String> s = new ArrayList<String>();
+		
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader("src/res/"+name+".txt"));
+			if (br.readLine()!=null) {
+				
+			fich = new FileInputStream ("src/res/"+name+".txt");
+			
+			l = new ObjectInputStream(fich);
+			
+		
+			
+		
+			s = (ArrayList<String>) l.readObject();
+			
+			fich.close();
+			}
+			
+		} catch ( ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (FileNotFoundException e) {
+			
+			//JOptionPane.showMessageDialog(null, "No has creado tu Team!");
+			
+			//System.out.println("Ningún archivo de guardado encontrado, ¡se generara uno en cuanto guardes el primero!");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return s;
+		
+		
+		
+	}
+
+
+
+
 	public void SetTile() {
 		
 		map.setCell((int)(Math.floor(Mouse.getX()) / 32),(int)( Math.floor(HEIGHT - Mouse.getY()-1)/32), types[i],false );
 			
 	}
 	
+	//ESTE MOTODO NO SE USA YA, HABRA QUE QUITARLO
 	public void setTower () { //para poner la torre con el click, no se mantiene
 		
 		if (i==0) {
@@ -129,7 +181,7 @@ public class Player {
 			//HE PUESTO QUE TODAS VALGAN 500 PORQUE FALTA LA BD
 			
 			if(oroint >= 500) {
-			
+			if(!team.isEmpty()) {
 			if ( Keyboard.getEventKey()== Keyboard.KEY_Q && Keyboard.getEventKeyState()){	
 				i = 0;
 				//setTower();
@@ -138,7 +190,7 @@ public class Player {
 				if (getMouseCell().getR()) {
 				
 
-					putTower("T05");
+					putTower(team.get(0));
 //				towerList.add(new TowerFire(TowerType.valueOf(id().get(0)), getMouseCell(),wManager.getWave().getEnemies()));
 				getMouseCell().setR(false);
 
@@ -156,7 +208,7 @@ public class Player {
 
 				if (getMouseCell().getR()) {
 					
-					putTower("T06");
+					putTower(team.get(1));
 //				towerList.add(new TowerIce(TowerType.valueOf(id().get(1)), map.getCell(Mouse.getX()/32, 
 //						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
 						getMouseCell().setR(false);
@@ -178,7 +230,7 @@ public class Player {
 
 				if (getMouseCell().getR()) {
 					
-					putTower("T07");
+					putTower(team.get(2));
 //				towerList.add(new TowerPoison(TowerType.valueOf(id().get(2)), map.getCell(Mouse.getX()/32, 
 //						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
 					getMouseCell().setR(false);
@@ -198,7 +250,7 @@ public class Player {
 				//towerList.add(new TowerCannonS(TowerType.CannonS, map.getCell(Mouse.getX()/32, (HEIGHT - Mouse.getY() - 1 /32))));
 
 				if (getMouseCell().getR()) {
-					putTower("T04");
+					putTower(team.get(3));
 //				towerList.add(new TowerThunder(TowerType.valueOf(id().get(3)), map.getCell(Mouse.getX()/32, 
 //						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
 				getMouseCell().setR(false);
@@ -209,6 +261,7 @@ public class Player {
 				oroint = oroint-500;
 				oro.cambioTexto(oroint);
 				}
+			}
 			}
 			}
 			}
