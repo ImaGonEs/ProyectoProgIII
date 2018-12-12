@@ -213,6 +213,7 @@ protected static ArrayList<String> leeTeam (String name) {
 //						(HEIGHT - Mouse.getY() - 1 )/32),wManager.getWave().getEnemies()));
 						getMouseCell().setR(false);
 
+						
 				
 				oroint = oroint-500;
 				oro.cambioTexto(oroint);

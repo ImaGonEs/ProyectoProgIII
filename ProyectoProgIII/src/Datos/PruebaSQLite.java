@@ -210,37 +210,37 @@ public class PruebaSQLite {
 	      
 	      
 //	      
-	      try { //-------------PRINT TOWERS---------------------
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	          System.out.println("Opened database successfully");
-
-	          stmt = c.createStatement();
-	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
-	          
-	          while ( rs.next() ) {
-	             String id = rs.getString("ID");
-	             String  name = rs.getString("NAME");
-	             int damage  = rs.getInt("DAMAGE");
-	             int  range = rs.getInt("RANGE");
-	             float atkspeed = rs.getFloat("ATKSPEED");
-	             
-	             System.out.println( "ID = " + id );
-	             System.out.println( "NAME = " + name );
-	             System.out.println( "DAMAGE = " + damage );
-	             System.out.println( "RANGE = " + range );
-	             System.out.println( "AS = " + atkspeed );
-	             System.out.println();
-	          }
-	          rs.close();
-	          stmt.close();
-	          c.close();
-	       } catch ( Exception e ) {
-	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	          System.exit(0);
-	       }
-	       System.out.println("Operation done successfully");
+//	      try { //-------------PRINT TOWERS---------------------
+//	          Class.forName("org.sqlite.JDBC");
+//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//	          c.setAutoCommit(false);
+//	          System.out.println("Opened database successfully");
+//
+//	          stmt = c.createStatement();
+//	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
+//	          
+//	          while ( rs.next() ) {
+//	             String id = rs.getString("ID");
+//	             String  name = rs.getString("NAME");
+//	             int damage  = rs.getInt("DAMAGE");
+//	             int  range = rs.getInt("RANGE");
+//	             float atkspeed = rs.getFloat("ATKSPEED");
+//	             
+//	             System.out.println( "ID = " + id );
+//	             System.out.println( "NAME = " + name );
+//	             System.out.println( "DAMAGE = " + damage );
+//	             System.out.println( "RANGE = " + range );
+//	             System.out.println( "AS = " + atkspeed );
+//	             System.out.println();
+//	          }
+//	          rs.close();
+//	          stmt.close();
+//	          c.close();
+//	       } catch ( Exception e ) {
+//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//	          System.exit(0);
+//	       }
+//	       System.out.println("Operation done successfully");
 //	       
 //	       
 //	       int[][] imap = {
@@ -325,35 +325,35 @@ public class PruebaSQLite {
 //		       System.out.println("Operation done successfully");
 //		      
 //
-//	 	       try {//-------------------PRINT TIENE---------------------
-//	 		          Class.forName("org.sqlite.JDBC");
-//	 		          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//	 		          c.setAutoCommit(false);
-//	 		          System.out.println("Opened database successfully");
-//	 
-//	 		          stmt = c.createStatement();
-//	 		          ResultSet rs = stmt.executeQuery( "SELECT * FROM TIENE;" );
-//	 		          
-//	 		          while ( rs.next() ) {
-//	 		             
-//	 		             String  name = rs.getString("NAME_P");
-//	 		             String t  = rs.getString("ID_T");
-//	 		             
-//	 		             
-//	 		       
-//	 		             System.out.println( "NAME_P = " + name );
-//	 		             System.out.println( "TORRE = " + t );
-//	 		             
-//	 		             System.out.println();
-//	 		          }
-//	 		          rs.close();
-//	 		          stmt.close();
-//	 		          c.close();
-//	 		       } catch ( Exception e ) {
-//	 		          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//	 		          System.exit(0);
-//	 		       }
-//	 		       System.out.println("Operation done successfully");
+	 	       try {//-------------------PRINT TIENE---------------------
+	 		          Class.forName("org.sqlite.JDBC");
+	 		          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	 		          c.setAutoCommit(false);
+	 		          System.out.println("Opened database successfully");
+	 
+	 		          stmt = c.createStatement();
+	 		          ResultSet rs = stmt.executeQuery( "SELECT * FROM TIENE;" );
+	 		          
+	 		          while ( rs.next() ) {
+	 		             
+	 		             String  name = rs.getString("NAME_P");
+	 		             String t  = rs.getString("ID_T");
+	 		             
+	 		             
+	 		       
+	 		             System.out.println( "NAME_P = " + name );
+	 		             System.out.println( "TORRE = " + t );
+	 		             
+	 		             System.out.println();
+	 		          }
+	 		          rs.close();
+	 		          stmt.close();
+	 		          c.close();
+	 		       } catch ( Exception e ) {
+	 		          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	 		          System.exit(0);
+	 		       }
+	 		       System.out.println("Operation done successfully");
 	     
 //	 		      try { //-----------------INSERT PLAYERS-----------------------------
 //	 		          Class.forName("org.sqlite.JDBC");
