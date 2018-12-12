@@ -26,7 +26,7 @@ public class SelectorMapas extends JFrame{
 		
 		panel = new JPanel();
 		//panel.setLayout(new GridLayout(2, 6));
-		panel.setBackground(Color.black);
+		panel.setBackground(Color.orange);
 		
 		m1 = new JLabelGraficoAjustado("CapturaMapa", 300, 200);
 		m2 = new JLabelGraficoAjustado("CapturaMapa", 300, 200);
@@ -38,6 +38,8 @@ public class SelectorMapas extends JFrame{
 
 		fondo = new JLabelGraficoAjustado("fondoMapas", 1000, 700);
 		fondo.setLayout(new GridLayout(2, 6));
+		
+		
 		fondo.add(m1);
 		fondo.add(m2);
 		fondo.add(m3);
@@ -55,13 +57,15 @@ public class SelectorMapas extends JFrame{
 		panel.add(m6);
 
 		
-		this.add(fondo);
+		//this.add(fondo);
+		
 		
 
-		//this.add(panel);
+		this.add(panel);
 
 	
 		//this.add(panel);
+		
 
 		
 		m1.addMouseListener(new MouseListener() {

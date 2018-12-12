@@ -14,14 +14,14 @@ public class Texto {
 	private TrueTypeFont font; 
 	private String text;
 	
-	public Texto(String text) {
+	public Texto(String text, int x, int y) {
 		
 		this.font = new TrueTypeFont((new Font ("Times New Roman", Font.BOLD,32)), false);
 		
 		this.text = text;
 		
-		this.x = 500;
-		this.y = 500;
+		this.x = x;
+		this.y = y;
 		
 	}
 	
