@@ -133,6 +133,8 @@ public class Enemy implements Entity{
 				return setDir(map,s,c+1);
 			}
 			
+			
+			
 		}else if(c==1&&s.getXPlace()<39) {
 
 			
