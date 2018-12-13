@@ -262,7 +262,7 @@ public class Summon extends JFrame{
 		
 		pR.add(b);
 		
-		JLabel lD = new  JLabel("HOLA BUENAS TARDES");
+		JLabel lD = new  JLabel("TORRES EN PROPIEDAD");
 		lD.setForeground(Color.WHITE);
 		
 		pR.add(lD);
@@ -361,7 +361,8 @@ public class Summon extends JFrame{
 				
 				missingTNames.remove(tex);
 				ownedTNames.add(tex);
-				pR.updateUI();
+				pR.add(new JLabelGraficoAjustado(tex, 100, 100));
+				
 				
 				String ide = "";
 				try { 
@@ -446,6 +447,7 @@ public class Summon extends JFrame{
 						Thread.sleep(2000);
 						primerPlano.setVisible(false);
 						b.setEnabled(true);
+						pR.repaint();
 					} catch (Exception e) {
 						// TODO: handle exception
 					}}
