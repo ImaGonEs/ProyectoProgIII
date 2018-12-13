@@ -12,7 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.TreeSet;
 
 import javax.swing.BorderFactory;
@@ -44,6 +48,7 @@ import Datos.TowerCannon;
 import Datos.TowerFire;
 import Datos.TowerIce;
 import Datos.TowerMelee;
+import Datos.TowerType;
 import weareSupports.JLabelGraficoAjustado;
 
 class Gui extends JFrame {
@@ -63,14 +68,52 @@ class Gui extends JFrame {
 	private JTable jt2 = new JTable(stats2,column);   
 	GridBagLayout gbl = new GridBagLayout();
 
+	
+	
+	String player = "";
+	
+	
+	
 	private ArrayList <String> teamF = new ArrayList<String>(); //el objeto en si, esto lo usaremos para guardarlo en un txt que leera el mapa
 	
 	public static ArrayList<Sust> collect(){
 		
 		Connection c = null;
 		Statement stmt = null;
+		
+		String player = "";
+	    Properties prop = new Properties();
+
+			InputStream input = null;
+
+			try {
+
+				input = new FileInputStream("config.properties");
+
+				// load a properties file
+				prop.load(input);
+
+				// get the property value and print it out
+				
+				String lastUs = prop.getProperty("username");
+				player = lastUs;
+				
+
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			} finally {
+				if (input != null) {
+					try {
+						input.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		Sust az = null;
 		ArrayList<Sust> collect = new ArrayList<Sust>();
+		ArrayList<String> towerCodes = new ArrayList<String>();
+		
 		 try {
 		      Class.forName("org.sqlite.JDBC");
 		      c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
@@ -78,19 +121,17 @@ class Gui extends JFrame {
 		      System.out.println("Opened database successfully");
 
 		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
+		      ResultSet rs = stmt.executeQuery( "SELECT ID_T FROM TIENE WHERE NAME_P='"+player+"';" );
 		      
 		      while ( rs.next() ) {
 		         
-		         String  id = rs.getString("id"); 
+		         String  id = rs.getString("id_t"); 
 		         
-		         String name = rs.getString("name");
+		        // TowerType t = TowerType.valueOf(id);
+		        // String name = t.getTex();
 		         
-		         int dmg = rs.getInt("damage");
-		         int range = rs.getInt("range");
-		         float atkspd = rs.getFloat("atkspeed");
-		        az = new Sust(id,name,dmg,range,atkspd);
-		         collect.add(az);
+		        towerCodes.add(id); 
+		        
 		      }
 		      
 		      rs.close();
@@ -101,9 +142,40 @@ class Gui extends JFrame {
 		      System.exit(0);
 		   }
 		   System.out.println("Operation done successfully");
-		
-		
-		
+		   
+		   
+		for (String s: towerCodes) {
+		   try {
+			      Class.forName("org.sqlite.JDBC");
+			      c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+			      c.setAutoCommit(false);
+			      System.out.println("Opened database successfully");
+
+			      stmt = c.createStatement();
+			      ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS WHERE ID='"+s+"';" );
+			      
+			      while ( rs.next() ) {
+			         
+			         String  id = rs.getString("id"); 
+			         
+			        String name = rs.getString("name");
+			         
+			         int dmg = rs.getInt("damage");
+			         int range = rs.getInt("range");
+			         float atkspd = rs.getFloat("atkspeed");
+			        az = new Sust(id,name,dmg,range,atkspd);
+			         collect.add(az);
+			      }
+			      
+			      rs.close();
+			      stmt.close();
+			      c.close();
+			   } catch ( Exception e ) {
+			      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			      System.exit(0);
+			   }
+			   System.out.println("Operation done successfully");
+		}
 		
 		
 		return collect;
@@ -142,6 +214,66 @@ class Gui extends JFrame {
 	
 	
 	Gui() {
+		
+		
+		
+		
+		
+		
+		
+	    Properties prop = new Properties();
+
+			InputStream input = null;
+
+			try {
+
+				input = new FileInputStream("config.properties");
+
+				// load a properties file
+				prop.load(input);
+
+				// get the property value and print it out
+				
+				String lastUs = prop.getProperty("username");
+				player = lastUs;
+				
+
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			} finally {
+				if (input != null) {
+					try {
+						input.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		setLayout(gbl);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
