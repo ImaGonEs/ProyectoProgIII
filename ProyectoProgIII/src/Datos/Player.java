@@ -212,14 +212,14 @@ public class Player {
 			}
 			}
 			}
-		//u
+		
 		
 		nWave = wManager.getWaveNumber();
 		tWave.cambioTexto(nWave);
 		
 		
 		
-		
+		//uuuuuuuuuuu
 		
 	
 		//System.out.println(wManager.getWave().isCompleted());
