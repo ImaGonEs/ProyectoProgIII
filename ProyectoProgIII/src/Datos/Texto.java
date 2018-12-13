@@ -25,6 +25,17 @@ public class Texto {
 		
 	}
 	
+public Texto(String text, int x, int y,int t) {
+		
+		this.font = new TrueTypeFont((new Font ("Times New Roman", Font.BOLD,t)), false);
+		
+		this.text = text;
+		
+		this.x = x;
+		this.y = y;
+		
+	}
+	
 	
 	public void cambioTexto(int a) {
 		

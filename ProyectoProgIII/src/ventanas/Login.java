@@ -279,7 +279,7 @@ public class Login extends JFrame{
 
 			// load a properties file
 			prop.load(input);
-
+			
 			// get the property value and print it out
 			
 			String lastUs = prop.getProperty("username");

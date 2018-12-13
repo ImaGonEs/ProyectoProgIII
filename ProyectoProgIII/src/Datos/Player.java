@@ -33,6 +33,7 @@ public class Player {
 	private Texto tWave;
 	private ArrayList<String> team = new ArrayList<String>();
 	boolean b = true;
+	private Texto textWin = new Texto("", 500, 500,120);
 	
 	public Player (Map map, WManager wManager) {
 		
@@ -148,7 +149,7 @@ protected static ArrayList<String> leeTeam (String name) {
 		
 	oro.project();
 	tWave.project();
-	
+	textWin.project();
 	
 	for (Tower t : towerList) {
 		t.update();
@@ -286,6 +287,14 @@ protected static ArrayList<String> leeTeam (String name) {
 				oroint += 100*(wManager.getEnemiesN()-1);
 				oro.cambioTexto(oroint);
 			}
+			
+			if (wManager.getWaveNumber()==2) {
+				textWin = new Texto("¡VICTORIA!", 400, 400, 64);
+				
+			}
+			
+			
+		
 			
 
 	}
