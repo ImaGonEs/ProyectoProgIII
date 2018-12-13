@@ -212,7 +212,7 @@ public class Player {
 			}
 			}
 			}
-		
+		//u
 		
 		nWave = wManager.getWaveNumber();
 		tWave.cambioTexto(nWave);
