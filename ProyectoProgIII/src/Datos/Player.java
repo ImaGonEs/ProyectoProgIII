@@ -266,7 +266,7 @@ protected static ArrayList<String> leeTeam (String name) {
 			}
 			}
 			}
-
+			}
 		
 		nWave = wManager.getWaveNumber();
 		tWave.cambioTexto(nWave);
@@ -286,7 +286,7 @@ protected static ArrayList<String> leeTeam (String name) {
 				oroint += 100*(wManager.getEnemiesN()-1);
 				oro.cambioTexto(oroint);
 			}
-			}
+			
 
 	}
 	
