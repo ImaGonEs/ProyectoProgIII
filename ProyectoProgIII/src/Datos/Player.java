@@ -288,7 +288,7 @@ protected static ArrayList<String> leeTeam (String name) {
 				oro.cambioTexto(oroint);
 			}
 			
-			if (wManager.getWaveNumber()==2) {
+			if (wManager.getWaveNumber()==6) {
 				textWin = new Texto("¡VICTORIA!", 400, 400, 64);
 				
 			}
