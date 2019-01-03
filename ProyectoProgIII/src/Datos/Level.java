@@ -156,10 +156,10 @@ public class Level {
 //				enemies.add(new Enemy(QuickCast("sans"),QuickCast("sans"),grid.getCell(0,14),grid, 32,32,80,300*(a+1)));
 				enemies.add(new Enemy(QuickCast("Mob0"),QuickCast("Mob0S"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
 				enemies.add(new Enemy(QuickCast("seta"),QuickCast("seta"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
-				enemies.add(new Enemy(QuickCast("crab"),QuickCast("crab"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
-				enemies.add(new Enemy(QuickCast("SkeletonLight"),QuickCast("SkeletonLight"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
-				enemies.add(new Enemy(QuickCast("Mob0"),QuickCast("Mob0S"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
-				enemies.add(new Enemy(QuickCast("seta"),QuickCast("seta"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("pig1"),QuickCast("pig2"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("demon1"),QuickCast("demon2"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("ghost1"),QuickCast("ghost2"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("cabra1"),QuickCast("cabra2"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
 				
 				//(new Enemy(QuickCast("st"),grid.getCell(0,14),grid, 32,32,80,70))};
 

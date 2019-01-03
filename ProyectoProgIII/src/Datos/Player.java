@@ -28,12 +28,13 @@ public class Player {
 	private ArrayList<Tower> towerList;
 	private ArrayList<TowerMelee> towerList2;
 	private int oroint=15000;
-	private Texto oro;
 	private int nWave ;
-	private Texto tWave;
 	private ArrayList<String> team = new ArrayList<String>();
 	boolean b = true;
 	private Texto textWin = new Texto("", 500, 500,120);
+	private Texto oro, tWave, textWave, textGold, tHP, textHP;
+	private int hp;
+	
 	
 	public Player (Map map, WManager wManager) {
 		
@@ -46,11 +47,22 @@ public class Player {
 		this.wManager = wManager;
 		this.towerList = new ArrayList<Tower>();
 		this.towerList2 = new ArrayList<TowerMelee>();
+		this.hp = 100;
 		
-		this.oro = new Texto(Integer.toString(oroint), 100, 100);
 		
-		this.tWave = new Texto(Integer.toString(nWave), 100, 200);
+		
+		this.textWave = new Texto("WAVE: ", 50, 50);
+		this.tWave = new Texto(Integer.toString(nWave), 250, 50);
+		
+		
+		this.textGold = new Texto("GOLD: ", 350, 50);
+		this.oro = new Texto(Integer.toString(oroint),500, 50);
+		
+		this.textHP = new Texto("HP:", 700, 50);
+		this.tHP = new Texto(Integer.toString(hp), 800, 50);
+		
 		this.team = leeTeam("Team");
+		
 		
 		
 		
@@ -150,6 +162,10 @@ protected static ArrayList<String> leeTeam (String name) {
 	oro.project();
 	tWave.project();
 	textWin.project();
+	textWave.project();
+	textGold.project();
+	textHP.project();
+	tHP.project();
 	
 	for (Tower t : towerList) {
 		t.update();
@@ -288,7 +304,7 @@ protected static ArrayList<String> leeTeam (String name) {
 				oro.cambioTexto(oroint);
 			}
 			
-			if (wManager.getWaveNumber()==6) {
+			if (wManager.getWaveNumber()==6&&wManager.getWave().isCompleted()) {
 				textWin = new Texto("¡VICTORIA!", 400, 400, 64);
 				
 			}

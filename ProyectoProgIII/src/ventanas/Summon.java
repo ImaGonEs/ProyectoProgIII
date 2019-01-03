@@ -44,21 +44,16 @@ public class Summon extends JFrame{
     Statement stmt = null;
     String player = "";
     
+    String lastUs;
     
+    ArrayList<String> ownedTowers = new ArrayList<String>();
+	ArrayList<String> ownedTNames = new ArrayList<String>();
+	ArrayList<String> missingTowers = new ArrayList<String>();
+	ArrayList<String> missingTNames = new ArrayList<String>();
     
 	public Summon() {
 		
-		
-		
-		
-	     
-	    ArrayList<String> ownedTowers = new ArrayList<String>();
-	    ArrayList<String> ownedTNames = new ArrayList<String>();
-	    ArrayList<String> missingTowers = new ArrayList<String>();
-	    ArrayList<String> missingTNames = new ArrayList<String>();
-	  
-	    
-	   
+  
 	    Properties prop = new Properties();
 
 		InputStream input = null;
@@ -72,7 +67,7 @@ public class Summon extends JFrame{
 
 			// get the property value and print it out
 			
-			String lastUs = prop.getProperty("username");
+			lastUs = prop.getProperty("username");
 			player = lastUs;
 			
 
@@ -262,7 +257,7 @@ public class Summon extends JFrame{
 		
 		pR.add(b);
 		
-		JLabel lD = new  JLabel("TORRES EN PROPIEDAD");
+		JLabel lD = new  JLabel("TORRES DISPONIBLES");
 		lD.setForeground(Color.WHITE);
 		
 		pR.add(lD);
@@ -296,7 +291,7 @@ public class Summon extends JFrame{
 		
 		JLabelGraficoAjustado primerPlano = new JLabelGraficoAjustado("Empty",100,100);
 		primerPlano.setSize(100, 100);
-		primerPlano.setBounds(500, 300, 100,100);
+		primerPlano.setBounds(460, 300, 100,100);
 		
 		primerPlano.setVisible(false);
 		
@@ -462,5 +457,56 @@ public class Summon extends JFrame{
 	public static void main(String[] args) {
 		new Summon();
 	}
+
+	public JLabel getnGems() {
+		return nGems;
+	}
+
+	public void setnGems(JLabel nGems) {
+		this.nGems = nGems;
+	}
+public JButton getButton() {
+	return b;
+}
+
+public ArrayList<String> getOwnedTowers() {
+	return ownedTowers;
+}
+
+public void setOwnedTowers(ArrayList<String> ownedTowers) {
+	this.ownedTowers = ownedTowers;
+}
+
+public ArrayList<String> getOwnedTNames() {
+	return ownedTNames;
+}
+
+public void setOwnedTNames(ArrayList<String> ownedTNames) {
+	this.ownedTNames = ownedTNames;
+}
+
+public ArrayList<String> getMissingTowers() {
+	return missingTowers;
+}
+
+public void setMissingTowers(ArrayList<String> missingTowers) {
+	this.missingTowers = missingTowers;
+}
+
+public ArrayList<String> getMissingTNames() {
+	return missingTNames;
+}
+
+public void setMissingTNames(ArrayList<String> missingTNames) {
+	this.missingTNames = missingTNames;
+}
+
+public String getLastUs() {
+	return lastUs;
+}
+
+public void setLastUs(String lastUs) {
+	this.lastUs = lastUs;
+}
 
 }
