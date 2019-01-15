@@ -54,7 +54,7 @@ import weareSupports.JLabelGraficoAjustado;
 class Gui extends JFrame {
 	
 	
-	private boolean jtcont  = true;;
+	 private boolean jtcont  = true;;
 	 private String stats1[][]={	{"Damage",""},    
 			{"Attack speed",""},    
 			{"Radius",""}}; 

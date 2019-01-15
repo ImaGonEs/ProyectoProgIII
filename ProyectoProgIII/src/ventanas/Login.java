@@ -132,6 +132,7 @@ public class Login extends JFrame{
 	             String name = rs.getString("NAME_P");
 	             String pass = rs.getString("PASSWORD");
 	             
+	             
 	             mapa.put(name, pass);
 	             
 	             s.add(name);
