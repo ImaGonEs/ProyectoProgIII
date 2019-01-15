@@ -8,15 +8,18 @@ import java.util.ArrayList;
 
 public class BD {
 	
+	private static final String HOST = "ec2-54-75-231-156.eu-west-1.compute.amazonaws.com:5432/dedk9rgba2je42";
+	private static final String USERNAME = "bbjwauldhgoetw";
+	private static final String PASSWORD = "16fffd7a43d6a6aa0d08be2230ad53489b5c9fe99189737373d22b14a5e5ca8f";
+	
 	static Connection c = null;
     static Statement stmt = null;
-    
     
     public void insert (String tName, String code) {
     	
     	 try {
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          Class.forName("org.postgresql.Driver");
+	          c = DriverManager.getConnection("jdbc:postgresql://"+ HOST + "?sslmode=require", USERNAME , PASSWORD);
 	          c.setAutoCommit(false);
 	          System.out.println("Opened database successfully");
 
@@ -41,8 +44,8 @@ public class BD {
     	
     	
 	      try { 
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+        Class.forName("org.postgresql.Driver");
+        c = DriverManager.getConnection("jdbc:postgresql://"+ HOST + "?sslmode=require", USERNAME , PASSWORD);
         System.out.println("Opened database successfully");
 
         stmt = c.createStatement();
@@ -65,8 +68,8 @@ public class BD {
     	 
     	String s = "";
 	      try { 
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+        Class.forName("org.postgresql.Driver");
+        c = DriverManager.getConnection("jdbc:postgresql://"+ HOST + "?sslmode=require", USERNAME , PASSWORD);
         c.setAutoCommit(false);
         System.out.println("Opened database successfully");
 
@@ -74,10 +77,7 @@ public class BD {
         ResultSet rs = stmt.executeQuery( "SELECT "+cName+" FROM "+tName+";" );
         
         while ( rs.next() ) {
-           s = rs.getString(cName);
-          
-           
-           
+           s = rs.getString(cName); 
         }
         rs.close();
         stmt.close();
@@ -97,8 +97,8 @@ public class BD {
    	 
     	int i = 0;
 	      try { 
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+        Class.forName("org.postgresql.Driver");
+        c = DriverManager.getConnection("jdbc:postgresql://"+ HOST + "?sslmode=require", USERNAME , PASSWORD);
         c.setAutoCommit(false);
         System.out.println("Opened database successfully");
 
@@ -125,8 +125,8 @@ public class BD {
     public void updatePlayers(String code) {
     	
     	try { 
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          Class.forName("org.postgresql.Driver");
+	          c = DriverManager.getConnection("jdbc:postgresql://"+ HOST + "?sslmode=require", USERNAME , PASSWORD);
 	          c.setAutoCommit(false);
 	          System.out.println("Opened database successfully");
 	
@@ -150,8 +150,8 @@ public class BD {
     public  void printTowers() {
     	
 	      try { 
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+        Class.forName("org.postgresql.Driver");
+        c = DriverManager.getConnection("jdbc:postgresql://"+ HOST + "?sslmode=require", USERNAME , PASSWORD);
         c.setAutoCommit(false);
         System.out.println("Opened database successfully");
 
@@ -185,8 +185,8 @@ public class BD {
     public void printTiene() {
     	
     	try {//-------------------PRINT TIENE---------------------
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          Class.forName("org.postgresql.Driver");
+	          c = DriverManager.getConnection("jdbc:postgresql://"+ HOST + "?sslmode=require", USERNAME , PASSWORD);
 	          c.setAutoCommit(false);
 	          System.out.println("Opened database successfully");
 
@@ -217,8 +217,8 @@ public class BD {
    public void printPlayers() {
 	   
 	   try {//-------------------PRINT PLAYERS---------------------
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          Class.forName("org.postgresql.Driver");
+	          c = DriverManager.getConnection("jdbc:postgresql://"+ HOST + "?sslmode=require", USERNAME , PASSWORD);
 	          c.setAutoCommit(false);
 	          System.out.println("Opened database successfully");
 
@@ -255,8 +255,8 @@ public class BD {
 	ArrayList<String> towers =  new ArrayList<String>();
 	    	
 	    	try {
-		          Class.forName("org.sqlite.JDBC");
-		          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+		          Class.forName("org.postgresql.Driver");
+		          c = DriverManager.getConnection("jdbc:postgresql://"+ HOST + "?sslmode=require", USERNAME , PASSWORD);
 		          c.setAutoCommit(false);
 		          System.out.println("Opened database successfully");
 

@@ -1,71 +1,60 @@
 package Datos;
 
-import java.awt.HeadlessException;
 import java.sql.*;
 
-import javax.swing.JOptionPane;
-
-public class Conexion extends javax.swing.JFrame {
+public class Conexion {
 	
-	public String driver = "com.mysql.cj.jdbc.Driver";
-	public String url = "jbdc:mysql://127.0.0.1:3306/ggtowerdefense";
-	public String user = "ikiggtd";
-	public String password = "elmegapush";
-	Connection cn;
-	Statement stm;
+	private static final String HOST = "ec2-54-75-231-156.eu-west-1.compute.amazonaws.com:5432/dedk9rgba2je42";
+	private static final String USERNAME = "bbjwauldhgoetw";
+	private static final String PASSWORD = "16fffd7a43d6a6aa0d08be2230ad53489b5c9fe99189737373d22b14a5e5ca8f";
 	
-	public Conexion() {
-		//this.setLocationRelativeTo(null);
+	private static Connection getConnection() throws SQLException {
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (Exception e) {
+			System.out.println("Where is your PostheSQL JDBC Driver? " + "Include in your library path!");
+			return null;
+		}
+		Connection conn = DriverManager.getConnection("jdbc:postgresql://"+ HOST + "?sslmode=require", USERNAME , PASSWORD);
+		return conn;
+		
+	}
+	
+	public static void main(String[] args) throws SQLException {
+		Connection connection = null;
+		try {
+			connection = getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (connection != null) {
+			System.out.println("Connection done!!");
+		}else {
+			System.out.println("Failed connection!");
+		}
+		Statement stmt = connection.createStatement();
+		try {
+			stmt.executeUpdate("CREATE TABLE TOWERS " +
+            "(ID VARCHAR(3) PRIMARY KEY     NOT NULL," +
+           " NAME           TEXT    NOT NULL, " + 
+           " DAMAGE            INT     NOT NULL, " + 
+           " RANGE        INT NOT NULL, " + 
+           " ATKSPEED         FLOAT NOT NULL)");
+		} catch (Exception e) {
+			System.out.println("La tala ya existe");
+		}
 		
 		try {
-			Connection myConnection = DriverManager.getConnection(url);
-			Statement myStatement = myConnection.createStatement();
-			ResultSet myResult = myStatement.executeQuery("SELECT * FROM PLAYERS");
-			while (myResult.next()){
-				System.out.println(myResult.getString("NAME_P") + ", " + myResult.getString("PASSWORD"));
-			}
-//			Class.forName(driver);
-//			DriverManager.getConnection(url, user, password);
-//			JOptionPane.showMessageDialog(null, "Conexion establecida");
+			stmt.executeUpdate("INSERT INTO TOWERS (ID,NAME,DAMAGE,RANGE,ATKSPEED) VALUES ('T03', 'TorreN1', 10, 1000, 6 );");
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null,e.getMessage());
+			System.out.println("El insert ya existe");
+		}
+		
+		ResultSet rs = stmt.executeQuery("SELECT * FROM TOWERS");
+		while (rs.next()) {
+			System.out.println("Read from DB: " + rs.getString(2));
 		}
 		
 	}
 	
-	
-	public static void main(String[] args) {
-		
-		Conexion c = new Conexion();
-		
-//		try {
-//			public String driver = "com.mysql.jdbc.Driver";
-//			public String url = "jbdc:mysql://127.0.0.1/ggtowerdefense";
-//			public String user = "root";
-//			public String password = "";
-//			
-//			Connection cn = DriverManager.getConnection(url, user, password);
-//			PreparedStatement pst = cn.prepareStatement("SELECT * FROM PLAYERS");
-//			
-//			pst.setString(1, "KIKEXD");
-//			
-//			ResultSet rs = pst.executeQuery();
-//			
-//			if (rs.next()) {
-//				System.out.println(rs.getString("NAME_P"));
-//				System.out.println(rs.getString("PASSWORD"));
-//				System.out.println(rs.getString("GEMS"));
-//				System.out.println(rs.getString("POS"));
-//			}else {
-//				System.out.println("REGISTRO NO ENCONTRADO");
-//			}
-//			
-//		} catch (HeadlessException | SQLException e) {
-//			
-//			System.out.println("Error: " + e);
-//			
-//		}
-		
-	}
-
 }
