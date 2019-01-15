@@ -3,7 +3,7 @@ package Datos;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-
+import weareSupports.BDlocal;
 
 import static weareSupports.Creador.*;
 
@@ -323,7 +323,9 @@ protected static ArrayList<String> leeTeam (String name) {
 			}
 			
 			if (wManager.getWaveNumber()==6&&wManager.getWave().isCompleted()) {
-				textWin = new Texto("¡VICTORIA!", 400, 400, 64);
+				textWin = new Texto("¡VICTORIA! +100 GEMAS! ", 400, 400, 64);
+				BDlocal bd = new BDlocal();
+				bd.updateGems(player, "+100");
 				
 			}
 			

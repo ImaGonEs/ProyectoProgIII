@@ -22,9 +22,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Datos.TowerType;
+import weareSupports.BDlocal;
 import weareSupports.JLabelGraficoAjustado;
 
 public class Summon extends JFrame{
@@ -39,7 +41,6 @@ public class Summon extends JFrame{
 	JLabelGraficoAjustado lGems;
 	JLabel nGems;
 	
-
 	Connection c = null;
     Statement stmt = null;
     String player = "";
@@ -237,7 +238,9 @@ public class Summon extends JFrame{
 		b = new JButton("SUMMON");
 		
 		lGems = new JLabelGraficoAjustado("gem", 40, 40);
-		nGems = new JLabel("9999");
+		
+		BDlocal bd  = new BDlocal();
+		nGems = new JLabel(Integer.toString((bd.getGems(player))));
 		
 		JPanel pTop = new JPanel();
 		pTop.setBackground(Color.BLACK);
@@ -343,9 +346,12 @@ public class Summon extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
+				if (bd.getGems(player)>=100) {
 				b.setEnabled(false);
 				if(missingTNames.size()!=0) {
 				int g =	Integer.parseInt(nGems.getText())-100;
+				bd.updateGems(player,"-100");
 				nGems.setText(Integer.toString(g));
 				
 				int r = random.nextInt(missingTNames.size());
@@ -450,7 +456,11 @@ public class Summon extends JFrame{
 				t.start();
 			
 			}
-		}});
+		}else {JOptionPane.showMessageDialog(null,"NECESITAS 100 GEMAS PARA HACER LA SUMMON");}
+				}
+			}
+		);
+		
 	}
 	public Thread t;
 	

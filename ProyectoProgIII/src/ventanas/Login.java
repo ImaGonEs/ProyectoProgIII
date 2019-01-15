@@ -197,7 +197,7 @@ public class Login extends JFrame{
 			
 			          stmt = c.createStatement();
 			          String sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
-			                         "VALUES ('"+user+"', '"+passw+"', 0, 1 );"; 
+			                         "VALUES ('"+user+"', '"+passw+"', 500, 1 );"; 
 			          stmt.executeUpdate(sql);
 			
 			        
