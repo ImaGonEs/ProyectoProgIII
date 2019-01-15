@@ -67,10 +67,10 @@ class Gui extends JFrame {
 	private JTable jt=new JTable(stats1,column); 
 	private JTable jt2 = new JTable(stats2,column);   
 	GridBagLayout gbl = new GridBagLayout();
-
 	
 	
-	String player = "";
+	
+	static String player = "";
 	
 	
 	
@@ -81,7 +81,7 @@ class Gui extends JFrame {
 		Connection c = null;
 		Statement stmt = null;
 		
-		String player = "";
+		
 	    Properties prop = new Properties();
 
 			InputStream input = null;
@@ -181,7 +181,7 @@ class Gui extends JFrame {
 		return collect;
 	}
 	
-	protected static void guardaTeam(ArrayList<String> y){
+	protected static void guardaTeam(ArrayList<String> y,String player){
 		
 		FileOutputStream fich = null;
 		ObjectOutputStream li = null;
@@ -191,7 +191,7 @@ class Gui extends JFrame {
 		
 		try {
 			
-			fich = new FileOutputStream("src/res/Team.txt");
+			fich = new FileOutputStream("src/res/Team"+player+".txt");
 			li = new ObjectOutputStream(fich);
 			li.writeObject(y);
 			
@@ -665,7 +665,7 @@ class Gui extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(teamF.size()==4) {
-				guardaTeam(teamF);
+				guardaTeam(teamF, player);
 				}
 				else {
 					

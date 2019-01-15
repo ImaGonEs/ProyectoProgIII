@@ -13,9 +13,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,9 +36,25 @@ public class Player {
 	private Texto textWin = new Texto("", 500, 500,120);
 	private Texto oro, tWave, textWave, textGold, tHP, textHP;
 	private int hp;
-	
+	Properties prop= new Properties();
+	InputStream input=null;
+	String player;
 	
 	public Player (Map map, WManager wManager) {
+		
+		
+		try {
+			input = new FileInputStream("config.properties");
+			prop.load(input);
+			player= prop.getProperty("username");
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		this.map = map;
 		
@@ -60,8 +78,8 @@ public class Player {
 		
 		this.textHP = new Texto("HP:", 700, 50);
 		this.tHP = new Texto(Integer.toString(hp), 800, 50);
-		
-		this.team = leeTeam("Team");
+		System.out.println(player);
+		this.team = leeTeam(player);
 		
 		
 		
@@ -86,10 +104,10 @@ protected static ArrayList<String> leeTeam (String name) {
 		
 		try {
 			
-			BufferedReader br = new BufferedReader(new FileReader("src/res/"+name+".txt"));
+			BufferedReader br = new BufferedReader(new FileReader("src/res/Team"+name+".txt"));
 			if (br.readLine()!=null) {
 				
-			fich = new FileInputStream ("src/res/"+name+".txt");
+			fich = new FileInputStream ("src/res/Team"+name+".txt");
 			
 			l = new ObjectInputStream(fich);
 			
