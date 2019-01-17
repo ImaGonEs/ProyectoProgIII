@@ -89,6 +89,7 @@ public class EnemyTest {
 		e4.setDirections(up);
 		
 		
+		
 //		int[] e1f = e1.findNextD(e1.getStart());
 //		int[] e2f = e2.findNextD(e2.getStart());
 //		int[] e3f = e3.findNextD(e3.getStart());
