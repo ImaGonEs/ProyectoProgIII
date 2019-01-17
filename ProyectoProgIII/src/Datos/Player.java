@@ -34,11 +34,12 @@ public class Player {
 	private ArrayList<String> team = new ArrayList<String>();
 	boolean b = true;
 	private Texto textWin = new Texto("", 500, 500,120);
-	private Texto oro, tWave, textWave, textGold, tHP, textHP;
+	private Texto oro, tWave, textWave, textGold, tHP, textHP,tQ,tW,tE,tR;
 	private int hp;
 	Properties prop= new Properties();
 	InputStream input=null;
 	String player;
+	Tower toQ,toW,toE,toR;
 	
 	public Player (Map map, WManager wManager) {
 		
@@ -81,8 +82,21 @@ public class Player {
 		System.out.println(player);
 		this.team = leeTeam(player);
 		
+		this.tQ = new Texto("Q",50, 900);
+		this.tW = new Texto("W",150, 900);
+		this.tE = new Texto("E",250, 900);
+		this.tR = new Texto("R",350, 900);
+		
+		  toQ =  new TowerThunder(TowerType.valueOf(team.get(0)), map.getCell(3, 28),wManager.getWave().getEnemies());
+		  toW =  new TowerThunder(TowerType.valueOf(team.get(1)), map.getCell(6, 28),wManager.getWave().getEnemies());
+		  toE =  new TowerThunder(TowerType.valueOf(team.get(2)), map.getCell(9, 28),wManager.getWave().getEnemies());
+		  toR =  new TowerThunder(TowerType.valueOf(team.get(3)), map.getCell(12, 28),wManager.getWave().getEnemies());
 		
 		
+		toQ.project();
+		toW.project();
+		toE.project();
+		toR.project();
 		
 		
 			
@@ -184,6 +198,15 @@ protected static ArrayList<String> leeTeam (String name) {
 	textGold.project();
 	textHP.project();
 	tHP.project();
+	tQ.project();
+	tW.project();
+	tE.project();
+	tR.project();
+
+	toQ.project();
+	toW.project();
+	toE.project();
+	toR.project();
 	
 	for (Tower t : towerList) {
 		t.update();

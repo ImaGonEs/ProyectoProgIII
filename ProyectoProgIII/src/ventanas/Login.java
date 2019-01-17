@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Datos.Boot;
+import weareSupports.BDlocal;
 import weareSupports.JLabelGraficoAjustado;
 import weareSupports.StandardAudio;
 
@@ -40,7 +41,9 @@ public class Login extends JFrame{
 	static Properties prop = new Properties();
 	
 	
+	BDlocal bd = new BDlocal();
 	
+	HashMap<String, String> mapa;
 	
 	
 	public Login() {
@@ -109,61 +112,61 @@ public class Login extends JFrame{
 		cp.validate();
 		cp.repaint();
 		
-		Map<String, String> mapa = new HashMap<String, String>();
+		mapa = new HashMap<String, String>();
 		
 		ArrayList<String> s = new ArrayList<String>();
 		
-		Connection c = null;
-	    Statement stmt = null;
-	    
+		
 	 
-	    try {//-------------------PRINT PLAYERS---------------------
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	          System.out.println("Opened database successfully");
-
-	          stmt = c.createStatement();
-	          ResultSet rs = stmt.executeQuery( "SELECT NAME_P,PASSWORD FROM PLAYERS;" );
-	          
-	          while ( rs.next() ) {
-	        	  
-	            
-	             String name = rs.getString("NAME_P");
-	             String pass = rs.getString("PASSWORD");
-	             
-	             
-	             mapa.put(name, pass);
-	             
-	             s.add(name);
-	             
-	            
-	            // System.out.println(pass);
-	            // System.out.println(name);
-	           
-	            
-//	            if (name.equals(user) && pass.equals(passw)) {
-//	            	
-//	            	JOptionPane.showMessageDialog(null, "LOGIN");
-//	            	break;
-//	            }else {
-//	            	JOptionPane.showMessageDialog(null, "wrong password");
-//	            	break;
-//	            }
+//	    try {//-------------------PRINT PLAYERS---------------------
+//	          Class.forName("org.sqlite.JDBC");
+//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//	          c.setAutoCommit(false);
+//	          System.out.println("Opened database successfully");
+//
+//	          stmt = c.createStatement();
+//	          ResultSet rs = stmt.executeQuery( "SELECT NAME_P,PASSWORD FROM PLAYERS;" );
+//	          
+//	          while ( rs.next() ) {
+//	        	  
 //	            
-	            
-	           
-	          }
-	          rs.close();
-	          stmt.close();
-	          c.close();
-	       } catch ( Exception exc ) {
-	          System.err.println( exc.getClass().getName() + ": " + exc.getMessage() );
-	          System.exit(0);
-	       }
-	       System.out.println("Operation done successfully");
+//	             String name = rs.getString("NAME_P");
+//	             String pass = rs.getString("PASSWORD");
+//	             
+//	             
+//	             mapa.put(name, pass);
+//	             
+//	             s.add(name);
+//	             
+//	            
+//	            // System.out.println(pass);
+//	            // System.out.println(name);
+//	           
+//	            
+////	            if (name.equals(user) && pass.equals(passw)) {
+////	            	
+////	            	JOptionPane.showMessageDialog(null, "LOGIN");
+////	            	break;
+////	            }else {
+////	            	JOptionPane.showMessageDialog(null, "wrong password");
+////	            	break;
+////	            }
+////	            
+//	            
+//	           
+//	          }
+//	          rs.close();
+//	          stmt.close();
+//	          c.close();
+//	       } catch ( Exception exc ) {
+//	          System.err.println( exc.getClass().getName() + ": " + exc.getMessage() );
+//	          System.exit(0);
+//	       }
+//	       System.out.println("Operation done successfully");
 	       
-	       System.out.println(mapa);
+		HashMap<String, String> mapa = bd.getPlayerMap();
+	    Set<String> set = mapa.keySet();
+	     System.out.println(mapa);
 		
 		btn.addMouseListener(new MouseListener() {
 			
@@ -180,39 +183,39 @@ public class Login extends JFrame{
 					
 					JOptionPane.showMessageDialog(null, "TRY AGAIN XD");
 					
-				}else if (!s.contains(user)) {
+				}else if (!set.contains(user)) {
 					
-					//aa
+					saveProps(user, passw);
+					bd.insert("PLAYERS", "('"+user+"', '"+passw+"', 500, 1 )");	
 					
-					
-					Connection c = null;
-					
-					Statement stmt = null;
-					
-				    try { //-----------------INSERT PLAYER-----------------------------
-			          Class.forName("org.sqlite.JDBC");
-			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-			          c.setAutoCommit(false);
-			          System.out.println("Opened database successfully");
-			
-			          stmt = c.createStatement();
-			          String sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
-			                         "VALUES ('"+user+"', '"+passw+"', 500, 1 );"; 
-			          stmt.executeUpdate(sql);
-			
-			        
-			          stmt.close();
-			          c.commit();
-			          c.close();
-			          
-			          saveProps(user, passw);
-			       } catch ( Exception ex ) {
-			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
-			          System.exit(0);
-			       }
-			       System.out.println("Records created successfully");
+//					Connection c = null;
+//					
+//					Statement stmt = null;
+//					
+//				    try { //-----------------INSERT PLAYER-----------------------------
+//			          Class.forName("org.sqlite.JDBC");
+//			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//			          c.setAutoCommit(false);
+//			          System.out.println("Opened database successfully");
+//			
+//			          stmt = c.createStatement();
+//			          String sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
+//			                         "VALUES ('"+user+"', '"+passw+"', 500, 1 );"; 
+//			          stmt.executeUpdate(sql);
+//			
+//			        
+//			          stmt.close();
+//			          c.commit();
+//			          c.close();
+//			          
+//			          saveProps(user, passw);
+//			       } catch ( Exception ex ) {
+//			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+//			          System.exit(0);
+//			       }
+//			       System.out.println("Records created successfully");
 						
-						
+					
 						
 			
 					

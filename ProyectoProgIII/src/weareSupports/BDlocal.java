@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BDlocal {
 
@@ -36,6 +37,60 @@ public class BDlocal {
 	       System.out.println("Records created successfully");
 
     }
+    
+    public HashMap<String,String> getPlayerMap() {
+    	
+    HashMap<String,String> mapa = new HashMap<String, String>();
+    
+    try {
+        Class.forName("org.sqlite.JDBC");
+        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+        c.setAutoCommit(false);
+        System.out.println("Opened database successfully");
+
+        stmt = c.createStatement();
+        ResultSet rs = stmt.executeQuery( "SELECT NAME_P,PASSWORD FROM PLAYERS;" );
+        
+        while ( rs.next() ) {
+      	  
+          
+           String name = rs.getString("NAME_P");
+           String pass = rs.getString("PASSWORD");
+           
+           
+           mapa.put(name, pass);
+           
+           
+           
+          
+          // System.out.println(pass);
+          // System.out.println(name);
+         
+          
+//          if (name.equals(user) && pass.equals(passw)) {
+//          	
+//          	JOptionPane.showMessageDialog(null, "LOGIN");
+//          	break;
+//          }else {
+//          	JOptionPane.showMessageDialog(null, "wrong password");
+//          	break;
+//          }
+//          
+          
+         
+        }
+        rs.close();
+        stmt.close();
+        c.close();
+     } catch ( Exception exc ) {
+        System.err.println( exc.getClass().getName() + ": " + exc.getMessage() );
+        System.exit(0);
+     }
+     System.out.println("Operation done successfully");
+    	
+    return mapa;	
+    	
+    }
 
     public void create (String tName, String code) {
 
@@ -59,7 +114,128 @@ public class BDlocal {
 
 
     }
+    
+    public ArrayList<String> getOwnedTowerIDs(String player){
+    	
+    	ArrayList<String> ids = new ArrayList<>();
+    	
+    	try {
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
 
+	          stmt = c.createStatement();
+	          ResultSet rs = stmt.executeQuery( "SELECT ID_T FROM TIENE WHERE NAME_P="+"\""+player+"\""+";");
+	          
+	          while ( rs.next() ) {
+	             
+	             
+	          String torre = rs.getString("ID_T");
+	             
+	          ids.add(torre);
+	            
+	            
+	          }
+	          rs.close();
+	          stmt.close();
+	          c.close();
+	       } catch ( Exception e ) {
+	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Operation done successfully");
+			return ids;
+			
+    }
+    
+    public ArrayList<String> getTowerIDs(){
+    	
+    	ArrayList<String> ids = new ArrayList<>();
+    	try { 
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
+
+	          stmt = c.createStatement();
+	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
+	          
+	          while ( rs.next() ) {
+	             String id = rs.getString("ID");
+	             
+	             
+	             ids.add(id);
+	          }
+	          rs.close();
+	          stmt.close();
+	          c.close();
+	       } catch ( Exception e ) {
+	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Operation done successfully");
+	       return ids;
+    	
+    }
+
+   public String getTName(String t){
+	   
+	   String torre = "";
+	   try {
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          
+	          stmt = c.createStatement();
+	          ResultSet rs = stmt.executeQuery( "SELECT NAME FROM TOWERS WHERE ID ="+"\""+t+"\""+"; ");
+	          
+	          while ( rs.next() ) {
+	             
+	             
+	           torre = rs.getString("NAME");
+	             
+	         
+	            
+	            
+	          }
+	          rs.close();
+	          stmt.close();
+	          c.close();
+	       } catch ( Exception e ) {
+	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	   return torre;
+	   
+   }
+    public String getID(String tex) {
+    	String ide = "";
+    	try { 
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
+
+	          stmt = c.createStatement();
+	          ResultSet rs = stmt.executeQuery( "SELECT ID FROM TOWERS WHERE NAME='"+tex+"';" );
+	          
+	          while ( rs.next() ) {
+	             String id = rs.getString("ID");
+	            ide = id;
+	             
+	           
+	          }
+	          rs.close();
+	          stmt.close();
+	          c.close();
+	       } catch ( Exception e ) {
+	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Operation done successfully");
+	       return ide;
+    }
     public String getString(String cName, String tName) {
 
 
@@ -343,5 +519,7 @@ public class BDlocal {
 	BDlocal b= new BDlocal();
 	System.out.println(b.getGems("KIKEXD"));
 }
+
+
 
 }
