@@ -25,7 +25,8 @@ public class Texto {
 		
 	}
 	
-public Texto(String text, int x, int y,int t) {
+	
+	public Texto(String text, int x, int y,int t) {
 		
 		this.font = new TrueTypeFont((new Font ("Times New Roman", Font.BOLD,t)), false);
 		

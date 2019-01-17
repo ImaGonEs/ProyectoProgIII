@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Datos.TowerType;
+import weareSupports.BD;
 import weareSupports.BDlocal;
 import weareSupports.JLabelGraficoAjustado;
 
@@ -52,6 +53,8 @@ public class Summon extends JFrame{
 	ArrayList<String> missingTowers = new ArrayList<String>();
 	ArrayList<String> missingTNames = new ArrayList<String>();
     
+	BDlocal bd = new BDlocal();
+	
 	public Summon() {
 		
   
@@ -85,59 +88,60 @@ public class Summon extends JFrame{
 		}
 		
 		
-		try { 
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	          System.out.println("Opened database successfully");
-
-	          stmt = c.createStatement();
-	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
-	          
-	          while ( rs.next() ) {
-	             String id = rs.getString("ID");
-	             
-	             
-	             missingTowers.add(id);
-	          }
-	          rs.close();
-	          stmt.close();
-	          c.close();
-	       } catch ( Exception e ) {
-	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	          System.exit(0);
-	       }
-	       System.out.println("Operation done successfully");
+		missingTowers = bd.getTowerIDs();
+//		try { 
+//	          Class.forName("org.sqlite.JDBC");
+//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//	          c.setAutoCommit(false);
+//	          System.out.println("Opened database successfully");
+//
+//	          stmt = c.createStatement();
+//	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
+//	          
+//	          while ( rs.next() ) {
+//	             String id = rs.getString("ID");
+//	             
+//	             
+//	             missingTowers.add(id);
+//	          }
+//	          rs.close();
+//	          stmt.close();
+//	          c.close();
+//	       } catch ( Exception e ) {
+//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//	          System.exit(0);
+//	       }
+//	       System.out.println("Operation done successfully");
 	       
 	
-	
+	ownedTowers = bd.getOwnedTowerIDs(player);
 	     
-		try {
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	          System.out.println("Opened database successfully");
-
-	          stmt = c.createStatement();
-	          ResultSet rs = stmt.executeQuery( "SELECT ID_T FROM TIENE WHERE NAME_P="+"\""+player+"\""+";");
-	          
-	          while ( rs.next() ) {
-	             
-	             
-	          String torre = rs.getString("ID_T");
-	             
-	          ownedTowers.add(torre);
-	            
-	            
-	          }
-	          rs.close();
-	          stmt.close();
-	          c.close();
-	       } catch ( Exception e ) {
-	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	          System.exit(0);
-	       }
-	       System.out.println("Operation done successfully");
+//		try {
+//	          Class.forName("org.sqlite.JDBC");
+//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//	          c.setAutoCommit(false);
+//	          System.out.println("Opened database successfully");
+//
+//	          stmt = c.createStatement();
+//	          ResultSet rs = stmt.executeQuery( "SELECT ID_T FROM TIENE WHERE NAME_P="+"\""+player+"\""+";");
+//	          
+//	          while ( rs.next() ) {
+//	             
+//	             
+//	          String torre = rs.getString("ID_T");
+//	             
+//	          ownedTowers.add(torre);
+//	            
+//	            
+//	          }
+//	          rs.close();
+//	          stmt.close();
+//	          c.close();
+//	       } catch ( Exception e ) {
+//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//	          System.exit(0);
+//	       }
+//	       System.out.println("Operation done successfully");
 			
 		
 		
@@ -153,59 +157,61 @@ public class Summon extends JFrame{
 		
 		for(String t: missingTowers) {
 		
-		try {
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	          
-	          stmt = c.createStatement();
-	          ResultSet rs = stmt.executeQuery( "SELECT NAME FROM TOWERS WHERE ID ="+"\""+t+"\""+"; ");
-	          
-	          while ( rs.next() ) {
-	             
-	             
-	          String torre = rs.getString("NAME");
-	             
-	         missingTNames.add(torre);
-	            
-	            
-	          }
-	          rs.close();
-	          stmt.close();
-	          c.close();
-	       } catch ( Exception e ) {
-	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	          System.exit(0);
-	       }
-	      
+			missingTNames.add(bd.getTName(t));
+//		try {
+//	          Class.forName("org.sqlite.JDBC");
+//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//	          c.setAutoCommit(false);
+//	          
+//	          stmt = c.createStatement();
+//	          ResultSet rs = stmt.executeQuery( "SELECT NAME FROM TOWERS WHERE ID ="+"\""+t+"\""+"; ");
+//	          
+//	          while ( rs.next() ) {
+//	             
+//	             
+//	          String torre = rs.getString("NAME");
+//	             
+//	         missingTNames.add(torre);
+//	            
+//	            
+//	          }
+//	          rs.close();
+//	          stmt.close();
+//	          c.close();
+//	       } catch ( Exception e ) {
+//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//	          System.exit(0);
+//	       }
+//	      
 		}
 		
 		for(String t: ownedTowers) {
 			
-			try {
-		          Class.forName("org.sqlite.JDBC");
-		          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-		          c.setAutoCommit(false);
-		          
-		          stmt = c.createStatement();
-		          ResultSet rs = stmt.executeQuery( "SELECT NAME FROM TOWERS WHERE ID ="+"\""+t+"\""+"; ");
-		          
-		          while ( rs.next() ) {
-		             
-		             
-		          String torre = rs.getString("NAME");
-		             
-		         ownedTNames.add(torre);
-		            
-		            
-		          }
-		          rs.close();
-		          stmt.close();
-		          c.close();
-		       } catch ( Exception e ) {
-		          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		          System.exit(0);
-		       }
+			ownedTNames.add(bd.getTName(t));
+//			try {
+//		          Class.forName("org.sqlite.JDBC");
+//		          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//		          c.setAutoCommit(false);
+//		          
+//		          stmt = c.createStatement();
+//		          ResultSet rs = stmt.executeQuery( "SELECT NAME FROM TOWERS WHERE ID ="+"\""+t+"\""+"; ");
+//		          
+//		          while ( rs.next() ) {
+//		             
+//		             
+//		          String torre = rs.getString("NAME");
+//		             
+//		         ownedTNames.add(torre);
+//		            
+//		            
+//		          }
+//		          rs.close();
+//		          stmt.close();
+//		          c.close();
+//		       } catch ( Exception e ) {
+//		          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//		          System.exit(0);
+//		       }
 		      
 			}
 		
@@ -365,57 +371,58 @@ public class Summon extends JFrame{
 				pR.add(new JLabelGraficoAjustado(tex, 100, 100));
 				
 				
-				String ide = "";
-				try { 
-			          Class.forName("org.sqlite.JDBC");
-			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-			          c.setAutoCommit(false);
-			          System.out.println("Opened database successfully");
-		
-			          stmt = c.createStatement();
-			          ResultSet rs = stmt.executeQuery( "SELECT ID FROM TOWERS WHERE NAME='"+tex+"';" );
-			          
-			          while ( rs.next() ) {
-			             String id = rs.getString("ID");
-			            ide = id;
-			             
-			           
-			          }
-			          rs.close();
-			          stmt.close();
-			          c.close();
-			       } catch ( Exception e ) {
-			          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			          System.exit(0);
-			       }
-			       System.out.println("Operation done successfully");
+				String ide = bd.getID(tex);
+//				String ide = "";
+//				try { 
+//			          Class.forName("org.sqlite.JDBC");
+//			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//			          c.setAutoCommit(false);
+//			          System.out.println("Opened database successfully");
+//		
+//			          stmt = c.createStatement();
+//			          ResultSet rs = stmt.executeQuery( "SELECT ID FROM TOWERS WHERE NAME='"+tex+"';" );
+//			          
+//			          while ( rs.next() ) {
+//			             String id = rs.getString("ID");
+//			            ide = id;
+//			             
+//			           
+//			          }
+//			          rs.close();
+//			          stmt.close();
+//			          c.close();
+//			       } catch ( Exception e ) {
+//			          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//			          System.exit(0);
+//			       }
+//			       System.out.println("Operation done successfully");
+//				
+//				try {//------------------INSERT TIENE-----------------
+//			          Class.forName("org.sqlite.JDBC");
+//			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//			          c.setAutoCommit(false);
+//			          System.out.println("Opened database successfully");
+//		
+//			          stmt = c.createStatement();
+//			          String sql = "INSERT INTO TIENE " +
+//			                         "VALUES ('"+ide+"', '"+player+"' );"; 
+//			          stmt.executeUpdate(sql);
+//			         
+//		
+//			         
+//		
+//		
+//			          stmt.close();
+//			          c.commit();
+//			          c.close();
+//			       } catch ( Exception e ) {
+//			          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//			          System.exit(0);
+//			       }
+//			       System.out.println("Records created successfully");
 				
-				try {//------------------INSERT TIENE-----------------
-			          Class.forName("org.sqlite.JDBC");
-			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-			          c.setAutoCommit(false);
-			          System.out.println("Opened database successfully");
-		
-			          stmt = c.createStatement();
-			          String sql = "INSERT INTO TIENE " +
-			                         "VALUES ('"+ide+"', '"+player+"' );"; 
-			          stmt.executeUpdate(sql);
-			         
-		
-			         
-		
-		
-			          stmt.close();
-			          c.commit();
-			          c.close();
-			       } catch ( Exception e ) {
-			          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			          System.exit(0);
-			       }
-			       System.out.println("Records created successfully");
 				
-				
-				
+				bd.insert("TIENE", "('"+ide+"', '"+player+"' )" );
 				
 				
 				
