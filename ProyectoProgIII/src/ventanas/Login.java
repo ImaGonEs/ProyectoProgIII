@@ -39,10 +39,20 @@ public class Login extends JFrame{
 	
 	static Properties prop = new Properties();
 	
+	public JTextField getUs() {
+		return us;
+	}
+	
+	public void setUs(String a) {
+		
+		Login.us.setText(a);
+		
+	}
 	
 	
 	
-	
+
+
 	public Login() {
 		
 		

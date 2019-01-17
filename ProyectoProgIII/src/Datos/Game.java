@@ -12,7 +12,7 @@ public class Game {
 	//temp variables	
 	TowerCannon tower;
 	
-	public Game(int[][] map,int a,String mapa) {
+	public Game(int a,String mapa) {
 		
 		//grid = new Map(map);
 		l = new Level(a,mapa);
