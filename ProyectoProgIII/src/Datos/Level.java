@@ -65,10 +65,7 @@ public class Level {
 		
 		FileOutputStream fich = null;
 		ObjectOutputStream li = null;
-		
-		
-	
-		
+			
 		try {
 			
 			fich = new FileOutputStream("src/res/Mapa3.txt");
@@ -119,7 +116,7 @@ public class Level {
 			e1.printStackTrace();
 		} catch (FileNotFoundException e) {
 			
-			JOptionPane.showMessageDialog(null, "Ningún archivo de guardado encontrado, ¡se generara uno en cuanto guardes el primer Estado Inicial!");
+			
 			
 			//System.out.println("Ningún archivo de guardado encontrado, ¡se generara uno en cuanto guardes el primero!");
 		} catch (IOException e) {
@@ -137,9 +134,15 @@ public class Level {
 	public Level(int a, String mapa) {
 		
 		
-		
+		if(mapa.equals("Mapa404")) {
+			
+			pofaboh b = new pofaboh();
+			
+			grid = new Map(b.main());
+			
+		}else {
 		grid = new Map(leeFichero(mapa));
-		
+		}
 		
 
 //		Enemy[] enemies = {(new Enemy(QuickCast("Mob0"),grid.getCell(0,14),grid, 32,32,80,70)),
@@ -154,12 +157,12 @@ public class Level {
 		
 //				enemies.add(new Enemy(QuickCast("monster"),QuickCast("monster"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
 //				enemies.add(new Enemy(QuickCast("sans"),QuickCast("sans"),grid.getCell(0,14),grid, 32,32,80,300*(a+1)));
-				enemies.add(new Enemy(QuickCast("Mob0"),QuickCast("Mob0S"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
-				enemies.add(new Enemy(QuickCast("seta"),QuickCast("seta"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
-				enemies.add(new Enemy(QuickCast("pig1"),QuickCast("pig2"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
-				enemies.add(new Enemy(QuickCast("demon1"),QuickCast("demon2"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
-				enemies.add(new Enemy(QuickCast("ghost1"),QuickCast("ghost2"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
-				enemies.add(new Enemy(QuickCast("cabra1"),QuickCast("cabra2"),grid.getCell(0,14),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("Mob0"),QuickCast("Mob0S"),grid.getCell(1,14),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("seta"),QuickCast("seta"),grid.getCell(1,14),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("pig1"),QuickCast("pig2"),grid.getCell(1,14),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("demon1"),QuickCast("demon2"),grid.getCell(1,14),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("ghost1"),QuickCast("ghost2"),grid.getCell(1,14),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("cabra1"),QuickCast("cabra2"),grid.getCell(1,14),grid, 32,32,80,100*(a+1)));
 				
 				//(new Enemy(QuickCast("st"),grid.getCell(0,14),grid, 32,32,80,70))};
 

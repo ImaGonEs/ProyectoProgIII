@@ -59,9 +59,9 @@ public class Enemy implements Entity{
 		this.directions[0] = 0;
 		//y direction
 		this.directions[1] = 0;
-		directions = findNextD(start);
+		//directions = findNextD(start);
 		this.currentCheckPoint = 0;
-		populateCheckPointList();
+		//populateCheckPointList();
 		
 		
 	}
@@ -210,113 +210,113 @@ public class Enemy implements Entity{
 	
 	
 	
-	private boolean checkPointReached() {
-		boolean reached = false;
-		
-		MapCell t = checkpoints.get(currentCheckPoint).getMapCell();
-		
-		//check if position reached tile within variance of 3 (ARBITRARY)
-		 if (x > t.getX() - 3 && 
-				 x < t.getX() + 3 &&
-		 		y > t.getY() -3 && 
-		 		y < t.getY() +3) {
-			 
-		 
-		
-		reached = true;
-		x = t.getX();
-		y = t.getY();
-		 }
-		 
-		 return reached;
-	}
+//	private boolean checkPointReached() {
+//		boolean reached = false;
+//		
+//		MapCell t = checkpoints.get(currentCheckPoint).getMapCell();
+//		
+//		//check if position reached tile within variance of 3 (ARBITRARY)
+//		 if (x > t.getX() - 3 && 
+//				 x < t.getX() + 3 &&
+//		 		y > t.getY() -3 && 
+//		 		y < t.getY() +3) {
+//			 
+//		 
+//		
+//		reached = true;
+//		x = t.getX();
+//		y = t.getY();
+//		 }
+//		 
+//		 return reached;
+//	}
 	
-	private void populateCheckPointList() {
-		
-		checkpoints.add(findNextC(start, directions = findNextD(start)));
-		
-		
-		int counter = 0;
-		boolean cont = true;
-		while (cont) {
-			int[] currentD = findNextD(checkpoints.get(counter).getMapCell());
-			//check if a next direciton/checkpoint exists, end after 20 checkpoints ARBITRARY
-			if (currentD[0] == 2  || counter == 20) {
-				
-				cont = false;
-			}else {
-				checkpoints.add(findNextC(checkpoints.get(counter).getMapCell(),
-						directions = findNextD(checkpoints.get(counter).getMapCell())));
-			}
-			counter++;
-		}
-	}
-	private CheckPoint findNextC (MapCell s, int[] dir) {
-		MapCell next = null;
-		CheckPoint c= null;
-		
-		//boolean to decide if the next checkpoint is found 
-		boolean found = false;
-		//int to dincrement each loop
-		int counter = 1;
-		
-		while(!found) {
-			//either the xPlace or yPlace parameter you give the getTile(int, int) method is -1. 
-			//this should always at least be 0, so your s.getX() or s.getY() is returning -1 at some point.
-			if (s.getXPlace() + dir[0] * counter == map.getCellsWide() ||
-					s.getYPlace() + dir[1] * counter == map.getCellsHigh() ||
-					s.getType() !=
-					map.getCell(s.getXPlace() + dir[0] * counter, 
-						s.getYPlace() + dir[1] * counter).getType()) {
-				
-				found = true;
-				//move counter back to 1 to find tile before iletype
-				counter -=1 ;
-				next  = map.getCell(s.getXPlace() +dir[0] * counter, 
-						s.getYPlace() + dir[1] * counter);
-						
-			}	
-			
-			counter++;
-		}
-	c= new CheckPoint(next, dir[0], dir[1]);	
-	return c;
+//	private void populateCheckPointList() {
+//		
+//		checkpoints.add(findNextC(start, directions = findNextD(start)));
+//		
+//		
+//		int counter = 0;
+//		boolean cont = true;
+//		while (cont) {
+//			int[] currentD = findNextD(checkpoints.get(counter).getMapCell());
+//			//check if a next direciton/checkpoint exists, end after 20 checkpoints ARBITRARY
+//			if (currentD[0] == 2  || counter == 20) {
+//				
+//				cont = false;
+//			}else {
+//				checkpoints.add(findNextC(checkpoints.get(counter).getMapCell(),
+//						directions = findNextD(checkpoints.get(counter).getMapCell())));
+//			}
+//			counter++;
+//		}
+//	}
+//	private CheckPoint findNextC (MapCell s, int[] dir) {
+//		MapCell next = null;
+//		CheckPoint c= null;
+//		
+//		//boolean to decide if the next checkpoint is found 
+//		boolean found = false;
+//		//int to dincrement each loop
+//		int counter = 1;
+//		
+//		while(!found) {
+//			//either the xPlace or yPlace parameter you give the getTile(int, int) method is -1. 
+//			//this should always at least be 0, so your s.getX() or s.getY() is returning -1 at some point.
+//			if (s.getXPlace() + dir[0] * counter == map.getCellsWide() ||
+//					s.getYPlace() + dir[1] * counter == map.getCellsHigh() ||
+//					s.getType() !=
+//					map.getCell(s.getXPlace() + dir[0] * counter, 
+//						s.getYPlace() + dir[1] * counter).getType()) {
+//				
+//				found = true;
+//				//move counter back to 1 to find tile before iletype
+//				counter -=1 ;
+//				next  = map.getCell(s.getXPlace() +dir[0] * counter, 
+//						s.getYPlace() + dir[1] * counter);
+//						
+//			}	
+//			
+//			counter++;
+//		}
+//	c= new CheckPoint(next, dir[0], dir[1]);	
+//	return c;
+//	
+//	}
 	
-	}
-	
-	public int[] findNextD(MapCell s) {
-		int[] dir = new int[2];
-		MapCell u = map.getCell(s.getXPlace(),s.getYPlace()-1);
-		MapCell r = map.getCell(s.getXPlace() + 1,s.getYPlace());
-		MapCell d = map.getCell(s.getXPlace(),s.getYPlace()+1);
-		MapCell l = map.getCell(s.getXPlace()-1,s.getYPlace());
-		
-		if (s.getType() == u.getType() && directions[1] != 1) {
-			dir[0] = 0;
-			dir[1] = -1;
-			
-		}else if(s.getType() == r.getType()  && directions[0] != -1) {
-			dir[0] = 1;
-			dir[1] = 0;
-			
-		}else if(s.getType() == d.getType()  && directions[1] != -1) {
-			dir[0] = 0;
-			dir[1] = 1;
-			
-		}else if(s.getType() == l.getType()  && directions[0] != 1) {
-			dir[0] = -1;
-			dir[1] = 0;
-			
-		}else{
-			dir[0] = 2;
-			dir[1] = 2;
-			//System.out.println("NO DIRECTION FOUND");
-		}
-		
-		
-		return dir;
-	}
-	
+//	public int[] findNextD(MapCell s) {
+//		int[] dir = new int[2];
+//		MapCell u = map.getCell(s.getXPlace(),s.getYPlace()-1);
+//		MapCell r = map.getCell(s.getXPlace() + 1,s.getYPlace());
+//		MapCell d = map.getCell(s.getXPlace(),s.getYPlace()+1);
+//		MapCell l = map.getCell(s.getXPlace()-1,s.getYPlace());
+//		
+//		if (s.getType() == u.getType() && directions[1] != 1) {
+//			dir[0] = 0;
+//			dir[1] = -1;
+//			
+//		}else if(s.getType() == r.getType()  && directions[0] != -1) {
+//			dir[0] = 1;
+//			dir[1] = 0;
+//			
+//		}else if(s.getType() == d.getType()  && directions[1] != -1) {
+//			dir[0] = 0;
+//			dir[1] = 1;
+//			
+//		}else if(s.getType() == l.getType()  && directions[0] != 1) {
+//			dir[0] = -1;
+//			dir[1] = 0;
+//			
+//		}else{
+//			dir[0] = 2;
+//			dir[1] = 2;
+//			//System.out.println("NO DIRECTION FOUND");
+//		}
+//		
+//		
+//		return dir;
+//	}
+//	
 //	private boolean pathContinues() {
 //		boolean answer = true;
 //		
