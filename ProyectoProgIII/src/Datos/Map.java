@@ -67,7 +67,7 @@ public class Map {
 					
 				}else if (a[j][i]==3) {
 					
-					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Grass0, TileType.Grass0.cc);
+					map [i][j] = new MapCell(i*32,j*32,32,32,TileType.Dirt0, TileType.Dirt0.cc);
 					
 					
 				}else if (a[j][i]==4) {

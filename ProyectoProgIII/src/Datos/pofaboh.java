@@ -103,22 +103,22 @@ public class pofaboh {
 		
 		laberinto[filaJugador][colJugador]=0;
 		
-		if(laberinto[filaJugador-1][colJugador]!=1&&laberinto[filaJugador-1][colJugador]!=4)
+		if(laberinto[filaJugador-1][colJugador]!=1&&laberinto[filaJugador-1][colJugador]!=4&&laberinto[filaJugador-1][colJugador]!=3)
 			laberinto[filaJugador-1][colJugador]=0;
 //			
 //			if(laberinto[filaJugador-1][colJugador+1]!=1)
 //			laberinto[filaJugador-1][colJugador+1]=2;
 //			
-			if(laberinto[filaJugador][colJugador-1]!=1&& laberinto[filaJugador][colJugador-1]!=4)
+			if(laberinto[filaJugador][colJugador-1]!=1&& laberinto[filaJugador][colJugador-1]!=4&& laberinto[filaJugador][colJugador-1]!=3)
 			laberinto[filaJugador][colJugador-1]=0;
 //			
-			if(laberinto[filaJugador][colJugador+1]!=1&&laberinto[filaJugador][colJugador+1]!=4)
+			if(laberinto[filaJugador][colJugador+1]!=1&&laberinto[filaJugador][colJugador+1]!=4&&laberinto[filaJugador][colJugador+1]!=3)
 			laberinto[filaJugador][colJugador+1]=0;
 //			
 //			if(laberinto[filaJugador+1][colJugador-1]!=1)
 //			laberinto[filaJugador+1][colJugador-1]=2;
 //			
-			if(laberinto[filaJugador+1][colJugador]!=1&&laberinto[filaJugador+1][colJugador]!=4)
+			if(laberinto[filaJugador+1][colJugador]!=1&&laberinto[filaJugador+1][colJugador]!=4&&laberinto[filaJugador+1][colJugador]!=3)
 			laberinto[filaJugador+1][colJugador]=0;
 		
 		
