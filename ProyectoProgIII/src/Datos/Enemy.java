@@ -295,6 +295,7 @@ public class Enemy implements Entity{
 	
 	
 	
+	
 	private boolean checkPointReached() {
 		boolean reached = false;
 		
