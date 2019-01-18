@@ -81,7 +81,7 @@ public class SelectorMapas extends JFrame{
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						new SlidderDif("Mapa1");
+						new SlidderDif("Mapa404");
 					}
 				});
 

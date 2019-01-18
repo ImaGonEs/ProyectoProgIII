@@ -88,16 +88,19 @@ public class EnemyTest {
 		e3.setDirections(down);
 		e4.setDirections(up);
 		
-		int[] e1f = e1.findNextD(e1.getStart());
-		int[] e2f = e2.findNextD(e2.getStart());
-		int[] e3f = e3.findNextD(e3.getStart());
-		int[] e4f = e4.findNextD(e4.getStart());
 		
-		assertEquals(Arrays.toString(e1f),Arrays.toString(right));
-		assertEquals(Arrays.toString(e2f),Arrays.toString(up));
-		assertEquals(Arrays.toString(e3f),Arrays.toString(down));
-		assertEquals(Arrays.toString(e4f),Arrays.toString(up));
 		
+		
+//		int[] e1f = e1.findNextD(e1.getStart());
+//		int[] e2f = e2.findNextD(e2.getStart());
+//		int[] e3f = e3.findNextD(e3.getStart());
+//		int[] e4f = e4.findNextD(e4.getStart());
+		
+//		assertEquals(Arrays.toString(e1f),Arrays.toString(right));
+//		assertEquals(Arrays.toString(e2f),Arrays.toString(up));
+//		assertEquals(Arrays.toString(e3f),Arrays.toString(down));
+//		assertEquals(Arrays.toString(e4f),Arrays.toString(up));
+//		
 		
 //		int[] a = {1,0};
 //		int[] b = e1.FindNextD(e1.getStart());
