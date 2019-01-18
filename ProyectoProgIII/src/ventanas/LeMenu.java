@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Datos.Boot;
+import Datos.Map;
 import javafx.scene.layout.BackgroundPosition;
 import weareSupports.JLabelGraficoAjustado;
 import weareSupports.StandardAudio;
@@ -23,6 +24,33 @@ public class LeMenu extends JFrame{
 	JLabelGraficoAjustado title;
 	StandardAudio clip;
 	private int w = 1000,h=600;
+	
+	static boolean mapaRecCargado = false;
+	static Map grid = null;
+	static int[][] mapa;
+	
+	
+	public static int[][] getMapa() {
+		return mapa;
+	}
+	public static void setMapa(int[][] mapa) {
+		LeMenu.mapa = mapa;
+	}
+	public static Map getGrid() {
+		return grid;
+	}
+	public static void setGrid(Map grid) {
+		LeMenu.grid = grid;
+	}
+	public static void  setMapaRecCargado(boolean b) {
+		
+		mapaRecCargado = b;
+	}
+	public static boolean  getMapaRecCargado() {
+		
+		return mapaRecCargado;
+	}
+	
 	
 	public LeMenu(boolean f) {
 		
@@ -100,7 +128,7 @@ public class LeMenu extends JFrame{
 					
 					@Override
 					public void run() {
-						// TODO Auto-generated method stub
+						
 						new SelectorMapas();
 					}
 				});
