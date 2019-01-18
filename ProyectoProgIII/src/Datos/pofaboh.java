@@ -136,7 +136,7 @@ public class pofaboh {
 			
 			//laberinto[filaJugador][colJugador] =1;
 			System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
-			if(laberinto[filaDestino][colDestino]!=4)
+			if(laberinto[filaDestino][colDestino]!=4&&laberinto[filaDestino][colDestino]!=3)
 			laberinto[filaDestino][colDestino]=1;
 			System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
 		
@@ -147,22 +147,22 @@ public class pofaboh {
 //			
 			
 			if(!a) {
-			if(laberinto[filaJugador-1][colJugador]!=1&&laberinto[filaJugador-1][colJugador]!=4)
+			if(laberinto[filaJugador-1][colJugador]!=1&&laberinto[filaJugador-1][colJugador]!=4&&laberinto[filaJugador-1][colJugador]!=3)
 			laberinto[filaJugador-1][colJugador]=2;
 //			
 //			if(laberinto[filaJugador-1][colJugador+1]!=1)
 //			laberinto[filaJugador-1][colJugador+1]=2;
 //			
-			if(laberinto[filaJugador][colJugador-1]!=1&& laberinto[filaJugador][colJugador-1]!=4)
+			if(laberinto[filaJugador][colJugador-1]!=1&& laberinto[filaJugador][colJugador-1]!=4&&laberinto[filaJugador][colJugador-1]!=3)
 			laberinto[filaJugador][colJugador-1]=2;
 //			
-			if(laberinto[filaJugador][colJugador+1]!=1&&laberinto[filaJugador][colJugador+1]!=4)
+			if(laberinto[filaJugador][colJugador+1]!=1&&laberinto[filaJugador][colJugador+1]!=4&&laberinto[filaJugador][colJugador+1]!=3)
 			laberinto[filaJugador][colJugador+1]=2;
 //			
 //			if(laberinto[filaJugador+1][colJugador-1]!=1)
 //			laberinto[filaJugador+1][colJugador-1]=2;
 //			
-			if(laberinto[filaJugador+1][colJugador]!=1&&laberinto[filaJugador+1][colJugador]!=4)
+			if(laberinto[filaJugador+1][colJugador]!=1&&laberinto[filaJugador+1][colJugador]!=4&&laberinto[filaJugador+1][colJugador]!=3)
 			laberinto[filaJugador+1][colJugador]=2;
 			}else {
 				borra();
