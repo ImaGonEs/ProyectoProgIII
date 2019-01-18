@@ -5,6 +5,7 @@ import static weareSupports.Creador.QuickCast;
 import static weareSupports.Creador.QuickCastIcon;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -42,6 +43,7 @@ import javax.swing.SwingUtilities;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.opengl.Texture;
 
+import Datos.Player;
 import Datos.Sust;
 import Datos.Tower;
 import Datos.TowerCannon;
@@ -217,7 +219,7 @@ class Gui extends JFrame {
 		
 		
 		
-		
+		JFrame frame = this;
 		
 		
 		
@@ -286,6 +288,7 @@ class Gui extends JFrame {
          
 		
 		ArrayList<Sust> tcd = collect();
+		ArrayList<String> tca = Player.leeTeam(player);
 		ArrayList<TowerMelee> tmd = new ArrayList<TowerMelee>();
 		
 		
@@ -310,7 +313,7 @@ class Gui extends JFrame {
 		
 		
 		ArrayList <JLabelGraficoAjustado> collection = new ArrayList<JLabelGraficoAjustado>();
-		
+		ArrayList <JLabelGraficoAjustado> teamAnt = new ArrayList<JLabelGraficoAjustado>();
 	
 		ArrayList <JLabelGraficoAjustado> teami = new ArrayList<JLabelGraficoAjustado>(); //los iconos solo
 		
@@ -332,9 +335,9 @@ class Gui extends JFrame {
 		//JScrollPane sp=new JScrollPane(jt);  
 		//instantiates Border panels.
 		BorderPanel pnlA = new BorderPanel("COLLECTION");
-		BorderPanel pnlB = new BorderPanel("TEAM");
-		BorderPanel pnlC = new BorderPanel("Panel C");
-		BorderPanel pnlD = new BorderPanel("Panel D");
+		BorderPanel pnlB = new BorderPanel("TEAMSELECTOR");
+		BorderPanel pnlC = new BorderPanel("ACT_TEAM");
+		//BorderPanel pnlD = new BorderPanel("Panel D");
 		BorderPanel pnlE = new BorderPanel("STATS");
 		BorderPanel pnlF = new BorderPanel("OPTIONS");
 
@@ -342,7 +345,7 @@ class Gui extends JFrame {
 		add(pnlA);
 		add(pnlB);
 		add(pnlC);
-		add(pnlD);
+		//add(pnlD);
 		add(pnlE);
 		add(pnlF);
 
@@ -379,6 +382,46 @@ class Gui extends JFrame {
 		pnlE.add(pD);
 		
 
+		for (String j : tca) {
+			
+			JLabelGraficoAjustado z;
+			
+			switch(j) {
+			
+			case "T01":
+				z = new JLabelGraficoAjustado(TowerType.T01.getTex(),40,40);
+				pnlC.add(z);
+				break;
+			case "T02":
+				z = new JLabelGraficoAjustado(TowerType.T02.getTex(),40,40);
+				pnlC.add(z);
+				break;
+			case "T03":
+				z = new JLabelGraficoAjustado(TowerType.T03.getTex(),40,40);
+				pnlC.add(z);
+				break;
+			case "T04":
+				z = new JLabelGraficoAjustado(TowerType.T04.getTex(),40,40);
+				pnlC.add(z);
+				break;
+			case "T05":
+				z = new JLabelGraficoAjustado(TowerType.T05.getTex(),40,40);
+				pnlC.add(z);
+				break;
+			case "T06":
+				z = new JLabelGraficoAjustado(TowerType.T06.getTex(),40,40);
+				pnlC.add(z);
+				break;
+			case "T07":
+				z = new JLabelGraficoAjustado(TowerType.T07.getTex(),40,40);
+				pnlC.add(z);
+				break;
+			}
+			
+		}
+		
+		
+		
 		
 		
 		
@@ -528,135 +571,17 @@ class Gui extends JFrame {
 		
 		JButton bS = new JButton("SAVE");
 		JButton bE = new JButton("EXIT");
-		JButton bA = new JButton("REMOVE TEAM");
+		//JButton bA = new JButton("REMOVE TEAM");
 		
-		
-		bA.addActionListener(new ActionListener() {
+		bE.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-//				pnlB.removeAll();
-//				pnlB.repaint();
-				
-				
-				for (Sust i : tcd) {
-					JLabelGraficoAjustado z = new JLabelGraficoAjustado(i.getTex(),40,40);
-					System.out.println(i.getTex());
-					collection.clear();
-					collection.add(z);
-					
-					
-					
-					collection.get(collection.indexOf(z)).addMouseListener(new MouseListener() {
-						
-						@Override
-						public void mouseReleased(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-						
-						@Override
-						public void mousePressed(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-							
-							
-						}
-						
-						
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-							
-							boolean c = e.isMetaDown();
-							if(c==false) {
-							if (jtcont == true) {
-							
-							
-							jt.setValueAt(Integer.toString(i.getDamage()), 0, 1);
-							jt.setValueAt(Integer.toString((int) i.getAttackSpeed()), 1, 1);
-							jt.setValueAt(Integer.toString(i.getRange()), 2, 1);
-							jtcont = false;
-							
-							} else {
-								
-								jt2.setValueAt(Integer.toString(i.getDamage()), 0, 1);
-								jt2.setValueAt(Integer.toString((int) i.getAttackSpeed()), 1, 1);
-								jt2.setValueAt(Integer.toString(i.getRange()), 2, 1);
-								jtcont = true;
-								
-							}
-							}
-							
-							if (c== true) {
-								
-								
-								
-								
-//								if (i.getId().equals("T01")) {
-//								teamT.add(new TowerCannonR(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
-//								
-//								
-//								
-//								}else if (i.getId().equals("T02")) {
-//									
-//									
-//									
-//									teamT.add(new TowerCannonS(i.getDamage(),i.getAttackSpeed(), i.getRange(), i.getTex()));
-//									
-//									
-//									
-//								}
-								if (!teami.contains(z)){
-									System.out.println("adre");
-								teami.add(z);
-								collection.remove(z);
-								
-								for (JLabelGraficoAjustado icono : teami) {
-									pnlB.add(icono);
-									
-								}
-								
-								} else {
-									
-									teami.remove(z);
-									collection.add(z);
-									
-									for (JLabelGraficoAjustado icono : collection) {
-										pnlA.add(icono);
-										
-									}
-									
-									
-								}
-								pnlB.repaint();
-								pnlA.repaint();
-								c = false;
-								
-							}
-						}
-
-						@Override
-						public void mouseEntered(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-
-						@Override
-						public void mouseExited(MouseEvent e) {
-							// TODO Auto-generated method stub
-							
-						}
-					});
-					
-					
-					//pnlA.repaint();
-				}
-				
+				frame.dispose();
 			}
 		});
+
 		
 		
 		bS.addActionListener(new ActionListener() {
@@ -666,6 +591,17 @@ class Gui extends JFrame {
 				// TODO Auto-generated method stub
 				if(teamF.size()==4) {
 				guardaTeam(teamF, player);
+				pnlC.removeAll();
+				pnlC.setLayout(new BorderLayout());
+	
+				
+
+				
+				pnlC.repaint();
+				
+				JOptionPane.showMessageDialog(null,"Team guardado!");
+				frame.dispose();
+				
 				}
 				else {
 					
@@ -679,7 +615,7 @@ class Gui extends JFrame {
 		
 		pnlF.add(bS);
 		pnlF.add(bE);
-		pnlF.add(bA);
+	
 		
 		
 		

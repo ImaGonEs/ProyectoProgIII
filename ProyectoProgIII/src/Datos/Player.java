@@ -109,7 +109,7 @@ public class Player {
 //	}
 	
 @SuppressWarnings("unchecked")
-protected static ArrayList<String> leeTeam (String name) {
+public static ArrayList<String> leeTeam (String name) {
 		
 		
 		FileInputStream fich = null;
