@@ -87,6 +87,8 @@ public class Player {
 		this.tE = new Texto("E",250, 900);
 		this.tR = new Texto("R",350, 900);
 		
+	
+		
 		  toQ =  new TowerThunder(TowerType.valueOf(team.get(0)), map.getCell(3, 28),wManager.getWave().getEnemies());
 		  toW =  new TowerThunder(TowerType.valueOf(team.get(1)), map.getCell(6, 28),wManager.getWave().getEnemies());
 		  toE =  new TowerThunder(TowerType.valueOf(team.get(2)), map.getCell(9, 28),wManager.getWave().getEnemies());

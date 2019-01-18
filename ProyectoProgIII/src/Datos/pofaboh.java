@@ -1,6 +1,20 @@
 package Datos;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
+
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 
 import Datos.Laberinto.Direccion;
 
@@ -37,8 +51,8 @@ public class pofaboh {
 			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
 			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
 			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
-			{2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
-			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, },
+			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
+			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
 			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
 			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
 			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
@@ -53,9 +67,14 @@ public class pofaboh {
 			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
 			{2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, },
 			{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, },
-						
+			
+			
 	};
-	
+	static {
+	Random r = new Random();
+	laberinto[r.nextInt((28 - 1) + 1) + 1][1]= 3;
+	laberinto[r.nextInt((28 - 1) + 1) + 1][38]= 4;
+	}
 	
 	public int getAltura() {
 		return laberinto.length;
@@ -82,6 +101,8 @@ public class pofaboh {
 	}
 	//public static int cont=0;
 	private static boolean resuelveLaberinto( pofaboh l ) {
+		
+		
 		if (l.acabado()) return true;
 		Direccion dir;
 		while ((dir = l.posibleMovimiento()) !=null) {
@@ -135,10 +156,10 @@ public class pofaboh {
 		else {  // Movimiento válido
 			
 			//laberinto[filaJugador][colJugador] =1;
-			System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
+			//System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
 			if(laberinto[filaDestino][colDestino]!=4&&laberinto[filaDestino][colDestino]!=3)
 			laberinto[filaDestino][colDestino]=1;
-			System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
+			//System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
 		
 			
 			//if(filaJugador-1>=0&&colJugador-1>=0) {
@@ -178,14 +199,18 @@ public class pofaboh {
 			colJugador = colDestino;
 			
 			marca[filaDestino][colDestino] = true; 
-			System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
-			for (int i = 0; i < laberinto.length; i++) {
-				for (int j = 0; j < laberinto[i].length; j++) {
-					System.out.print(laberinto[i][j]);
-				}
-				System.out.println();
-			}
+			//System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
+//			for (int i = 0; i < laberinto.length; i++) {
+//				for (int j = 0; j < laberinto[i].length; j++) {
+//					System.out.print(laberinto[i][j]);
+//				}
+//				System.out.println();
+//			}
+			//ta.setText(Arrays.deepToString(laberinto));
+			//String s = Arrays.deepToString(laberinto);
+			//tp.setText(s);
 			
+			ey(tp, Arrays.deepToString(laberinto), Color.BLACK);
 			}
 			return true;
 		}
@@ -201,7 +226,8 @@ public class pofaboh {
 		else if (laberinto[filaDestino][colDestino]!=2)
 			return true;
 		else {
-			System.out.println("no hay pasillo en " +avance);return false;
+			//System.out.println("no hay pasillo en " +avance);
+			return false;
 		}
 	}
 	
@@ -212,15 +238,15 @@ public class pofaboh {
 			return false;
 		
 		else {
-			System.out.println( filaDestino + " " + colDestino+" con dir "+avance);
+			//System.out.println( filaDestino + " " + colDestino+" con dir "+avance);
 			
-			System.out.println(marca[filaDestino][colDestino]);
-			for (int i = 0; i < laberinto.length; i++) {
-				for (int j = 0; j < laberinto[i].length; j++) {
-					System.out.print(laberinto[i][j]);
-				}
-				System.out.println();
-			}
+			//System.out.println(marca[filaDestino][colDestino]);
+//			for (int i = 0; i < laberinto.length; i++) {
+//				for (int j = 0; j < laberinto[i].length; j++) {
+//					System.out.print(laberinto[i][j]);
+//				}
+//				System.out.println();
+//			}
 			return marca[filaDestino][colDestino];
 		}
 	}
@@ -238,7 +264,7 @@ public class pofaboh {
 		for (Direccion d : ds) {
 			if (!hayMarcaEn(d)&&hayPasilloEn(d)) {
 			
-				System.out.println(d);
+				//System.out.println(d);
 				return d;
 			}
 			
@@ -280,7 +306,12 @@ public class pofaboh {
 
 	public int[][] main(){
 		
-		
+		f = new JFrame();
+		f.add(tp);
+		f.setSize(565,550);
+		f.setVisible(true);
+		f.setLocationRelativeTo(null);
+		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		entra();
 		boolean fin;
 		fin = resuelveLaberinto(this);
@@ -291,9 +322,59 @@ public class pofaboh {
 		
 	}
 	
+	static JFrame f;
+	static JTextArea ta;
+	//static JTextPane tp;
+	
+	static StyledDocument doc = (StyledDocument) new DefaultStyledDocument();
+    static JTextPane tp = new JTextPane(doc);
+	
+	private static String fontName = "Times";
+	private static boolean isBold = true;
+	private static boolean isItalic = false;
+	
+	void setBold(boolean flag) {
+	    isBold = flag;
+	    applyFontChanges();
+	}
+	
+	private static void applyFontChanges(){
+	    Font font;
+	    int style;
+
+	    if(isBold && isItalic){
+	        style = Font.BOLD + Font.ITALIC;
+	    } else if(isBold){
+	        style = Font.BOLD;
+	    } else if(isItalic){
+	        style = Font.ITALIC;
+	    } else {
+	        style = Font.PLAIN;
+	    }
+
+	    font = new Font(fontName, style, 12);
+	    tp.setFont(font );
+	}  
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		//ta = new JTextArea();
+		//tp = new JTextPane();
+		
+		//applyFontChanges();
+//		ta.setBackground(Color.white);
+//		ta.setEditable(false);
+//		ta.setLineWrap(true);
+//		ta.setWrapStyleWord(true);
+//		f.add(ta);
+		f = new JFrame();
+		f.add(tp);
+		f.setSize(565,550);
+		f.setVisible(true);
+		f.setLocationRelativeTo(null);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		pofaboh l = new pofaboh();
 		l.entra();
 		boolean fin;
@@ -305,6 +386,59 @@ public class pofaboh {
 		
 		
 	}
+	SimpleAttributeSet set = new SimpleAttributeSet();
+	public void ey(JTextPane tp, String msg, Color c) {
+		
+		
+        tp.setText(msg);
+        
+        //javax.swing.text.Style style = tp.addStyle("bold", null);
+        //StyleConstants.setForeground(style, Color.RED);
+        //StyleConstants.setBold(style, true);
+        
+        
+        
+        for (int i = 0; i < tp.getDocument().getLength(); i++) {
+        	
+        	if (msg.charAt(i)=='1') {
+        		 
+                 // StyleConstants.setBackground(set, new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
+                 
+        		 StyleConstants.setForeground(set, Color.blue);
+                 StyleConstants.setBold(set, true);
+                 
+
+                 doc.setCharacterAttributes(i, 1, set, true);
+        	}
+           
+        }
+        
+        
+       // doc.setCharacterAttributes(3, msg.length(), tp.getStyle("bold"), true); 
+		
+	}
+	private void appendToPane(JTextPane tp, String msg, Color c)
+    {
+        StyleContext sc = StyleContext.getDefaultStyleContext();
+        AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
+
+        aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Lucida Console");
+        aset = sc.addAttribute(aset, StyleConstants.Alignment, StyleConstants.ALIGN_JUSTIFIED);
+
+        
+        StyledDocument doc = (StyledDocument) new DefaultStyledDocument();
+        JTextPane textpane = new JTextPane(doc);
+        
+        textpane.setText("Test");
+        javax.swing.text.Style style = textpane.addStyle("Red", null);
+        StyleConstants.setForeground(style, Color.RED);
+        doc.setCharacterAttributes(0, 1, textpane.getStyle("Red"), true); 
+        
+        int len = tp.getDocument().getLength();
+        tp.setCaretPosition(len);
+        tp.setCharacterAttributes(aset, false);
+        tp.setText(msg);
+    }
 
 }
 

@@ -191,7 +191,7 @@ public class Login extends JFrame{
 				
 				if (user.length()<3||passw.length()<3) {
 					
-					JOptionPane.showMessageDialog(null, "TRY AGAIN XD");
+					JOptionPane.showMessageDialog(null, "TRY AGAIN");
 					
 				}else if (!set.contains(user)) {
 					
