@@ -190,6 +190,7 @@ public class Login extends JFrame{
 				
 				String user = us.getText();
 				
+				
 				String passw = pa.getText();
 				
 				if (user.length()<3||passw.length()<3) {

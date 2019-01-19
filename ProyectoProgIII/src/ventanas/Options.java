@@ -15,7 +15,7 @@ public class Options extends JFrame{
 	JButton bReturn, bOk,bMute,bLead;
 	JSlider slider;
 	
-	StandardAudio song;
+	static StandardAudio song;
 	
 	Font default_font = new Font("Verdana",Font.BOLD,14);
 	Color text_color = Color.decode("#222222");
@@ -174,4 +174,38 @@ public class Options extends JFrame{
 		b.setOpaque(true);
 
 	}
+
+	public JComboBox<String> getSongs() {
+		return songs;
+	}
+
+	public void setSongs(JComboBox<String> songs) {
+		this.songs = songs;
+	}
+
+	public JButton getbOk() {
+		return bOk;
+	}
+
+	public void setbOk(JButton bOk) {
+		this.bOk = bOk;
+	}
+
+	public JButton getbMute() {
+		return bMute;
+	}
+
+	public void setbMute(JButton bMute) {
+		this.bMute = bMute;
+	}
+
+	public StandardAudio getSong() {
+		return song;
+	}
+
+	public void setSong(StandardAudio song) {
+		this.song = song;
+	}
+	
+	
 }

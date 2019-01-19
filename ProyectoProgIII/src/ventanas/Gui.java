@@ -148,7 +148,7 @@ class Gui extends JFrame {
 		   }
 		   System.out.println("Operation done successfully");
 		   
-		   
+		
 		for (String s: towerCodes) {
 		   try {
 			      Class.forName("org.sqlite.JDBC");
@@ -328,14 +328,7 @@ class Gui extends JFrame {
 		
 		
 		
-		   
-		jt.setBounds(30,40,200,600);   
-		
-		
-		
-		
-		
-		jt.setBounds(30,40,200,600);   
+		 
 		
 		
 		//JScrollPane sp=new JScrollPane(jt);  

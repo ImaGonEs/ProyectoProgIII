@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Datos.Sust;
+
 public class BDlocal {
 
 	static Connection c = null;
@@ -141,6 +143,8 @@ public class BDlocal {
 
     }
     
+   
+
     public ArrayList<String> getOwnedTowerIDs(String player){
     	
     	ArrayList<String> ids = new ArrayList<>();
@@ -544,7 +548,7 @@ public class BDlocal {
    public static void main(String[] args) {
 	BDlocal b= new BDlocal();
 	//System.out.println(b.getGems("KIKEXD"));
-	b.printTiene();
+	b.printTowers();
 }
 
 
