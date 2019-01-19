@@ -199,7 +199,7 @@ public class Login extends JFrame{
 				}else if (!set.contains(user)) {
 					
 					saveProps(user, passw);
-					bd.insert("PLAYERS", "('"+user+"', '"+passw+"', 400, 1 )");	
+					bd.insert("PLAYERS", "('"+user+"', '"+passw+"', 400 )");	
 					
 //					Connection c = null;
 //					

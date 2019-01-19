@@ -38,6 +38,32 @@ public class BDlocal {
 
     }
     
+    public void delete() {
+    	
+    	try {
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
+
+	          stmt = c.createStatement();
+	          String sql = "CREATE TABLE PLAYERS ( NAME_P VARCHAR(30) NOT NULL PRIMARY KEY,PASSWORD VARCHAR(30) NOT NULL, GEMS NUMBER  DEFAULT 0 );"; 
+	          stmt.executeUpdate(sql);
+
+
+	          stmt.close();
+	          c.commit();
+	          c.close();
+	       } catch ( Exception e ) {
+	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Records created successfully");
+
+    	
+    	
+    }
+    
     public HashMap<String,String> getPlayerMap() {
     	
     HashMap<String,String> mapa = new HashMap<String, String>();
@@ -517,7 +543,8 @@ public class BDlocal {
    }
    public static void main(String[] args) {
 	BDlocal b= new BDlocal();
-	System.out.println(b.getGems("KIKEXD"));
+	//System.out.println(b.getGems("KIKEXD"));
+	b.printTiene();
 }
 
 
