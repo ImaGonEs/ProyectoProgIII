@@ -33,21 +33,21 @@ public class Conexion {
 			System.out.println("Failed connection!");
 		}
 		Statement stmt = connection.createStatement();
-		try {
-			stmt.executeUpdate("CREATE TABLE TOWERS " +
-            "(ID VARCHAR(3) PRIMARY KEY     NOT NULL," +
-           " NAME           TEXT    NOT NULL, " + 
-           " DAMAGE            INT     NOT NULL, " + 
-           " RANGE        INT NOT NULL, " + 
-           " ATKSPEED         FLOAT NOT NULL)");
-		} catch (Exception e) {
-			System.out.println("La tala ya existe");
-		}
+//		try {
+//			stmt.executeUpdate("CREATE TABLE TOWERS " +
+//            "(ID VARCHAR(3) PRIMARY KEY     NOT NULL," +
+//           " NAME           TEXT    NOT NULL, " + 
+//           " DAMAGE            INT     NOT NULL, " + 
+//           " RANGE        INT NOT NULL, " + 
+//           " ATKSPEED         FLOAT NOT NULL)");
+//		} catch (Exception e) {
+//			System.out.println("La tala ya existe");
+//		}
 		
 		try {
-			stmt.executeUpdate("INSERT INTO TOWERS (ID,NAME,DAMAGE,RANGE,ATKSPEED) VALUES ('T03', 'TorreN1', 10, 1000, 6 );");
+			stmt.executeUpdate("ALTER TABLE PLAYERS DROP COLUMN POS");
 		} catch (Exception e) {
-			System.out.println("El insert ya existe");
+			System.out.println(e);
 		}
 		
 		ResultSet rs = stmt.executeQuery("SELECT * FROM TOWERS");
