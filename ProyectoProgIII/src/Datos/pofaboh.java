@@ -1,5 +1,7 @@
 package Datos;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,8 +9,10 @@ import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.SimpleAttributeSet;
@@ -370,7 +374,13 @@ public class pofaboh {
 //		f.add(ta);
 		f = new JFrame();
 		f.add(tp);
-		f.setSize(565,550);
+		f.setPreferredSize(new Dimension(565,550) );
+		
+		JLabel la = new JLabel("GENERANDO MAPA PROCEDURAL...", SwingConstants.CENTER);
+		f.add(la,BorderLayout.NORTH);
+		
+		
+		f.pack();
 		f.setVisible(true);
 		f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
