@@ -28,12 +28,12 @@ public class SelectorMapas extends JFrame{
 		//panel.setLayout(new GridLayout(2, 6));
 		panel.setBackground(Color.orange);
 		
-		m1 = new JLabelGraficoAjustado("CapturaMapa", 300, 200);
-		m2 = new JLabelGraficoAjustado("CapturaMapa", 300, 200);
-		m3 = new JLabelGraficoAjustado("CapturaMapa", 300, 200);
-		m4 = new JLabelGraficoAjustado("CapturaMapa", 300, 200);
-		m5 = new JLabelGraficoAjustado("CapturaMapa", 300, 200);
-		m6 = new JLabelGraficoAjustado("CapturaMapa", 300, 200);
+		m1 = new JLabelGraficoAjustado("CapturaMapa1", 300, 200);
+		m2 = new JLabelGraficoAjustado("CapturaMapa2", 300, 200);
+		m3 = new JLabelGraficoAjustado("CapturaMapa3", 300, 200);
+		m4 = new JLabelGraficoAjustado("CapturaMapa4", 300, 200);
+		m5 = new JLabelGraficoAjustado("CapturaMapa5", 300, 200);
+		m6 = new JLabelGraficoAjustado("CapturaMapa6", 300, 200);
 		
 		
 		fondo = new JLabelGraficoAjustado("fondoselector", 1000, 700);
@@ -81,7 +81,7 @@ public class SelectorMapas extends JFrame{
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						new SlidderDif("Mapa404");
+						new SlidderDif("Mapa1");
 					}
 				});
 
@@ -212,6 +212,145 @@ public class SelectorMapas extends JFrame{
 			}
 		});
 		
+		m4.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				Thread boot = new Thread (new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						new SlidderDif("Mapa4");
+					}
+				});
+
+				
+				boot.start();
+				
+				frame.dispose();
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		m5.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				Thread boot = new Thread (new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						new SlidderDif("Mapa5");
+					}
+				});
+
+				
+				boot.start();
+				
+				frame.dispose();
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		m6.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+				Thread boot = new Thread (new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						new SlidderDif("Mapa404");
+					}
+				});
+
+				
+				boot.start();
+				
+				frame.dispose();
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		
 		setSize(1000, 700);
