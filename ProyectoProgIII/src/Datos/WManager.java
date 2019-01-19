@@ -83,7 +83,9 @@ public class WManager {
 	public Wave getWave() {
 		return this.cWave;
 	}
-
+	public void setWaveMapKill(int mapkill) {
+		this.cWave.setMapkill(mapkill);
+	}
 
 	public int getWaveNumber() {
 		return waveNumber;

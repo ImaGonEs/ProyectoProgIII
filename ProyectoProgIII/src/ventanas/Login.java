@@ -253,8 +253,6 @@ public class Login extends JFrame{
 			       
 			       
 			       
-			       
-		
 				
 				
 			}
@@ -311,6 +309,7 @@ public class Login extends JFrame{
 					e.printStackTrace();
 				}
 			}
+			
 		}
 	
 	

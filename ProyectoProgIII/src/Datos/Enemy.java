@@ -27,6 +27,8 @@ public class Enemy implements Entity{
 	private int dir1L,dir2L;
 	private boolean first = true;
 	private boolean slowed = false;
+	private boolean mapkill = false;
+	public boolean mapkillseen = true;
 
 	public Enemy(Texture tex, Texture tex2, MapCell start, Map map, int w, int h, int vel, float lp ) {
 		
@@ -281,7 +283,7 @@ public class Enemy implements Entity{
 			}
 		}else {
 			
-			die();
+			mapKill();
 			
 		}
 		
@@ -510,6 +512,9 @@ public class Enemy implements Entity{
 	public boolean isAlive() {
 		return alive;
 	}
+	public boolean mapKIll() {
+		return mapkill;
+	}
 
 	public void setAlive(boolean end) {
 		this.alive = end;
@@ -524,7 +529,12 @@ public class Enemy implements Entity{
 	private void die() {
 		alive = false;
 	}
-
+	
+	private void mapKill() {
+		mapkill = true;
+		die();
+	}
+	
 	public int[] getDirections() {
 		return directions;
 	}
@@ -549,6 +559,13 @@ public class Enemy implements Entity{
 	}
 	public void setSlowed(boolean s) {
 		this.slowed = s;
+	}
+	public boolean isMapkillseen() {
+		return mapkillseen;
+	}
+
+	public void setMapkillseen(boolean mapkillseen) {
+		this.mapkillseen = mapkillseen;
 	}
 	
 }

@@ -11,6 +11,7 @@ public class Wave {
 	private int enemiesN;
 	private boolean waveCompleted;
 	private int enemiesSpawned;
+	private int mapkill;
 	
 	public Wave( Enemy enemyType, int cooldown, int enemiesN) {
 		super();
@@ -21,10 +22,11 @@ public class Wave {
 		this.wave = new ArrayList<Enemy>();
 		this.waveCompleted = false;
 		this.enemiesSpawned = 0;
-		
+		this.mapkill = 0;
 		projectW();
 	}
 	
+
 	public void update() {
 		 
 		boolean allEnemiesDead = true;
@@ -42,6 +44,10 @@ public class Wave {
 				e.update();
 				e.project();
 			}
+			if (e.mapKIll()&&e.mapkillseen) {
+				mapkill++;
+				e.setMapkillseen(false);
+			}
 		}
 		if (allEnemiesDead)
 			waveCompleted = true;
@@ -57,6 +63,12 @@ public class Wave {
 	}
 	public boolean isCompleted() {
 		return waveCompleted;
+	}
+	public int mapKill() {
+		return mapkill;
+	}
+	public void setMapkill(int mapkill) {
+		this.mapkill = mapkill;
 	}
 	public ArrayList<Enemy> getEnemies() {
 		return wave;
