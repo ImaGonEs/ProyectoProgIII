@@ -2,6 +2,7 @@ package Datos;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 
 import weareSupports.BDlocal;
 
@@ -36,7 +37,7 @@ public class Player {
 	private Texto textWin = new Texto("", 500, 500,120);
 	private Texto oro, tWave, textWave, textGold, tHP, textHP,tQ,tW,tE,tR;
 	private int hp;
-
+	private boolean derrotado = false;
 	Properties prop= new Properties();
 	InputStream input=null;
 	String player;
@@ -228,7 +229,7 @@ public static ArrayList<String> leeTeam (String name) {
 		}
 	}
 
-	private boolean mouseButton1 = false;
+	private boolean win = false;
 
 	public void Update() {
 
@@ -378,7 +379,7 @@ public static ArrayList<String> leeTeam (String name) {
 		
 		
 		
-			if (wManager.getWave().isCompleted()&&wManager.getWaveNumber()<6) {
+			
 
 
 
@@ -389,13 +390,15 @@ public static ArrayList<String> leeTeam (String name) {
 		//System.out.println(wManager.getWave().isCompleted());
 
 
-
+		
 			
 			if (wManager.getWaveNumber()==6&&wManager.getWave().isCompleted()) {
 				textWin = new Texto("¡VICTORIA! +100 GEMAS! ", 400, 400, 64);
+				if(!win) {
 				BDlocal bd = new BDlocal();
 				bd.updateGems(player, "+100");
-				
+				win = true;
+				}
 			}
 			
 
@@ -410,15 +413,24 @@ public static ArrayList<String> leeTeam (String name) {
 
 
 		if(wManager.getWave().mapKill()> 0) {
-			hp -= wManager.getWave().mapKill();
+			hp -= 50*wManager.getWave().mapKill();
 			this.wManager.setWaveMapKill(0);
 			tHP.cambioTexto(hp);
-		}
+			if(hp<=0) {
+			textWin = new Texto("¡DERROTA!", 400, 400, 64);
+			try {
+			Display.destroy();
+			}catch (Exception e) {
+				
 			}
+			derrotado=true;
+			}
+		}
+			
 
 
 
-
+	
 	}
 
 

@@ -24,7 +24,7 @@ public class Options extends JFrame{
 	
 	public Options() {
 		
-		
+	
 		slider = new JSlider();
 		JPanel mainP = new JPanel();
 		mainP.setLayout(new GridLayout(3,1));
