@@ -54,8 +54,6 @@ public class Login extends JFrame{
 	
 	HashMap<String, String> mapa;
 	
-
-
 	public Login() {
 		
 		
@@ -311,8 +309,6 @@ public class Login extends JFrame{
 			}
 			
 		}
-	
-	
 	}
 	public void saveProps(String u,String p) {
 		
