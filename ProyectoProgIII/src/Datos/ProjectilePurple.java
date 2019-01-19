@@ -12,7 +12,7 @@ public class ProjectilePurple extends Projectile{
 	@Override
 	public void damage() {
 		//Aturde a los enemigos (los enemigos dejan de moverse
-		super.getTarget().setVel(0);
+		super.getTarget().setVel(1);
 		//Lo ponemos a false porque este proyectil no hace daño a los enemigos
 		super.setAlive(false); 
 		
