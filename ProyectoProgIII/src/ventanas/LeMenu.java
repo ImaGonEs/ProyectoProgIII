@@ -213,7 +213,6 @@ public class LeMenu extends JFrame{
 				bSe1.setImagen("src/res/settings1.png");
 				new Options();
 				
-				frame.dispose();
 				
 				
 					
