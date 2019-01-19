@@ -28,6 +28,7 @@ public class LeMenu extends JFrame{
 	static boolean mapaRecCargado = false;
 	static Map grid = null;
 	static int[][] mapa;
+	Options o;
 	
 	
 	public static int[][] getMapa() {
@@ -216,7 +217,17 @@ public class LeMenu extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				bSe1.setImagen("src/res/settings1.png");
-				new Options();
+				
+				
+					try {
+						o.setVisible(true);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						
+						o = new Options();
+					}
+				
+				 
 
 				
 				

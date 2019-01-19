@@ -42,8 +42,8 @@ public class Options extends JFrame{
 		bLead = new JButton("LEADERBOARD");
 		
 		
-		songs.addItem("EY");
-		songs.addItem("EY2");
+		songs.addItem("PLAYLIST 1");
+		songs.addItem("PLAYLIST 2");
 		
 		 
 		 
@@ -97,29 +97,29 @@ public class Options extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if (songs.getSelectedItem()=="EY") {
+				if (songs.getSelectedItem()=="PLAYLIST 1") {
 					
 					try {
 						song.FXStop();
 					} catch (Exception e2) {
 						
 					}
-					song= new StandardAudio("mix1.mp3", false);
+					song= new StandardAudio("mixRJ.mp3", false);
 					
 					
 	
-					song.adjustFXVolume(-0.8);
+					song.adjustFXVolume(+0.8);
 					
 					song.FXPlay();
-				}else if (songs.getSelectedItem()=="EY2") {
+				}else if (songs.getSelectedItem()=="PLAYLIST 2") {
 					try {
 						song.FXStop();
 					} catch (Exception e2) {
 						
 					}
-					song= new StandardAudio("mix3.mp3", false);
+					song= new StandardAudio("mixWeeb.mp3", false);
 					
-					song.adjustFXVolume(0.2);
+					song.adjustFXVolume(-0.6);
 					song.FXPlay();
 					
 					
@@ -144,7 +144,7 @@ public class Options extends JFrame{
 		setTitle("OPTIONS");	
 		setSize(700,200);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setLocationRelativeTo(null);	
 	}
 
