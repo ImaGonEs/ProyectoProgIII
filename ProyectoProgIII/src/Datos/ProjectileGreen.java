@@ -13,7 +13,7 @@ public class ProjectileGreen extends Projectile{
 	public void damage() {
 		
 		
-		super.setAlive(false); //si queremos que no haga daño se cambia esto
+		super.setAlive(false);
 		super.damage();
 	}
 

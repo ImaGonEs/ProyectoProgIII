@@ -58,18 +58,14 @@ public class LeMenu extends JFrame{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		JFrame frame = this;
-		
-//		int w = (int) screenSize.getWidth();
-//		int h = (int) screenSize.getHeight();
-		
+				
 		if (f ==false) {
 		w = 1000;
 		h = 600;
 		}else {
 			
 			w = (int) screenSize.getWidth();
-			h = (int) screenSize.getHeight();
-			
+			h = (int) screenSize.getHeight();	
 		}
 		
 		setUndecorated(f);
@@ -83,20 +79,20 @@ public class LeMenu extends JFrame{
 		panel = new JPanel();
 		panel.setLayout(null);
 		
-		clip = new StandardAudio("src/res/Evil Mortys Theme.wav",true);
+		
 		
 		background = new JLabelGraficoAjustado("forest", w, (int) ((int) h*1.5)); //1000,900
 		
 		title = new JLabelGraficoAjustado("title", (int) (w*0.8), h/6); //800,100
 				
 		bP1 = new JLabelGraficoAjustado("play1",(int) (w*0.2),h/6);  //200,100   (int) (w*0.2),h/6
-		//bP2 = new JLabelGraficoAjustado("play2.png",100,100); 
+	 
 		bT1 = new JLabelGraficoAjustado("team1",(int) (w*0.2),h/6); 
-		//bT2 = new JLabelGraficoAjustado("team2O",100,100); 
+	
 		bSu1 = new JLabelGraficoAjustado("summon1",(int) (w*0.2),h/6); 
-		//bSu2 = new JLabelGraficoAjustado("summon2",100,100); 
+	
 		bSe1 = new JLabelGraficoAjustado("settings1",(int) (w*0.2),h/6); 
-		//bSe2 = new JLabelGraficoAjustado("settings2",100,100);
+		
 		
 		
 		bFS = new JLabelGraficoAjustado("FS3", (int) (w*0.1),h/6);
@@ -173,8 +169,7 @@ public class LeMenu extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				bT1.setImagen("src/res/team1.png");
-				Thread gui = new Thread(new Runnable() {
-					
+				Thread gui = new Thread(new Runnable() {	
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
@@ -217,27 +212,12 @@ public class LeMenu extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				bSe1.setImagen("src/res/settings1.png");
-				
-				
 					try {
 						o.setVisible(true);
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						
+						// TODO Auto-generated catch block	
 						o = new Options();
-					}
-				
-				 
-
-				
-				
-					
-					
-					
-				
-				
-				
-				
+					}	
 			}
 			
 			@Override
@@ -304,15 +284,11 @@ public class LeMenu extends JFrame{
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				bFS.setImagen("src/res/FS3.png");
-				
-				
+				bFS.setImagen("src/res/FS3.png");				
 				if ( f == false) {
 				new LeMenu(true);
-				}else {
-					
-					new LeMenu(false);
-					
+				}else {		
+					new LeMenu(false);	
 				}
 				frame.dispose();
 				

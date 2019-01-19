@@ -14,22 +14,22 @@ public class TowerRed extends Tower{
 	public void shoot() {
 		
 		timeSinceLastShot = 0;   
-		projectiles.add(new ProjectileRed(QuickCast("POtro3"), target, x, y, 32, 32,400 , 10));
+		projectiles.add(new ProjectileRed(QuickCast("POtro3"), target, x, y, 32, 32,400 , this.getDamage()));
 		}
 	
 	
-public TowerRed( int damage, float attackSpeed, int range, String icon) {
-		
-		super(damage,attackSpeed,range,icon);
-	
-		this.damage = damage;
-		this.range = range;
-		
-		this.attackSpeed = attackSpeed;
-		this.icon = icon;
-		
-		
-		
-		
-	}
+//public TowerRed( int damage, float attackSpeed, int range, String icon) {
+//		
+//		super(damage,attackSpeed,range,icon);
+//	
+//		this.damage = damage;
+//		this.range = range;
+//		
+//		this.attackSpeed = attackSpeed;
+//		this.icon = icon;
+//		
+//		
+//		
+//		
+//	}
 }

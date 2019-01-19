@@ -12,24 +12,25 @@ public class TowerIce extends Tower{
 		
 	}
 
-	public TowerIce( int damage, float attackSpeed, int range, String icon) {
-		
-		super(damage,attackSpeed,range,icon);
+//	public TowerIce( int damage, float attackSpeed, int range, String icon) {
+//		
+//		super(damage,attackSpeed,range,icon);
+//	
+//		this.damage = damage;
+//		this.range = range;
+//		
+//		this.attackSpeed = 2;
+//		this.icon = icon;
+//		
+//		
+//		
+//		
+//	}
 	
-		this.damage = damage;
-		this.range = range;
-		
-		this.attackSpeed = 2;
-		this.icon = icon;
-		
-		
-		
-		
-	}
 	public void shoot() {
 		
 		timeSinceLastShot = 0;   
-		projectiles.add(new ProjectileIceBall(QuickCast("circle"), target, x, y, 32, 32,600 , 10));
+		projectiles.add(new ProjectileIceBall(QuickCast("circle"), target, x, y, 32, 32,600 , this.damage));
 	}
 
 	

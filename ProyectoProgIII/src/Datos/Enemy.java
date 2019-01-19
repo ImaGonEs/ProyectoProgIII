@@ -10,21 +10,22 @@ import static weareSupports.Clock.Delta;
 import org.newdawn.slick.opengl.Texture;
 
 public class Enemy implements Entity{
-
 	
-	private int w,h,vel, currentCheckPoint;
-	
+	//ancho, alto y velocidad del enemigo
+	private int w,h,vel;
+	//posicion (x,y), la vida y la vida al empezar
 	private float x,y, lp, startLp;
+	//textura de la barra de vida
 	private Texture healthBackground, healthForeground, healthBorder;
+	//textura del enemigo
 	private Texture[] tex;
+	//celda inicial
 	private MapCell start;
 	private static Map map;
-	private static Map mapc;
 	private boolean alive = true;
-	private ArrayList<CheckPoint> checkpoints;
 	private int[] directions;
+	//celdas recorridas
 	private ArrayList<MapCell> celdasV;
-	private int dir1L,dir2L;
 	private boolean first = true;
 	private boolean slowed = false;
 	private boolean mapkill = false;
@@ -40,32 +41,19 @@ public class Enemy implements Entity{
 		this.vel = vel;
 		this.lp = lp;
 		this.startLp = lp;
-		
 		this.tex = new Texture[2];
 		this.tex[0]= tex;
 		this.tex[1]= tex2;
-		
-		
-		
 		this.healthBackground = QuickCast("healthBackground");
 		this.healthBorder = QuickCast("healthBorder");
 		this.healthForeground = QuickCast("healthForeground");
 		this.map = map;
 		this.celdasV = new ArrayList<MapCell>();
-		//this.mapc =new Map(map.getAbc());
-		this.checkpoints = new ArrayList<CheckPoint>();
 		this.directions = new int[2];
-		this.dir1L = 1;
-		this.dir1L = 0;
 		//x direction
 		this.directions[0] = 0;
 		//y direction
 		this.directions[1] = 0;
-		//directions = findNextD(start);
-		this.currentCheckPoint = 0;
-		//populateCheckPointList();
-		
-		
 	}
 	private int dir1 =0;
 	private int dir2 =0;
@@ -73,88 +61,22 @@ public class Enemy implements Entity{
 	public void update() {
 		if (first) {
 			first = false;
-		}else {
-			
-//			if (checkPointReached()) {
-//				if (currentCheckPoint + 1 == checkpoints.size()) {
-//					System.out.println("enemmy reached end of maze");
-//					die();
-//					
-//				}
-//				else {
-//				currentCheckPoint++;
-//				}
-//			}else {
-				
-				
-				
-//				System.out.println(Math.round((x)/32)+" "+Math.round((y)/32));
-//				System.out.println(x+" "+y);
-//				if(x > (map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)).getX()-16)-3 && 
-//						 x < (map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)).getX()-16)+3 &&
-//				 		y > (map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)).getY())-3 && 
-//				 		y < (map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)).getY())+3) {
-//					System.out.println("BBBBBBBBB");
-				
+		}else {		
 				dir1 = setDir(map,map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)),0,dir1,dir2)[0];
 				dir2 = setDir(map,map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)),0,dir1,dir2)[1];
-				
-//				}else {
-//					if(primera) {
-//						System.out.println("AAAA");
-//						dir1 = setDir(map,map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)),0,dir1,dir2)[0];
-//						dir2 = setDir(map,map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32)),0,dir1,dir2)[1];
-//						primera=false;
-//					}else {
-//						primera=false;
-//
-//					
-//					}
-//				}
-					
-				x += Delta() * dir1  * vel;  // checkpoints.get(currentCheckPoint).getxDirection() 
-				   //
-				y += Delta() * dir2 * vel;   // checkpoints.get(currentCheckPoint).getyDirection() 
-				   //
-				
-			//}
-//			x += (float) Delta() * directions[0];
-//			y += (float) Delta() * directions[1];
-//		}
+							
+				x += Delta() * dir1  * vel;  				   
+				y += Delta() * dir2 * vel;   
 		}
 	}
 	
-
-	private boolean primera = true;
 	private int[] setDir( Map map, MapCell s, int c,int dir1, int dir2) {
-	
 		int[] dir = new int[2];
-		
-//		System.out.println(s.getXPlace());
-//		System.out.println(s.getYPlace());
-//		System.out.println(map.getMap()[s.getXPlace()+1][s.getYPlace()].getR());
-//		
-		
-		
-		
 		if(c ==0&&s.getXPlace()<39) {
-			
-			
-			//aa
-			
 			//calcular x,y siguiente celda y que sea una condicion     
-			
-			
 			if (map.getMap()[s.getXPlace()+1][s.getYPlace()].getType().equals(TileType.Dirt0)
 					&&!celdasV.contains(map.getMap()[s.getXPlace()+1][s.getYPlace()]))
 			{
-					//) { 
-//				System.out.println(s.getY());
-//				System.out.println(s.getYPlace()*32+16);
-				
-//				System.out.println(x+ " "+ s.getX());
-//				System.out.println(y+ " "+ s.getY());
-				//System.out.println(map.getMap()[0][0].getX()+" "+map.getMap()[0][0].getXPlace());
 //				if(x > (s.getX()-16)-3 && 
 //						 x < (s.getX()-16)+3 &&
 //				 		y > (s.getY())-3 && 
@@ -176,32 +98,17 @@ public class Enemy implements Entity{
 //					}
 //					return dir;
 //				}
-			}else {
-//				System.out.println("no hay derecha");
+			}else {				
 				return setDir(map,s,c+1,dir1,dir2);
-			}
-			
-			
-			
-		}else if(c==1&&s.getXPlace()<39) {
-
-			
+			}	
+		}else if(c==1&&s.getXPlace()<39) {	
 			if (map.getMap()[s.getXPlace()][s.getYPlace()-1].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()][s.getYPlace()-1])) {
-
-
-				
-
-
-//				System.out.println("hola");
-
 //				if(x > (s.getX()) - 3 && 
 //						 x < (s.getX()) + 3 &&
 //				 		y > (s.getY()) -3 && 
 //				 		y < (s.getY()) +3) {
 				dir[0]=0;
 				dir[1]=-1;
-				System.out.println(x +" "+y);
-//				System.out.println(dir[0]+" "+dir[1]);
 				celdasV.add(map.getMap()[s.getXPlace()][s.getYPlace()]);
 //				}else {
 //					if(!primera) {
@@ -217,19 +124,15 @@ public class Enemy implements Entity{
 //					
 //				}
 			}else {
-//				System.out.println("no hay arriba");
 				return setDir(map,s,c+1,dir1,dir2);
 			}
-
-
 		}else if(c==2&&s.getXPlace()<39) {
 			
 			if (map.getMap()[s.getXPlace()][s.getYPlace()+1].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()][s.getYPlace()+1])) {
 //				if(x > (s.getX()-16) - 3 && 
 //						 x < (s.getX()-16) + 3 &&
 //				 		y > (s.getY()) -3 && 
-//				 		y < (s.getY()) +3) {
-//				
+//				 		y < (s.getY()) +3) {		
 				dir[0]=0;
 				dir[1]=1;
 				celdasV.add(map.getMap()[s.getXPlace()][s.getYPlace()]);
@@ -244,17 +147,11 @@ public class Enemy implements Entity{
 //					
 //					}
 //					return dir;
-//				}
-				
+//				}			
 			}else {
-
 				return setDir(map,s,c+1,dir1,dir2);
 			}
-
-
-
-		}else if (c==3&&s.getXPlace()<39){
-			
+		}else if (c==3&&s.getXPlace()<39){	
 			if(s.getXPlace()-1>=0) {
 			if (map.getMap()[s.getXPlace()-1][s.getYPlace()].getType().equals(TileType.Dirt0)&&!celdasV.contains(map.getMap()[s.getXPlace()-1][s.getYPlace()])) {
 //				if(x > (s.getX()) - 3 && 
@@ -274,162 +171,24 @@ public class Enemy implements Entity{
 //					dir[1]=0;
 //					
 //					}
-//					return dir;}
-				
+//					return dir;}				
 			}else {
-
 				return setDir(map,s,c+1,dir1,dir2);
 			}
 			}
-		}else {
-			
-			mapKill();
-			
-		}
-		
-		
+		}else {		
+			mapKill();		
+		}	
 		return dir;
-		
-		
-		
-		
+	
 }
-	
-	
-	
-	
-	private boolean checkPointReached() {
-		boolean reached = false;
-		
-		//MapCell t = checkpoints.get(currentCheckPoint).getMapCell();
-		MapCell s = map.getCell((int) Math.round((x)/32), (int) Math.round((y)/32));
-		//check if position reached tile within variance of 3 (ARBITRARY)
-		 if (x > s.getX() - 3 && 
-				 x < s.getX() + 3 &&
-		 		y > s.getY() -3 && 
-		 		y < s.getY() +3) {
-			 
-		 
-		
-		reached = true;
-		x = s.getX();
-		y = s.getY();
-		 }
-		 
-		 return reached;
-	}
-	
-//	private void populateCheckPointList() {
-//		
-//		checkpoints.add(findNextC(start, directions = findNextD(start)));
-//		
-//		
-//		int counter = 0;
-//		boolean cont = true;
-//		while (cont) {
-//			int[] currentD = findNextD(checkpoints.get(counter).getMapCell());
-//			//check if a next direciton/checkpoint exists, end after 20 checkpoints ARBITRARY
-//			if (currentD[0] == 2  || counter == 20) {
-//				
-//				cont = false;
-//			}else {
-//				checkpoints.add(findNextC(checkpoints.get(counter).getMapCell(),
-//						directions = findNextD(checkpoints.get(counter).getMapCell())));
-//			}
-//			counter++;
-//		}
-//	}
-//	private CheckPoint findNextC (MapCell s, int[] dir) {
-//		MapCell next = null;
-//		CheckPoint c= null;
-//		
-//		//boolean to decide if the next checkpoint is found 
-//		boolean found = false;
-//		//int to dincrement each loop
-//		int counter = 1;
-//		
-//		while(!found) {
-//			//either the xPlace or yPlace parameter you give the getTile(int, int) method is -1. 
-//			//this should always at least be 0, so your s.getX() or s.getY() is returning -1 at some point.
-//			if (s.getXPlace() + dir[0] * counter == map.getCellsWide() ||
-//					s.getYPlace() + dir[1] * counter == map.getCellsHigh() ||
-//					s.getType() !=
-//					map.getCell(s.getXPlace() + dir[0] * counter, 
-//						s.getYPlace() + dir[1] * counter).getType()) {
-//				
-//				found = true;
-//				//move counter back to 1 to find tile before iletype
-//				counter -=1 ;
-//				next  = map.getCell(s.getXPlace() +dir[0] * counter, 
-//						s.getYPlace() + dir[1] * counter);
-//						
-//			}	
-//			
-//			counter++;
-//		}
-//	c= new CheckPoint(next, dir[0], dir[1]);	
-//	return c;
-//	
-//	}
-	
-//	public int[] findNextD(MapCell s) {
-//		int[] dir = new int[2];
-//		MapCell u = map.getCell(s.getXPlace(),s.getYPlace()-1);
-//		MapCell r = map.getCell(s.getXPlace() + 1,s.getYPlace());
-//		MapCell d = map.getCell(s.getXPlace(),s.getYPlace()+1);
-//		MapCell l = map.getCell(s.getXPlace()-1,s.getYPlace());
-//		
-//		if (s.getType() == u.getType() && directions[1] != 1) {
-//			dir[0] = 0;
-//			dir[1] = -1;
-//			
-//		}else if(s.getType() == r.getType()  && directions[0] != -1) {
-//			dir[0] = 1;
-//			dir[1] = 0;
-//			
-//		}else if(s.getType() == d.getType()  && directions[1] != -1) {
-//			dir[0] = 0;
-//			dir[1] = 1;
-//			
-//		}else if(s.getType() == l.getType()  && directions[0] != 1) {
-//			dir[0] = -1;
-//			dir[1] = 0;
-//			
-//		}else{
-//			dir[0] = 2;
-//			dir[1] = 2;
-//			//System.out.println("NO DIRECTION FOUND");
-//		}
-//		
-//		
-//		return dir;
-//	}
-//	
-//	private boolean pathContinues() {
-//		boolean answer = true;
-//		
-//		MapCell myCell = map.getCell((int) (x / 32),(int)  (y / 32));
-//		MapCell nextCell = map.getCell((int) (x / 32) + 1,(int)  (y / 32));
-//	
-//		if (myCell.getType() != nextCell.getType())
-//		answer = false;
-//	
-//		return answer;
-//	
-//	}
-	
-	
-	public void project() {
-		
+
+	public void project() {	
 		float lpPerc = lp /startLp;
 		ProjectTQuad(tex[0],x,y,w,h);
 		ProjectTQuad (healthBackground,x,y - 8,w,4);
 		ProjectTQuad(healthForeground,x,y - 8 ,32 * lpPerc,8);
 		ProjectTQuad(healthBorder,x,y - 8,w,8);
-		
-		
-		
-		
 	}
 
 	public float getX() {
@@ -544,14 +303,11 @@ public class Enemy implements Entity{
 		this.directions[1]= directions[1];
 	}
 
-	public void changeTex() {
-		
+	public void changeTex() {	
 		Texture t3;
 		t3 = this.tex[0];
 		this.tex[0] = this.tex[1];
 		this.tex[1]=t3;
-		
-		
 	}
 	
 	public boolean isSlowed() {

@@ -1,6 +1,6 @@
 package Datos;
 
-import static weareSupports.Creador.QuickCast;
+
 
 import org.newdawn.slick.opengl.Texture;
 
@@ -12,8 +12,6 @@ public class ProjectileP extends Projectile{ //SLOW
 	
 	@Override
 	public void damage() {
-		
-		
 		super.setAlive(false); //si queremos que no haga daño se cambia esto
 		super.damage();
 	}

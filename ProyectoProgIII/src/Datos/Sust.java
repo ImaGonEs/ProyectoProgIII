@@ -1,8 +1,11 @@
 package Datos;
 
-import org.newdawn.slick.opengl.Texture;
 
-public class Sust { //gitxd
+/* 
+ * Clase sustituta para almacenar atributos de torres (la usamos en la ventana Gui sobretodo
+ * */
+
+public class Sust { 
 
 
 	String tex;

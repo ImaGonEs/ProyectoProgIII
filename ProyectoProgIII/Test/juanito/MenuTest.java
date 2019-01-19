@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import ventanas.Summon;
 import weareSupports.BD;
+import weareSupports.BDlocal;
 
 public class MenuTest {
 
@@ -20,9 +21,7 @@ public class MenuTest {
 	static ArrayList<String> iT,expT,iTowersBD,expTowersBD;
 	static String lastUs;
 	
-	
-	
-	
+
 	@BeforeClass
 	public static void setUp() throws Exception {
 		
@@ -32,12 +31,9 @@ public class MenuTest {
 		 
 		iT= s.getOwnedTNames();
 		iN = iT.size();
-		 
-		
-		 
-		 
-		lastUs = s.getLastUs();
-		iTowersBD = BD.arrayTiene(lastUs);
+		  
+		lastUs = "Test";
+		iTowersBD = BDlocal.arrayTiene(lastUs);
 			
 		
 		s.getButton().doClick();
@@ -53,7 +49,6 @@ public class MenuTest {
 		
 		if (s.getMissingTNames().size()>0) {
 		
-		//s.getButton().doClick();
 		
 		
 		assertEquals(expectedFGems, Integer.parseInt(s.getnGems().getText()));
@@ -63,11 +58,8 @@ public class MenuTest {
 	
 	@Test
 	public void testTowers() { //las torres se insertan correctamente
-		
-		
-		
-		
-		//s.getButton().doClick();
+				
+				
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -86,13 +78,12 @@ public class MenuTest {
 		}else {
 			assertEquals(iT,expT);
 		}
-	
 	}
 	
 	@Test
 	public void testBD() {
 		
-		expTowersBD = BD.arrayTiene(lastUs);
+		expTowersBD = BDlocal.arrayTiene(lastUs);
 		
 		if(iTowersBD.size() < 7)
 		assertEquals(iTowersBD.size()+1,expTowersBD.size());

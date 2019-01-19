@@ -3,7 +3,7 @@ package Datos;
 import org.newdawn.slick.opengl.Texture;
 import static weareSupports.Creador.*;
 
-public class ProjectileIceBall extends Projectile{ //SLOW
+public class ProjectileIceBall extends Projectile{ 
 
 	public ProjectileIceBall(Texture tex, Enemy target, float x, float y, int w, int h, float speed, int damage) {
 		super(tex, target, x, y, w, h, speed, damage);
@@ -16,9 +16,9 @@ public class ProjectileIceBall extends Projectile{ //SLOW
 		if (!super.getTarget().isSlowed()) {
 		super.getTarget().changeTex();
 		}
-		
+		//Este proyectil genera SLOW en los enemigos
 		super.getTarget().setSlowed(true);
-		super.setAlive(false); //si queremos que no haga daño se cambia esto
+		super.setAlive(false); 
 		super.damage();
 	}
 	

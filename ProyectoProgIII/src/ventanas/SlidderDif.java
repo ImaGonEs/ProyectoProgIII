@@ -36,8 +36,7 @@ public class SlidderDif extends JFrame{
 	@SuppressWarnings("unchecked")
 	public SlidderDif(String mapa) {
 		
-//		int w = (int) screenSize.getWidth();
-//		int h = (int) screenSize.getHeight();
+
 				
 		JFrame frame = this;
 		
@@ -46,28 +45,19 @@ public class SlidderDif extends JFrame{
 				
 		Container cp = this.getContentPane();
 		panel = new JPanel(new GridLayout(3, 1));
-		//panel.setLayout(null);
+
 			
 		background = new JLabelGraficoAjustado("forest", w, (int) ((int) h*1.5)); //1000,900
-//		
-//		title = new JLabelGraficoAjustado("Login", (int) 302, 146); 
-//		
-//		usuario = new JLabelGraficoAjustado("Usuario", (int) 100, 60); 
-//		 
-//		pass = new JLabelGraficoAjustado("Pass", (int) 100, 60); 
-//		
-//		btn = new JLabelGraficoAjustado("play1",(int) (w*0.2),h/6);
-//		
+	
 		
 		@SuppressWarnings("rawtypes")
 		Hashtable labelTable = new Hashtable();
-		labelTable.put( new Integer( 0 ), new JLabel("eZ") );
-		labelTable.put( new Integer( 3 ), new JLabel("Weabo") );
-		labelTable.put( new Integer( 6 ), new JLabel("#MODODIABLO") );
+		labelTable.put( new Integer( 0 ), new JLabel("Easy") );
+		labelTable.put( new Integer( 3 ), new JLabel("Normal") );
+		labelTable.put( new Integer( 6 ), new JLabel("Hard") );
 		dif.setLabelTable( labelTable );
 
 		dif.setPaintLabels(true);
-		//us.setBounds(405, ((h/6)/2)+210, 150, 30);
 		JPanel panelar = new JPanel();
 		panelar.add(new JLabel("Dificultad"));
 		panel.add(panelar);
@@ -84,26 +74,16 @@ public class SlidderDif extends JFrame{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
-
 			// TODO Auto-generated method stub
-			
-			
-			Thread boot = new Thread (new Runnable() {
-				
+			Thread boot = new Thread (new Runnable() {		
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
-					
+					// TODO Auto-generated method stub			
 					new Boot(dif.getValue(),mapa);
 				}
-			});
-
-			
-			boot.start();
-			
-			frame.dispose();
-			
+			});	
+			boot.start();		
+			frame.dispose();	
 		}
 	});
 		
@@ -115,10 +95,6 @@ public class SlidderDif extends JFrame{
 	
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		//new SlidderDif();
-		
-	}
+
 
 }

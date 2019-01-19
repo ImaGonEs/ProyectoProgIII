@@ -4,7 +4,9 @@ import org.newdawn.slick.opengl.Texture;
 import static weareSupports.Clock.*;
 import static weareSupports.Creador.*; 
 
-
+/* 
+ * Todos los proyectiles heredan de esta clase abstract
+ * */
 public abstract class Projectile implements Entity{
 	
 	private Texture tex;

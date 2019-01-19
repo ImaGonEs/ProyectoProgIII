@@ -2,16 +2,11 @@ package weareSupports;
 
 import org.lwjgl.Sys;
 
+/* 
+ * Clase Reloj que gestiona el tiempo para que las entidades se muevan (OpenGL)
+ * */
 
-public class Clock { //sddfs
-
-
-//tu reputisima madre compadre
-
-//me cago en dios
-
-//me cago en la puta
-
+public class Clock {
 
 	private static boolean paused = false;
 	public static long lastFrame, totalTime;
@@ -26,7 +21,6 @@ public class Clock { //sddfs
 		long currentTime = getTime();
 		int delta = (int) (currentTime -lastFrame);
 		lastFrame = getTime();
-		//System.out.println(delta * 0.01f);
 		if (delta * 0.001f > 0.05f)
 			return 0.05f;
 		return delta * 0.001f;
@@ -34,12 +28,8 @@ public class Clock { //sddfs
 	
 	public static float Delta() {
 		if (paused) {
-			
-		
 			return 0;
-		}else {
-			
-			
+		}else {	
 			return  d *multiplier;
 		}
 	}
@@ -74,9 +64,6 @@ public class Clock { //sddfs
 		else 
 			paused = true;
 	}
-//	
-//	public static Draw() {
-//		
-//	}
+
 
 }

@@ -1,29 +1,39 @@
  package Datos;
 
-import static weareSupports.Creador.QuickCast;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WManager {
 
 	
-	private int waveCD, enemiesCD;
+	private int enemiesCD;
 	private int waveNumber, enemiesN;
 	private Enemy enemyType;
 	private Wave cWave;
+	private ArrayList<Enemy> enemyTypes; 
 	
-	
-	private ArrayList<Enemy> enemyTypes; //----------------
+	private static Logger logger = Logger.getLogger( "LoggerOleadas" );
+
+
+
+		static {
+        try {
+            logger.setLevel( Level.FINEST);
+            logger.addHandler( new FileHandler( "LoggerOleadas.xml") );
+        } catch (Exception e) {}
+		}
 	
 	public WManager(ArrayList<Enemy> enemyTypes,int enemiesCD, int enemiesN) {
 		
 		
-		//this.enemyType = enemyType;
+		
 		this.enemiesCD = enemiesCD;
 		this.enemiesN = enemiesN;
 		
-		this.waveCD = 0;
 		this.waveNumber = 0;
 		
 		this.cWave = null;
@@ -41,13 +51,12 @@ public class WManager {
 		if (!cWave.isCompleted())
 			cWave.update();
 		else {
-			//System.out.println("wave is over");
-			//this.enemyType.setTex(QuickCast("sans"));
 			projectW();
 		}
 	}
 	
 	Random r = new Random();
+	
 	public void projectW() {
 		
 		if (waveNumber<enemyTypes.size()) {
@@ -67,12 +76,12 @@ public class WManager {
 			this.enemiesN++;
 		else if (this.enemiesN == 10)
 			this.enemiesN--;
-		//this.enemiesN++;
 		
-		System.out.println("Beggining wave " + waveNumber);
+		
+		logger.log(Level.FINER,"Beggining wave " + waveNumber);
 		
 		}else {
-			System.out.println("END OF LEVEL");
+			logger.log(Level.FINEST,"END OF LEVEL");
 		}
 	}
 	
@@ -102,9 +111,7 @@ public class WManager {
 	}
 
 
-//	public void setEnemiesN(int enemiesN) {
-//		this.enemiesN = enemiesN;
-//	}
+
 	
 	
 	

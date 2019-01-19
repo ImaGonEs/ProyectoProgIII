@@ -8,11 +8,14 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.opengl.Texture;
 
+/* 
+ * Clase abstracta de la que heredan todas las torres
+ * */
 public abstract class Tower implements Entity{
 	
 	protected float x, y, timeSinceLastShot, attackSpeed;
 	protected int w,h, damage, range;
-	protected Enemy target; // si es aoe se puede pasar null;
+	protected Enemy target;
 	private Texture tex;
 	private ArrayList<Enemy> enemies;
 	protected boolean targeted;

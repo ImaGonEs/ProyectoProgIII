@@ -1,9 +1,9 @@
 package Datos;
 
-import static weareSupports.Creador.QuickCast;
+
 
 import org.newdawn.slick.opengl.Texture;
-import weareSupports.*;
+
 
 public class ProjectilePoison extends Projectile{ 
 
@@ -11,11 +11,6 @@ public class ProjectilePoison extends Projectile{
 		super(tex, target, x, y, w, h, speed, damage);
 	}
 	
-	public void poison() {
-		
-		
-		
-	}
 	@Override
 	public void damage() {
 		
@@ -25,14 +20,12 @@ public class ProjectilePoison extends Projectile{
 			public void run() {
 				// TODO Auto-generated method stub
 				
-				ProjectilePoison.super.setAlive(false); //si queremos que no haga daño se cambia esto
-				
-				while (ProjectilePoison.this.getTarget().isAlive()) {
-					
+				ProjectilePoison.super.setAlive(false); 
+				//Este pryectil aplica un efecto de veneno en los enemigos (les hace daño cada segundo)
+				while (ProjectilePoison.this.getTarget().isAlive()) {		
 					try {
 						ProjectilePoison.super.damage();
-						Thread.sleep(1000);
-						
+						Thread.sleep(500);		
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
