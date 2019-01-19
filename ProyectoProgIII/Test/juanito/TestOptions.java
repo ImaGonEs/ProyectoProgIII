@@ -18,6 +18,7 @@ public class TestOptions {
 		o = new Options();
 		o.getbOk().doClick();
 		
+		
 	}
 
 	@After

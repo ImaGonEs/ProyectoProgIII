@@ -128,7 +128,7 @@ public class Login extends JFrame{
 	       
 		HashMap<String, String> mapa = bd.getPlayerMap();
 	    Set<String> set = mapa.keySet();
-	     System.out.println(mapa);
+	    
 		
 		btn.addMouseListener(new MouseListener() {
 			
@@ -202,7 +202,7 @@ public class Login extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println("rel");
+				
 				btn.setImagen("src/res/play2.png");
 			}
 			
