@@ -126,7 +126,7 @@ public class Creador {
 	
 	public static void TraceOn() {
 		
-		Display.setTitle("Pruebita");
+		Display.setTitle("Game");
 		try {
 			Display.setDisplayMode(new DisplayMode(1280, 960));
 			//Display.setFullscreen(true);

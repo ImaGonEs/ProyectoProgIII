@@ -69,6 +69,7 @@ class Gui extends JFrame {
 	
 	private String column[]={"stats",""};         
 	private JTable jt=new JTable(stats1,column); 
+	
 	private JTable jt2 = new JTable(stats2,column);   
 	GridBagLayout gbl = new GridBagLayout();
 	
@@ -278,7 +279,8 @@ class Gui extends JFrame {
 		
 		
 		
-		
+		jt.setDefaultEditor(Object.class, null);
+		jt2.setDefaultEditor(Object.class, null);
 		setLayout(gbl);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(1300,750);

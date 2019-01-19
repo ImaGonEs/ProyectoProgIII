@@ -144,6 +144,7 @@ public class Options extends JFrame{
 		setTitle("OPTIONS");	
 		setSize(700,200);
 		setVisible(true);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setLocationRelativeTo(null);	
 	}
