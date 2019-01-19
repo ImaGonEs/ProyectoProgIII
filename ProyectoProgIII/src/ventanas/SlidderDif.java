@@ -94,6 +94,7 @@ public class SlidderDif extends JFrame{
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
+					
 					new Boot(dif.getValue(),mapa);
 				}
 			});

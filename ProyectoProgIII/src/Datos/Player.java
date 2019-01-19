@@ -366,10 +366,24 @@ public static ArrayList<String> leeTeam (String name) {
 
 		nWave = wManager.getWaveNumber();
 		tWave.cambioTexto(nWave);
+		
+
+		
+		
+		
+	
+		
+	
+		//System.out.println(wManager.getWave().isCompleted());
+		
+		
+		
+			if (wManager.getWave().isCompleted()&&wManager.getWaveNumber()<6) {
 
 
 
-		//uuuuuuuuuuu
+
+		
 
 
 		//System.out.println(wManager.getWave().isCompleted());
@@ -400,6 +414,7 @@ public static ArrayList<String> leeTeam (String name) {
 			this.wManager.setWaveMapKill(0);
 			tHP.cambioTexto(hp);
 		}
+			}
 
 
 

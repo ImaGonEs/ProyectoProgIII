@@ -362,7 +362,7 @@ public class BDlocal {
 	          System.out.println("Opened database successfully");
 
 	          stmt = c.createStatement();
-	          String sql = "UPDATE PLAYERS SET GEMS = GEMS +"+cant+" WHERE NAME_P = '"+player+"';"; 
+	          String sql = "UPDATE PLAYERS SET GEMS = GEMS "+cant+" WHERE NAME_P = '"+player+"';"; 
 	          stmt.executeUpdate(sql);
 
 
