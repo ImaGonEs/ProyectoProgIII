@@ -266,7 +266,7 @@ public class Summon extends JFrame{
 		
 		pR.add(b);
 		
-		JLabel lD = new  JLabel("TORRES DISPONIBLES");
+		JLabel lD = new  JLabel("                     TU COLECCION                      ");
 		lD.setForeground(Color.WHITE);
 		
 		pR.add(lD);
@@ -340,6 +340,7 @@ public class Summon extends JFrame{
 		
 		
 		setSize(1150,650);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -463,7 +464,7 @@ public class Summon extends JFrame{
 				t.start();
 			
 			}
-		}else {JOptionPane.showMessageDialog(null,"NECESITAS 100 GEMAS PARA HACER LA SUMMON");}
+		}else {JOptionPane.showMessageDialog(null,"TE FALTAN GEMAS");}
 				}
 			}
 		);

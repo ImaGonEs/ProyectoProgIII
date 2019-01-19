@@ -19,7 +19,7 @@ import weareSupports.StandardAudio;
 
 public class LeMenu extends JFrame{
 	
-	JLabelGraficoAjustado bP1, bP2, bT1, bT2, bSu1, bSu2, bSe1, bSe2,background;
+	JLabelGraficoAjustado bP1, bP2, bT1, bT2, bSu1, bSu2, bSe1, bSe2,bFS,background;
 	JPanel panel;
 	JLabelGraficoAjustado title;
 	StandardAudio clip;
@@ -97,6 +97,9 @@ public class LeMenu extends JFrame{
 		bSe1 = new JLabelGraficoAjustado("settings1",(int) (w*0.2),h/6); 
 		//bSe2 = new JLabelGraficoAjustado("settings2",100,100);
 		
+		
+		bFS = new JLabelGraficoAjustado("FS3", (int) (w*0.1),h/6);
+		
 		cp.add(background);
 		
 		bP1.setLocation(w/5,h/3 );  //200,200      w/5,h/3 
@@ -109,12 +112,14 @@ public class LeMenu extends JFrame{
 		
 		title.setLocation(w/10, (h/6)/2); //100,50   w/10, (w/6)/2
 		
+		bFS.setLocation(w/1.15 , 2*(h/2.6));
+		
 		background.add(bP1);
 		background.add(bT1);
 		background.add(bSe1);
 		background.add(bSu1);
 		background.add(title);
-				
+		background.add(bFS);		
 		cp.validate();
 		cp.repaint();
 						
@@ -212,7 +217,7 @@ public class LeMenu extends JFrame{
 				// TODO Auto-generated method stub
 				bSe1.setImagen("src/res/settings1.png");
 				new Options();
-				
+
 				
 				
 					
@@ -262,6 +267,52 @@ public class LeMenu extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
 				bSu1.setImagen("src/res/summon2.png");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		bFS.addMouseListener(new MouseListener() {
+
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				bFS.setImagen("src/res/FS3.png");
+				
+				
+				if ( f == false) {
+				new LeMenu(true);
+				}else {
+					
+					new LeMenu(false);
+					
+				}
+				frame.dispose();
+				
+				
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				bFS.setImagen("src/res/FS31.png");
 			}
 			
 			@Override

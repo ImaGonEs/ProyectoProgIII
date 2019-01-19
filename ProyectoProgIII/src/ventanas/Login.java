@@ -21,7 +21,9 @@ import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 import Datos.Boot;
 import weareSupports.BDlocal;
@@ -36,7 +38,7 @@ public class Login extends JFrame{
 	StandardAudio clip;
 	private int w = 1000,h=600;
 	static JTextField us = new JTextField();
-	static JTextField pa = new JTextField();
+	static JPasswordField pa = new JPasswordField();
 	
 	static Properties prop = new Properties();
 	
@@ -54,8 +56,6 @@ public class Login extends JFrame{
 	
 	HashMap<String, String> mapa;
 	
-
-
 	public Login() {
 		
 		
@@ -63,6 +63,9 @@ public class Login extends JFrame{
 //		int w = (int) screenSize.getWidth();
 //		int h = (int) screenSize.getHeight();
 		
+		try { 
+	        UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"); 
+	    } catch(Exception ignored){}
 		
 		JFrame frame = this;
 		
@@ -196,7 +199,7 @@ public class Login extends JFrame{
 				}else if (!set.contains(user)) {
 					
 					saveProps(user, passw);
-					bd.insert("PLAYERS", "('"+user+"', '"+passw+"', 500, 1 )");	
+					bd.insert("PLAYERS", "('"+user+"', '"+passw+"', 400, 1 )");	
 					
 //					Connection c = null;
 //					
@@ -311,8 +314,6 @@ public class Login extends JFrame{
 			}
 			
 		}
-	
-	
 	}
 	public void saveProps(String u,String p) {
 		
