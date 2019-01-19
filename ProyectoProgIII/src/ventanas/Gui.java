@@ -36,9 +36,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.opengl.Texture;
@@ -367,7 +369,9 @@ class Gui extends JFrame {
 		gl.setHgap(1);
 		gl.setVgap(1);
 		
-		pnlE.setLayout(gl);
+		
+		
+		pnlE.setLayout(new BorderLayout());
 		
 		pI.add(jt);
 		pD.add(jt2);
@@ -375,11 +379,27 @@ class Gui extends JFrame {
 		JLabel labt2 = new JLabel("TOWER2");
 		labt1.setHorizontalAlignment(JLabel.CENTER);
 		labt2.setHorizontalAlignment(JLabel.CENTER);
-		pnlE.add(labt1);
-		pnlE.add(labt2);
-		pnlE.add(pI);
+		
+		 JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+                 jt, jt2);
+		 
+		 splitPane.setResizeWeight(0.5);
+		 splitPane.setOneTouchExpandable(true);
+		 splitPane.setContinuousLayout(true);
+		 
+		
+		JPanel pn = new JPanel();
+		pn.setLayout(new GridLayout(1,2));
+		
+		pn.add(labt1);
+		pn.add(labt2);
+		
+		pnlE.add(pn, BorderLayout.NORTH);
+		
+		pnlE.add(splitPane);
+		//pnlE.add(pI);
 		//pnlE.add(new JSeparator(SwingConstants.VERTICAL));
-		pnlE.add(pD);
+		//pnlE.add(pD);
 		
 
 		for (String j : tca) {

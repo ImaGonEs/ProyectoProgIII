@@ -2,6 +2,7 @@ package Datos;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 
 import weareSupports.BDlocal;
 
@@ -383,18 +384,21 @@ public static ArrayList<String> leeTeam (String name) {
 
 
 
-		
+			}
 
 
 		//System.out.println(wManager.getWave().isCompleted());
 
-
+			
 
 			
-			if (wManager.getWaveNumber()==6&&wManager.getWave().isCompleted()) {
+			if (wManager.getWaveNumber()==6 &&wManager.getWave().isCompleted()) {
 				textWin = new Texto("¡VICTORIA! +100 GEMAS! ", 400, 400, 64);
 				BDlocal bd = new BDlocal();
+				
 				bd.updateGems(player, "+100");
+				
+				
 				
 			}
 			
@@ -414,7 +418,7 @@ public static ArrayList<String> leeTeam (String name) {
 			this.wManager.setWaveMapKill(0);
 			tHP.cambioTexto(hp);
 		}
-			}
+			
 
 
 
@@ -422,7 +426,8 @@ public static ArrayList<String> leeTeam (String name) {
 	}
 
 
-
+	
+	
 	public void putTower(String t) {
 
 

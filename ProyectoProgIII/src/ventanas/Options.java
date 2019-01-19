@@ -67,6 +67,7 @@ public class Options extends JFrame{
 		CambiarBoton(bOk);
 		CambiarBoton(bMute);
 		CambiarBoton(bReturn);
+		CambiarBoton(bLead);
 		
 		
 		bMute.addActionListener(new ActionListener() {
