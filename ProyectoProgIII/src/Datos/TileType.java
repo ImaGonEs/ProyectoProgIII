@@ -3,7 +3,7 @@ package Datos;
 public enum TileType {
 
 	
-	Grass0("te1",true),Grass1("g1",true), Dirt0("ca1",false),Dirt1("m1",false), Dirt2("m2",false);
+	Grass0("te1",true),Grass1("g1",true), Dirt0("ca1",false),Dirt1("m1",false);
 	
 	public String name;
 	

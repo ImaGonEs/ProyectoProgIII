@@ -1,5 +1,7 @@
 package Datos;
 
+
+//Interfaz que implementan todas las entidades (Torres, Enemigos y Proyectiles)
 public interface Entity {
 	
 	public float getX();
@@ -12,9 +14,4 @@ public interface Entity {
 	public void setH(int h);
 	public void update();
 	public void project();
-	
-	
-	
-	
-
 }

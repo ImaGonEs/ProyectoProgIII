@@ -10,7 +10,6 @@ public class Wave {
 	private ArrayList<Enemy> wave;
 	private int enemiesN;
 	private boolean waveCompleted;
-	private int enemiesSpawned;
 	private int mapkill;
 	
 	public Wave( Enemy enemyType, int cooldown, int enemiesN) {
@@ -21,12 +20,10 @@ public class Wave {
 		this.timeL =0;
 		this.wave = new ArrayList<Enemy>();
 		this.waveCompleted = false;
-		this.enemiesSpawned = 0;
 		this.mapkill = 0;
 		projectW();
 	}
 	
-
 	public void update() {
 		 
 		boolean allEnemiesDead = true;
@@ -53,13 +50,8 @@ public class Wave {
 			waveCompleted = true;
 	}
 	
-	private void projectW() {
-		
-		wave.add(new Enemy(enemyType.getTex(0),enemyType.getTex(1),enemyType.getStart(),enemyType.getMap(),32,32,enemyType.getVel(),enemyType.getLp()));
-		
-		//enemiesSpawned++;
-		
-		
+	private void projectW() {	
+		wave.add(new Enemy(enemyType.getTex(0),enemyType.getTex(1),enemyType.getStart(),enemyType.getMap(),32,32,enemyType.getVel(),enemyType.getLp()));		
 	}
 	public boolean isCompleted() {
 		return waveCompleted;

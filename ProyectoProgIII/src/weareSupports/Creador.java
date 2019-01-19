@@ -22,7 +22,9 @@ import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-
+/* 
+ * Clase con los metodos necesarios para pintar los sprites en pantalla (OpenGL)
+ * */
 public class Creador {
 	
 	public static final int WIDTH = 1280, HEIGHT = 960;
@@ -68,17 +70,6 @@ public class Creador {
 		
 	}
 	
-//	public static void ProjectText (String texto, TrueTypeFont font, int x, int y) {
-//		
-//		
-//		font.drawString(x, y, texto);
-//		
-//		
-//		
-//		
-//	}
-	
-	
 	
 	public static Texture LoadT(String path, String fileType) {
 		
@@ -92,24 +83,14 @@ public class Creador {
 			System.out.println("Tile no encontrada");
 		}
 		
-		return tex;
-		
-		
-		
-		
-		
-		
+		return tex;		
 	}
 	
 	public static Texture QuickCast(String name) {
 		
-		Texture tex = null;
-		
+		Texture tex = null;		
 		tex = LoadT("src\\res\\"+name+".png","PNG");
-		
-		
-		return tex;
-		
+		return tex;		
 	}
 	
 	

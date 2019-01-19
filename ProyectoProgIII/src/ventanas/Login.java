@@ -59,10 +59,6 @@ public class Login extends JFrame{
 	public Login() {
 		
 		
-		
-//		int w = (int) screenSize.getWidth();
-//		int h = (int) screenSize.getHeight();
-		
 		try { 
 	        UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"); 
 	    } catch(Exception ignored){}
@@ -127,55 +123,8 @@ public class Login extends JFrame{
 		
 		mapa = new HashMap<String, String>();
 		
-		ArrayList<String> s = new ArrayList<String>();
+
 		
-		
-	 
-//	    try {//-------------------PRINT PLAYERS---------------------
-//	          Class.forName("org.sqlite.JDBC");
-//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//	          c.setAutoCommit(false);
-//	          System.out.println("Opened database successfully");
-//
-//	          stmt = c.createStatement();
-//	          ResultSet rs = stmt.executeQuery( "SELECT NAME_P,PASSWORD FROM PLAYERS;" );
-//	          
-//	          while ( rs.next() ) {
-//	        	  
-//	            
-//	             String name = rs.getString("NAME_P");
-//	             String pass = rs.getString("PASSWORD");
-//	             
-//	             
-//	             mapa.put(name, pass);
-//	             
-//	             s.add(name);
-//	             
-//	            
-//	            // System.out.println(pass);
-//	            // System.out.println(name);
-//	           
-//	            
-////	            if (name.equals(user) && pass.equals(passw)) {
-////	            	
-////	            	JOptionPane.showMessageDialog(null, "LOGIN");
-////	            	break;
-////	            }else {
-////	            	JOptionPane.showMessageDialog(null, "wrong password");
-////	            	break;
-////	            }
-////	            
-//	            
-//	           
-//	          }
-//	          rs.close();
-//	          stmt.close();
-//	          c.close();
-//	       } catch ( Exception exc ) {
-//	          System.err.println( exc.getClass().getName() + ": " + exc.getMessage() );
-//	          System.exit(0);
-//	       }
-//	       System.out.println("Operation done successfully");
 	       
 		HashMap<String, String> mapa = bd.getPlayerMap();
 	    Set<String> set = mapa.keySet();
@@ -194,44 +143,12 @@ public class Login extends JFrame{
 				
 				if (user.length()<3||passw.length()<3) {
 					
-					JOptionPane.showMessageDialog(null, "TRY AGAIN");
+					JOptionPane.showMessageDialog(null, "Intentalo de nuevo");
 					
 				}else if (!set.contains(user)) {
 					
 					saveProps(user, passw);
-					bd.insert("PLAYERS", "('"+user+"', '"+passw+"', 400, 1 )");	
-					
-//					Connection c = null;
-//					
-//					Statement stmt = null;
-//					
-//				    try { //-----------------INSERT PLAYER-----------------------------
-//			          Class.forName("org.sqlite.JDBC");
-//			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//			          c.setAutoCommit(false);
-//			          System.out.println("Opened database successfully");
-//			
-//			          stmt = c.createStatement();
-//			          String sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
-//			                         "VALUES ('"+user+"', '"+passw+"', 500, 1 );"; 
-//			          stmt.executeUpdate(sql);
-//			
-//			        
-//			          stmt.close();
-//			          c.commit();
-//			          c.close();
-//			          
-//			          saveProps(user, passw);
-//			       } catch ( Exception ex ) {
-//			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
-//			          System.exit(0);
-//			       }
-//			       System.out.println("Records created successfully");
-						
-					
-						
-			
-					
+					bd.insert("PLAYERS", "('"+user+"', '"+passw+"', 400)");				
 					JOptionPane.showMessageDialog(null, "CUENTA CREADA");
 					new LeMenu(false);
 					
@@ -240,24 +157,13 @@ public class Login extends JFrame{
 					
 				}else if (passw.equals(mapa.get(user))) {
 					
-					JOptionPane.showMessageDialog(null, "login con user: " +user+" pass: "+ passw);
+					JOptionPane.showMessageDialog(null, "Bienvenido " +user);
 					saveProps(user, passw);
 					new LeMenu(false);
 					frame.dispose();
-	
-					
-				}else {
-					
-					JOptionPane.showMessageDialog(null, "Wrong password");
-				}
-			   
-			       
-			       
-			       
-			       
-			       
-				
-				
+				}else {				
+					JOptionPane.showMessageDialog(null, "Contraseña Erronea");
+				}	
 			}
 			
 			@Override
@@ -291,12 +197,7 @@ public class Login extends JFrame{
 		try {
 
 			input = new FileInputStream("config.properties");
-
-			// load a properties file
-			prop.load(input);
-			
-			// get the property value and print it out
-			
+			prop.load(input);			
 			String lastUs = prop.getProperty("username");
 			String lastPass = prop.getProperty("password");
 			us.setText(lastUs);
@@ -315,22 +216,16 @@ public class Login extends JFrame{
 			
 		}
 	}
+	
 	public void saveProps(String u,String p) {
 		
 		OutputStream output = null;
-
-		
+	
 		try {
-
 			output = new FileOutputStream("config.properties");
-
-			// set the properties value
 			prop.setProperty("username", u);
 			prop.setProperty("password", p);
-			
-			
 
-			// save properties to project root folder
 			prop.store(output, null);
 
 		} catch (IOException io) {
@@ -350,20 +245,7 @@ public class Login extends JFrame{
 	
 	public static void main(String[] args) {
 		
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		new Login();
-		
-		
+
 	}
 }

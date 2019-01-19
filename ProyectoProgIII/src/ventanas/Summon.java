@@ -89,61 +89,12 @@ public class Summon extends JFrame{
 		
 		
 		missingTowers = bd.getTowerIDs();
-//		try { 
-//	          Class.forName("org.sqlite.JDBC");
-//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//	          c.setAutoCommit(false);
-//	          System.out.println("Opened database successfully");
-//
-//	          stmt = c.createStatement();
-//	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
-//	          
-//	          while ( rs.next() ) {
-//	             String id = rs.getString("ID");
-//	             
-//	             
-//	             missingTowers.add(id);
-//	          }
-//	          rs.close();
-//	          stmt.close();
-//	          c.close();
-//	       } catch ( Exception e ) {
-//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//	          System.exit(0);
-//	       }
-//	       System.out.println("Operation done successfully");
+
 	       
 	
 	ownedTowers = bd.getOwnedTowerIDs(player);
 	     
-//		try {
-//	          Class.forName("org.sqlite.JDBC");
-//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//	          c.setAutoCommit(false);
-//	          System.out.println("Opened database successfully");
-//
-//	          stmt = c.createStatement();
-//	          ResultSet rs = stmt.executeQuery( "SELECT ID_T FROM TIENE WHERE NAME_P="+"\""+player+"\""+";");
-//	          
-//	          while ( rs.next() ) {
-//	             
-//	             
-//	          String torre = rs.getString("ID_T");
-//	             
-//	          ownedTowers.add(torre);
-//	            
-//	            
-//	          }
-//	          rs.close();
-//	          stmt.close();
-//	          c.close();
-//	       } catch ( Exception e ) {
-//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//	          System.exit(0);
-//	       }
-//	       System.out.println("Operation done successfully");
-			
-		
+
 		
 		
 		
@@ -151,68 +102,15 @@ public class Summon extends JFrame{
 		
 		for (String t: ownedTowers) {
 			if (missingTowers.contains(t))
-				missingTowers.remove(t);
-			
+				missingTowers.remove(t);		
 		}
 		
-		for(String t: missingTowers) {
-		
-			missingTNames.add(bd.getTName(t));
-//		try {
-//	          Class.forName("org.sqlite.JDBC");
-//	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//	          c.setAutoCommit(false);
-//	          
-//	          stmt = c.createStatement();
-//	          ResultSet rs = stmt.executeQuery( "SELECT NAME FROM TOWERS WHERE ID ="+"\""+t+"\""+"; ");
-//	          
-//	          while ( rs.next() ) {
-//	             
-//	             
-//	          String torre = rs.getString("NAME");
-//	             
-//	         missingTNames.add(torre);
-//	            
-//	            
-//	          }
-//	          rs.close();
-//	          stmt.close();
-//	          c.close();
-//	       } catch ( Exception e ) {
-//	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//	          System.exit(0);
-//	       }
-//	      
+		for(String t: missingTowers) {	
+			missingTNames.add(bd.getTName(t));      
 		}
 		
-		for(String t: ownedTowers) {
-			
+		for(String t: ownedTowers) {		
 			ownedTNames.add(bd.getTName(t));
-//			try {
-//		          Class.forName("org.sqlite.JDBC");
-//		          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//		          c.setAutoCommit(false);
-//		          
-//		          stmt = c.createStatement();
-//		          ResultSet rs = stmt.executeQuery( "SELECT NAME FROM TOWERS WHERE ID ="+"\""+t+"\""+"; ");
-//		          
-//		          while ( rs.next() ) {
-//		             
-//		             
-//		          String torre = rs.getString("NAME");
-//		             
-//		         ownedTNames.add(torre);
-//		            
-//		            
-//		          }
-//		          rs.close();
-//		          stmt.close();
-//		          c.close();
-//		       } catch ( Exception e ) {
-//		          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//		          System.exit(0);
-//		       }
-		      
 			}
 		
 		
@@ -236,11 +134,7 @@ public class Summon extends JFrame{
 		
 		panel = new JPanel();
 		panel.setSize(300, 300);
-		
-//		icon = new ImageIcon();
-//		label = new JLabelGraficoAjustado("Empty",100,100);
-//		JLabel label2 = new JLabel("aaaaaaaaaaaaaaaaaaaaaaaaaa");
-//		
+			
 		b = new JButton("SUMMON");
 		
 		lGems = new JLabelGraficoAjustado("gem", 40, 40);
@@ -250,7 +144,6 @@ public class Summon extends JFrame{
 		
 		JPanel pTop = new JPanel();
 		pTop.setBackground(Color.BLACK);
-		//pTop.setLayout(new GridLayout());
 		nGems.setForeground(Color.white);
 		pTop.add(lGems);
 		pTop.add(nGems);
@@ -260,7 +153,7 @@ public class Summon extends JFrame{
 		
 		GridLayout l = new GridLayout(11, 1);
 		l.setVgap(20);
-		//l.setHgap(800);
+		
 		pR.setLayout(l);
 		pR.setBackground(Color.black);
 		
@@ -275,12 +168,7 @@ public class Summon extends JFrame{
 			pR.add(new JLabelGraficoAjustado(t, 100, 100));
 		}
 		
-//		lChar = new JLabelGraficoAjustado("S32", 100,100);
-//		
-//	
-//		//lChar.setBounds(300, 300, 300, 300);
-//		lChar2 = new JLabelGraficoAjustado("S97", 100, 100);
-//		
+
 		Container cp = this.getContentPane();
 		
 		
@@ -296,12 +184,12 @@ public class Summon extends JFrame{
 		fondo.setIcon(imagen);
 		fondo.setSize(imagen.getIconWidth(), imagen.getIconHeight());
 		fondo.setSize(1000, 600);
-		// La etiqueta que ira encima de la imagen.
 		
+		// La etiqueta que ira encima de la imagen.
+	
 		JLabelGraficoAjustado primerPlano = new JLabelGraficoAjustado("Empty",100,100);
 		primerPlano.setSize(100, 100);
 		primerPlano.setBounds(460, 300, 100,100);
-		
 		primerPlano.setVisible(false);
 		
 		icon = new ImageIcon();
@@ -315,28 +203,14 @@ public class Summon extends JFrame{
 		layered.add(fondo, new Integer(1));
 		layered.add(primerPlano, new Integer(2));
 		layered.add(label, new Integer(3));
-		
-		
-		
 		layered.setBackground(Color.BLACK);
 		
 		
-		
-		
-		
-		
-		
-		
-		//lChar.setBounds(300, 300, 100, 100);
-//		panel.add(lChar);
-//		lChar.setVisible(false);
-//		panel.add(label);
-		
 		cp.add(pTop, BorderLayout.NORTH);
-		//cp.add(panel, BorderLayout.CENTER);
+	
 		cp.add(layered, BorderLayout.CENTER);
 		cp.add(pR, BorderLayout.EAST);
-;
+
 		
 		
 		setSize(1150,650);
@@ -371,58 +245,7 @@ public class Summon extends JFrame{
 				ownedTNames.add(tex);
 				pR.add(new JLabelGraficoAjustado(tex, 100, 100));
 				
-				
-				String ide = bd.getID(tex);
-//				String ide = "";
-//				try { 
-//			          Class.forName("org.sqlite.JDBC");
-//			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//			          c.setAutoCommit(false);
-//			          System.out.println("Opened database successfully");
-//		
-//			          stmt = c.createStatement();
-//			          ResultSet rs = stmt.executeQuery( "SELECT ID FROM TOWERS WHERE NAME='"+tex+"';" );
-//			          
-//			          while ( rs.next() ) {
-//			             String id = rs.getString("ID");
-//			            ide = id;
-//			             
-//			           
-//			          }
-//			          rs.close();
-//			          stmt.close();
-//			          c.close();
-//			       } catch ( Exception e ) {
-//			          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//			          System.exit(0);
-//			       }
-//			       System.out.println("Operation done successfully");
-//				
-//				try {//------------------INSERT TIENE-----------------
-//			          Class.forName("org.sqlite.JDBC");
-//			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-//			          c.setAutoCommit(false);
-//			          System.out.println("Opened database successfully");
-//		
-//			          stmt = c.createStatement();
-//			          String sql = "INSERT INTO TIENE " +
-//			                         "VALUES ('"+ide+"', '"+player+"' );"; 
-//			          stmt.executeUpdate(sql);
-//			         
-//		
-//			         
-//		
-//		
-//			          stmt.close();
-//			          c.commit();
-//			          c.close();
-//			       } catch ( Exception e ) {
-//			          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//			          System.exit(0);
-//			       }
-//			       System.out.println("Records created successfully");
-				
-				
+				String ide = bd.getID(tex);			
 				bd.insert("TIENE", "('"+ide+"', '"+player+"' )" );
 				
 				
@@ -434,19 +257,9 @@ public class Summon extends JFrame{
 						
 						for (int i = 0; i < 31; i++) {
 							if (i==19) primerPlano.setVisible(true);
-							icon = new ImageIcon("src/anim2/tile"+i+".png");
-							
-							
-							label.setIcon(icon);
-							
-							
-							label.repaint();
-							
-							
-							
-							
-							
-							
+							icon = new ImageIcon("src/anim2/tile"+i+".png");									
+							label.setIcon(icon);				
+							label.repaint();					
 							try {
 								Thread.sleep(60);
 							} catch (Exception e) {

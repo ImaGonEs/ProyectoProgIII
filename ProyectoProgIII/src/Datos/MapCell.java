@@ -9,8 +9,8 @@ public class MapCell {
 	private int x,y,w,h;
 	private Texture tex;
 	private TileType type;
+	//Booleano que marca si la casilla tiene una torre puesta o no
 	boolean r;
-	
 	public MapCell(int x, int y, int w, int h, TileType type,boolean r) {
 		super();
 		this.x = x;
@@ -95,7 +95,9 @@ public class MapCell {
 	public void setType(TileType type) {
 		this.type = type;
 	}
-
+	/* 
+	 * @return Devuelve si la celda tiene una torre construida
+	 * */
 	public boolean getR() {
 		return r;
 	}

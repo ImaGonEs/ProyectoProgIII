@@ -43,9 +43,7 @@ public class TablaStats extends JFrame{
 	Object[][]data = {{"ey","123"}};
 	 Connection c = null;
      Statement stmt = null;
-	
-     
-     
+
      public static <K, V extends Comparable<V>> Map<K, V> 
      sortByValues(final Map<K, V> map) {
      Comparator<K> valueComparator = 
@@ -73,7 +71,7 @@ public class TablaStats extends JFrame{
 		mapa = new TreeMap<String, Integer>();
 		
 		
-		try {//-------------------PRINT PLAYERS---------------------
+		try {
 	          Class.forName("org.sqlite.JDBC");
 	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
 	          c.setAutoCommit(false);
@@ -141,13 +139,7 @@ public class TablaStats extends JFrame{
 		        
 		       }
 	       
-//	       for (String key : mapa.keySet()) {
-//	    	   
-//	    	   mDatos.addRow(new Object[]{key, mapa.get(key)});
-//	    	   
-//	       }
-//	       
-	       
+
 		       
 	       modelo = new Modelo();
 	       renderer = new MiRenderer();
@@ -157,9 +149,8 @@ public class TablaStats extends JFrame{
 	       tabla.setRowHeight(30);
 	       tabla.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 23));
 	       tabla.getTableHeader().setPreferredSize(new Dimension(100,40));
-	       //tabla.setDefaultRenderer(Integer.class, renderer);
 	       JScrollPane sp = new JScrollPane(tabla);
-	       //sp.getViewport().setBackground(Color.cyan);
+
 	       
 	       
 	       this.add(sp);

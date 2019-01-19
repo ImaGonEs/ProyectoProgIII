@@ -25,7 +25,7 @@ import javax.swing.text.StyledDocument;
 
 import Datos.Laberinto.Direccion;
 
-public class pofaboh {
+public class MapaProcedural {
 
 	private int filaJugador;   // Posición de fila donde está el jugador del laberinto (-1 si no ha entrado)
 	private int colJugador;    // Posición de columna donde está el jugador del laberinto (-1 si no ha entrado)
@@ -107,7 +107,7 @@ public class pofaboh {
 		return colDestino;
 	}
 	//public static int cont=0;
-	private static boolean resuelveLaberinto( pofaboh l ) {
+	private static boolean resuelveLaberinto( MapaProcedural l ) {
 		
 		
 		if (l.acabado()) return true;
@@ -115,8 +115,7 @@ public class pofaboh {
 		while ((dir = l.posibleMovimiento()) !=null) {
 			                        // Corte: Si se cierra la ventana, se acaba
 			l.mueve( dir ,false); 
-			//cont++;
-			//if(cont>=50) return false;
+
 			boolean fin = resuelveLaberinto( l );
 			
 			if (fin) return true; // Truncamos el proceso cuando se acaba (observa que si se comenta esta línea, no se trunca la recursión y se hacen todos los caminos posibles)
@@ -133,20 +132,15 @@ public class pofaboh {
 		
 		if(laberinto[filaJugador-1][colJugador]!=1&&laberinto[filaJugador-1][colJugador]!=4&&laberinto[filaJugador-1][colJugador]!=3)
 			laberinto[filaJugador-1][colJugador]=0;
-//			
-//			if(laberinto[filaJugador-1][colJugador+1]!=1)
-//			laberinto[filaJugador-1][colJugador+1]=2;
-//			
-			if(laberinto[filaJugador][colJugador-1]!=1&& laberinto[filaJugador][colJugador-1]!=4&& laberinto[filaJugador][colJugador-1]!=3)
-			laberinto[filaJugador][colJugador-1]=0;
-//			
-			if(laberinto[filaJugador][colJugador+1]!=1&&laberinto[filaJugador][colJugador+1]!=4&&laberinto[filaJugador][colJugador+1]!=3)
+		
+		if(laberinto[filaJugador][colJugador-1]!=1&& laberinto[filaJugador][colJugador-1]!=4&& laberinto[filaJugador][colJugador-1]!=3)
+			laberinto[filaJugador][colJugador-1]=0;	
+			
+		if(laberinto[filaJugador][colJugador+1]!=1&&laberinto[filaJugador][colJugador+1]!=4&&laberinto[filaJugador][colJugador+1]!=3)
 			laberinto[filaJugador][colJugador+1]=0;
-//			
-//			if(laberinto[filaJugador+1][colJugador-1]!=1)
-//			laberinto[filaJugador+1][colJugador-1]=2;
-//			
-			if(laberinto[filaJugador+1][colJugador]!=1&&laberinto[filaJugador+1][colJugador]!=4&&laberinto[filaJugador+1][colJugador]!=3)
+			
+			
+		if(laberinto[filaJugador+1][colJugador]!=1&&laberinto[filaJugador+1][colJugador]!=4&&laberinto[filaJugador+1][colJugador]!=3)
 			laberinto[filaJugador+1][colJugador]=0;
 		
 		
@@ -162,61 +156,34 @@ public class pofaboh {
 		
 		else {  // Movimiento válido
 			
-			//laberinto[filaJugador][colJugador] =1;
-			//System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
+			
 			if(laberinto[filaDestino][colDestino]!=4&&laberinto[filaDestino][colDestino]!=3)
 			laberinto[filaDestino][colDestino]=1;
-			//System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
-		
-			
-			//if(filaJugador-1>=0&&colJugador-1>=0) {
-//			if(laberinto[filaJugador-1][colJugador-1]!=1)
-//			laberinto[filaJugador-1][colJugador-1]=2;
-//			
+
 			
 			if(!a) {
 			if(laberinto[filaJugador-1][colJugador]!=1&&laberinto[filaJugador-1][colJugador]!=4&&laberinto[filaJugador-1][colJugador]!=3)
 			laberinto[filaJugador-1][colJugador]=2;
-//			
-//			if(laberinto[filaJugador-1][colJugador+1]!=1)
-//			laberinto[filaJugador-1][colJugador+1]=2;
-//			
+
+			
 			if(laberinto[filaJugador][colJugador-1]!=1&& laberinto[filaJugador][colJugador-1]!=4&&laberinto[filaJugador][colJugador-1]!=3)
 			laberinto[filaJugador][colJugador-1]=2;
-//			
+			
 			if(laberinto[filaJugador][colJugador+1]!=1&&laberinto[filaJugador][colJugador+1]!=4&&laberinto[filaJugador][colJugador+1]!=3)
 			laberinto[filaJugador][colJugador+1]=2;
-//			
-//			if(laberinto[filaJugador+1][colJugador-1]!=1)
-//			laberinto[filaJugador+1][colJugador-1]=2;
-//			
+		
 			if(laberinto[filaJugador+1][colJugador]!=1&&laberinto[filaJugador+1][colJugador]!=4&&laberinto[filaJugador+1][colJugador]!=3)
 			laberinto[filaJugador+1][colJugador]=2;
 			}else {
 				borra();
 			}
-//			
-//			if(laberinto[filaJugador-1][colJugador+1]!=1)
-//			laberinto[filaJugador-1][colJugador+1]=2;
-			//}
-			
-			
+
 			
 			filaJugador = filaDestino;
 			colJugador = colDestino;
 			
 			marca[filaDestino][colDestino] = true; 
-			//System.out.println("fila: " +filaJugador+"  columna: "+colJugador);
-//			for (int i = 0; i < laberinto.length; i++) {
-//				for (int j = 0; j < laberinto[i].length; j++) {
-//					System.out.print(laberinto[i][j]);
-//				}
-//				System.out.println();
-//			}
-			//ta.setText(Arrays.deepToString(laberinto));
-			//String s = Arrays.deepToString(laberinto);
-			//tp.setText(s);
-			
+
 			ey(tp, Arrays.deepToString(laberinto), Color.BLACK);
 			}
 			return true;
@@ -233,7 +200,6 @@ public class pofaboh {
 		else if (laberinto[filaDestino][colDestino]!=2)
 			return true;
 		else {
-			//System.out.println("no hay pasillo en " +avance);
 			return false;
 		}
 	}
@@ -245,15 +211,6 @@ public class pofaboh {
 			return false;
 		
 		else {
-			//System.out.println( filaDestino + " " + colDestino+" con dir "+avance);
-			
-			//System.out.println(marca[filaDestino][colDestino]);
-//			for (int i = 0; i < laberinto.length; i++) {
-//				for (int j = 0; j < laberinto[i].length; j++) {
-//					System.out.print(laberinto[i][j]);
-//				}
-//				System.out.println();
-//			}
 			return marca[filaDestino][colDestino];
 		}
 	}
@@ -264,19 +221,14 @@ public class pofaboh {
 			ds.add(d);
 		}
 		Collections.shuffle(ds);
-		
-		
-		
+			
 		
 		for (Direccion d : ds) {
 			if (!hayMarcaEn(d)&&hayPasilloEn(d)) {
 			
-				//System.out.println(d);
+			
 				return d;
-			}
-			
-			
-			
+			}	
 		}
 		return null;
 	}
@@ -288,7 +240,6 @@ public class pofaboh {
 		
 		
 	}
-	
 	
 	public void entra() {
 		for (int fila=0; fila<laberinto.length; fila++) {
@@ -302,8 +253,6 @@ public class pofaboh {
 			}
 		}
 	}
-	
-	
 	
 	
 	public static int[][] getLaberinto() {
@@ -328,7 +277,7 @@ public class pofaboh {
 		f.add(tp);
 		f.setPreferredSize(new Dimension(565,550));
 		
-		//f.setLocationRelativeTo(null);
+	
 		
 		
 		
@@ -347,7 +296,7 @@ public class pofaboh {
 	
 	static JFrame f;
 	static JTextArea ta;
-	//static JTextPane tp;
+	
 	
 	static StyledDocument doc = (StyledDocument) new DefaultStyledDocument();
     static JTextPane tp = new JTextPane(doc);
@@ -382,15 +331,8 @@ public class pofaboh {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		//ta = new JTextArea();
-		//tp = new JTextPane();
-		
-		//applyFontChanges();
-//		ta.setBackground(Color.white);
-//		ta.setEditable(false);
-//		ta.setLineWrap(true);
-//		ta.setWrapStyleWord(true);
-//		f.add(ta);
+
+
 		f = new JFrame();
 		f.add(tp);
 		f.setPreferredSize(new Dimension(565,550) );
@@ -409,10 +351,10 @@ public class pofaboh {
 		    int y = 0;
 		f.setLocation(x, y);
 		
-		//f.setLocationRelativeTo(null);
+	
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		pofaboh l = new pofaboh();
+		MapaProcedural l = new MapaProcedural();
 		l.entra();
 		boolean fin;
 		fin = resuelveLaberinto(l);
@@ -429,17 +371,14 @@ public class pofaboh {
 		
         tp.setText(msg);
         
-        //javax.swing.text.Style style = tp.addStyle("bold", null);
-        //StyleConstants.setForeground(style, Color.RED);
-        //StyleConstants.setBold(style, true);
-        
+    
         
         
         for (int i = 0; i < tp.getDocument().getLength(); i++) {
         	
         	if (msg.charAt(i)=='1') {
         		 
-                 // StyleConstants.setBackground(set, new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
+                 
                  
         		 StyleConstants.setForeground(set, Color.blue);
                  StyleConstants.setBold(set, true);
@@ -451,7 +390,7 @@ public class pofaboh {
         }
         
         
-       // doc.setCharacterAttributes(3, msg.length(), tp.getStyle("bold"), true); 
+     
 		
 	}
 	private void appendToPane(JTextPane tp, String msg, Color c)

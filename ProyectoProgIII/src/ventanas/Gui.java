@@ -1,11 +1,8 @@
 package ventanas;
 
-import static weareSupports.Creador.HEIGHT;
-import static weareSupports.Creador.QuickCast;
-import static weareSupports.Creador.QuickCastIcon;
+
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -23,42 +20,39 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Properties;
-import java.util.TreeSet;
-
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
-
-import org.lwjgl.input.Mouse;
-import org.newdawn.slick.opengl.Texture;
-
 import Datos.Player;
 import Datos.Sust;
-import Datos.Tower;
-import Datos.TowerCannon;
-import Datos.TowerFire;
-import Datos.TowerIce;
-import Datos.TowerMelee;
 import Datos.TowerType;
+import weareSupports.BDlocal;
 import weareSupports.JLabelGraficoAjustado;
 
 class Gui extends JFrame {
 	
 	
-	 private boolean jtcont  = true;;
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	static BDlocal bd = new BDlocal();
+	
+	
+	
+	/* 
+	 * Creacion de las tablas para comparar torres
+	 * */
+	private boolean jtcont  = true;;
 	 private String stats1[][]={	{"Damage",""},    
 			{"Attack speed",""},    
 			{"Radius",""}}; 
@@ -70,119 +64,22 @@ class Gui extends JFrame {
 	private String column[]={"stats",""};         
 	private JTable jt=new JTable(stats1,column); 
 	
-	private JTable jt2 = new JTable(stats2,column);   
+	private JTable jt2 = new JTable(stats2,column);
+	
+	
+	//Layout usado por la ventana
 	GridBagLayout gbl = new GridBagLayout();
-	
-	
-	
 	static String player = "";
-	
-	
-	
 	private ArrayList <String> teamF = new ArrayList<String>(); //el objeto en si, esto lo usaremos para guardarlo en un txt que leera el mapa
 	
-	public static ArrayList<Sust> collect(){
-		
-		Connection c = null;
-		Statement stmt = null;
-		
-		
-	    Properties prop = new Properties();
-
-			InputStream input = null;
-
-			try {
-
-				input = new FileInputStream("config.properties");
-
-				// load a properties file
-				prop.load(input);
-
-				// get the property value and print it out
-				
-				String lastUs = prop.getProperty("username");
-				player = lastUs;
-				
-
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			} finally {
-				if (input != null) {
-					try {
-						input.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		Sust az = null;
+	
+	public static ArrayList<Sust> collect(){	
 		ArrayList<Sust> collect = new ArrayList<Sust>();
-		ArrayList<String> towerCodes = new ArrayList<String>();
-		
-		 try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-		      c.setAutoCommit(false);
-		      System.out.println("Opened database successfully");
-
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery( "SELECT ID_T FROM TIENE WHERE NAME_P='"+player+"';" );
-		      
-		      while ( rs.next() ) {
-		         
-		         String  id = rs.getString("id_t"); 
-		         
-		        // TowerType t = TowerType.valueOf(id);
-		        // String name = t.getTex();
-		         
-		        towerCodes.add(id); 
-		        
-		      }
-		      
-		      rs.close();
-		      stmt.close();
-		      c.close();
-		   } catch ( Exception e ) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
-		   }
-		   System.out.println("Operation done successfully");
-		   
-		   
-		for (String s: towerCodes) {
-		   try {
-			      Class.forName("org.sqlite.JDBC");
-			      c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-			      c.setAutoCommit(false);
-			      System.out.println("Opened database successfully");
-
-			      stmt = c.createStatement();
-			      ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS WHERE ID='"+s+"';" );
-			      
-			      while ( rs.next() ) {
-			         
-			         String  id = rs.getString("id"); 
-			         
-			        String name = rs.getString("name");
-			         
-			         int dmg = rs.getInt("damage");
-			         int range = rs.getInt("range");
-			         float atkspd = rs.getFloat("atkspeed");
-			        az = new Sust(id,name,dmg,range,atkspd);
-			         collect.add(az);
-			      }
-			      
-			      rs.close();
-			      stmt.close();
-			      c.close();
-			   } catch ( Exception e ) {
-			      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-			      System.exit(0);
-			   }
-			   System.out.println("Operation done successfully");
+		ArrayList<String> towerCodes = new ArrayList<String>();	
+		towerCodes = bd.getOwnedTowerIDs(player);	   
+		for (String s: towerCodes) {			
+			collect.add(bd.createSust(s));
 		}
-		
-		
 		return collect;
 	}
 	
@@ -190,10 +87,6 @@ class Gui extends JFrame {
 		
 		FileOutputStream fich = null;
 		ObjectOutputStream li = null;
-		
-		
-	
-		
 		try {
 			
 			fich = new FileOutputStream("src/res/Team"+player+".txt");
@@ -214,33 +107,15 @@ class Gui extends JFrame {
 	}
 	
 	
-	
-	
-	
-	
 	Gui() {
-		
-		
-		
-		
 		
 		JFrame frame = this;
 		
-		
-		
 	    Properties prop = new Properties();
-
 			InputStream input = null;
-
 			try {
-
 				input = new FileInputStream("config.properties");
-
-				// load a properties file
 				prop.load(input);
-
-				// get the property value and print it out
-				
 				String lastUs = prop.getProperty("username");
 				player = lastUs;
 				
@@ -257,123 +132,48 @@ class Gui extends JFrame {
 				}
 			}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		jt.setDefaultEditor(Object.class, null);
 		jt2.setDefaultEditor(Object.class, null);
 		setLayout(gbl);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(1300,750);
 		setLocationRelativeTo(null);
-		
-		//ey
-		
-		
-         
-		
+		  
+		//ArrayList de sustitutos con los datos de las torres de tu coleccion
 		ArrayList<Sust> tcd = collect();
+		//ArrayList con los id de las torres que usastes en tu team anterior
 		ArrayList<String> tca = Player.leeTeam(player);
-		ArrayList<TowerMelee> tmd = new ArrayList<TowerMelee>();
-		
-		
-		
-		
-		
-		
-//		tcd.add( new TowerCannon(15,2,20,QuickCastIcon("torre")));
-//		tcd.add(new TowerCannon(18,2,25,QuickCastIcon("Mob0")));
-		
-		
-//		JLabelGraficoAjustado lc1 = new JLabelGraficoAjustado("src/res/torre.png",40,40);
-//		JLabelGraficoAjustado lc2 = new JLabelGraficoAjustado("src/res/Mob0.png", 40, 40);
-//		JLabelGraficoAjustado lc3 = new JLabelGraficoAjustado("src/res/circle.png", 40, 40);
-//		JLabelGraficoAjustado lc4 = new JLabelGraficoAjustado("src/res/d0.png" ,40, 40);
-//		
-//		JLabelGraficoAjustado lt1 = new JLabelGraficoAjustado("src/res/torre.png",40,40);
-//		JLabelGraficoAjustado lt2 = new JLabelGraficoAjustado("src/res/Mob0.png", 40, 40);
-//		JLabelGraficoAjustado lt3 = new JLabelGraficoAjustado("src/res/circle.png", 40, 40);
-//		JLabelGraficoAjustado lt4 = new JLabelGraficoAjustado("src/res/d0.png" ,40, 40);
-
-		
-		
+		//ArrayList con los sprites de las torres de tu coleccion
 		ArrayList <JLabelGraficoAjustado> collection = new ArrayList<JLabelGraficoAjustado>();
-		ArrayList <JLabelGraficoAjustado> teamAnt = new ArrayList<JLabelGraficoAjustado>();
-	
-		ArrayList <JLabelGraficoAjustado> teami = new ArrayList<JLabelGraficoAjustado>(); //los iconos solo
+		//ArrayList de las torres que vas eligiendo para tu team
+		ArrayList <JLabelGraficoAjustado> teami = new ArrayList<JLabelGraficoAjustado>(); 
+		     
 		
-		
-		
-		
-		
-		
-		   
-		jt.setBounds(30,40,200,600);   
-		
-		
-		
-		
-		
-		jt.setBounds(30,40,200,600);   
-		
-		
-		//JScrollPane sp=new JScrollPane(jt);  
-		//instantiates Border panels.
 		BorderPanel pnlA = new BorderPanel("COLLECTION");
 		BorderPanel pnlB = new BorderPanel("TEAMSELECTOR");
 		BorderPanel pnlC = new BorderPanel("ACT_TEAM");
-		//BorderPanel pnlD = new BorderPanel("Panel D");
 		BorderPanel pnlE = new BorderPanel("STATS");
 		BorderPanel pnlF = new BorderPanel("OPTIONS");
 
-		//adding all panels to main contentPane.
 		add(pnlA);
 		add(pnlB);
 		add(pnlC);
-		//add(pnlD);
+		
 		add(pnlE);
 		add(pnlF);
 
-		//set constraints of each panel.
 		makeConstraints(gbl, pnlA, 1, 2, 0, 0, 2.0, 6.0);
 		makeConstraints(gbl, pnlB, 2, 1, 1, 0, 2.0, 0.13);
 		makeConstraints(gbl, pnlC, 1, 1, 0, 2, 1.0, 1.0); 
-		//makeConstraints(gbl, pnlD, 1, 2, 1, 1, 1.0, 1.0);
 		makeConstraints(gbl, pnlE, 1, 1, 2, 1, 1.0, 1.0);
 		makeConstraints(gbl, pnlF, 1, 1, 2, 2, 1.0, 1.0);
-		
-		
-		
-		//stats
 		
 		JPanel pI = new JPanel();
 		JPanel pD = new JPanel();
 		GridLayout gl = new GridLayout(2, 2);
 		gl.setHgap(1);
 		gl.setVgap(1);
-		
-		
 		
 		pnlE.setLayout(new BorderLayout());
 		
@@ -398,14 +198,10 @@ class Gui extends JFrame {
 		pn.add(labt1);
 		pn.add(labt2);
 		
-		pnlE.add(pn, BorderLayout.NORTH);
-		
+		pnlE.add(pn, BorderLayout.NORTH);	
 		pnlE.add(splitPane);
-		//pnlE.add(pI);
-		//pnlE.add(new JSeparator(SwingConstants.VERTICAL));
-		//pnlE.add(pD);
-		
 
+		//Añade tu team anterior al panel C
 		for (String j : tca) {
 			
 			JLabelGraficoAjustado z;
@@ -445,40 +241,30 @@ class Gui extends JFrame {
 		}
 		
 		
-		
-		
-		
-		
+		//Añadimos MouseListeners a los JLabelGraficoAjustados pra que se muevan de un panel a otro 
 		for (Sust i : tcd) {
 			JLabelGraficoAjustado z = new JLabelGraficoAjustado(i.getTex(),40,40);
-			System.out.println(i.getTex());
+
 			collection.add(z);
 			collection.get(collection.indexOf(z)).addMouseListener(new MouseListener() {
 				
 				@Override
 				public void mouseReleased(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
 				}
 				
 				@Override
 				public void mousePressed(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
-					
-					
 				}
 				
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
-					
 					boolean c = e.isMetaDown();
 					if(c==false) {
 					if (jtcont == true) {
-					
 					
 					jt.setValueAt(Integer.toString(i.getDamage()), 0, 1);
 					jt.setValueAt(Integer.toString((int) i.getAttackSpeed()), 1, 1);
@@ -499,7 +285,7 @@ class Gui extends JFrame {
 						
 						if (!teami.contains(z)){
 							if(teamF.size()<4) {
-							System.out.println("adre");
+							
 							
 							switch(i.getId()) {
 							
@@ -528,10 +314,6 @@ class Gui extends JFrame {
 							
 						teami.add(z);
 						collection.remove(z);
-						
-						for (String j : teamF) {
-							System.out.println(j);
-						}
 						for (JLabelGraficoAjustado icono : teami) {
 							pnlB.add(icono);
 							
@@ -543,40 +325,26 @@ class Gui extends JFrame {
 							collection.add(z);
 							teamF.remove(i.getId());
 							for (JLabelGraficoAjustado icono : collection) {
-								pnlA.add(icono);
-								
-							}
-							
-							
+								pnlA.add(icono);							
+							}					
 						}
-						
-						
-						
-						
 						pnlB.repaint();
-						pnlA.repaint();
-						
-						c = false;
-						
+						pnlA.repaint();				
+						c = false;				
 					}
 				}
 
 				@Override
 				public void mouseEntered(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
 				}
 
 				@Override
 				public void mouseExited(MouseEvent e) {
 					// TODO Auto-generated method stub
-					
 				}
 			});
 		}
-		
-		
-		
 		
 		for( JLabelGraficoAjustado la : collection) {
 			pnlA.add(la);
@@ -585,17 +353,8 @@ class Gui extends JFrame {
 			pnlB.add(la);
 		}
 		
-		
-		
-		
-		
-		
-		
-		//más
-		
 		JButton bS = new JButton("SAVE");
 		JButton bE = new JButton("EXIT");
-		//JButton bA = new JButton("REMOVE TEAM");
 		
 		bE.addActionListener(new ActionListener() {
 			
@@ -617,39 +376,21 @@ class Gui extends JFrame {
 				guardaTeam(teamF, player);
 				pnlC.removeAll();
 				pnlC.setLayout(new BorderLayout());
-	
-				
-
-				
 				pnlC.repaint();
-				
 				JOptionPane.showMessageDialog(null,"Team guardado!");
 				frame.dispose();
-				
 				}
 				else {
-					
-					JOptionPane.showMessageDialog(null, "¿Crees poder pasarte un nivel con menos de 4 torres? ¡Casi champion!");
-					
+					JOptionPane.showMessageDialog(null, "¿Crees poder pasarte un nivel con menos de 4 torres?");
 				}
 			}
 		});
 		
 		
-		
 		pnlF.add(bS);
 		pnlF.add(bE);
 	
-		
-		
-		
-	
 		this.setVisible(true);
-		
-		
-		
-		
-		
 		
 	}
 

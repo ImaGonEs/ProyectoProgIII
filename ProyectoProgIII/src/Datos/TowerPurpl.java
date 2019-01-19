@@ -11,24 +11,24 @@ public class TowerPurpl extends Tower{
 		
 	}
 
-	public TowerPurpl( int damage, float attackSpeed, int range, String icon) {
-		
-		super(damage,attackSpeed,range,icon);
-	
-		this.damage = damage;
-		this.range = range;
-		
-		this.attackSpeed = attackSpeed;
-		this.icon = icon;
-		
-		
-		
-		
-	}
+//	public TowerPurpl( int damage, float attackSpeed, int range, String icon) {
+//		
+//		super(damage,attackSpeed,range,icon);
+//	
+//		this.damage = damage;
+//		this.range = range;
+//		
+//		this.attackSpeed = attackSpeed;
+//		this.icon = icon;
+//		
+//		
+//		
+//		
+//	}
 	public void shoot() {
 		
 		timeSinceLastShot = 0;   
-		projectiles.add(new ProjectilePurple(QuickCast("POtro2"), target, x, y, 32, 32,600 , 10));
+		projectiles.add(new ProjectilePurple(QuickCast("POtro2"), target, x, y, 32, 32,600 , this.getDamage()));
 	}
 
 }

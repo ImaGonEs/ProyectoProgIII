@@ -14,14 +14,14 @@ public enum TowerType {
 
 	
 	
-	T01("IT"), //QuickCast("IT"), 10, 1000, 3
-	T02("TR"),//QuickCast("TR"), 10, 1000, 3
+	T01("IT"), 
+	T02("TR"),
 	T03("TorreN1"),
 	T04("TorreN2"),
 	T05("TowerOtro"),
 	T06("TowerOtro2"),
 	T07("TowerOtro3");
-	// CannonE(QuickCast("TC"), 10, 1000, 3); QuickCast("IT"), 10, 1000, 3
+	
 	
 	
 	final String tex;
@@ -38,26 +38,26 @@ public enum TowerType {
 
 	TowerType(String name) {
 		
-		this.tex = hola(name).getTex();
-		//System.out.println(hola(name).getTex());
-		
-		this.damage = hola(name).getDamage();
-		this.range = hola(name).getRange();
-		this.attackSpeed = hola(name).getAttackSpeed();;
+		this.tex = getSust(name).getTex();		
+		this.damage = getSust(name).getDamage();
+		this.range =getSust(name).getRange();
+		this.attackSpeed =getSust(name).getAttackSpeed();;
 		
 		
 	}
 	
-	public static Sust hola(String a) {
+
+
+	public static Sust getSust(String a) {
 		
 		Connection c = null;
 		Statement stmt = null;
-		Sust az = null;
+		Sust ret = null;
 		 try {
 		      Class.forName("org.sqlite.JDBC");
 		      c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
 		      c.setAutoCommit(false);
-		      System.out.println("Opened database successfully");
+		      
 
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS WHERE NAME = '"+a+"' ;" );
@@ -71,7 +71,7 @@ public enum TowerType {
 		         int dmg = rs.getInt("damage");
 		         int range = rs.getInt("range");
 		         float atkspd = rs.getFloat("atkspeed");
-		        az = new Sust(id,name,dmg,range,atkspd);
+		        ret = new Sust(id,name,dmg,range,atkspd);
 		         
 		      }
 		      rs.close();
@@ -81,12 +81,7 @@ public enum TowerType {
 		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		      System.exit(0);
 		   }
-		   System.out.println("Operation done successfully");
-		
-		
-		
-		
-		return az;
+		return ret;
 	}
 	
 	

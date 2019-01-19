@@ -27,12 +27,8 @@ public class Options extends JFrame{
 	
 		slider = new JSlider();
 		JPanel mainP = new JPanel();
-		mainP.setLayout(new GridLayout(3,1));
-		
-		JPanel secP = new JPanel(new GridLayout());
-		
-		JLabelGraficoAjustado fondo = new JLabelGraficoAjustado("", 700, 500);
-		
+		mainP.setLayout(new GridLayout(3,1));	
+		JPanel secP = new JPanel(new GridLayout());	
 		this.setContentPane(mainP);
 		
 		bReturn= new JButton("BACK");
@@ -42,25 +38,14 @@ public class Options extends JFrame{
 		bLead = new JButton("LEADERBOARD");
 		
 		
-		songs.addItem("PLAYLIST 1");
-		songs.addItem("PLAYLIST 2");
+		songs.addItem("Rock/Jazz");
+		songs.addItem("8-Bits");
 		
-		 
-		 
-		songs.setFont(new Font("Agent", Font.BOLD, 50));
-		
-
-		
+		songs.setFont(new Font("Agent", Font.BOLD, 50));	
 		mainP.add(songs);
-		
-		
 		secP.add(bOk); 
 		secP.add(bMute);
 		secP.add(bReturn);
-		//mainP.add(slider);
-		
-		
-		
 		mainP.add(secP);
 		mainP.add(bLead);
 		
@@ -97,7 +82,7 @@ public class Options extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if (songs.getSelectedItem()=="PLAYLIST 1") {
+				if (songs.getSelectedItem()=="Rock/Jazz") {
 					
 					try {
 						song.FXStop();
@@ -111,7 +96,7 @@ public class Options extends JFrame{
 					song.adjustFXVolume(+0.8);
 					
 					song.FXPlay();
-				}else if (songs.getSelectedItem()=="PLAYLIST 2") {
+				}else if (songs.getSelectedItem()=="8-Bits") {
 					try {
 						song.FXStop();
 					} catch (Exception e2) {
@@ -133,10 +118,6 @@ public class Options extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				//JOptionPane.showInputDialog("NEW PASSWORD");
-				//String respuesta = JOptionPane.showInputDialog("NEW PASSWORD",JOptionPane.WARNING_MESSAGE);
-				
 				new TablaStats();
 			}
 		});

@@ -6,9 +6,11 @@ import org.newdawn.slick.TrueTypeFont;
 
 import weareSupports.Creador.*;
 
+/*  
+ * Clase para crear los textos que aparecen en el juego
+ * */
 public class Texto {
 
-	
 	
 	private int x,y;
 	private TrueTypeFont font; 
