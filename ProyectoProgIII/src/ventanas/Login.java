@@ -128,7 +128,7 @@ public class Login extends JFrame{
 	       
 		HashMap<String, String> mapa = bd.getPlayerMap();
 	    Set<String> set = mapa.keySet();
-	     System.out.println(mapa);
+	    
 		
 		btn.addMouseListener(new MouseListener() {
 			
@@ -139,6 +139,7 @@ public class Login extends JFrame{
 				
 				String user = us.getText();
 				
+				
 				String passw = pa.getText();
 				
 				if (user.length()<3||passw.length()<3) {
@@ -148,7 +149,39 @@ public class Login extends JFrame{
 				}else if (!set.contains(user)) {
 					
 					saveProps(user, passw);
-					bd.insert("PLAYERS", "('"+user+"', '"+passw+"', 400)");				
+					bd.insert("PLAYERS", "('"+user+"', '"+passw+"', 400 )");	
+					
+//					Connection c = null;
+//					
+//					Statement stmt = null;
+//					
+//				    try { //-----------------INSERT PLAYER-----------------------------
+//			          Class.forName("org.sqlite.JDBC");
+//			          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+//			          c.setAutoCommit(false);
+//			          System.out.println("Opened database successfully");
+//			
+//			          stmt = c.createStatement();
+//			          String sql = "INSERT INTO PLAYERS (NAME_P,PASSWORD,GEMS,POS) " +
+//			                         "VALUES ('"+user+"', '"+passw+"', 500, 1 );"; 
+//			          stmt.executeUpdate(sql);
+//			
+//			        
+//			          stmt.close();
+//			          c.commit();
+//			          c.close();
+//			          
+//			          saveProps(user, passw);
+//			       } catch ( Exception ex ) {
+//			          System.err.println( ex.getClass().getName() + ": " + ex.getMessage() );
+//			          System.exit(0);
+//			       }
+//			       System.out.println("Records created successfully");
+						
+					
+						
+			
+							
 					JOptionPane.showMessageDialog(null, "CUENTA CREADA");
 					new LeMenu(false);
 					
@@ -169,7 +202,7 @@ public class Login extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println("rel");
+				
 				btn.setImagen("src/res/play2.png");
 			}
 			

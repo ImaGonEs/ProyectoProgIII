@@ -435,4 +435,4 @@ class BorderPanel extends JPanel {
 	BorderPanel(String title) {
 		setBorder(BorderFactory.createTitledBorder(title));
 	}
-}	
+}

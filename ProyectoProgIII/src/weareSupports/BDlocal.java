@@ -11,9 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Datos.Sust;
-/* 
- * Metodos de la Base de Datos
- * */
+
 public class BDlocal {
 
 	static Connection c = null;
@@ -54,6 +52,32 @@ public class BDlocal {
 	       }
 	       logger.log(Level.FINER, "Records created successfully");
 
+    }
+    
+    public void delete() {
+    	
+    	try {
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	          System.out.println("Opened database successfully");
+
+	          stmt = c.createStatement();
+	          String sql = "CREATE TABLE PLAYERS ( NAME_P VARCHAR(30) NOT NULL PRIMARY KEY,PASSWORD VARCHAR(30) NOT NULL, GEMS NUMBER  DEFAULT 0 );"; 
+	          stmt.executeUpdate(sql);
+
+
+	          stmt.close();
+	          c.commit();
+	          c.close();
+	       } catch ( Exception e ) {
+	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	       System.out.println("Records created successfully");
+
+    	
+    	
     }
     
     public HashMap<String,String> getPlayerMap() {
@@ -114,6 +138,8 @@ public class BDlocal {
 
     }
     
+   
+
     public ArrayList<String> getOwnedTowerIDs(String player){
     	
     	ArrayList<String> ids = new ArrayList<>();
@@ -559,7 +585,8 @@ public class BDlocal {
 
    public static void main(String[] args) {
 	BDlocal b= new BDlocal();
-	System.out.println(b.getGems("KIKEXD"));
+	//System.out.println(b.getGems("KIKEXD"));
+	b.printTowers();
 }
 
 

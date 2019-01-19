@@ -15,7 +15,11 @@ public class TowerFire extends Tower{
 	public void shoot() {
 		
 		timeSinceLastShot = 0;   
+
+		projectiles.add(new ProjectileFire(QuickCast("fireBall"), target, x, y, 32, 32,400,10));
+
 		projectiles.add(new ProjectileFire(QuickCast("fireBall"), target, x, y, 32, 32,400 , this.damage));
+
 		}
 
 	

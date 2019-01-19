@@ -14,4 +14,5 @@ public class ProjectileRed extends Projectile{
 		super.damage();
 	}
 
+	
 }
