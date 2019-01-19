@@ -211,16 +211,15 @@ public class LeMenu extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
 				bSe1.setImagen("src/res/settings1.png");
+				new Options();
 				
-				
-				if ( f == false) {
-				new LeMenu(true);
-				}else {
-					
-					new LeMenu(false);
-					
-				}
 				frame.dispose();
+				
+				
+					
+					
+					
+				
 				
 				
 				

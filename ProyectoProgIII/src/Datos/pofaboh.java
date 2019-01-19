@@ -3,6 +3,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -310,12 +313,28 @@ public class pofaboh {
 
 	public int[][] main(){
 		
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		f = new JFrame();
+			
+		JLabel la = new JLabel("GENERANDO MAPA PROCEDURAL...", SwingConstants.CENTER);
+		f.add(la,BorderLayout.NORTH);
+		
 		f.add(tp);
-		f.setSize(565,550);
-		f.setVisible(true);
-		f.setLocationRelativeTo(null);
+		f.setPreferredSize(new Dimension(565,550));
+		
+		//f.setLocationRelativeTo(null);
+		
+		
+		
+		f.pack();
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		f.setVisible(true);
 		entra();
 		boolean fin;
 		fin = resuelveLaberinto(this);
@@ -382,7 +401,15 @@ public class pofaboh {
 		
 		f.pack();
 		f.setVisible(true);
-		f.setLocationRelativeTo(null);
+		
+		 GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		    GraphicsDevice defaultScreen = ge.getDefaultScreenDevice();
+		    Rectangle rect = defaultScreen.getDefaultConfiguration().getBounds();
+		    int x = (int) rect.getMaxX() - f.getWidth();
+		    int y = 0;
+		f.setLocation(x, y);
+		
+		//f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		pofaboh l = new pofaboh();

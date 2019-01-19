@@ -12,7 +12,7 @@ import weareSupports.*;
 public class Options extends JFrame{
 	
 	JComboBox<String> songs;
-	JButton bReturn, bOk,bMute,bChangePass;
+	JButton bReturn, bOk,bMute,bLead;
 	JSlider slider;
 	
 	StandardAudio song;
@@ -39,7 +39,7 @@ public class Options extends JFrame{
 		bOk= new JButton("PLAY");
 		songs= new JComboBox<String>();
 		bMute = new JButton("STOP");
-		bChangePass = new JButton("CHANGE PASSWORD");
+		bLead = new JButton("LEADERBOARD");
 		
 		
 		songs.addItem("EY");
@@ -62,7 +62,7 @@ public class Options extends JFrame{
 		
 		
 		mainP.add(secP);
-		mainP.add(bChangePass);
+		mainP.add(bLead);
 		
 		CambiarBoton(bOk);
 		CambiarBoton(bMute);
@@ -128,23 +128,23 @@ public class Options extends JFrame{
 			}
 		});
 		
-		bChangePass.addActionListener(new ActionListener() {
+		bLead.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
 				//JOptionPane.showInputDialog("NEW PASSWORD");
-				String respuesta = JOptionPane.showInputDialog("NEW PASSWORD",JOptionPane.WARNING_MESSAGE);
+				//String respuesta = JOptionPane.showInputDialog("NEW PASSWORD",JOptionPane.WARNING_MESSAGE);
 				
+				new TablaStats();
 			}
 		});
 			
-		setTitle("PERDON POR ESTA MIERDA");
-		setLocationRelativeTo(null);		
+		setTitle("OPTIONS");	
 		setSize(700,200);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);	
 	}
 
 	public static void main(String[] args) {
