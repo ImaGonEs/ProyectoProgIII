@@ -250,7 +250,7 @@ public class Login extends JFrame{
 		}
 	}
 	
-	public void saveProps(String u,String p) {
+	public static void saveProps(String u,String p) {
 		
 		OutputStream output = null;
 	

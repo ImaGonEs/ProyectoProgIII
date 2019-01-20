@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,6 +53,61 @@ public class BDlocal {
 	       }
 	       logger.log(Level.FINER, "Records created successfully");
 
+    }
+    
+    public static TreeMap<String, Integer> getTree() {
+    TreeMap<String, Integer> mapa = new TreeMap<String, Integer>();
+    
+    try {
+        Class.forName("org.sqlite.JDBC");
+        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+        c.setAutoCommit(false);
+        logger.log(Level.FINER,"Opened database successfully");
+
+        stmt = c.createStatement();
+        ResultSet rs = stmt.executeQuery( "SELECT NAME_P,GEMS FROM PLAYERS;" );
+        
+        while ( rs.next() ) {
+           
+           String  name = rs.getString("NAME_P");
+           String  gems = rs.getString("GEMS");
+           mapa.put(name, Integer.parseInt(gems));
+          
+        }
+        rs.close();
+        stmt.close();
+        c.close();
+     } catch ( Exception e ) {
+    	 logger.log(Level.SEVERE,  e.getClass().getName() + ": " + e.getMessage() );
+        System.exit(0);
+     }
+    logger.log(Level.FINER, "Operation successful");
+    return mapa;
+}
+    public static void empty(String player) {
+    	
+    	try {
+	          Class.forName("org.sqlite.JDBC");
+	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
+	          c.setAutoCommit(false);
+	         logger.log(Level.FINER,"Opened database successfully");
+
+	          stmt = c.createStatement();
+	          String sql = "DELETE FROM TIENE WHERE NAME_P = '"+player+"';"; 
+	          stmt.executeUpdate(sql);
+
+
+	          stmt.close();
+	          c.commit();
+	          c.close();
+	       } catch ( Exception e ) {
+	          logger.log(Level.SEVERE,  e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	       logger.log(Level.FINER, "Tabla tiene vaciada para " +player);
+	       
+    	
+    	
     }
     
     public void delete() {
