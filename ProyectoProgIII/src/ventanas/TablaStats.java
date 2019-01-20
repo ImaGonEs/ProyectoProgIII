@@ -31,19 +31,22 @@ import weareSupports.BDlocal;
 
 public class TablaStats extends JFrame{
 	
+	//Clase que muestra la clasificación(JTable) por gemas de todos los jugadores.
+	//Los jugadores con 0 gemas apareceran de color rojo, el primero amarillo, yu el segundo gris.
+	
 	JTable tabla;
 	BDlocal bd = new BDlocal();
-	Modelo modelo;
 	MiRenderer renderer;
 	DefaultTableModel mDatos;
 	
 	TreeMap<String, Integer> mapa; 
 	ArrayList<String> players;
 	String[] columnNames = {"Username","Gems" };
-	Object[][]data = {{"ey","123"}};
+	
 	 Connection c = null;
      Statement stmt = null;
 
+     //Comparador para ordenar la tabla por gemas
      public static <K, V extends Comparable<V>> Map<K, V> 
      sortByValues(final Map<K, V> map) {
      Comparator<K> valueComparator = 
@@ -68,42 +71,15 @@ public class TablaStats extends JFrame{
 		
 		
 		players = new ArrayList<>();
-		mapa = new TreeMap<String, Integer>();
+		mapa = BDlocal.getTree();
 		
-		
-		try {
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	          System.out.println("Opened database successfully");
-
-	          stmt = c.createStatement();
-	          ResultSet rs = stmt.executeQuery( "SELECT NAME_P,GEMS FROM PLAYERS;" );
-	          
-	          while ( rs.next() ) {
-	             
-	             String  name = rs.getString("NAME_P");
-	             String  gems = rs.getString("GEMS");
-	             mapa.put(name, Integer.parseInt(gems));
-	            
-	          }
-	          rs.close();
-	          stmt.close();
-	          c.close();
-	       } catch ( Exception e ) {
-	          System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	          System.exit(0);
-	       }
-	       System.out.println("Operation done successfully");
-	      
+   
 	       
-	      
-	     
-
-	       
-	       
-	       
-	       mDatos = new DefaultTableModel() {
+	       mDatos = new DefaultTableModel() { 
+				/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 				{ setColumnIdentifiers( new Object[] { "USERNAME", "GEMS" } ); }  // Inicialización para que salgan solo las cabeceras cuando la tabla está vacía al principio
 				@Override
 				public void setValueAt(Object aValue, int row, int column) {
@@ -122,18 +98,19 @@ public class TablaStats extends JFrame{
 	       
 			
 			
-			 Map sortedMap = sortByValues(mapa);
+			 Map<String, Integer> sortedMap = sortByValues(mapa);
 			 
 		       
 		       // Get a set of the entries on the sorted map
-		       Set set = sortedMap.entrySet();
+		       Set<?> set = sortedMap.entrySet();
 		    
 		       // Get an iterator
-		       Iterator i = set.iterator();
+		       Iterator<?> i = set.iterator();
 		    
 		     
 		       while(i.hasNext()) {
-		         Map.Entry me = (Map.Entry)i.next();
+		         @SuppressWarnings("rawtypes")
+				Map.Entry me = (Map.Entry)i.next();
 		         
 		         mDatos.addRow(new Object[]{me.getKey(), me.getValue()});
 		        
@@ -141,7 +118,6 @@ public class TablaStats extends JFrame{
 	       
 
 		       
-	       modelo = new Modelo();
 	       renderer = new MiRenderer();
 	       tabla = new JTable(mDatos);
 	       tabla.getColumnModel().getColumn(1).setCellRenderer(renderer);
@@ -160,54 +136,19 @@ public class TablaStats extends JFrame{
 	       setVisible(true);
 	       
 	       
-	       
-	       
-	       
-	       
-	       
-	       
-	       
-	       
-	       
-	       
-	       
-	       
-	       
+  
 		
 	}
 	
-	
-	class Modelo extends DefaultTableModel  {
-		
-		public String getColumnName(int col) {
-	        return columnNames[col].toString();
-	    }
-	    public int getRowCount() { return data.length; }
-	    public int getColumnCount() { return columnNames.length; }
-	    public Object getValueAt(int row, int col) {
-	        return data[row][col];
-	    }
-	    public boolean isCellEditable(int row, int col) {
-	        return false; }
-	    
-	    public void setValueAt(Object value, int row, int col) {
-	        data[row][col] = value;
-	        
-	        for (String key :mapa.keySet()) {
-	        	 //this.addRow(key);
-	        	
-	        }
-	       
-	        
-	        fireTableCellUpdated(row, col);
-	    }
-		
-	}
-
 
 	
 	class MiRenderer extends DefaultTableCellRenderer{
 		
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 		public MiRenderer() { super(); }
 		
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,

@@ -114,22 +114,7 @@ public class Summon extends JFrame{
 			}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		
 		panel = new JPanel();
@@ -339,5 +324,14 @@ public String getLastUs() {
 public void setLastUs(String lastUs) {
 	this.lastUs = lastUs;
 }
+
+public String getPlayer() {
+	return player;
+}
+
+public void setPlayer(String player) {
+	this.player = player;
+}
+
 
 }
