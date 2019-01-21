@@ -45,7 +45,7 @@ public class Options extends JFrame{
 		path = new ArrayList<String>();
 		
 				JFileChooser f = new JFileChooser();
-				f.setDialogTitle("Selecciona la carpeta con las canciones que te gustaria escuchar ingame C:");
+				f.setDialogTitle("Selecciona la carpeta con las canciones que te gustaria escuchar ingame");
 				if (ultimaCarpeta!=null) 
 					f.setCurrentDirectory(ultimaCarpeta);
 				f.setFileSelectionMode( JFileChooser.DIRECTORIES_ONLY );

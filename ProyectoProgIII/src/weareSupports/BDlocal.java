@@ -20,9 +20,6 @@ public class BDlocal {
 
     private static Logger logger = Logger.getLogger( "LoggerBD" );
 
-
-
-
 	static {
     try {
         logger.setLevel( Level.FINEST);
@@ -473,6 +470,7 @@ public class BDlocal {
 
 	             System.out.println();
 	          }
+	          
 	          rs.close();
 	          stmt.close();
 	          c.close();

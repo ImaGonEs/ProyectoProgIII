@@ -139,7 +139,7 @@ class Gui extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(1300,750);
 		setLocationRelativeTo(null);
-		  
+		
 		//ArrayList de sustitutos con los datos de las torres de tu coleccion
 		ArrayList<Sust> tcd = collect();
 		//ArrayList con los id de las torres que usastes en tu team anterior
@@ -241,7 +241,7 @@ class Gui extends JFrame {
 		}
 		
 		
-		//Añadimos MouseListeners a los JLabelGraficoAjustados pra que se muevan de un panel a otro 
+		//Añadimos MouseListeners a los JLabelGraficoAjustados para que se muevan de un panel a otro 
 		for (Sust i : tcd) {
 			JLabelGraficoAjustado z = new JLabelGraficoAjustado(i.getTex(),40,40);
 

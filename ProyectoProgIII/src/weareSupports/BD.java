@@ -211,17 +211,13 @@ public class BD {
 			logger.log(Level.FINER,"Opened database successfully");
 
 			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery( "SELECT ID_T FROM TIENE WHERE NAME_P="+"\""+player+"\""+";");
+			ResultSet rs = stmt.executeQuery( "SELECT ID FROM TIENE WHERE NAME_P="+"\""+player+"\""+";");
 
 			while ( rs.next() ) {
-
-
-				String torre = rs.getString("ID_T");
-
+				String torre = rs.getString("ID");
 				ids.add(torre);
-
-
 			}
+			
 			rs.close();
 			stmt.close();
 			c.close();
@@ -248,8 +244,6 @@ public class BD {
 
 			while ( rs.next() ) {
 				String id = rs.getString("ID");
-
-
 				ids.add(id);
 			}
 			rs.close();
@@ -308,9 +302,8 @@ public class BD {
 			while ( rs.next() ) {
 				String id = rs.getString("ID");
 				ide = id;
-
-
 			}
+			
 			rs.close();
 			stmt.close();
 			c.close();
@@ -336,9 +329,6 @@ public class BD {
 
 			while ( rs.next() ) {
 				s = rs.getString(cName);
-
-
-
 			}
 			rs.close();
 			stmt.close();

@@ -30,7 +30,6 @@ public class LeMenu extends JFrame{
 	static int[][] mapa;
 	Options o;
 	
-	
 	public static int[][] getMapa() {
 		return mapa;
 	}

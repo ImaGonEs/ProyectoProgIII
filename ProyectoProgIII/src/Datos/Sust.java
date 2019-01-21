@@ -2,7 +2,7 @@ package Datos;
 
 
 /* 
- * Clase sustituta para almacenar atributos de torres (la usamos en la ventana Gui sobretodo
+ * Clase sustituta para almacenar atributos de torres (la usamos en la ventana Gui sobretodo)
  * */
 
 public class Sust { 

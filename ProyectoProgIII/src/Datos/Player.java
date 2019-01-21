@@ -125,7 +125,7 @@ public static ArrayList<String> leeTeam (String name) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (FileNotFoundException e) {
-
+			System.out.println("No has creado tu primer team");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -245,6 +245,7 @@ public static ArrayList<String> leeTeam (String name) {
 			tHP.cambioTexto(hp);
 			if(hp<=0) {
 				try {
+					
 					Display.destroy();
 				}catch (Exception e) {
 
