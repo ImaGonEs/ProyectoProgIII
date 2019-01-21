@@ -267,14 +267,14 @@ class Gui extends JFrame {
 					if (jtcont == true) {
 					
 					jt.setValueAt(Integer.toString(i.getDamage()), 0, 1);
-					jt.setValueAt(Integer.toString((int) i.getAttackSpeed()), 1, 1);
+					jt.setValueAt(Float.toString(i.getAttackSpeed()), 1, 1);
 					jt.setValueAt(Integer.toString(i.getRange()), 2, 1);
 					jtcont = false;
 					
 					} else {
 						
 						jt2.setValueAt(Integer.toString(i.getDamage()), 0, 1);
-						jt2.setValueAt(Integer.toString((int) i.getAttackSpeed()), 1, 1);
+						jt2.setValueAt(Float.toString(i.getAttackSpeed()), 1, 1);
 						jt2.setValueAt(Integer.toString(i.getRange()), 2, 1);
 						jtcont = true;
 						

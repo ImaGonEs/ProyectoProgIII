@@ -596,7 +596,7 @@ public class BDlocal {
 	          stmt.executeUpdate(sql);
 	          sql = "UPDATE TOWERS SET DAMAGE = 15,ATKSPEED = 3  WHERE ID = 'T02';"; 
 	          stmt.executeUpdate(sql);
-	          sql = "UPDATE TOWERS SET DAMAGE = 15,ATKSPEED = 6  WHERE ID = 'T03';"; 
+	          sql = "UPDATE TOWERS SET DAMAGE = 15,ATKSPEED = 25  WHERE ID = 'T03';"; 
 	          stmt.executeUpdate(sql);
 	          sql = "UPDATE TOWERS SET DAMAGE = 120,ATKSPEED = 1  WHERE ID = 'T04';"; 
 	          stmt.executeUpdate(sql);

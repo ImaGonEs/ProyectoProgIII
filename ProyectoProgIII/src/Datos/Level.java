@@ -114,7 +114,7 @@ public class Level {
 				enemies.add(new Enemy(QuickCast("ghost1"),QuickCast("ghost2"),grid.getCell(1,iniCell),grid, 32,32,80,100*(a+1)));
 				enemies.add(new Enemy(QuickCast("cabra1"),QuickCast("cabra2"),grid.getCell(1,iniCell),grid, 32,32,80,100*(a+1)));
 				//Oleada de enemigos
-				wave = new WManager(enemies,1,3); 
+				wave = new WManager(enemies,1,3*a); 
 
 	}
 	public Map getMap() {
