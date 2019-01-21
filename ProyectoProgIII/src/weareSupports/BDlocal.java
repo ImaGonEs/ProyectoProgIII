@@ -22,21 +22,28 @@ public class BDlocal {
 
 
 
+
 	static {
     try {
         logger.setLevel( Level.FINEST);
         logger.addHandler( new FileHandler( "LoggerBD.xml") );
     } catch (Exception e) {}
 	}
-    
-    
-    public void insert (String tName, String code) {
-
+    public static void startBD() {
     	 try {
 	          Class.forName("org.sqlite.JDBC");
 	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
 	          c.setAutoCommit(false);
 	         logger.log(Level.FINER,"Opened database successfully");
+    	 }catch (Exception e) {
+			// TODO: handle exception
+		}
+    }
+    
+    public void insert (String tName, String code) {
+
+    	 try {
+	         startBD();
 
 	          stmt = c.createStatement();
 	          String sql = "INSERT INTO "+tName+
@@ -59,10 +66,7 @@ public class BDlocal {
     TreeMap<String, Integer> mapa = new TreeMap<String, Integer>();
     
     try {
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-        c.setAutoCommit(false);
-        logger.log(Level.FINER,"Opened database successfully");
+    	 startBD();
 
         stmt = c.createStatement();
         ResultSet rs = stmt.executeQuery( "SELECT NAME_P,GEMS FROM PLAYERS;" );
@@ -87,10 +91,7 @@ public class BDlocal {
     public static void empty(String player) {
     	
     	try {
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	         logger.log(Level.FINER,"Opened database successfully");
+    		 startBD();
 
 	          stmt = c.createStatement();
 	          String sql = "DELETE FROM TIENE WHERE NAME_P = '"+player+"';"; 
@@ -113,12 +114,9 @@ public class BDlocal {
     public void delete() {
     	
     	try {
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	          System.out.println("Opened database successfully");
-
-	          stmt = c.createStatement();
+    		 startBD();
+	          
+    		 stmt = c.createStatement();
 	          String sql = "CREATE TABLE PLAYERS ( NAME_P VARCHAR(30) NOT NULL PRIMARY KEY,PASSWORD VARCHAR(30) NOT NULL, GEMS NUMBER  DEFAULT 0 );"; 
 	          stmt.executeUpdate(sql);
 
@@ -141,11 +139,8 @@ public class BDlocal {
     HashMap<String,String> mapa = new HashMap<String, String>();
     
     try {
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-        c.setAutoCommit(false);
-       logger.log(Level.FINER,"Opened database successfully");
-
+    	 startBD();
+    	 
         stmt = c.createStatement();
         ResultSet rs = stmt.executeQuery( "SELECT NAME_P,PASSWORD FROM PLAYERS;" );
         
@@ -175,10 +170,7 @@ public class BDlocal {
 
 
 	      try { 
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-       logger.log(Level.FINER,"Opened database successfully");
-
+	    	  startBD();
         stmt = c.createStatement();
         String sql = "CREATE TABLE "+tName +
                        "("+code+");"; 
@@ -201,11 +193,7 @@ public class BDlocal {
     	ArrayList<String> ids = new ArrayList<>();
     	
     	try {
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	         logger.log(Level.FINER,"Opened database successfully");
-
+    		 startBD();
 	          stmt = c.createStatement();
 	          ResultSet rs = stmt.executeQuery( "SELECT ID_T FROM TIENE WHERE NAME_P="+"\""+player+"\""+";");
 	          
@@ -234,10 +222,7 @@ public class BDlocal {
     	
     	ArrayList<String> ids = new ArrayList<>();
     	try { 
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	         logger.log(Level.FINER,"Opened database successfully");
+    		 startBD();
 
 	          stmt = c.createStatement();
 	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
@@ -264,9 +249,7 @@ public class BDlocal {
 	   
 	   String torre = "";
 	   try {
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
+		   startBD();
 	          
 	          stmt = c.createStatement();
 	          ResultSet rs = stmt.executeQuery( "SELECT NAME FROM TOWERS WHERE ID ="+"\""+t+"\""+"; ");
@@ -293,10 +276,7 @@ public class BDlocal {
     public String getID(String tex) {
     	String ide = "";
     	try { 
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	         logger.log(Level.FINER,"Opened database successfully");
+    		 startBD();
 
 	          stmt = c.createStatement();
 	          ResultSet rs = stmt.executeQuery( "SELECT ID FROM TOWERS WHERE NAME='"+tex+"';" );
@@ -322,10 +302,7 @@ public class BDlocal {
 
     	String s = "";
 	      try { 
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-        c.setAutoCommit(false);
-       logger.log(Level.FINER,"Opened database successfully");
+	    	  startBD();
 
         stmt = c.createStatement();
         ResultSet rs = stmt.executeQuery( "SELECT "+cName+" FROM "+tName+";" );
@@ -354,10 +331,7 @@ public class BDlocal {
 
     	int i = 0;
 	      try { 
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-        c.setAutoCommit(false);
-       logger.log(Level.FINER,"Opened database successfully");
+	    	  startBD();
 
         stmt = c.createStatement();
         ResultSet rs = stmt.executeQuery( "SELECT "+cName+" FROM "+tName+";" );
@@ -384,11 +358,7 @@ public class BDlocal {
 
     	int i = 0;
 	      try { 
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-        c.setAutoCommit(false);
-       logger.log(Level.FINER,"Opened database successfully");
-
+	    	  startBD();
         stmt = c.createStatement();
         ResultSet rs = stmt.executeQuery( "SELECT GEMS FROM PLAYERS WHERE NAME_P = '"+player+"';" );
 
@@ -412,10 +382,7 @@ public class BDlocal {
     public void updatePlayers(String code) {
 
     	try { 
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	         logger.log(Level.FINER,"Opened database successfully");
+    		 startBD();
 
 	          stmt = c.createStatement();
 	          String sql = "UPDATE TOWERS "+code+";"; 
@@ -437,10 +404,7 @@ public class BDlocal {
     public void updateGems(String player, String cant) {
 
     	try { 
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	         logger.log(Level.FINER,"Opened database successfully");
+    		 startBD();
 
 	          stmt = c.createStatement();
 	          String sql = "UPDATE PLAYERS SET GEMS = GEMS "+cant+" WHERE NAME_P = '"+player+"';"; 
@@ -462,11 +426,7 @@ public class BDlocal {
     public  void printTowers() {
 
 	      try { 
-        Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-        c.setAutoCommit(false);
-       logger.log(Level.FINER,"Opened database successfully");
-
+	    	  startBD();
         stmt = c.createStatement();
         ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS;" );
 
@@ -497,11 +457,7 @@ public class BDlocal {
     public void printTiene() {
 
     	try {//-------------------PRINT TIENE---------------------
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	         logger.log(Level.FINER,"Opened database successfully");
-
+    		 startBD();
 	          stmt = c.createStatement();
 	          ResultSet rs = stmt.executeQuery( "SELECT * FROM TIENE;" );
 
@@ -529,11 +485,7 @@ public class BDlocal {
    public void printPlayers() {
 
 	   try {//-------------------PRINT PLAYERS---------------------
-	          Class.forName("org.sqlite.JDBC");
-	          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-	          c.setAutoCommit(false);
-	         logger.log(Level.FINER,"Opened database successfully");
-
+		   startBD();
 	          stmt = c.createStatement();
 	          ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYERS;" );
 
@@ -567,11 +519,7 @@ public class BDlocal {
 	ArrayList<String> towers =  new ArrayList<String>();
 
 	    	try {
-		          Class.forName("org.sqlite.JDBC");
-		          c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-		          c.setAutoCommit(false);
-		         logger.log(Level.FINER,"Opened database successfully");
-
+	    		 startBD();
 		          stmt = c.createStatement();
 		          ResultSet rs = stmt.executeQuery( "SELECT ID_T FROM TIENE WHERE NAME_P = '"+player+"';" );
 
@@ -602,10 +550,7 @@ public class BDlocal {
 	   
 	   Sust az = null;
 	   try {
-       Class.forName("org.sqlite.JDBC");
-        c = DriverManager.getConnection("jdbc:sqlite:Towers2.0.db");
-        c.setAutoCommit(false);
-       logger.log(Level.FINER,"Opened database successfully");
+		   startBD();
 
         stmt = c.createStatement();
         ResultSet rs = stmt.executeQuery( "SELECT * FROM TOWERS WHERE ID='"+s+"';" );
@@ -633,15 +578,60 @@ public class BDlocal {
      logger.log(Level.FINER, "Operation done successfully");
      return az;
 
+     
+     
+     
+     
+     }
+   
+   public static void update12() {
+	   
+
+
+   	try { 
+   		 startBD();
+
+	          stmt = c.createStatement();
+	          String sql = "UPDATE TOWERS SET DAMAGE = 7, ATKSPEED = 6  WHERE ID = 'T01';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 15,ATKSPEED = 3  WHERE ID = 'T02';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 15,ATKSPEED = 6  WHERE ID = 'T03';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 120,ATKSPEED = 1  WHERE ID = 'T04';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 45,ATKSPEED = 2  WHERE ID = 'T05';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 21,ATKSPEED = 4  WHERE ID = 'T06';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 300,ATKSPEED = 0.5  WHERE ID = 'T07';"; 
+	          stmt.executeUpdate(sql);
+
+
+	          stmt.close();
+	          c.commit();
+	          c.close();
+	       } catch ( Exception e ) {
+	          logger.log(Level.SEVERE,  e.getClass().getName() + ": " + e.getMessage() );
+	          System.exit(0);
+	       }
+	       logger.log(Level.FINER, "Records created successfully");
+
+
+     
    }
 
-
+	
+    	 
    
    
 
    public static void main(String[] args) {
 	BDlocal b= new BDlocal();
 	//System.out.println(b.getGems("KIKEXD"));
+	update12();
+	
+	
 	b.printTowers();
 }
 
