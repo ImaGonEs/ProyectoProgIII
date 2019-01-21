@@ -107,7 +107,7 @@ public class Level {
 		//Arraylist predefinido con lo enemigos de cada oleada (1-6)
 		enemies= new ArrayList<Enemy>();
 				enemies.add(new Enemy(QuickCast("Mob0"),QuickCast("Mob0S"),grid.getCell(1,iniCell),grid, 32,32,80,100*(a+1)));
-				enemies.add(new Enemy(QuickCast("seta"),QuickCast("seta"),grid.getCell(1,iniCell),grid, 32,32,80,100*(a+1)));
+				enemies.add(new Enemy(QuickCast("seta"),QuickCast("seta2"),grid.getCell(1,iniCell),grid, 32,32,80,100*(a+1)));
 				enemies.add(new Enemy(QuickCast("pig1"),QuickCast("pig2"),grid.getCell(1,iniCell),grid, 32,32,80,100*(a+1)));
 				enemies.add(new Enemy(QuickCast("demon1"),QuickCast("demon2"),grid.getCell(1,iniCell),grid, 32,32,80,100*(a+1)));
 				enemies.add(new Enemy(QuickCast("ghost1"),QuickCast("ghost2"),grid.getCell(1,iniCell),grid, 32,32,80,100*(a+1)));

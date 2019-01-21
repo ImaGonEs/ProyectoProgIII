@@ -67,7 +67,7 @@ public enum TowerType {
 		         String  id = rs.getString("id"); 
 		         
 		         String name = rs.getString("name");
-		         System.out.println(name);
+		         //System.out.println(name);
 		         int dmg = rs.getInt("damage");
 		         int range = rs.getInt("range");
 		         float atkspd = rs.getFloat("atkspeed");
