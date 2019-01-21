@@ -76,6 +76,7 @@ public class Level {
 	}
 	
 	
+	
 	public Level(int a, String mapa) {
 		
 		if(mapa.equals("Mapa404") && !LeMenu.getMapaRecCargado()) {
