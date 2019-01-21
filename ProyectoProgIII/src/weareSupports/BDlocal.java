@@ -592,9 +592,20 @@ public class BDlocal {
    		 startBD();
 
 	          stmt = c.createStatement();
-	          String sql = "UPDATE TOWERS SET DAMAGE = 35,ATKSPEED = 2  WHERE ID = 'T07';"; 
+	          String sql = "UPDATE TOWERS SET DAMAGE = 7, ATKSPEED = 6  WHERE ID = 'T01';"; 
 	          stmt.executeUpdate(sql);
-
+	          sql = "UPDATE TOWERS SET DAMAGE = 15,ATKSPEED = 3  WHERE ID = 'T02';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 15,ATKSPEED = 6  WHERE ID = 'T03';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 120,ATKSPEED = 1  WHERE ID = 'T04';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 45,ATKSPEED = 2  WHERE ID = 'T05';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 21,ATKSPEED = 4  WHERE ID = 'T06';"; 
+	          stmt.executeUpdate(sql);
+	          sql = "UPDATE TOWERS SET DAMAGE = 300,ATKSPEED = 0.5  WHERE ID = 'T07';"; 
+	          stmt.executeUpdate(sql);
 
 
 	          stmt.close();
